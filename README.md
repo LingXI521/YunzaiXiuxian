@@ -4,7 +4,7 @@
 
 > 在Yunzai-Bot/目录下执行  
 ```
-git clone  https://gitee.com/YUAN__YU/xiuxian-emulator-plugin/.git ./plugins/xiuxian-emulator-plugin/
+git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian-emulator-plugin/
 
 ```
 > 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
