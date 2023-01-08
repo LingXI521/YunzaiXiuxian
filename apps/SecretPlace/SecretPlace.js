@@ -469,7 +469,7 @@ export class SecretPlace extends plugin {
         //不为空，有状态
         if (action != null) {
             //是在秘境状态
-            if (action.Place_action == "0" || action.Place_actionplus == "0") {
+            if (action.Place_action == "0" || action.Place_actionplus == "0" || action.mojie == "0") {
                 //把状态都关了
                 let arr = action;
                 arr.is_jiesuan = 1;//结算状态
