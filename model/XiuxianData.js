@@ -134,6 +134,8 @@ class XiuxianData {
         this.mojie = JSON.parse(fs.readFileSync(`${this.lib_path}/魔界列表.json`));
         //加载项链列表
         this.necklace_list= JSON.parse(fs.readFileSync(`${this.lib_path}/项链列表.json`));
+        //兑换码
+        this.duihuan = JSON.parse(fs.readFileSync(`${this.lib_path}/兑换列表.json`));
     }
 
 
