@@ -845,7 +845,7 @@ export class Occupation extends plugin {
 
         let rate = 0;
 
-        if (player.occupation_level > 0 && player.occupation_level < 24) {
+        if (player.occupation_level > 0 ) {
             rate = data.occupation_exp_list.find(item => item.id == player.occupation_level).rate;
             rate = rate * 10
             rate = rate * 0.025
