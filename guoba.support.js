@@ -17,7 +17,7 @@ export function supportGuoba() {
             title: "修仙模拟器",
             author: "@柠檬冲水 @DD斩首",
             authorLink: "https://gitee.com/hutao222",
-            link: "https://gitee.com/YUAN__YU/xiuxian-emulator-plugin",
+            link: "https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4",
             isV3: true,
             isV2: false,
             description: `绝云间修仙模拟器${versionData[0].version}「${versionData[0].name}」]`,
@@ -28,7 +28,6 @@ export function supportGuoba() {
             iconColor: "#d19f56",
             // 如果想要显示成图片，也可以填写图标路径（绝对路径）
             iconPath: path.join(_path, "resources/img/xiuxian.png"),
-
         }
     }
 }
