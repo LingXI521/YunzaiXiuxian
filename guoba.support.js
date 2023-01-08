@@ -1,7 +1,11 @@
 import path from "path";
 import lodash from 'lodash'
 import cfg from './model/Config.js'
+import Config from "./model/Config.js";
+
 const _path = process.cwd() + "/plugins/xiuxian-emulator-plugin";
+//定义一个版本信息的常量,获取默认文件配置文件信息
+const versionData = Config.getdefSet("version", "version");
 
 /**
  *  支持锅巴配置
@@ -16,7 +20,7 @@ export function supportGuoba() {
             link: "https://gitee.com/YUAN__YU/xiuxian-emulator-plugin",
             isV3: true,
             isV2: false,
-            description: "绝云间修仙模拟器V1.2.4[xiuxian-V1.2.4「银花造福盈」]",
+            description: `绝云间修仙模拟器${versionData[0].version}「${versionData[0].name}」]`,
             // 显示图标，此为个性化配置
             // 图标可在 https://icon-sets.iconify.design 这里进行搜索
             icon: "mdi:stove",
@@ -24,7 +28,7 @@ export function supportGuoba() {
             iconColor: "#d19f56",
             // 如果想要显示成图片，也可以填写图标路径（绝对路径）
             iconPath: path.join(_path, "resources/img/xiuxian.png"),
-            
+
         }
     }
 }
