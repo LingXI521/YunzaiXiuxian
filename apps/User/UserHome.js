@@ -83,11 +83,61 @@ export class UserHome extends plugin {
             }, {
                 reg: '^#供奉奇怪的石头$',
                 fnc: 'Add_lhd'
+            },
+            {
+                reg: '^#活动兑换.*$',
+                fnc: 'huodong'
             }]
         })
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
     }
-
+    async huodong(e) {
+        if (!e.isGroup) {
+            return;
+        }
+        //固定写法
+        let usr_qq = e.user_id;
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        var name = e.msg.replace("#活动兑换", '');
+        name = name.trim();
+        let i;//获取对应npc列表的位置
+        for (i = 0; i < data.duihuan.length; i++) {
+            if (data.duihuan[i].name == name) {
+                break;
+            }
+        }
+        if (i==data.duihuan.length)
+        {
+            e.reply("兑换码不存在!");
+            return;
+        }
+        let action = await redis.get("xiuxian:player:" + usr_qq + ":duihuan");//兑换码
+        action = await JSON.parse(action);
+        if (action==null)
+        {
+            action=[];
+        }
+        for (var k=0;k<action.length;k++)
+        {
+            if (action[k]==name)
+            {
+                e.reply("你已经兑换过该兑换码了");
+                return;
+            }
+        }
+        action.push(name);
+        await redis.set("xiuxian:player:" + usr_qq + ":duihuan", JSON.stringify(action));
+        let msg=[];
+        for (var k=0;k<data.duihuan[i].thing.length;k++)
+        {
+            await Add_najie_thing(usr_qq, data.duihuan[i].thing[k].name, data.duihuan[i].thing[k].class, data.duihuan[i].thing[k].数量);
+            msg.push("\n"+data.duihuan[i].thing[k].name+"x"+data.duihuan[i].thing[k].数量);
+        }
+        e.reply("恭喜获得:"+msg);
+    }
     async check_player(e) {
         if (!e.isMaster) {
             e.reply("只有主人可以执行操作");
