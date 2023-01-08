@@ -1,0 +1,182 @@
+[
+  {
+    "name": "玄元丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 1
+      },
+      {
+        "name": "何首乌",
+        "amount": 1
+      }
+    ],
+    "rate":0.8,
+	"exp":[1,3]
+  },
+  {
+    "name": "聚灵丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 2
+      },
+      {
+        "name": "何首乌",
+        "amount": 2
+      }
+    ],
+    "rate":0.7,
+	"exp":[2,6]
+  },
+  {
+    "name": "融灵丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 4
+      },
+      {
+        "name": "何首乌",
+        "amount": 4
+      }
+    ],
+    "rate":0.6,
+	"exp":[4,12]
+  },
+  {
+    "name": "巨宝丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 5
+      },
+      {
+        "name": "何首乌",
+        "amount": 5
+      }
+    ],
+    "rate":0.5,
+	"exp":[6,18]
+  },
+  {
+    "name": "虚法丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 6
+      },
+      {
+        "name": "何首乌",
+        "amount": 6
+      }
+    ],
+    "rate":0.4,
+	"exp":[8,24]
+  },
+  {
+    "name": "虚灵丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 7
+      },
+      {
+        "name": "何首乌",
+        "amount": 7
+      }
+    ],
+    "rate":0.3,
+	"exp":[10,30]
+  },
+  {
+    "name": "灵真丹",
+    "materials": [
+      {
+        "name": "人参",
+        "amount": 9
+      },
+      {
+        "name": "何首乌",
+        "amount": 9
+      }
+    ],
+    "rate":0.2,
+	"exp":[12,36]
+  },
+  {
+    "name": "大力丸",
+    "materials": [
+      {
+        "name": "枸杞",
+        "amount": 1
+      },
+      {
+        "name": "当归",
+        "amount": 1
+      }
+    ],
+    "rate":0.8,
+	"exp":[1,3]
+  },
+  {
+    "name": "莽牛丸",
+    "materials": [
+      {
+        "name": "枸杞",
+        "amount": 2
+      },
+      {
+        "name": "当归",
+        "amount": 2
+      }
+    ],
+    "rate":0.7,
+	"exp":[2,6]
+  },
+  {
+    "name": "猛虎丸",
+    "materials": [
+      {
+        "name": "枸杞",
+        "amount": 4
+      },
+      {
+        "name": "当归",
+        "amount": 4
+      }
+    ],
+    "rate":0.6,
+	"exp":[4,12]
+  },
+  {
+    "name": "巨象丸",
+    "materials": [
+      {
+        "name": "枸杞",
+        "amount": 5
+      },
+      {
+        "name": "当归",
+        "amount": 5
+      }
+    ],
+    "rate":0.5,
+	"exp":[6,18]
+  },
+  {
+    "name": "蟠龙丸",
+    "materials": [
+      {
+        "name": "枸杞",
+        "amount": 7
+      },
+      {
+        "name": "当归",
+        "amount": 7
+      }
+    ],
+    "rate":0.4,
+	"exp":[10,30]
+  }
+]

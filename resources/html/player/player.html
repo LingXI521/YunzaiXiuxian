@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/player/player.css" />
+    <link rel="preload" href="../../font/tttgbnumber.ttf" as="font" />
+    <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+    <div>
+        <div class="header">
+        </div>
+        <!--上-->
+        <div class="card_box">
+            <!--左-->
+            <div class="user_top_left">
+                <div class="user_top_img_bottom">
+                    <img class="user_top_img" src="https://q1.qlogo.cn/g?b=qq&s=0&nk={{user_id}}" onerror="whenError(this)" />
+                </div>
+                <div class="user_top_font_left">战力 {{PowerMini}}</div>
+            </div>
+            <!--右-->
+            <div class="user_top_right">
+                <div class="user_top_font_right">道号：{{player.名号}}</div>
+                <div class="user_top_font_right">QQ：{{user_id}}</div>
+                <div class="user_top_font_right">
+                    生命：
+                    <div class="blood_box">
+                        <div class="blood_bar" {{strand_hp.style}}></div>
+                        <div class="blood_volume">{{player.当前血量}}/{{player.血量上限}}</div>
+                    </div>
+                </div>
+                <div class="user_top_font_right">灵石：{{lingshi}}</div>
+                <div class="user_top_font_right">宗门：【{{this_association.宗门名称}}】{{if this_association.宗门名称 !=
+                    "无"}}[{{this_association.职位}}]{{/if}}</div>
+                <div class="user_top_font_right">道宣：{{player.宣言}}</div>
+            </div>
+        </div>
+
+        <!--下-->
+        <div class="card_box">
+            <div class="use_data">
+                <div class="user_font user_font_title">[基础信息]</div>
+
+                <div class="user_font wupin">
+                    <div class="item">
+                        <div class="item_title font_left">攻击：{{player.攻击}}</div>
+                        <div class="item_title font_left">防御：{{player.防御}}</div>
+                        <div class="item_title font_left">暴击：{{bao}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title font_left">生命加成：{{player.生命加成}}</div>
+                        <div class="item_title font_left">防御加成：{{player.防御加成}}</div>
+                        <div class="item_title font_left">攻击加成：{{player.攻击加成}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title font_left">修炼加成：{{talent}}%</div>
+                        <div class="item_title font_left">职业：[{{occupation}}]</div>
+                        <div class="item_title font_left">道侣[{{婚姻状况}}]</div>
+                    </div>
+                </div>
+
+                <div class="user_font wupin">
+                    <div class="item">
+                        <div class="item_title font_left">{{rank_lianqi}}{{if player.修为 >= expmax_lianqi}}[UP]{{/if}}</div>
+                        <div class="item_int">
+                            <div class="xuetiao">
+                                <div class="xueliang font_volume" {{strand_lianqi.style}}>{{strand_lianqi.num}}%</div>
+                            </div>
+                        </div>
+                        <div class="item_int">{{player.修为}}/{{expmax_lianqi}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title font_left">{{rank_llianti}}{{if player.血气 >= expmax_llianti}}[UP]{{/if}}</div>
+                        <div class="item_int">
+                            <div class="xuetiao">
+                                <div class="xueliang font_volume" {{strand_llianti.style}}>{{strand_llianti.num}}%</div>
+                            </div>
+                        </div>
+                         <div class="item_int">{{player.血气}}/{{expmax_llianti}}</div>
+                    </div>
+                    {{if player.occupation == ""}}
+                    <div class="item">
+                        <div class="item_title font_left">职业：</div>
+                        <div class="item_title font_left">无业游民</div>
+                    </div>
+                </div>
+                {{/if}}
+                    {{if player.occupation != ""}}
+                    <div class="item">
+                        <div class="item_title font_left">{{rank_liandan}}{{if player.occupation_exp >= expmax_liandan}}[UP]{{/if}}</div>
+                        <div class="item_int">
+                            <div class="xuetiao">
+                                <div class="xueliang font_volume" {{strand_liandan.style}}>{{strand_liandan.num}}%</div>
+                            </div>
+                        </div>
+                         <div class="item_int">{{player.occupation_exp}}/{{expmax_liandan}}</div>
+                    </div>
+                </div>
+                {{/if}}
+                <div class="user_font wupin">
+                    <div class="item">
+                        <div class="item_title font_left">
+                            灵根：【{{player.灵根.type}}】{{if player.灵根.type != "无"}}{{player.灵根.name}}<br>
+                            被动：【额外增伤】攻击+{{player.灵根.法球倍率*100}}%{{/if}}<br>
+                            镇妖：【{{player.镇妖塔层数}}层】<br>
+                            神魂：【{{player.神魄段数}}层】<br>
+                            幸运:【{{player.幸运*100}}%】<br>
+                            魔道值:【{{player.魔道值}}】<br>
+                            状态：【{{player_action}}】</div>
+                        </div> 
+                </div>
+            </div>
+        </div>
+
+   
+
+        <!--下-->
+        <div class="card_box">
+            <div class="use_data">
+                <div class="user_font user_font_title">[装备信息]</div>
+                <div class="user_font wupin">
+                    <div class="item">
+                        <div class="item_title">武器：{{equipment.武器.name}}</div>
+                        <div class="item_int">战力：{{ArmsPower}}</div>
+                        <div class="item_int">攻击：{{equipment.武器.atk}}</div>
+                        <div class="item_int">防御：{{equipment.武器.def}}</div>
+                        <div class="item_int">血量：{{equipment.武器.HP}}</div>
+                        <div class="item_int">暴击：{{equipment.武器.bao}}</div>
+                        <div class="item_int">评级：【{{武器评级}}】</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item_title">护具：{{equipment.护具.name}}</div>
+                        <div class="item_int">战力：{{ArmorPower}}</div>
+                        <div class="item_int">攻击：{{equipment.护具.atk}}</div>
+                        <div class="item_int">防御：{{equipment.护具.def}}</div>
+                        <div class="item_int">血量：{{equipment.护具.HP}}</div>
+                        <div class="item_int">暴击：{{equipment.护具.bao}}</div>
+                        <div class="item_int">评级：【{{护具评级}}】</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="item_title">法宝：{{equipment.法宝.name}}</div>
+                        <div class="item_int">战力：{{MagicPower}}</div>
+                        <div class="item_int">攻击：{{equipment.法宝.atk}}</div>
+                        <div class="item_int">防御：{{equipment.法宝.def}}</div>
+                        <div class="item_int">血量：{{equipment.法宝.HP}}</div>
+                        <div class="item_int">暴击：{{equipment.法宝.bao}}</div>
+                        <div class="item_int">评级：【{{法宝评级}}】</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--下-->
+        <div class="card_box">
+            <div class="use_data">
+                <div class="user_font user_font_title">[仙宠]</div>
+                {{if player.仙宠 == ""}}
+                    <div class="item_title">【暂无】</div>
+                </div>
+            {{/if}}
+            {{if player.仙宠 != ""}}
+                <div class="user_font wupin">
+                    <div class="item">
+                        <div class="item_title font_left">
+                            <div class="item_title">【{{player.仙宠.品级}}】{{player.仙宠.name}}</div>
+                            <div class="item_int">等级：[{{player.仙宠.等级}}/{{player.仙宠.等级上限}}]</div>
+                            <div class="item_int">攻击加成{{player.仙宠.atk}}</div>
+                            <div class="item_int">防御加成{{player.仙宠.def}}</div>
+                            <div class="item_int">血量加成{{player.仙宠.HP}}</div>
+                            <div class="item_int">{{player.仙宠.type}}加成:{{player.仙宠.加成*100}}%</div>
+                            {{if player.仙宠.灵魂绑定==1}}
+                                <div class="item_int">【存在绑定】</div>
+                            {{/if}}
+                            {{if player.仙宠.灵魂绑定==0}}
+                                <div class="item_int">【无绑定】</div>
+                            {{/if}}
+                            </div>
+                    </div>
+                </div>
+            {{/if}}
+            </div>
+        </div>
+        <div class="item_int">版本:xiuxian-V1.2.4「银花造福盈」 by:DD斩首(3196383818)</div>
+
+        <div class="user_bottom2">
+        </div>
+    </div>
+    <style>
+    </style>
+</body>
+
+</html>

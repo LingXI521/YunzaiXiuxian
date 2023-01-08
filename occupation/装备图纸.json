@@ -1,0 +1,1310 @@
+[
+	{
+		"name": "雾切之回光",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 3500000
+			},
+			{
+				"name": "红宝石",
+				"amount": 15000
+			}
+		],
+		"rate": 0.10,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "护摩之杖",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 3500000
+			},
+			{
+				"name": "红宝石",
+				"amount": 15000
+			}
+		],
+		"rate": 0.10,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "贯虹之槊",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 1700000
+			},
+			{
+				"name": "红宝石",
+				"amount": 7500
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "磐岩结绿",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 1700000
+			},
+			{
+				"name": "红宝石",
+				"amount": 7500
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "千岩牢固",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 3500000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 15000
+			}
+		],
+		"rate": 0.10,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "智识之冠",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 1750000
+			},
+			{
+				"name": "庚金",
+				"amount": 1750000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 15000
+			}
+		],
+		"rate": 0.10,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "烂铁匕首",
+		"materials":[
+			{
+				"name": "庚金",
+				"amount": 30
+			},{
+				"name": "绿宝石",
+				"amount": 1
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			0,
+			0
+		]
+	},
+	{
+		"name": "破铜护具",
+		"materials":[
+			{
+				"name": "玄土",
+				"amount": 30
+			},{
+				"name": "红宝石",
+				"amount": 1
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			0,
+			0
+		]
+	},
+	{
+		"name": "廉价炮仗",
+		"materials":[
+			{
+				"name": "庚金",
+				"amount": 15
+			},
+			{
+				"name": "玄土",
+				"amount": 15
+			},{
+				"name": "绿宝石",
+				"amount": 1
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			0,
+			0
+		]
+	},
+	{
+		"name": "咸鱼宝剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 1500
+			},{
+				"name": "红宝石",
+				"amount": 25
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			12,
+			12
+		]
+	},
+	{
+		"name": "精制长剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 6500
+			},{
+				"name": "红宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			47,
+			47
+		]
+	},
+	{
+		"name": "寒龙刀",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 10000
+			},{
+				"name": "红宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "煞血刀",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 10000
+			},{
+				"name": "红宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "圣道之剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 13000
+			},{
+				"name": "红宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "赤霄剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 13000
+			},{
+				"name": "红宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "狂怒战刃",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 16000
+			},{
+				"name": "红宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			12,
+			12
+		]
+	},
+	{
+		"name": "阿努比斯权杖",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 16000
+			},{
+				"name": "红宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			12,
+			12
+		]
+	},
+	{
+		"name": "笼中雀",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 16000
+			},{
+				"name": "红宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "开天斧",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 32000
+			},{
+				"name": "红宝石",
+				"amount": 200
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			245,
+			245
+		]
+	},
+	{
+		"name": "七星剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 32000
+			},{
+				"name": "红宝石",
+				"amount": 200
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			245,
+			245
+		]
+	},
+	{
+		"name": "太阳剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 48000
+			},
+			{
+				"name": "红宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "太阴剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 48000
+			},
+			{
+				"name": "红宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "混沌针",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 640000
+			},
+			{
+				"name": "红宝石",
+				"amount": 4000
+			}
+		],
+		"rate": 0.3,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "墨刀",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 950000
+			},
+			{
+				"name": "红宝石",
+				"amount": 6000
+			}
+		],
+		"rate": 0.2,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "碧鳞剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 3000000
+			},
+			{
+				"name": "红宝石",
+				"amount": 10000
+			}
+		],
+		"rate": 0.1,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "饮血剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 140000
+			},
+			{
+				"name": "红宝石",
+				"amount": 1200
+			}
+		],
+		"rate": 0.45,
+		"exp": [
+			1365,
+			1365
+		]
+	},
+	{
+		"name": "黎明剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.4,
+		"exp": [
+			3686,
+			3686
+		]
+	},
+	{
+		"name": "戮仙剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 450000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2500
+			}
+		],
+		"rate": 0.35,
+		"exp": [
+			6384,
+			6384
+		]
+	},
+	{
+		"name": "天道剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "无名剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "勾八剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "逆仙剑",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "灭仙针",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "玄冰之枪",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "红宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.40,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "龟壳圆盾",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 1500
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 25
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			12,
+			12
+		]
+	},
+	{
+		"name": "精制护甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 6500
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.50,
+		"exp": [
+			47,
+			47
+		]
+	},
+	{
+		"name": "金光天甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 10000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "金光圣盾",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 10000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "麒麟甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 13000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "穷奇盾",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 13000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "雨落护甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 16000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "太极图",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 16000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "耀炎之盾",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 16000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "荷叶甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 48000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "万兽甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 48000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "混沌钟",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 640000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 4000
+			}
+		],
+		"rate": 0.3,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "昊玄镜",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 950000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 6000
+			}
+		],
+		"rate": 0.2,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "安魂甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 3000000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 10000
+			}
+		],
+		"rate": 0.1,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "龙鳞",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 140000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 1200
+			}
+		],
+		"rate": 0.45,
+		"exp": [
+			1365,
+			1365
+		]
+	},
+	{
+		"name": "逆天甲",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 320000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.4,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "琉璃伞",
+		"materials": [
+			{
+				"name": "玄土",
+				"amount": 320000
+			},
+			{
+				"name": "蓝宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.4,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "玄天宝镜",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 3250
+			},
+			{
+				"name": "玄土",
+				"amount": 3250
+			},
+			{
+				"name": "绿宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			47,
+			47
+		]
+	},
+	{
+		"name": "昊天印",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 5000
+			},
+			{
+				"name": "玄土",
+				"amount": 5000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "刑天扇",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 5000
+			},
+			{
+				"name": "玄土",
+				"amount": 5000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			71,
+			71
+		]
+	},
+	{
+		"name": "风清叶",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 6500
+			},
+			{
+				"name": "玄土",
+				"amount": 6500
+			},
+			{
+				"name": "绿宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "炼雷根",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 6500
+			},
+			{
+				"name": "玄土",
+				"amount": 6500
+			},
+			{
+				"name": "绿宝石",
+				"amount": 50
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			98,
+			98
+		]
+	},
+	{
+		"name": "玄黄塔",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 8000
+			},
+			{
+				"name": "玄土",
+				"amount": 8000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "石鬼面",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 8000
+			},
+			{
+				"name": "玄土",
+				"amount": 8000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "芭蕉扇",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 8000
+			},
+			{
+				"name": "玄土",
+				"amount": 8000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 100
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			123,
+			123
+		]
+	},
+	{
+		"name": "万花扇",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 16000
+			},
+			{
+				"name": "玄土",
+				"amount": 16000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 200
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			245,
+			245
+		]
+	},
+	{
+		"name": "捆仙绳",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 16000
+			},
+			{
+				"name": "玄土",
+				"amount": 16000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 200
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			245,
+			245
+		]
+	},
+	{
+		"name": "轮回钟",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 24000
+			},
+			{
+				"name": "玄土",
+				"amount": 24000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "伏魔塔",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 24000
+			},
+			{
+				"name": "玄土",
+				"amount": 24000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 400
+			}
+		],
+		"rate": 0.5,
+		"exp": [
+			363,
+			363
+		]
+	},
+	{
+		"name": "混沌花",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 320000
+			},
+			{
+				"name": "玄土",
+				"amount": 320000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 4000
+			}
+		],
+		"rate": 0.3,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "玲珑塔",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 475000
+			},
+			{
+				"name": "玄土",
+				"amount": 475000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 6000
+			}
+		],
+		"rate": 0.2,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "封仙印",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 1500000
+			},
+			{
+				"name": "玄土",
+				"amount": 1500000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 10000
+			}
+		],
+		"rate": 0.1,
+		"exp": [
+			11459,
+			11459
+		]
+	},
+	{
+		"name": "破天莲",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 70000
+			},
+			{
+				"name": "玄土",
+				"amount": 70000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 1200
+			}
+		],
+		"rate": 0.45,
+		"exp": [
+			1365,
+			1365
+		]
+	},
+	{
+		"name": "逆道石",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 160000
+			},
+			{
+				"name": "玄土",
+				"amount": 160000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.4,
+		"exp": [
+			3683,
+			3683
+		]
+	},
+	{
+		"name": "乾坤灯",
+		"materials": [
+			{
+				"name": "庚金",
+				"amount": 160000
+			},
+			{
+				"name": "玄土",
+				"amount": 160000
+			},
+			{
+				"name": "绿宝石",
+				"amount": 2000
+			}
+		],
+		"rate": 0.4,
+		"exp": [
+			3683,
+			3683
+		]
+	}
+]

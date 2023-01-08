@@ -1,0 +1,25 @@
+# 检测人物动作是否结束定时任务
+action_task: 0 0/1 * * * ?
+# 检测沉迷是否结束定时任务
+actionplus_task: 0 0/5 * * * ?
+# 游戏锁定
+GamesTask: 0 */5 * * * ?
+# 赛季结算
+saiji: 0 0 0 ? * 1
+# 备份时间
+jiance_task: 0 59 23 * * ?
+# 清空时间
+qingkong_task: 0 0 0 * * ?
+# 商店刷新
+shop: 0 0 0 ? * 1/4
+# 冲水堂清理
+ExchangeTask: 0 0 4 * * ?
+# 开启怪物
+BossTask2: 0 0 20 * * ?
+# 开启怪物
+BossTask: 0 30 11,18 * * ?
+#关闭怪物
+BossEndTask: 0 30 12,19 * * ?
+# 修仙论坛
+ForumTask: 0 0 4,16 * * ?
+#Cron表达式
