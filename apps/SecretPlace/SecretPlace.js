@@ -478,6 +478,7 @@ export class SecretPlace extends plugin {
                 arr.power_up = 1;//渡劫状态
                 arr.Place_action = 1;//秘境
                 arr.Place_actionplus = 1;//沉迷状态
+                arr.mojie=1;
                 arr.end_time = new Date().getTime();//结束的时间也修改为当前时间
                 delete arr.group_id;//结算完去除group_id
                 await redis.set("xiuxian:player:" + usr_qq + ":action", JSON.stringify(arr));
