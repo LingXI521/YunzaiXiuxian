@@ -4,15 +4,25 @@ import puppeteer from "../../../../lib/puppeteer/puppeteer.js"
 import config from "../../model/Config.js"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
-import { Read_player, __PATH } from "../Xiuxian/xiuxian.js"
-import { get_random_talent, player_efficiency,get_random_fromARR,isNotNull,Read_najie,Read_equipment,Read_qinmidu } from '../Xiuxian/xiuxian.js'
+import {Read_player, __PATH} from "../Xiuxian/xiuxian.js"
+import {
+    get_random_talent,
+    player_efficiency,
+    get_random_fromARR,
+    isNotNull,
+    Read_najie,
+    Read_equipment,
+    Read_qinmidu
+} from '../Xiuxian/xiuxian.js'
+import Config from "../../model/Config.js";
+
 /**
  * 生图模块
- * 
+ *
  */
-
 let xiuxianConfigData = config.getConfig("xiuxian", "xiuxian")
-
+//定义一个版本信息的常量,获取默认文件配置文件信息
+const versionData = Config.getdefSet("version", "version");
 
 export class showData extends plugin {
     constructor(e) {
@@ -58,9 +68,9 @@ export class showData extends plugin {
         })
         this.path = __PATH.player_path
     }
-    
+
     //修仙设置
-    async show_adminset(e){
+    async show_adminset(e) {
         if (!e.isMaster) {
             return;
         }
@@ -72,8 +82,7 @@ export class showData extends plugin {
         return;
     }
 
-
-    async show_power(e){
+    async show_power(e) {
         if (!e.isGroup) {
             return;
         }
@@ -82,10 +91,9 @@ export class showData extends plugin {
         return;
     }
 
-
     async show_equipment(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let img = await get_equipment_img(e);
@@ -96,15 +104,16 @@ export class showData extends plugin {
     async show_Levelzhiye(e) {
         //不开放私聊功能
         if (!e.isGroup) {
-           return;
-       }
-       let img = await get_statezhiye_img(e);
-       e.reply(img);
-       return;
-   }
+            return;
+        }
+        let img = await get_statezhiye_img(e);
+        e.reply(img);
+        return;
+    }
+
     async show_Level(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let img = await get_state_img(e);
@@ -115,19 +124,17 @@ export class showData extends plugin {
     async show_LevelMax(e) {
         //不开放私聊功能
         if (!e.isGroup) {
-           return;
-       }
-       let img = await get_statemax_img(e);
-       e.reply(img);
-       return;
-   }
+            return;
+        }
+        let img = await get_statemax_img(e);
+        e.reply(img);
+        return;
+    }
 
-
-    
     //我的宗门
     async show_association(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let img = await get_association_img(e);
@@ -137,15 +144,14 @@ export class showData extends plugin {
 
     //更新记录
     async show_updata(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let img = await get_updata_img(e);
         e.reply(img);
         return;
     }
-
 }
 
 //////////////////////////////////////////////////
@@ -153,7 +159,7 @@ export class showData extends plugin {
  * 返回该玩家的仙宠图片
  * @return image
  */
- export async function get_XianChong_img(e) {
+export async function get_XianChong_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -171,26 +177,17 @@ export class showData extends plugin {
     let Kouliang = [];
     let XianChong_list = data.xianchon;
     let Kouliang_list = data.xianchonkouliang
-
-    for (var i = 0; i < XianChong_list.length; i++) 
-    {
+    for (var i = 0; i < XianChong_list.length; i++) {
         if (najie.仙宠.find(item => item.name == XianChong_list[i].name)) {
             XianChong_have.push(XianChong_list[i]);
-        }
-        else if (player.仙宠.name==XianChong_list[i].name)
-        {
+        } else if (player.仙宠.name == XianChong_list[i].name) {
             XianChong_have.push(XianChong_list[i]);
-        }
-        else
-        {
+        } else {
             XianChong_need.push(XianChong_list[i])
         }
-           
     }
-    for (var i = 0; i < Kouliang_list.length; i++) 
-    {
-        Kouliang.push( Kouliang_list[i])
-           
+    for (var i = 0; i < Kouliang_list.length; i++) {
+        Kouliang.push(Kouliang_list[i])
     }
     let player_data = {
         nickname: user_name,
@@ -209,7 +206,7 @@ export class showData extends plugin {
  * 返回该玩家的道具图片
  * @return image
  */
- export async function get_daoju_img(e) {
+export async function get_daoju_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -226,32 +223,26 @@ export class showData extends plugin {
     let daoju_need = []
     let daoju_list = data.daoju_list
     let t;
-
-    for (var i = 0; i < daoju_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < daoju_list.length-i-1; j++)
-        {
-            if (daoju_list[j].出售价>daoju_list[j+1].出售价)
-            {
-                t=daoju_list[j];
-                daoju_list[j]=daoju_list[j+1];
-                daoju_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < daoju_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < daoju_list.length - i - 1; j++) {
+            if (daoju_list[j].出售价 > daoju_list[j + 1].出售价) {
+                t = daoju_list[j];
+                daoju_list[j] = daoju_list[j + 1];
+                daoju_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
     for (var i = 0; i < daoju_list.length; i++) {
-            if (najie.道具.find(item => item.name == daoju_list[i].name)) {
-                daoju_have.push(daoju_list[i])
-            }
-            else {
-                daoju_need.push(daoju_list[i])
-            }
+        if (najie.道具.find(item => item.name == daoju_list[i].name)) {
+            daoju_have.push(daoju_list[i])
+        } else {
+            daoju_need.push(daoju_list[i])
         }
+    }
     let player_data = {
         user_id: usr_qq,
         nickname: user_name,
@@ -265,13 +256,11 @@ export class showData extends plugin {
     return img
 }
 
-
-
 /**
  * 返回该玩家的护具图片
  * @return image
  */
- export async function get_huju_img(e) {
+export async function get_huju_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -292,66 +281,50 @@ export class showData extends plugin {
     let huju2_need = []
     let huju2_list = data.timeequipmen_list
     let t;
-
-    for (var i = 0; i < huju_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < huju_list.length-i-1; j++)
-        {
-            if (huju_list[j].def>huju_list[j+1].def)
-            {
-                t=huju_list[j];
-                huju_list[j]=huju_list[j+1];
-                huju_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < huju_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < huju_list.length - i - 1; j++) {
+            if (huju_list[j].def > huju_list[j + 1].def) {
+                t = huju_list[j];
+                huju_list[j] = huju_list[j + 1];
+                huju_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-    for (var i = 0; i < huju2_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < huju2_list.length-i-1; j++)
-        {
-            if (huju2_list[j].def>huju2_list[j+1].def)
-            {
-                t=huju2_list[j];
-                huju2_list[j]=huju2_list[j+1];
-                huju2_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < huju2_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < huju2_list.length - i - 1; j++) {
+            if (huju2_list[j].def > huju2_list[j + 1].def) {
+                t = huju2_list[j];
+                huju2_list[j] = huju2_list[j + 1];
+                huju2_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
     for (var i = 0; i < huju_list.length; i++) {
-        if (huju_list[i].type=="护具")
-        {
+        if (huju_list[i].type == "护具") {
             if (najie.装备.find(item => item.name == huju_list[i].name)) {
                 huju_have.push(huju_list[i])
-            }
-            else if(equipment.护具.name== huju_list[i].name)
-            {
+            } else if (equipment.护具.name == huju_list[i].name) {
                 huju_have.push(huju_list[i])
-            }
-            else {
+            } else {
                 huju_need.push(huju_list[i])
             }
         }
     }
     for (var i = 0; i < huju2_list.length; i++) {
-        if (huju2_list[i].type=="护具")
-        {
+        if (huju2_list[i].type == "护具") {
             if (najie.装备.find(item => item.name == huju2_list[i].name)) {
                 huju2_have.push(huju2_list[i])
-            }
-            else if(equipment.护具.name== huju2_list[i].name)
-            {
+            } else if (equipment.护具.name == huju2_list[i].name) {
                 huju2_have.push(huju2_list[i])
-            }
-            else {
+            } else {
                 huju2_need.push(huju2_list[i])
             }
         }
@@ -371,12 +344,11 @@ export class showData extends plugin {
     return img
 }
 
-
 /**
  * 返回该玩家的法宝图片
  * @return image
  */
- export async function get_fabao_img(e) {
+export async function get_fabao_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -397,69 +369,50 @@ export class showData extends plugin {
     let fabao2_need = []
     let fabao2_list = data.timeequipmen_list
     let t;
-
-    for (var i = 0; i < fabao_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < fabao_list.length-i-1; j++)
-        {
-            if (fabao_list[j].bao>fabao_list[j+1].bao)
-            {
-                t=fabao_list[j];
-                fabao_list[j]=fabao_list[j+1];
-                fabao_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < fabao_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < fabao_list.length - i - 1; j++) {
+            if (fabao_list[j].bao > fabao_list[j + 1].bao) {
+                t = fabao_list[j];
+                fabao_list[j] = fabao_list[j + 1];
+                fabao_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-    for (var i = 0; i < fabao2_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < fabao2_list.length-i-1; j++)
-        {
-            if (fabao2_list[j].bao>fabao2_list[j+1].bao)
-            {
-                t=fabao2_list[j];
-                fabao2_list[j]=fabao2_list[j+1];
-                fabao2_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < fabao2_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < fabao2_list.length - i - 1; j++) {
+            if (fabao2_list[j].bao > fabao2_list[j + 1].bao) {
+                t = fabao2_list[j];
+                fabao2_list[j] = fabao2_list[j + 1];
+                fabao2_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-
     for (var i = 0; i < fabao_list.length; i++) {
-        if (fabao_list[i].type=="法宝")
-        {
+        if (fabao_list[i].type == "法宝") {
             if (najie.装备.find(item => item.name == fabao_list[i].name)) {
                 fabao_have.push(fabao_list[i])
-            }
-            else if(equipment.法宝.name== fabao_list[i].name)
-            {
+            } else if (equipment.法宝.name == fabao_list[i].name) {
                 fabao_have.push(fabao_list[i])
-            }
-            else {
+            } else {
                 fabao_need.push(fabao_list[i])
             }
         }
     }
-
     for (var i = 0; i < fabao2_list.length; i++) {
-        if (fabao2_list[i].type=="法宝")
-        {
+        if (fabao2_list[i].type == "法宝") {
             if (najie.装备.find(item => item.name == fabao2_list[i].name)) {
                 fabao2_have.push(fabao2_list[i])
-            }
-            else if(equipment.法宝.name== fabao2_list[i].name)
-            {
+            } else if (equipment.法宝.name == fabao2_list[i].name) {
                 fabao2_have.push(fabao2_list[i])
-            }
-            else {
+            } else {
                 fabao2_need.push(fabao2_list[i])
             }
         }
@@ -479,12 +432,11 @@ export class showData extends plugin {
     return img
 }
 
-
 /**
  * 返回该玩家的武器图片
  * @return image
  */
- export async function get_wuqi_img(e) {
+export async function get_wuqi_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -505,68 +457,50 @@ export class showData extends plugin {
     let wuqi2_need = []
     let wuqi2_list = data.timeequipmen_list
     let t;
-
-    for (var i = 0; i < wuqi_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < wuqi_list.length-i-1; j++)
-        {
-            if (wuqi_list[j].atk>wuqi_list[j+1].atk)
-            {
-                t=wuqi_list[j];
-                wuqi_list[j]=wuqi_list[j+1];
-                wuqi_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < wuqi_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < wuqi_list.length - i - 1; j++) {
+            if (wuqi_list[j].atk > wuqi_list[j + 1].atk) {
+                t = wuqi_list[j];
+                wuqi_list[j] = wuqi_list[j + 1];
+                wuqi_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-    for (var i = 0; i < wuqi2_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < wuqi2_list.length-i-1; j++)
-        {
-            if (wuqi2_list[j].atk>wuqi2_list[j+1].atk)
-            {
-                t=wuqi2_list[j];
-                wuqi2_list[j]=wuqi2_list[j+1];
-                wuqi2_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < wuqi2_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < wuqi2_list.length - i - 1; j++) {
+            if (wuqi2_list[j].atk > wuqi2_list[j + 1].atk) {
+                t = wuqi2_list[j];
+                wuqi2_list[j] = wuqi2_list[j + 1];
+                wuqi2_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
     for (var i = 0; i < wuqi_list.length; i++) {
-        if (wuqi_list[i].type=="武器")
-        {
+        if (wuqi_list[i].type == "武器") {
             if (najie.装备.find(item => item.name == wuqi_list[i].name)) {
                 wuqi_have.push(wuqi_list[i])
-            } 
-            else if(equipment.武器.name== wuqi_list[i].name)
-            {
+            } else if (equipment.武器.name == wuqi_list[i].name) {
                 wuqi_have.push(wuqi_list[i])
-            }
-            else {
+            } else {
                 wuqi_need.push(wuqi_list[i])
             }
         }
     }
-
     for (var i = 0; i < wuqi2_list.length; i++) {
-        if (wuqi2_list[i].type=="武器")
-        {
+        if (wuqi2_list[i].type == "武器") {
             if (najie.装备.find(item => item.name == wuqi2_list[i].name)) {
                 wuqi2_have.push(wuqi2_list[i])
-            } 
-            else if(equipment.武器.name== wuqi2_list[i].name)
-            {
+            } else if (equipment.武器.name == wuqi2_list[i].name) {
                 wuqi2_have.push(wuqi2_list[i])
-            }
-            else {
+            } else {
                 wuqi2_need.push(wuqi2_list[i])
             }
         }
@@ -590,7 +524,7 @@ export class showData extends plugin {
  * 返回该玩家的丹药图片
  * @return image
  */
- export async function get_danyao_img(e) {
+export async function get_danyao_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -609,196 +543,147 @@ export class showData extends plugin {
     let danyao2_need = []
     let danyao_list = data.danyao_list
     let danyao2_list = data.timedanyao_list
-
-    let HP=[];
-    let HP2=[];
-    let EXP=[];
-    let EXP2=[];
-    let XUEQI=[];
-    let XUEQI2=[];
-    let QITA=[];
-    let qt=0;
-    let h=0;
-    let h2=0;
-    let ex=0;
-    let ex2=0;
-    let xq=0;
-    let xq2=0;
+    let HP = [];
+    let HP2 = [];
+    let EXP = [];
+    let EXP2 = [];
+    let XUEQI = [];
+    let XUEQI2 = [];
+    let QITA = [];
+    let qt = 0;
+    let h = 0;
+    let h2 = 0;
+    let ex = 0;
+    let ex2 = 0;
+    let xq = 0;
+    let xq2 = 0;
     let t;
-    for (var i = 0; i < danyao_list.length; i++)
-    {
-        if (danyao_list[i].type=="修为")
-        {
-            EXP[ex]=danyao_list[i];
+    for (var i = 0; i < danyao_list.length; i++) {
+        if (danyao_list[i].type == "修为") {
+            EXP[ex] = danyao_list[i];
             ex++;
-        }
-        else if (danyao_list[i].type=="血气")
-        {
-            XUEQI[xq]=danyao_list[i];
+        } else if (danyao_list[i].type == "血气") {
+            XUEQI[xq] = danyao_list[i];
             xq++;
-        }
-        else
-        {
-            HP[h]=danyao_list[i];
+        } else {
+            HP[h] = danyao_list[i];
             h++;
         }
     }
-
-    for (var i = 0; i < danyao2_list.length; i++)
-    {
-        if (danyao2_list[i].type=="修为")
-        {
-            EXP2[ex2]=danyao2_list[i];
+    for (var i = 0; i < danyao2_list.length; i++) {
+        if (danyao2_list[i].type == "修为") {
+            EXP2[ex2] = danyao2_list[i];
             ex2++;
-        }
-        else if (danyao2_list[i].type=="血气")
-        {
-            XUEQI2[xq2]=danyao2_list[i];
+        } else if (danyao2_list[i].type == "血气") {
+            XUEQI2[xq2] = danyao2_list[i];
             xq2++;
-        }
-        else if (danyao2_list[i].type=="血量")
-        {
-            HP2[h2]=danyao2_list[i];
+        } else if (danyao2_list[i].type == "血量") {
+            HP2[h2] = danyao2_list[i];
             h2++;
-        }
-        else
-        {
-            QITA[qt]=danyao2_list[i];
+        } else {
+            QITA[qt] = danyao2_list[i];
             qt++
         }
     }
-
-    for (var i = 0; i < ex-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < ex-i-1; j++)
-        {
-            if (EXP[j].exp>EXP[j+1].exp)
-            {
-                t=EXP[j];
-                EXP[j]=EXP[j+1];
-                EXP[j+1]=t;
-                count=1;
+    for (var i = 0; i < ex - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < ex - i - 1; j++) {
+            if (EXP[j].exp > EXP[j + 1].exp) {
+                t = EXP[j];
+                EXP[j] = EXP[j + 1];
+                EXP[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-    for (var i = 0; i < h-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < h-i-1; j++)
-        {
-            if (HP[j].HP>HP[j+1].HP)
-            {
-                t=HP[j];
-                HP[j]=HP[j+1];
-                HP[j+1]=t;
-                count=1;
+    for (var i = 0; i < h - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < h - i - 1; j++) {
+            if (HP[j].HP > HP[j + 1].HP) {
+                t = HP[j];
+                HP[j] = HP[j + 1];
+                HP[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-    for (var i = 0; i < xq-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < xq-i-1; j++)
-        {
-            if (XUEQI[j].xueqi>XUEQI[j+1].xueqi)
-            {
-                t=XUEQI[j];
-                XUEQI[j]=XUEQI[j+1];
-                XUEQI[j+1]=t;
-                count=1;
+    for (var i = 0; i < xq - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < xq - i - 1; j++) {
+            if (XUEQI[j].xueqi > XUEQI[j + 1].xueqi) {
+                t = XUEQI[j];
+                XUEQI[j] = XUEQI[j + 1];
+                XUEQI[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-
-    for (var i = 0; i < ex2-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < ex2-i-1; j++)
-        {
-            if (EXP2[j].exp>EXP2[j+1].exp)
-            {
-                t=EXP2[j];
-                EXP2[j]=EXP2[j+1];
-                EXP2[j+1]=t;
-                count=1;
+    for (var i = 0; i < ex2 - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < ex2 - i - 1; j++) {
+            if (EXP2[j].exp > EXP2[j + 1].exp) {
+                t = EXP2[j];
+                EXP2[j] = EXP2[j + 1];
+                EXP2[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-    for (var i = 0; i < h2-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < h2-i-1; j++)
-        {
-            if (HP2[j].HP>HP2[j+1].HP)
-            {
-                t=HP2[j];
-                HP2[j]=HP2[j+1];
-                HP2[j+1]=t;
-                count=1;
+    for (var i = 0; i < h2 - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < h2 - i - 1; j++) {
+            if (HP2[j].HP > HP2[j + 1].HP) {
+                t = HP2[j];
+                HP2[j] = HP2[j + 1];
+                HP2[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-    for (var i = 0; i < xq2-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < xq2-i-1; j++)
-        {
-            if (XUEQI2[j].xueqi>XUEQI2[j+1].xueqi)
-            {
-                t=XUEQI2[j];
-                XUEQI2[j]=XUEQI2[j+1];
-                XUEQI2[j+1]=t;
-                count=1;
+    for (var i = 0; i < xq2 - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < xq2 - i - 1; j++) {
+            if (XUEQI2[j].xueqi > XUEQI2[j + 1].xueqi) {
+                t = XUEQI2[j];
+                XUEQI2[j] = XUEQI2[j + 1];
+                XUEQI2[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-
-    for (var i = 0; i < ex; i++)
-    {
-        danyao_list[i]=EXP[i];
+    for (var i = 0; i < ex; i++) {
+        danyao_list[i] = EXP[i];
     }
-    for (var i = ex; i < xq+ex; i++)
-    {
-        danyao_list[i]=XUEQI[i-ex];
+    for (var i = ex; i < xq + ex; i++) {
+        danyao_list[i] = XUEQI[i - ex];
     }
-    for (var i = ex+xq; i < xq+ex+h; i++)
-    {
-        danyao_list[i]=HP[i-ex-xq];
+    for (var i = ex + xq; i < xq + ex + h; i++) {
+        danyao_list[i] = HP[i - ex - xq];
     }
-
-    for (var i = 0; i < ex2; i++)
-    {
-        danyao2_list[i]=EXP2[i];
+    for (var i = 0; i < ex2; i++) {
+        danyao2_list[i] = EXP2[i];
     }
-    for (var i = ex2; i < xq2+ex2; i++)
-    {
-        danyao2_list[i]=XUEQI2[i-ex2];
+    for (var i = ex2; i < xq2 + ex2; i++) {
+        danyao2_list[i] = XUEQI2[i - ex2];
     }
-    for (var i = ex2+xq2; i < xq2+ex2+h2; i++)
-    {
-        danyao2_list[i]=HP[i-ex2-xq2];
+    for (var i = ex2 + xq2; i < xq2 + ex2 + h2; i++) {
+        danyao2_list[i] = HP[i - ex2 - xq2];
     }
-    for (var i = ex2+xq2+h2; i < xq2+ex2+h2+qt; i++)
-    {
-        danyao2_list[i]=QITA[i-ex2-xq2-h2];
+    for (var i = ex2 + xq2 + h2; i < xq2 + ex2 + h2 + qt; i++) {
+        danyao2_list[i] = QITA[i - ex2 - xq2 - h2];
     }
-
-
     for (var i = 0; i < danyao_list.length; i++) {
         if (najie.丹药.find(item => item.name == danyao_list[i].name)) {
             danyao_have.push(danyao_list[i])
@@ -832,7 +717,7 @@ export class showData extends plugin {
  * 返回该玩家的功法图片
  * @return image
  */
- export async function get_gongfa_img(e) {
+export async function get_gongfa_img(e) {
     let usr_qq = e.user_id
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -843,53 +728,41 @@ export class showData extends plugin {
         e.reply('请先#同步信息')
         return
     }
-
     let user_name = player.名号
     let gongfa = player.学习的功法
     let gongfa_have = []
     let gongfa_need = []
     let gongfa_list = data.gongfa_list
-
     let gongfa2_have = []
     let gongfa2_need = []
     let gongfa2_list = data.timegongfa_list
-
     let t;
-
-    for (var i = 0; i < gongfa_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < gongfa_list.length-i-1; j++)
-        {
-            if (gongfa_list[j].修炼加成>gongfa_list[j+1].修炼加成)
-            {
-                t=gongfa_list[j];
-                gongfa_list[j]=gongfa_list[j+1];
-                gongfa_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < gongfa_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < gongfa_list.length - i - 1; j++) {
+            if (gongfa_list[j].修炼加成 > gongfa_list[j + 1].修炼加成) {
+                t = gongfa_list[j];
+                gongfa_list[j] = gongfa_list[j + 1];
+                gongfa_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
-    for (var i = 0; i < gongfa2_list.length-1; i++)
-    {
-        var count=0;
-        for (var j = 0; j < gongfa2_list.length-i-1; j++)
-        {
-            if (gongfa2_list[j].修炼加成>gongfa2_list[j+1].修炼加成)
-            {
-                t=gongfa2_list[j];
-                gongfa2_list[j]=gongfa2_list[j+1];
-                gongfa2_list[j+1]=t;
-                count=1;
+    for (var i = 0; i < gongfa2_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < gongfa2_list.length - i - 1; j++) {
+            if (gongfa2_list[j].修炼加成 > gongfa2_list[j + 1].修炼加成) {
+                t = gongfa2_list[j];
+                gongfa2_list[j] = gongfa2_list[j + 1];
+                gongfa2_list[j + 1] = t;
+                count = 1;
             }
         }
-        if (count==0)
+        if (count == 0)
             break;
     }
-
     for (var i = 0; i < gongfa_list.length; i++) {
         if (gongfa.find(item => item == gongfa_list[i].name)) {
             gongfa_have.push(gongfa_list[i])
@@ -897,7 +770,6 @@ export class showData extends plugin {
             gongfa_need.push(gongfa_list[i])
         }
     }
-
     for (var i = 0; i < gongfa2_list.length; i++) {
         if (gongfa.find(item => item == gongfa2_list[i].name)) {
             gongfa2_have.push(gongfa2_list[i])
@@ -905,7 +777,6 @@ export class showData extends plugin {
             gongfa2_need.push(gongfa2_list[i])
         }
     }
-
     let player_data = {
         user_id: usr_qq,
         nickname: user_name,
@@ -921,12 +792,11 @@ export class showData extends plugin {
     return img
 }
 
-
 /**
  * 返回该玩家的法体
  * @return image
  */
- export async function get_power_img(e) {
+export async function get_power_img(e) {
     let usr_qq = e.user_id;
     let player = await data.getData("player", usr_qq);
     let lingshi = Math.trunc(player.灵石);
@@ -935,7 +805,7 @@ export class showData extends plugin {
     }
     data.setData("player", usr_qq, player);
     await player_efficiency(usr_qq);
-    if (!isNotNull(player.level_id)){
+    if (!isNotNull(player.level_id)) {
         e.reply("请先#同步信息");
         return;
     }
@@ -950,16 +820,16 @@ export class showData extends plugin {
     }
     //境界名字需要查找境界名
     let levelMax = data.LevelMax_list.find(item => item.level_id == player.Physique_id).level;
-	let need_xueqi = data.LevelMax_list.find(item => item.level_id == player.Physique_id).exp;
+    let need_xueqi = data.LevelMax_list.find(item => item.level_id == player.Physique_id).exp;
     let playercopy = {
         user_id: usr_qq,
         nickname: player.名号,
-		need_xueqi:need_xueqi,
+        need_xueqi: need_xueqi,
         xueqi: player.血气,
         levelMax: levelMax,
         lingshi: lingshi,
-        镇妖塔层数:player.镇妖塔层数,
-        神魄段数:player.神魄段数,
+        镇妖塔层数: player.镇妖塔层数,
+        神魄段数: player.神魄段数,
         hgd: player.favorability,
         player_maxHP: player.血量上限,
         player_nowHP: player.当前血量,
@@ -972,10 +842,6 @@ export class showData extends plugin {
     });
     return img;
 }
-
-
-
-
 
 /**
  * 返回该玩家的存档图片
@@ -998,8 +864,6 @@ export async function get_player_img(e) {
     if (player.灵石 > 999999999999) {
         lingshi = 999999999999;
     }
-
-
     if (player.宣言 == null || player.宣言 == undefined) {
         player.宣言 = '这个人很懒什么都没写'
     }
@@ -1014,44 +878,38 @@ export async function get_player_img(e) {
         player.灵根.法球倍率 = '0'
         player.修炼效率提升 = '0'
     }
-
-    if (!isNotNull(player.level_id)){
+    if (!isNotNull(player.level_id)) {
         e.reply("请先#同步信息");
         return;
     }
     //境界名字需要查找境界名
     let level = data.Level_list.find(item => item.level_id == player.level_id).level;
-    let power=(((player.攻击*0.9+player.防御*1.1+player.血量上限*0.6)+(player.暴击率*player.攻击*0.5)+(player.灵根.法球倍率*player.攻击))/10000);    
+    let power = (((player.攻击 * 0.9 + player.防御 * 1.1 + player.血量上限 * 0.6) + (player.暴击率 * player.攻击 * 0.5) + (player.灵根.法球倍率 * player.攻击)) / 10000);
     power = Number(power)
-    power= power.toFixed(2)
-    let power2=(((player.攻击+player.防御*1.1+player.血量上限*0.5))/10000);    
+    power = power.toFixed(2)
+    let power2 = (((player.攻击 + player.防御 * 1.1 + player.血量上限 * 0.5)) / 10000);
     power2 = Number(power2)
-    power2= power2.toFixed(2)
+    power2 = power2.toFixed(2)
     let level2 = data.LevelMax_list.find(item => item.level_id == player.Physique_id).level;
-	let need_exp = data.Level_list.find(item => item.level_id == player.level_id).exp;
-	let need_exp2 = data.LevelMax_list.find(item => item.level_id == player.Physique_id).exp;
-	
-	let	occupation = player.occupation;
-	let	occupation_level;
-	let	occupation_level_name;
-	let	occupation_exp;
-	let	occupation_need_exp;
-
-	if(!isNotNull(player.occupation)){
-		occupation = "无";
-		occupation_level_name = "-";
-		occupation_exp = "-";
-		occupation_need_exp = "-";
-	}
-	else{
-		occupation_level = player.occupation_level;
-		occupation_level_name = data.occupation_exp_list.find(item => item.id == occupation_level).name;
-		occupation_exp = player.occupation_exp;
-		occupation_need_exp = data.occupation_exp_list.find(item => item.id == occupation_level).experience;
-	}
-
-	
-	let this_association = {};
+    let need_exp = data.Level_list.find(item => item.level_id == player.level_id).exp;
+    let need_exp2 = data.LevelMax_list.find(item => item.level_id == player.Physique_id).exp;
+    let occupation = player.occupation;
+    let occupation_level;
+    let occupation_level_name;
+    let occupation_exp;
+    let occupation_need_exp;
+    if (!isNotNull(player.occupation)) {
+        occupation = "无";
+        occupation_level_name = "-";
+        occupation_exp = "-";
+        occupation_need_exp = "-";
+    } else {
+        occupation_level = player.occupation_level;
+        occupation_level_name = data.occupation_exp_list.find(item => item.id == occupation_level).name;
+        occupation_exp = player.occupation_exp;
+        occupation_need_exp = data.occupation_exp_list.find(item => item.id == occupation_level).experience;
+    }
+    let this_association = {};
     if (!isNotNull(player.宗门)) {
         this_association = {
             宗门名称: '无',
@@ -1060,70 +918,55 @@ export async function get_player_img(e) {
     } else {
         this_association = player.宗门
     }
-    let pinji=['劣','普','优','精','极','绝','顶']
-    if(!isNotNull(equipment.武器.pinji)){
-        var 武器评级="无"
-    }else{
-        var 武器评级=pinji[equipment.武器.pinji]
+    let pinji = ['劣', '普', '优', '精', '极', '绝', '顶']
+    if (!isNotNull(equipment.武器.pinji)) {
+        var 武器评级 = "无"
+    } else {
+        var 武器评级 = pinji[equipment.武器.pinji]
     }
-
-    if(!isNotNull(equipment.护具.pinji)){
-        var 护具评级="无"
-    }else{
-        var 护具评级=pinji[equipment.护具.pinji]
+    if (!isNotNull(equipment.护具.pinji)) {
+        var 护具评级 = "无"
+    } else {
+        var 护具评级 = pinji[equipment.护具.pinji]
     }
-
-    if(!isNotNull(equipment.法宝.pinji)){
-        var 法宝评级="无"
-    }else{
-        var 法宝评级=pinji[equipment.法宝.pinji]
+    if (!isNotNull(equipment.法宝.pinji)) {
+        var 法宝评级 = "无"
+    } else {
+        var 法宝评级 = pinji[equipment.法宝.pinji]
     }
     let rank_lianqi = data.Level_list.find(item => item.level_id == player.level_id).level
     let expmax_lianqi = data.Level_list.find(item => item.level_id == player.level_id).exp
-
     let rank_llianti = data.LevelMax_list.find(item => item.level_id == player.Physique_id).level
     let expmax_llianti = need_exp2
-
     let rank_liandan = occupation_level_name
-    let expmax_liandan =occupation_need_exp
-
+    let expmax_liandan = occupation_need_exp
     let strand_hp = Strand(player.当前血量, player.血量上限)
     let strand_lianqi = Strand(player.修为, expmax_lianqi)
     let strand_llianti = Strand(player.血气, expmax_llianti)
     let strand_liandan = Strand(occupation_exp, expmax_liandan)
-
     let Power = GetPower(player.攻击, player.防御, player.血量上限, player.暴击率);
     let PowerMini = bigNumberTransform(Power);
-
     let ArmsPower = GetPower(equipment.武器.atk, equipment.武器.def, equipment.武器.HP, equipment.武器.bao)
     let ArmorPower = GetPower(equipment.护具.atk, equipment.护具.def, equipment.护具.HP, equipment.护具.bao)
     let MagicPower = GetPower(equipment.法宝.atk, equipment.法宝.def, equipment.法宝.HP, equipment.法宝.bao)
-
     let bao = parseInt(player.暴击率 * 100) + "%"
     equipment.武器.bao = parseInt(equipment.武器.bao * 100) + "%"
     equipment.护具.bao = parseInt(equipment.护具.bao * 100) + "%"
     equipment.法宝.bao = parseInt(equipment.法宝.bao * 100) + "%"
-
     lingshi = bigNumberTransform(lingshi)
-    let hunyin="未知";
-    let A=usr_qq
-    let qinmidu=await Read_qinmidu();
-    for (var i=0;i<qinmidu.length;i++)
-    {
-        if ((qinmidu[i].QQ_A==A) || (qinmidu[i].QQ_B==A))
-        {
-            if (qinmidu[i].婚姻>0)
-            {
-                if(qinmidu[i].QQ_A==A){
-                    let B=await Read_player(qinmidu[i].QQ_B)
-
-                    hunyin=B.名号
-                }else{
-                    let A=await Read_player(qinmidu[i].QQ_A)
-
-                    hunyin=A.名号
+    let hunyin = "未知";
+    let A = usr_qq
+    let qinmidu = await Read_qinmidu();
+    for (var i = 0; i < qinmidu.length; i++) {
+        if ((qinmidu[i].QQ_A == A) || (qinmidu[i].QQ_B == A)) {
+            if (qinmidu[i].婚姻 > 0) {
+                if (qinmidu[i].QQ_A == A) {
+                    let B = await Read_player(qinmidu[i].QQ_B)
+                    hunyin = B.名号
+                } else {
+                    let A = await Read_player(qinmidu[i].QQ_A)
+                    hunyin = A.名号
                 }
-                
                 break;
             }
         }
@@ -1153,16 +996,16 @@ export async function get_player_img(e) {
         nickname: player.名号,
         linggen: player.灵根,//
         declaration: player.宣言,
-		need_exp:need_exp,
-		need_exp2:need_exp2,
+        need_exp: need_exp,
+        need_exp2: need_exp2,
         exp: player.修为,
         exp2: player.血气,
-        zdl:power,
-        镇妖塔层数:player.镇妖塔层数,
-        sh:player.神魄段数,
-        mdz:player.魔道值,
+        zdl: power,
+        镇妖塔层数: player.镇妖塔层数,
+        sh: player.神魄段数,
+        mdz: player.魔道值,
         hgd: player.favorability,
-        jczdl:power2,
+        jczdl: power2,
         level: level,
         level2: level2,
         lingshi: lingshi,
@@ -1171,19 +1014,20 @@ export async function get_player_img(e) {
         player_atk: player.攻击,
         player_def: player.防御,
         player_bao: player.暴击率,
-		occupation:occupation,
-		occupation_level:occupation_level_name,
-		occupation_exp:occupation_exp,
-		occupation_need_exp:occupation_need_exp,
+        occupation: occupation,
+        occupation_level: occupation_level_name,
+        occupation_exp: occupation_exp,
+        occupation_need_exp: occupation_need_exp,
         arms: equipment.武器,
         armor: equipment.护具,
         treasure: equipment.法宝,
-        association:this_association,
+        association: this_association,
         learned_gongfa: player.学习的功法,
-        婚姻状况:hunyin,
-        武器评级:武器评级,
-        护具评级:护具评级,
-        法宝评级:法宝评级
+        婚姻状况: hunyin,
+        武器评级: 武器评级,
+        护具评级: 护具评级,
+        法宝评级: 法宝评级,
+        修仙版本: versionData
     }
     const data1 = await new Show(e).get_playerData(player_data);
     let img = await puppeteer.screenshot("player", {
@@ -1191,7 +1035,6 @@ export async function get_player_img(e) {
     });
     return img;
 }
-
 
 /**
  * 我的宗门
@@ -1204,65 +1047,62 @@ export async function get_association_img(e) {
     if (!ifexistplay) {
         return;
     }
-
     //门派
     let player = data.getData("player", usr_qq);
     if (!isNotNull(player.宗门)) {
         return;
     }
-        //境界
-        let now_level_id;
-        if (!isNotNull(player.level_id)){
-            e.reply("请先#同步信息");
-            return;
-        }
-
-        now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-        // if(now_level_id>=42){
-        //     //在这里退出宗门
-        //     //查宗门，是宗门的仙人直接退出
-        //     if (player.宗门.职位 != "宗主") {
-        //         let ass = data.getAssociation(player.宗门.宗门名称);
-        //         ass[player.宗门.职位] = ass[player.宗门.职位].filter(item => item != usr_qq);
-        //         ass["所有成员"] = ass["所有成员"].filter(item => item != usr_qq);
-        //         data.setAssociation(ass.宗门名称, ass);
-        //         delete player.宗门;
-        //         data.setData("player", usr_qq, player);
-        //         await player_efficiency(usr_qq);
-        //         e.reply("退出宗门成功");
-        //     }
-        //     else {
-        //         let ass = data.getAssociation(player.宗门.宗门名称);
-        //         if (ass.所有成员.length < 2) {
-        //             fs.rmSync(`${data.filePathMap.association}/${player.宗门.宗门名称}.json`);
-        //              delete player.宗门;//删除存档里的宗门信息
-        //              data.setData("player", usr_qq, player);
-        //             await player_efficiency(usr_qq);
-        //             e.reply("退出宗门成功,推出后宗门空无一人,自动解散");
-        //         }
-        //         else {
-        //             ass["所有成员"] = ass["所有成员"].filter(item => item != usr_qq);//原来的成员表删掉这个B
-        //              delete player.宗门;//删除这个B存档里的宗门信息
-        //              data.setData("player", usr_qq, player);
-        //             await player_efficiency(usr_qq);
-        //             //随机一个幸运儿的QQ,优先挑选等级高的
-        //             let randmember_qq;
-        //             if (ass.长老.length > 0) { randmember_qq = await get_random_fromARR(ass.长老); }
-        //             else if (ass.内门弟子.length > 0) { randmember_qq = await get_random_fromARR(ass.内门弟子); }
-        //             else { randmember_qq = await get_random_fromARR(ass.所有成员); }
-        //             let randmember = await data.getData("player", randmember_qq);//获取幸运儿的存档
-        //             ass[randmember.宗门.职位] = ass[randmember.宗门.职位].filter((item) => item != randmember_qq);//原来的职位表删掉这个幸运儿
-        //             ass["宗主"] = randmember_qq;//新的职位表加入这个幸运儿
-        //             randmember.宗门.职位 = "宗主";//成员存档里改职位
-        //              data.setData("player", randmember_qq, randmember);//记录到存档
-        //              data.setData("player", usr_qq, player);
-        //              data.setAssociation(ass.宗门名称, ass);//记录到宗门
-        //             e.reply(`退出宗门成功,退出后,宗主职位由${randmember.名号}接管`);
-        //         }
-        //     }
-        //     return;
-        // }
-
+    //境界
+    let now_level_id;
+    if (!isNotNull(player.level_id)) {
+        e.reply("请先#同步信息");
+        return;
+    }
+    now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
+    // if(now_level_id>=42){
+    //     //在这里退出宗门
+    //     //查宗门，是宗门的仙人直接退出
+    //     if (player.宗门.职位 != "宗主") {
+    //         let ass = data.getAssociation(player.宗门.宗门名称);
+    //         ass[player.宗门.职位] = ass[player.宗门.职位].filter(item => item != usr_qq);
+    //         ass["所有成员"] = ass["所有成员"].filter(item => item != usr_qq);
+    //         data.setAssociation(ass.宗门名称, ass);
+    //         delete player.宗门;
+    //         data.setData("player", usr_qq, player);
+    //         await player_efficiency(usr_qq);
+    //         e.reply("退出宗门成功");
+    //     }
+    //     else {
+    //         let ass = data.getAssociation(player.宗门.宗门名称);
+    //         if (ass.所有成员.length < 2) {
+    //             fs.rmSync(`${data.filePathMap.association}/${player.宗门.宗门名称}.json`);
+    //              delete player.宗门;//删除存档里的宗门信息
+    //              data.setData("player", usr_qq, player);
+    //             await player_efficiency(usr_qq);
+    //             e.reply("退出宗门成功,推出后宗门空无一人,自动解散");
+    //         }
+    //         else {
+    //             ass["所有成员"] = ass["所有成员"].filter(item => item != usr_qq);//原来的成员表删掉这个B
+    //              delete player.宗门;//删除这个B存档里的宗门信息
+    //              data.setData("player", usr_qq, player);
+    //             await player_efficiency(usr_qq);
+    //             //随机一个幸运儿的QQ,优先挑选等级高的
+    //             let randmember_qq;
+    //             if (ass.长老.length > 0) { randmember_qq = await get_random_fromARR(ass.长老); }
+    //             else if (ass.内门弟子.length > 0) { randmember_qq = await get_random_fromARR(ass.内门弟子); }
+    //             else { randmember_qq = await get_random_fromARR(ass.所有成员); }
+    //             let randmember = await data.getData("player", randmember_qq);//获取幸运儿的存档
+    //             ass[randmember.宗门.职位] = ass[randmember.宗门.职位].filter((item) => item != randmember_qq);//原来的职位表删掉这个幸运儿
+    //             ass["宗主"] = randmember_qq;//新的职位表加入这个幸运儿
+    //             randmember.宗门.职位 = "宗主";//成员存档里改职位
+    //              data.setData("player", randmember_qq, randmember);//记录到存档
+    //              data.setData("player", usr_qq, player);
+    //              data.setAssociation(ass.宗门名称, ass);//记录到宗门
+    //             e.reply(`退出宗门成功,退出后,宗主职位由${randmember.名号}接管`);
+    //         }
+    //     }
+    //     return;
+    // }
     //有加入宗门
     let ass = data.getAssociation(player.宗门.宗门名称);
     //寻找
@@ -1270,9 +1110,9 @@ export async function get_association_img(e) {
     //仙宗
     let xian = ass.power;
     let weizhi;
-    if(xian == 0){
+    if (xian == 0) {
         weizhi = "凡界";
-    }else {
+    } else {
         weizhi = "仙界";
     }
     //门槛
@@ -1280,45 +1120,41 @@ export async function get_association_img(e) {
     // 副宗主
     let fuzong = []
     for (var item in ass.副宗主) {
-        fuzong[item] = "道号："+data.getData("player", ass.副宗主[item]).名号+"QQ："+ ass.副宗主[item]
+        fuzong[item] = "道号：" + data.getData("player", ass.副宗主[item]).名号 + "QQ：" + ass.副宗主[item]
     }
     //长老
     var zhanglao = [];
     for (var item in ass.长老) {
-        zhanglao[item] = "道号："+data.getData("player", ass.长老[item]).名号+"QQ："+ ass.长老[item]
+        zhanglao[item] = "道号：" + data.getData("player", ass.长老[item]).名号 + "QQ：" + ass.长老[item]
     }
     //内门弟子
     var neimen = [];
     for (var item in ass.内门弟子) {
-        neimen[item] = "道号："+data.getData("player", ass.内门弟子[item]).名号+"QQ：" + ass.内门弟子[item]
+        neimen[item] = "道号：" + data.getData("player", ass.内门弟子[item]).名号 + "QQ：" + ass.内门弟子[item]
     }
     //外门弟子
     var waimen = [];
     for (var item in ass.外门弟子) {
-        waimen[item] = "道号："+data.getData("player", ass.外门弟子[item]).名号+"QQ：" +ass.外门弟子[item]
+        waimen[item] = "道号：" + data.getData("player", ass.外门弟子[item]).名号 + "QQ：" + ass.外门弟子[item]
     }
-
     var state = "需要维护";
-
     let now = new Date();
     let nowTime = now.getTime(); //获取当前日期的时间戳
     if (ass.维护时间 > nowTime - 1000 * 60 * 60 * 24 * 7) {
         state = "不需要维护";
     }
-    
     //计算修炼效率
-    var xiulian=0
+    var xiulian = 0
     let dongTan = await data.bless_list.find(item => item.name == ass.宗门驻地);
-    if(ass.宗门驻地==0){
+    if (ass.宗门驻地 == 0) {
         xiulian = ass.宗门等级 * 0.05 * 100
-    }else {
+    } else {
         xiulian = ass.宗门等级 * 0.05 * 100 + dongTan.level * 10;
     }
     xiulian = Math.trunc(xiulian);
-    if(ass.宗门神兽==0){
-        ass.宗门神兽="无"
+    if (ass.宗门神兽 == 0) {
+        ass.宗门神兽 = "无"
     }
-
     let association_data = {
         user_id: usr_qq,
         ass: ass,
@@ -1327,22 +1163,19 @@ export async function get_association_img(e) {
         xiulian: xiulian,
         weizhi: weizhi,
         level: level,
-        mdz:player.魔道值,
+        mdz: player.魔道值,
         zhanglao: zhanglao,
         fuzong: fuzong,
         neimen: neimen,
         waimen: waimen,
         state: state
     }
-
     const data1 = await new Show(e).get_associationData(association_data);
     let img = await puppeteer.screenshot("association", {
         ...data1,
     });
     return img;
-
 }
-
 
 /**
  * 返回该玩家的装备图片
@@ -1359,7 +1192,7 @@ export async function get_equipment_img(e) {
     let equipment = await data.getData("equipment", usr_qq);
     let player_data = {
         user_id: usr_qq,
-        mdz:player.魔道值,
+        mdz: player.魔道值,
         nickname: player.名号,
         arms: equipment.武器,
         armor: equipment.护具,
@@ -1369,13 +1202,11 @@ export async function get_equipment_img(e) {
         player_bao: bao,
         player_maxHP: player.血量上限,
         player_nowHP: player.当前血量
-
     }
     const data1 = await new Show(e).get_equipmnetData(player_data);
     let img = await puppeteer.screenshot("equipment", {
         ...data1,
     });
-
     return img;
 }
 
@@ -1397,9 +1228,9 @@ export async function get_najie_img(e) {
     let strand_lingshi = Strand(najie.灵石, najie.灵石上限)
     let player_data = {
         user_id: usr_qq,
-        player:player,
-        najie:najie,
-        mdz:player.魔道值,
+        player: player,
+        najie: najie,
+        mdz: player.魔道值,
         nickname: player.名号,
         najie_lv: najie.等级,
         player_maxHP: player.血量上限,
@@ -1413,45 +1244,39 @@ export async function get_najie_img(e) {
         najie_caoyao: najie.草药,
         najie_cailiao: najie.材料,
         najie_hezi: najie.盒子,
-        strand_hp:strand_hp,
-        strand_lingshi:strand_lingshi
+        strand_hp: strand_hp,
+        strand_lingshi: strand_lingshi,
+        修仙版本: versionData
     }
     const data1 = await new Show(e).get_najieData(player_data);
     let img = await puppeteer.screenshot("najie", {
         ...data1,
     });
-
     return img;
-
 }
-
 
 /**
  * 返回境界列表图片
  * @return image
  */
-
 export async function get_state_img(e, all_level) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData("player", usr_qq);
     if (!ifexistplay) {
         return;
     }
-    
     let player = await data.getData("player", usr_qq);
-     let Level_id=player.level_id;
+    let Level_id = player.level_id;
     let Level_list = data.Level_list;
-
-
     //循环删除表信息
-	if(!all_level){
-		for(var i=1;i<=60;i++){
-			if(i>Level_id-6&&i<Level_id+6){
-				continue;
-			}
-			Level_list = await Level_list.filter(item => item.level_id != i);
-		}
-	}
+    if (!all_level) {
+        for (var i = 1; i <= 60; i++) {
+            if (i > Level_id - 6 && i < Level_id + 6) {
+                continue;
+            }
+            Level_list = await Level_list.filter(item => item.level_id != i);
+        }
+    }
     let state_data = {
         user_id: usr_qq,
         Level_list: Level_list
@@ -1461,7 +1286,6 @@ export async function get_state_img(e, all_level) {
         ...data1,
     });
     return img;
-
 }
 
 export async function get_statezhiye_img(e, all_level) {
@@ -1470,21 +1294,18 @@ export async function get_statezhiye_img(e, all_level) {
     if (!ifexistplay) {
         return;
     }
-    
     let player = await data.getData("player", usr_qq);
-     let Level_id=player.Physique_id;
+    let Level_id = player.Physique_id;
     let Level_list = data.occupation_exp_list;
-
-
     //循环删除表信息
-	if(!all_level){
-		for(var i=1;i<=60;i++){
-			if(i>Level_id-6&&i<Level_id+6){
-				continue;
-			}
-			Level_list = await Level_list.filter(item => item.Physique_id != i);
-		}
-	}
+    if (!all_level) {
+        for (var i = 1; i <= 60; i++) {
+            if (i > Level_id - 6 && i < Level_id + 6) {
+                continue;
+            }
+            Level_list = await Level_list.filter(item => item.Physique_id != i);
+        }
+    }
     let state_data = {
         user_id: usr_qq,
         Level_list: Level_list
@@ -1494,37 +1315,30 @@ export async function get_statezhiye_img(e, all_level) {
         ...data1,
     });
     return img;
-
 }
 
 /**
  * 返回境界列表图片
  * @return image
  */
-
- export async function get_statemax_img(e,all_level) {
+export async function get_statemax_img(e, all_level) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData("player", usr_qq);
     if (!ifexistplay) {
         return;
     }
-
     let player = await data.getData("player", usr_qq);
-
-    let Level_id=player.Physique_id;
-
+    let Level_id = player.Physique_id;
     let LevelMax_list = data.LevelMax_list;
-
-   //循环删除表信息
-	if(!all_level){
-		for(var i=1;i<=60;i++){
-		   if(i>Level_id-6&&i<Level_id+6){
-			   continue;
-		   }
-		   LevelMax_list = await LevelMax_list.filter(item => item.level_id != i);
-		}
-	}
-
+    //循环删除表信息
+    if (!all_level) {
+        for (var i = 1; i <= 60; i++) {
+            if (i > Level_id - 6 && i < Level_id + 6) {
+                continue;
+            }
+            LevelMax_list = await LevelMax_list.filter(item => item.level_id != i);
+        }
+    }
     let statemax_data = {
         user_id: usr_qq,
         LevelMax_list: LevelMax_list
@@ -1534,24 +1348,17 @@ export async function get_statezhiye_img(e, all_level) {
         ...data1,
     });
     return img;
-
 }
 
-
- export async function get_talent_img(e) {
+export async function get_talent_img(e) {
     let usr_qq = e.user_id;
     let ifexistplay = data.existData("player", usr_qq);
     if (!ifexistplay) {
         return;
     }
-
     let player = await data.getData("player", usr_qq);
-
-    let Level_id=player.Physique_id;
-
+    let Level_id = player.Physique_id;
     let talent_list = data.talent_list;
-
-
     let talent_data = {
         user_id: usr_qq,
         talent_list: talent_list
@@ -1561,98 +1368,86 @@ export async function get_statezhiye_img(e, all_level) {
         ...data1,
     });
     return img;
-
 }
-
-
 
 /**
  * 返回修仙版本
  * @return image
  */
 export async function get_updata_img(e) {
-    let updata_data = {
-    }
+    let updata_data = {}
     const data1 = await new Show(e).get_updataData(updata_data);
     let img = await puppeteer.screenshot("updata", {
         ...data1,
     });
     return img;
-
 }
-
-
-
-
 
 /**
  * 返回修仙设置
  * @return image
  */
- export async function get_adminset_img(e) {
+export async function get_adminset_img(e) {
     let adminset = {
         //CD：分
-        CDassociation:xiuxianConfigData.CD.association,
-        CDjoinassociation:xiuxianConfigData.CD.joinassociation,
-        CDassociationbattle:xiuxianConfigData.CD.associationbattle,
-        CDrob:xiuxianConfigData.CD.rob,
-        CDgambling:xiuxianConfigData.CD.gambling,
-        CDcouple:xiuxianConfigData.CD.couple,
-        CDgarden:xiuxianConfigData.CD.garden,
-        CDlevel_up:xiuxianConfigData.CD.level_up,
-        CDsecretplace:xiuxianConfigData.CD.secretplace,
-        CDtimeplace:xiuxianConfigData.CD.timeplace,
-        CDforbiddenarea:xiuxianConfigData.CD.forbiddenarea,
-        CDreborn:xiuxianConfigData.CD.reborn,
-        CDtransfer:xiuxianConfigData.CD.transfer,
-        CDhonbao:xiuxianConfigData.CD.honbao,
-        CDboss:xiuxianConfigData.CD.boss,
+        CDassociation: xiuxianConfigData.CD.association,
+        CDjoinassociation: xiuxianConfigData.CD.joinassociation,
+        CDassociationbattle: xiuxianConfigData.CD.associationbattle,
+        CDrob: xiuxianConfigData.CD.rob,
+        CDgambling: xiuxianConfigData.CD.gambling,
+        CDcouple: xiuxianConfigData.CD.couple,
+        CDgarden: xiuxianConfigData.CD.garden,
+        CDlevel_up: xiuxianConfigData.CD.level_up,
+        CDsecretplace: xiuxianConfigData.CD.secretplace,
+        CDtimeplace: xiuxianConfigData.CD.timeplace,
+        CDforbiddenarea: xiuxianConfigData.CD.forbiddenarea,
+        CDreborn: xiuxianConfigData.CD.reborn,
+        CDtransfer: xiuxianConfigData.CD.transfer,
+        CDhonbao: xiuxianConfigData.CD.honbao,
+        CDboss: xiuxianConfigData.CD.boss,
         //手续费
-        percentagecost:xiuxianConfigData.percentage.cost,
-        percentageMoneynumber:xiuxianConfigData.percentage.Moneynumber,
-        percentagepunishment:xiuxianConfigData.percentage.punishment,
+        percentagecost: xiuxianConfigData.percentage.cost,
+        percentageMoneynumber: xiuxianConfigData.percentage.Moneynumber,
+        percentagepunishment: xiuxianConfigData.percentage.punishment,
         //出千控制
-        sizeMoney:xiuxianConfigData.size.Money,
+        sizeMoney: xiuxianConfigData.size.Money,
         //开关
-        switchplay:xiuxianConfigData.switch.play,
-        switchMoneynumber:xiuxianConfigData.switch.play,
-        switchcouple:xiuxianConfigData.switch.couple,
-        switchXiuianplay_key:xiuxianConfigData.switch.Xiuianplay_key,
+        switchplay: xiuxianConfigData.switch.play,
+        switchMoneynumber: xiuxianConfigData.switch.play,
+        switchcouple: xiuxianConfigData.switch.couple,
+        switchXiuianplay_key: xiuxianConfigData.switch.Xiuianplay_key,
         //倍率
-        biguansize:xiuxianConfigData.biguan.size,
-        biguantime:xiuxianConfigData.biguan.time,
-        biguancycle:xiuxianConfigData.biguan.cycle,
+        biguansize: xiuxianConfigData.biguan.size,
+        biguantime: xiuxianConfigData.biguan.time,
+        biguancycle: xiuxianConfigData.biguan.cycle,
         //
-        worksize:xiuxianConfigData.work.size,
-        worktime:xiuxianConfigData.work.time,
-        workcycle:xiuxianConfigData.work.cycle,
+        worksize: xiuxianConfigData.work.size,
+        worktime: xiuxianConfigData.work.time,
+        workcycle: xiuxianConfigData.work.cycle,
         //
-        BossBoss:xiuxianConfigData.Boss.Boss,
+        BossBoss: xiuxianConfigData.Boss.Boss,
         //出金倍率
-        SecretPlaceone:xiuxianConfigData.SecretPlace.one,
-        SecretPlacetwo:xiuxianConfigData.SecretPlace.two,
-        SecretPlacethree:xiuxianConfigData.SecretPlace.three,
+        SecretPlaceone: xiuxianConfigData.SecretPlace.one,
+        SecretPlacetwo: xiuxianConfigData.SecretPlace.two,
+        SecretPlacethree: xiuxianConfigData.SecretPlace.three,
     }
     const data1 = await new Show(e).get_adminsetData(adminset);
     let img = await puppeteer.screenshot("adminset", {
         ...data1,
     });
     return img;
-
 }
-
-
 
 export async function get_ranking_power_img(e, Data, usr_paiming, thisplayer) {
     let usr_qq = e.user_id;
-    if (!isNotNull(thisplayer.level_id)){
+    if (!isNotNull(thisplayer.level_id)) {
         e.reply("请先#同步信息");
         return;
     }
     let level = data.Level_list.find(item => item.level_id == thisplayer.level_id).level;
     let ranking_power_data = {
         user_id: usr_qq,
-        mdz:thisplayer.魔道值,
+        mdz: thisplayer.魔道值,
         nickname: thisplayer.名号,
         exp: thisplayer.修为,
         level: level,
@@ -1704,10 +1499,6 @@ async function getPlayerAction(usr_qq) {
     return arr;
 }
 
-
-
-
-
 /**
  * @description: 进度条渲染
  * @param {Number} res 百分比小数
@@ -1718,11 +1509,10 @@ function Strand(now, max) {
     let mini
     if (num > 100) {
         mini = 100
-    }
-    else {
+    } else {
         mini = num
-    };
-
+    }
+    ;
     let strand = {
         style: `style=width:${mini}%`,
         num: num
@@ -1786,10 +1576,11 @@ export function bigNumberTransform(value) {
     }
     return newValue.join('')
 }
+
 /**
  * 计算战力
  */
- export function GetPower(atk, def, hp, bao) {
+export function GetPower(atk, def, hp, bao) {
     let power = (atk + def * 0.8 + hp * 0.6) * (bao + 1);
     power = parseInt(power)
     return power
