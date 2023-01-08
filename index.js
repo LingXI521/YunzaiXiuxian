@@ -5,7 +5,7 @@ import chalk from 'chalk'
 const versionData = Config.getdefSet("version", "version");
 //打印启动日志
 logger.info(`__________________________`);
-logger.info(chalk.yellow(`修仙模拟器${versionData[0].version}[xiuxian-V1.2.4「银花造福盈」初始化`));
+logger.info(chalk.yellow(`修仙模拟器${versionData[0].version}「${versionData[0].name}」初始化`));
 logger.info(`体验群一：372093406`);
 logger.info(`体验群二：642919478`);
 logger.info(`原开发1：水脚脚`);
