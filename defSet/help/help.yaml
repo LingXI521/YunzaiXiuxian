@@ -48,6 +48,9 @@
     - icon: help-icon_13
       title: "#解锁装备轮回钟*优"
       desc: "支持所有物品"
+    - icon: help-icon_13
+      title: "#活动兑换+兑换码"
+      desc: "兑换奖励"
 
 
 - group: 逆天改命
