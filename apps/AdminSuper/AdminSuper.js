@@ -1084,12 +1084,15 @@ export async function synchronization(e) {
     }
     await redis.set('xiuxian:player:' + usr_qq + ':lhxueqi', 0);
     await redis.set('xiuxian:player:' + usr_qq + ':lhxigen', 0);
-    await Write_player(usr_qq, player);
     //更新面板
     let equipment = await Read_equipment(usr_qq);
+    if (!isNotNull(equipment.项链)) {
+        equipment.项链 = data.necklace_list.find(item => item.name == "幸运儿");
+        player.幸运+=data.necklace_list.find(item => item.name == "幸运儿").加成
+    }
     await Write_najie(usr_qq, najie);
+    await Write_player(usr_qq, player);
     await Write_equipment(usr_qq, equipment);
-    0;
   }
   e.reply('存档同步结束');
   return;
