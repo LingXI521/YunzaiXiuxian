@@ -10,7 +10,7 @@ body {
   transform: scale(1);
   width: 100%;
   text-align: center;
-  background-image: url('../..//img/state/state.jpg');
+  background-image: url('../../img/state/state.jpg');
   background-size: 100% auto;
 }
 
@@ -107,10 +107,9 @@ body {
   text-align: left;
   margin: 9px;
   font-size: 30px;
-  padding: 15px;
   font-weight: 600;
   color: rgb(202, 180, 9);
-  padding-left: 100px;
+  padding: 15px 15px 15px 100px;
   border-radius: 20px;
   background-color: rgba(19, 21, 22, 0.486);
 }
@@ -119,9 +118,8 @@ body {
   text-align: left;
   margin: 9px;
   font-size: 25px;
-  padding: 15px;
   font-weight: 600;
-  padding-left: 150px;
+  padding: 15px 15px 15px 150px;
   color: rgb(255, 255, 255);
   border-radius: 20px;
   background-color: rgba(19, 21, 22, 0.486);
