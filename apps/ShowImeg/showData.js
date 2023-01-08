@@ -1364,6 +1364,7 @@ export async function get_equipment_img(e) {
         arms: equipment.武器,
         armor: equipment.护具,
         treasure: equipment.法宝,
+        necklace:equipment.项链,
         player_atk: player.攻击,
         player_def: player.防御,
         player_bao: bao,

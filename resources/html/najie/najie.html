@@ -52,10 +52,15 @@
                 <div class="item_title">
                     【{{item.type}}】{{item.name}}({{['劣','普','优','精','极','绝','顶'][item.pinji]}})
                 </div>
+                {{if item.type != "项链"}}
                 <div class="item_int">攻击：{{item.atk}}</div>
                 <div class="item_int">防御：{{item.def}}</div>
                 <div class="item_int">血量：{{item.HP}}</div>
                 <div class="item_int">暴击：{{item.bao*100}}%</div>
+                {{/if}}
+                {{if item.type == "项链"}}
+                <div class="item_int">{{item.属性}}属性加成：{{item.加成*100}}%</div>
+                {{/if}}
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>

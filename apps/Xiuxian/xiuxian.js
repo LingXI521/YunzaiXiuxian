@@ -527,9 +527,16 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                 //for(let i=0;i<x;i++){
                 let equipment0 = JSON.parse(JSON.stringify(equipment));
                 equipment0.pinji = pinji;
-                equipment0.atk = Math.floor(equipment.atk * z);
-                equipment0.def = Math.floor(equipment.def * z);
-                equipment0.HP = Math.floor(equipment.HP * z);
+                if(isNotNull(equipment0.加成)){
+                    equipment0.加成 = Number((equipment.加成 * z*1.5).toFixed(2));
+                    if(equipment0.加成==0){
+                        equipment0.加成=0.10
+                    }
+                }else{
+                    equipment0.atk = Math.floor(equipment.atk * z);
+                    equipment0.def = Math.floor(equipment.def * z);
+                    equipment0.HP = Math.floor(equipment.HP * z);
+                }
                 equipment0.数量 = x;
                 equipment0.islockd = 0;
                 najie.装备.push(equipment0);
@@ -743,6 +750,13 @@ export async function instead_equipment(usr_qq, equipment_data) {
             await Write_equipment(usr_qq, equipment);
             return;
         }
+        if (thing_type == "项链") {
+            await Add_najie_thing(usr_qq, equipment.项链.name, "装备", 1, equipment.项链.pinji);
+            //equipment.法宝 = data.equipment_list.find(item => item.name == thing_name);
+            equipment.项链 = equipment_data;
+            await Write_equipment(usr_qq, equipment);
+            return;
+        }
     } catch {
         thing_type = data.timeequipmen_list.find(item => item.name == thing_name).type;
         equipment = await Read_equipment(usr_qq);
@@ -764,6 +778,12 @@ export async function instead_equipment(usr_qq, equipment_data) {
         if (thing_type == "法宝") {
             await Add_najie_thing(usr_qq, equipment.法宝.name, "装备", 1);
             equipment.法宝 = data.timeequipmen_list.find(item => item.name == thing_name);
+            await Write_equipment(usr_qq, equipment);
+            return;
+        }
+        if (thing_type == "项链") {
+            await Add_najie_thing(usr_qq, equipment.项链.name, "装备", 1);
+            equipment.项链 = data.necklace_list.find(item => item.name == thing_name);
             await Write_equipment(usr_qq, equipment);
             return;
         }
@@ -1303,6 +1323,22 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     equipment = JSON.parse(equipment);
     let random = Math.random()//是否触发
     // let random=1
+
+    //项链加成
+    let element=A_lin
+    element = element.replace("仙之心·", '');
+    console.log("神之心:"+element)
+    console.log("项链:"+equipment.项链.属性)
+    if(equipment.项链.属性==element){
+        let ran=Math.random()
+        let panduan=A_player.幸运>ran
+        if(true){
+            att*=1+equipment.项链.加成
+            msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加"+equipment.项链.加成*100+"%")
+        }
+    }
+
+
     //玄冰之枪
     if (equipment.武器.name == "玄冰之枪") {
         if (random > 0.8) {
@@ -1854,6 +1890,11 @@ export async function foundthing(thing_name) {
     for (var i = 0; i < data.xianchonkouliang.length; i++) {
         if (thing_name == data.xianchonkouliang[i].name) {
             return data.xianchonkouliang[i];
+        }
+    }
+    for (var i = 0; i < data.necklace_list.length; i++) {
+        if (thing_name == data.necklace_list[i].name) {
+            return data.necklace_list[i];
         }
     }
     return false

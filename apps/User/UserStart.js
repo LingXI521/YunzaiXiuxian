@@ -131,7 +131,7 @@ export class UserStart extends plugin {
             "神魄段数": 0,
             "魔道值": 0,
             "仙宠": [],
-            "幸运": 0
+            "幸运": data.necklace_list.find(item => item.name == "幸运儿").加成
         }
         await Write_player(usr_qq, new_player);
 
@@ -139,7 +139,8 @@ export class UserStart extends plugin {
         let new_equipment = {
             "武器": data.wuqi_list.find(item => item.name == "烂铁匕首"),
             "护具": data.huju_list.find(item => item.name == "破铜护具"),
-            "法宝": data.fabao_list.find(item => item.name == "廉价炮仗")
+            "法宝": data.fabao_list.find(item => item.name == "廉价炮仗"),
+            "项链": data.necklace_list.find(item => item.name == "幸运儿")
         }
         await Write_equipment(usr_qq, new_equipment);
 
