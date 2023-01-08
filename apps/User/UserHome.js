@@ -137,6 +137,7 @@ export class UserHome extends plugin {
             msg.push("\n"+data.duihuan[i].thing[k].name+"x"+data.duihuan[i].thing[k].数量);
         }
         e.reply("恭喜获得:"+msg);
+        return;
     }
     async check_player(e) {
         if (!e.isMaster) {
