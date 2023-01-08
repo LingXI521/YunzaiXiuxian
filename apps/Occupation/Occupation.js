@@ -845,8 +845,6 @@ export class Occupation extends plugin {
 
         let rate = 0;
 
-        if (player.occupation_level > 24) { suc_rate = 0.8 }
-
         if (player.occupation_level > 0 && player.occupation_level < 24) {
             rate = data.occupation_exp_list.find(item => item.id == player.occupation_level).rate;
             rate = rate * 10
@@ -855,6 +853,7 @@ export class Occupation extends plugin {
         if (player.occupation == "炼器师") {
             tmp_msg1 += `你是炼器师，额外增加成功率${Math.floor(rate * 10)}%(以乘法算)，`;
             suc_rate *= 1 + rate;
+            if (player.occupation_level >= 24) { suc_rate = 0.8 }
             m = 1;
             let e = 0;
             if (Math.random() < 0.1) {
