@@ -1,5 +1,5 @@
 # Yunzai-BotV3"绝云间修仙模拟器V1.2.4「银花造福盈」(原DD斩首魔改版)"             
-[![懒得输入](pic/photo.jpg)](https://zh.moegirl.org.cn/钟离)
+[![懒得输入](pic/photo.jpg)](https://zh.moegirl.org.cn/%E8%83%A1%E6%A1%83(%E5%8E%9F%E7%A5%9E)#)
 ## 安装      
 
 > 在Yunzai-Bot/目录下执行  
