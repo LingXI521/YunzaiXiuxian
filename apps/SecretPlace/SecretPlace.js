@@ -2,14 +2,13 @@
 import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
-import { Read_player, existplayer, ForwardMsg, isNotNull, sleep } from '../Xiuxian/xiuxian.js'
-import { Add_灵石, Add_修为 } from '../Xiuxian/xiuxian.js'
-import { add_mingdang, add_time } from "../jiance/jiance.js"
+import {Read_player, existplayer, ForwardMsg, isNotNull, sleep} from '../Xiuxian/xiuxian.js'
+import {Add_灵石, Add_修为} from '../Xiuxian/xiuxian.js'
+import {add_mingdang, add_time} from "../jiance/jiance.js"
 
 /**
  * 秘境模块
  */
-
 let allaction = false;
 
 export class SecretPlace extends plugin {
@@ -18,7 +17,7 @@ export class SecretPlace extends plugin {
             name: 'Yunzai_Bot_SecretPlace',
             dsc: '修仙模块',
             event: 'message',
-            /** 
+            /**
              * 优先级，数字越小等级越高，建议优先级600
              */
             priority: 600,
@@ -68,13 +67,12 @@ export class SecretPlace extends plugin {
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
     }
 
-
     async Xiuxianstate(e) {
         //不开放私聊功能
         if (!e.isGroup) {
             return;
         }
-        Go(e);
+        await Go(e);
         allaction = false;
         return;
     }
@@ -87,7 +85,7 @@ export class SecretPlace extends plugin {
         }
         let addres = "秘境";
         let weizhi = data.didian_list;
-        Goweizhi(e, weizhi, addres);
+        await Goweizhi(e, weizhi, addres);
     }
 
     //禁地
@@ -98,7 +96,7 @@ export class SecretPlace extends plugin {
         }
         let addres = "禁地";
         let weizhi = data.forbiddenarea_list;
-        jindi(e, weizhi, addres);
+        await jindi(e, weizhi, addres);
     }
 
     //限定仙府
@@ -118,11 +116,8 @@ export class SecretPlace extends plugin {
         }
         let addres = "仙境";
         let weizhi = data.Fairyrealm_list;
-        Goweizhi(e, weizhi, addres);
+        await Goweizhi(e, weizhi, addres);
     }
-
-
-
 
     //降临秘境
     async Gosecretplace(e) {
@@ -132,13 +127,12 @@ export class SecretPlace extends plugin {
         let usr_qq = e.user_id;
         await Go(e);
         if (allaction) {
-        }
-        else {
+        } else {
             return;
         }
         allaction = false;
         let player = await Read_player(usr_qq);
-        var didian = e.msg.replace("#降临秘境", '');
+        let didian = e.msg.replace("#降临秘境", '');
         didian = didian.trim();
         let weizhi = await data.didian_list.find(item => item.name == didian);
         if (!isNotNull(weizhi)) {
@@ -159,15 +153,12 @@ export class SecretPlace extends plugin {
         //     return;
         // }
         let rate = player.occupation_level
-
         if (player.occupation == "采药师" && rate < 15 && didian == "须弥") {
             e.reply("冒险等级不足(职业等级不足)")
             return
         }
         if (player.occupation != "采药师" && didian == "须弥") {
-
             e.reply("由于没有带虚空终端，被教令院抓了起来(您不是采药师)")
-
             return
         }
         //记录时间
@@ -175,7 +166,7 @@ export class SecretPlace extends plugin {
         await add_time(usr_qq);
         let Price = weizhi.Price;
         await Add_灵石(usr_qq, -Price);
-        var time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
+        const time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
         let arr = {
             "action": "历练",//动作
@@ -187,7 +178,6 @@ export class SecretPlace extends plugin {
             "Place_actionplus": "1",//沉迷秘境状态---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
             "plant": "1",//采药-开启
             "mine": "1",//采矿-开启
@@ -202,8 +192,6 @@ export class SecretPlace extends plugin {
         return;
     }
 
-
-
     //前往禁地
     async Goforbiddenarea(e) {
         if (!e.isGroup) {
@@ -212,8 +200,7 @@ export class SecretPlace extends plugin {
         let usr_qq = e.user_id;
         await Go(e);
         if (allaction) {
-        }
-        else {
+        } else {
             return;
         }
         allaction = false;
@@ -232,7 +219,7 @@ export class SecretPlace extends plugin {
             e.reply("没有达到化神之前还是不要去了")
             return;
         }
-        var didian = await e.msg.replace("#前往禁地", '');
+        let didian = await e.msg.replace("#前往禁地", '');
         didian = didian.trim();
         let weizhi = await data.forbiddenarea_list.find(item => item.name == didian);
         // if (player.power_place == 0 && weizhi.id != 666) {
@@ -253,7 +240,7 @@ export class SecretPlace extends plugin {
         let Price = weizhi.Price;
         await Add_灵石(usr_qq, -Price);
         await Add_修为(usr_qq, -weizhi.experience);
-        var time = this.xiuxianConfigData.CD.forbiddenarea;//时间（分钟）
+        const time = this.xiuxianConfigData.CD.forbiddenarea;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
         let arr = {
             "action": "禁地",//动作
@@ -265,7 +252,6 @@ export class SecretPlace extends plugin {
             "Place_actionplus": "1",//沉迷秘境状态---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
             "plant": "1",//采药-开启
             "mine": "1",//采矿-开启
@@ -280,8 +266,6 @@ export class SecretPlace extends plugin {
         return;
     }
 
-
-
     //探索仙府
     async GoTimeplace(e) {
         if (!e.isGroup) {
@@ -290,8 +274,7 @@ export class SecretPlace extends plugin {
         let usr_qq = e.user_id;
         await Go(e);
         if (allaction) {
-        }
-        else {
+        } else {
             return;
         }
         allaction = false;
@@ -337,7 +320,7 @@ export class SecretPlace extends plugin {
         }
         let Price = weizhi.Price;
         await Add_灵石(usr_qq, -Price);
-        var time = this.xiuxianConfigData.CD.timeplace;//时间（分钟）
+        const time = this.xiuxianConfigData.CD.timeplace;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
         let arr = {
             "action": "探索",//动作
@@ -349,7 +332,6 @@ export class SecretPlace extends plugin {
             "Place_actionplus": "1",//沉迷秘境状态---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
             "plant": "1",//采药-开启
             "mine": "1",//采矿-开启
@@ -361,10 +343,13 @@ export class SecretPlace extends plugin {
         }
         await redis.set("xiuxian:player:" + usr_qq + ":action", JSON.stringify(arr));
         await Add_修为(usr_qq, -100000);
-        if (suiji == 0) { e.reply("你买下了那份地图,历经九九八十一天,终于到达了地图上的仙府,洞府上模糊得刻着[" + weizhi.name + "仙府]你兴奋地冲进去探索机缘,被强大的仙气压制，消耗了100000修为成功突破封锁闯了进去" + time + "分钟后归来!"); }
-        if (suiji == 1) { e.reply("你买下了那份地图,历经九九八十一天,终于到达了地图上的地点,这座洞府仿佛是上个末法时代某个仙人留下的遗迹,你兴奋地冲进去探索机缘,被强大的仙气压制，消耗了100000修为成功突破封锁闯了进去" + time + "分钟后归来!"); }
+        if (suiji == 0) {
+            e.reply("你买下了那份地图,历经九九八十一天,终于到达了地图上的仙府,洞府上模糊得刻着[" + weizhi.name + "仙府]你兴奋地冲进去探索机缘,被强大的仙气压制，消耗了100000修为成功突破封锁闯了进去" + time + "分钟后归来!");
+        }
+        if (suiji == 1) {
+            e.reply("你买下了那份地图,历经九九八十一天,终于到达了地图上的地点,这座洞府仿佛是上个末法时代某个仙人留下的遗迹,你兴奋地冲进去探索机缘,被强大的仙气压制，消耗了100000修为成功突破封锁闯了进去" + time + "分钟后归来!");
+        }
         return;
-
     }
 
     //前往仙境
@@ -375,13 +360,12 @@ export class SecretPlace extends plugin {
         let usr_qq = e.user_id;
         await Go(e);
         if (allaction) {
-        }
-        else {
+        } else {
             return;
         }
         allaction = false;
         let player = await Read_player(usr_qq);
-        var didian = e.msg.replace("#镇守仙境", '');
+        let didian = e.msg.replace("#镇守仙境", '');
         didian = didian.trim();
         let weizhi = await data.Fairyrealm_list.find(item => item.name == didian);
         if (!isNotNull(weizhi)) {
@@ -399,8 +383,7 @@ export class SecretPlace extends plugin {
         now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
         if (now_level_id < 42) {
             return;
-        }
-        else {
+        } else {
             if (!isNotNull(player.power_place)) {
                 e.reply("请#同步信息");
                 return;
@@ -417,7 +400,7 @@ export class SecretPlace extends plugin {
         }
         let Price = weizhi.Price;
         await Add_灵石(usr_qq, -Price);
-        var time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
+        const time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
         let arr = {
             "action": "历练",//动作
@@ -429,7 +412,6 @@ export class SecretPlace extends plugin {
             "Place_actionplus": "1",//沉迷秘境状态---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
             "plant": "1",//采药-开启
             "mine": "1",//采矿-开启
@@ -443,7 +425,6 @@ export class SecretPlace extends plugin {
         e.reply("开始镇守" + didian + "," + time + "分钟后归来!");
         return;
     }
-
 
     async Giveup(e) {
         if (!e.isGroup) {
@@ -462,7 +443,6 @@ export class SecretPlace extends plugin {
             e.reply("修仙：游戏进行中...");
             return;
         }
-
         //查询redis中的人物动作
         let action = await redis.get("xiuxian:player:" + usr_qq + ":action");
         action = JSON.parse(action);
@@ -478,7 +458,7 @@ export class SecretPlace extends plugin {
                 arr.power_up = 1;//渡劫状态
                 arr.Place_action = 1;//秘境
                 arr.Place_actionplus = 1;//沉迷状态
-                arr.mojie=1;
+                arr.mojie = 1;
                 arr.end_time = new Date().getTime();//结束的时间也修改为当前时间
                 delete arr.group_id;//结算完去除group_id
                 await redis.set("xiuxian:player:" + usr_qq + ":action", JSON.stringify(arr));
@@ -488,51 +468,47 @@ export class SecretPlace extends plugin {
         }
         return;
     }
-
 }
 
 /**
-     * 地点查询
+ * 地点查询
  */
 export async function Goweizhi(e, weizhi, addres) {
     let adr = addres;
     let msg = [
         "***" + adr + "***"
     ];
-    for (var i = 0; i < weizhi.length; i++) {
+    for (let i = 0; i < weizhi.length; i++) {
         msg.push(weizhi[i].name + "\n" + "等级：" + weizhi[i].Grade + "\n" + "极品：" + weizhi[i].Best[0] + "\n" + "灵石：" + weizhi[i].Price + "灵石")
     }
     await ForwardMsg(e, msg);
 }
+
 export async function jindi(e, weizhi, addres) {
     let adr = addres;
     let msg = [
         "***" + adr + "***"
     ];
-    for (var i = 0; i < weizhi.length; i++) {
+    for (let i = 0; i < weizhi.length; i++) {
         msg.push(weizhi[i].name + "\n" + "等级：" + weizhi[i].Grade + "\n" + "极品：" + weizhi[i].Best[0] + "\n" + "灵石：" + weizhi[i].Price + "灵石" + "\n" + "修为：" + weizhi[i].experience + "修为")
     }
     await ForwardMsg(e, msg);
 }
 
 /**
-    * 常用查询合集
-*/
+ * 常用查询合集
+ */
 export async function Go(e) {
     let usr_qq = e.user_id;
-
     //不开放私聊
     if (!e.isGroup) {
         return;
     }
-
-
     //有无存档
     let ifexistplay = await existplayer(usr_qq);
     if (!ifexistplay) {
         return;
     }
-
     //获取游戏状态
     let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
     //防止继续其他娱乐行为
@@ -554,8 +530,6 @@ export async function Go(e) {
             return;
         }
     }
-
-
     let player = await Read_player(usr_qq);
     if (player.当前血量 < 200) {
         e.reply("你都伤成这样了,就不要出去浪了");
