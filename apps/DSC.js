@@ -31,6 +31,10 @@ export class DSC extends plugin {
         if (!e.isGroup) {
             return;
         }
+         if(true){
+            e.reply("春节前无法接触【锻神池】");
+            return;
+        }
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
             if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 53) {
