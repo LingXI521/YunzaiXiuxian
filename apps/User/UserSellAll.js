@@ -112,12 +112,8 @@ export class UserSellAll extends plugin {
             e.reply(`你瓦特了吧，这方世界没有这样的东西:${thing_name}`);
             return;
         }
-        //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
-        if (!thing_quantity) {//没有
-            e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
-            return;
-        }
+
+
         let najie = await Read_najie(usr_qq);
         let ifexist;
         if (thing_exist.class == "装备") {
@@ -146,6 +142,10 @@ export class UserSellAll extends plugin {
         }
         if (thing_exist.class == "仙米") {
             ifexist = najie.仙宠口粮.find(item => item.name == thing_name);
+        }
+        if (!ifexist) {//没有
+            e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
+            return;
         }
         if (ifexist.islockd == 0) {
             if (un_lock == "锁定") {
