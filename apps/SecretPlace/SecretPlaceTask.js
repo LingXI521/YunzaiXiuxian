@@ -102,6 +102,7 @@ export class SecretPlaceTask extends plugin {
               当前血量: player.当前血量,
               暴击率: player.暴击率,
               法球倍率: player.灵根.法球倍率,
+              职业: player.occupation
             };
             let monster_length = data.monster_list.length;
             let monster_index = Math.trunc(Math.random() * monster_length);
