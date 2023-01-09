@@ -216,9 +216,9 @@ export class UserStart extends plugin {
         if (acount == undefined || acount == null || acount == NaN || acount <= 0) {
             await redis.set("xiuxian:player:" + usr_qq + ":reCreate_acount", 1);
         }
+         let player = await data.getData("player", usr_qq);
         //重生之前先看状态
-        if (player.灵石 >= 0) {
-        } else {
+        if (player.灵石 <= 0) {
             e.reply(`负债无法再入仙途`);
             return;
         }
