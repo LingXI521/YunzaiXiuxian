@@ -245,7 +245,7 @@ export class AssociationAdmin extends plugin {
         ass.大阵血量 += lingshi * xian;
         ass.灵石池 -= lingshi;
         await data.setAssociation(ass.宗门名称, ass);
-        e.reply(`维护成功,宗门还有${ass.灵石池}灵石,护宗大阵增加了${lingshi * 20 * xian}血量`);
+       e.reply(`维护成功,宗门还有${ass.灵石池}灵石,护宗大阵增加了${lingshi * xian}血量`);
 
 
     }
