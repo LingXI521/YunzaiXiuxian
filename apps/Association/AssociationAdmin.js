@@ -238,11 +238,11 @@ export class AssociationAdmin extends plugin {
             e.reply(`宗门灵石池只有${ass.灵石池}灵石,数量不足`);
             return;
         }
-         var xian = 1;
+         var xian = 5;
         if(ass.power == 1){
-            xian = 0.1;
+            xian = 2;
         }
-        ass.大阵血量 += lingshi * 20 * xian;
+        ass.大阵血量 += lingshi * xian;
         ass.灵石池 -= lingshi;
         await data.setAssociation(ass.宗门名称, ass);
         e.reply(`维护成功,宗门还有${ass.灵石池}灵石,护宗大阵增加了${lingshi * 20 * xian}血量`);
