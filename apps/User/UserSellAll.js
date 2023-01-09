@@ -219,7 +219,6 @@ export class UserSellAll extends plugin {
         }
             await redis.set("xiuxian:player:" + usr_qq + ":lunhui", 0);
         let najie = await data.getData("najie", usr_qq);
-        let najie = await data.getData("najie", usr_qq);
         let commodities_price = 0
         let wupin = ['装备', '丹药', '道具', '功法', '草药', '材料', '盒子'];
         let wupin1 = []
