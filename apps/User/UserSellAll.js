@@ -242,7 +242,7 @@ export class UserSellAll extends plugin {
             for (let l of najie[i]) {
                 if (l && l.islockd == 0 && !(l.id >= 400991 && l.id <= 400999)) {
                     //纳戒中的数量
-                    let quantity = await exist_najie_thing(usr_qq, l.name, l.class);
+                    let quantity =l.数量;
                     /*console.log(l);
                     console.log(l.class);
                     console.log(quantity);*/

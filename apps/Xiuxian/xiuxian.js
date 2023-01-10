@@ -381,31 +381,31 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class) {
     }
     let ifexist;
     if (thing_class == "装备") {
-        ifexist = najie.装备.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.装备.find(item => item.name == thing_name);
     }
     if (thing_class == "丹药") {
-        ifexist = najie.丹药.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.丹药.find(item => item.name == thing_name);
     }
     if (thing_class == "道具") {
-        ifexist = najie.道具.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.道具.find(item => item.name == thing_name);
     }
     if (thing_class == "功法") {
-        ifexist = najie.功法.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.功法.find(item => item.name == thing_name);
     }
     if (thing_class == "草药") {
-        ifexist = najie.草药.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.草药.find(item => item.name == thing_name);
     }
     if (thing_class == "材料") {
-        ifexist = najie.材料.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.材料.find(item => item.name == thing_name);
     }
     if (thing_class == "盒子") {
-        ifexist = najie.盒子.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.盒子.find(item => item.name == thing_name);
     }
     if (thing_class == "仙宠") {
-        ifexist = najie.仙宠.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.仙宠.find(item => item.name == thing_name);
     }
     if (thing_class == "仙米") {
-        ifexist = najie.仙宠口粮.find(item => item.name == thing_name && item.islockd==0);
+        ifexist = najie.仙宠口粮.find(item => item.name == thing_name);
     }
     if (ifexist) {
         return ifexist.数量;
