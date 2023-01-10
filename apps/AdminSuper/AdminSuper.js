@@ -1020,46 +1020,55 @@ export async function synchronization(e) {
             if (!isNotNull(装备.islockd)) {
                 装备.islockd = 0;
             }
+            装备.数量=Math.floor(装备.数量);
         });
         najie.丹药.forEach(丹药 => {
             if (!isNotNull(丹药.islockd)) {
                 丹药.islockd = 0;
             }
+            丹药.数量=Math.floor(丹药.数量);
         });
         najie.道具.forEach(道具 => {
             if (!isNotNull(道具.islockd)) {
                 道具.islockd = 0;
             }
+            道具.数量=Math.floor(道具.数量);
         });
         najie.功法.forEach(功法 => {
             if (!isNotNull(功法.islockd)) {
                 功法.islockd = 0;
             }
+            功法.数量=Math.floor(功法.数量);
         });
         najie.草药.forEach(草药 => {
             if (!isNotNull(草药.islockd)) {
                 草药.islockd = 0;
             }
+            草药.数量=Math.floor(草药.数量);
         });
         najie.材料.forEach(材料 => {
             if (!isNotNull(材料.islockd)) {
                 材料.islockd = 0;
             }
+            材料.数量=Math.floor(材料.数量);
         });
         najie.盒子.forEach(盒子 => {
             if (!isNotNull(盒子.islockd)) {
                 盒子.islockd = 0;
             }
+            盒子.数量=Math.floor(盒子.数量);
         });
         najie.仙宠.forEach(仙宠 => {
             if (!isNotNull(仙宠.islockd)) {
                 仙宠.islockd = 0;
             }
+            仙宠.数量=Math.floor(仙宠.数量);
         });
         najie.仙宠口粮.forEach(仙宠口粮 => {
             if (!isNotNull(仙宠口粮.islockd)) {
                 仙宠口粮.islockd = 0;
             }
+            仙宠口粮.数量=Math.floor(仙宠口粮.数量);
         });
         //画手修复1.9产生的纳戒同名物品bug
         najie.装备 = najie.装备.filter(item => item.数量 != null);
