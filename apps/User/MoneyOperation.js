@@ -310,7 +310,7 @@ export class MoneyOperation extends plugin {
                 e.reply(`你在想屁吃？`);
                 return;
             }
-            amount=Math.abs(Math.floor());
+            amount=Math.abs(Math.floor(amount));
             let thing_exist = await foundthing(thing_name);
             if (!thing_exist) {
             e.reply(`这方世界没有[${thing_name}]`);
