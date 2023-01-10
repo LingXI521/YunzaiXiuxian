@@ -77,7 +77,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -20);
-      if (random<0.85)
+      if (random<0.9)
       {
         player.灵根 = {
           "id":100992,
@@ -104,7 +104,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -30);
-      if (random<0.75)
+      if (random<0.8)
       {
         player.灵根 = {
           "id":100993,
@@ -131,7 +131,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -40);
-      if (random<0.65)
+      if (random<0.7)
       {
         player.灵根 = {
           "id":100994,
@@ -158,7 +158,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -45);
-      if (random<0.55)
+      if (random<0.6)
       {
         player.灵根 = {
           "id":100995,
@@ -185,7 +185,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -55);
-      if (random<0.45)
+      if (random<0.5)
       {
         player.灵根 = {
           "id":100996,
@@ -212,7 +212,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -65);
-      if (random<0.35)
+      if (random<0.4)
       {
         player.灵根 = {
           "id":100997,
@@ -239,7 +239,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -75);
-      if (random<0.25)
+      if (random<0.3)
       {
         player.灵根 = {
           "id":100998,
@@ -266,7 +266,7 @@ export class motou extends plugin {
         return;
       }
       await Add_najie_thing(usr_qq, "魔石", "道具", -85);
-      if (random<0.15)
+      if (random<0.2)
       {
         player.灵根 = {
           "id":100999,
