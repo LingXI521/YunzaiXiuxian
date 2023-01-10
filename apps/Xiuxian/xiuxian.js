@@ -1388,18 +1388,18 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             }
         }
     }
-    //磐岩结绿
+     //磐岩结绿
     if (equipment.武器.name == "磐岩结绿") {
         if (random > 0.8) {
             msg.push(A_player.名号 + "拿起[磐岩结绿]使用了古华剑派独门剑技[雨画笼山]向" + B_player.名号 + "挥舞了过来")
             if (A_lin == yuansu[1]) {
-                msg.push("触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%\n手中的水元素异常贴切[磐岩结绿]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升150%")
-                if (A_player.血量上限 - A_player.当前血量 >= A_player.血量上限 * 0.3) {
+                msg.push("触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%\n手中的水元素异常贴切[磐岩结绿]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升130%")
+                if ( A_player.当前血量+A_player.血量上限*0.3 >= A_player.血量上限 *1.3) {
                     A_player.当前血量 = A_player.血量上限
                 } else {
                     A_player.当前血量 += A_player.血量上限 * 0.3
                 }
-                att *= 1.5
+                att *= 1.3
             } else {
                 msg.push("触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%")
                 if (A_player.血量上限 - A_player.当前血量 >= A_player.血量上限 * 0.3) {
