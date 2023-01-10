@@ -79,6 +79,7 @@ export class SecretPlaceplusTask extends plugin {
                             if (await exist_najie_thing(player_id, "起死回生丹", "丹药")) {
                                 player.当前血量 = player.血量上限;
                                 await Add_najie_thing(player_id, "起死回生丹", "丹药", -1);
+                                await Write_player(player_id, player);
                             }
                         }
                         let A_player = {
