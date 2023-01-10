@@ -951,6 +951,9 @@ export async function synchronization(e) {
         if (!isNotNull(player.幸运)) {
             player.幸运 = 0;
         }
+        if (!isNotNull(player.皮肤)) {
+            player.皮肤 = 0;
+        }
         if (!isNotNull(player.islucky)) {
             player.islucky = 0;
         }
