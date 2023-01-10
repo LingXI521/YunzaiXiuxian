@@ -1,36 +1,36 @@
 [  
   {
-    "id": 30000001,
+    "id": 40000001,
     "name": "绝云间",
     "efficiency": 0.50,
     "level": 5
   },  
   {
-    "id": 30000002,
+    "id": 30000001,
     "name": "须弥",
     "efficiency": 0.40,
     "level": 4
   },  
   {
-    "id": 30000003,
+    "id": 30000002,
     "name": "斩神涯",
     "efficiency": 0.40,
     "level": 4
    },
    {
-    "id": 30000004,
+    "id": 30000003,
     "name": "封魔谷",
     "efficiency": 0.40,
     "level": 4
   },
   {
-    "id": 30000005,
+    "id": 30000004,
     "name": "星阁",
     "efficiency": 0.40,
     "level": 4
   },
   {
-    "id": 30000006,
+    "id": 30000005,
     "name": "渊下宫",
     "efficiency": 0.40,
     "level": 4
