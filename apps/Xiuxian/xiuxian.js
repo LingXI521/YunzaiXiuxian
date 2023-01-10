@@ -33,6 +33,7 @@ export const __PATH = {
     tiandibang: path.join(__dirname, "/resources/data/tiandibang"),
     qinmidu: path.join(__dirname, "/resources/data/qinmidu"),
     backup: path.join(__dirname, "/resources/backup"),
+    player_pifu_path: path.join(__dirname, "/resources/img/player_pifu"),
 }
 let xiuxianSetFile = "./plugins/xiuxian-emulator-plugin/config/xiuxian/xiuxian.yaml";
 if (!fs.existsSync(xiuxianSetFile)) {
