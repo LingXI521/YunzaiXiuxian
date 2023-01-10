@@ -320,31 +320,31 @@ export class SecretPlaceplusTask extends plugin {
                         let random7 = Math.random()
                         let caoyao = ""
                         if (A_player.职业 == "采药师") {
-                            if (random2 > 0.9) {
+                            if (random2 > 0.95) {
                                 caoyao += '"仙蕴花"'
                                 await Add_najie_thing(player_id, '仙蕴花', '草药', 1);
                             }
-                            if (random3 > 0.9) {
+                            if (random3 > 0.95) {
                                 caoyao += '"魔蕴花"'
                                 await Add_najie_thing(player_id, '魔蕴花', '草药', 1);
                             }
-                            if (random4 > 0.96) {
+                            if (random4 > 0.98) {
                                 caoyao += '"太玄仙草"'
                                 await Add_najie_thing(player_id, '太玄仙草', '草药', 1);
                             }
-                            if (random5 > 0.9) {
+                            if (random5 > 0.95) {
                                 caoyao += '"古神藤"'
                                 await Add_najie_thing(player_id, '古神藤', '草药', 1);
                             }
-                            if (random6 > 0.99) {
+                            if (random6 > 0.995) {
                                 caoyao += '"神之眼"'
                                 await Add_najie_thing(player_id, '神之眼', '草药', 1);
                             }
-                            if (random7 > 0.94) {
+                            if (random7 > 0.97) {
                                 caoyao += '"炼骨花"'
                                 await Add_najie_thing(player_id, '炼骨花', '草药', 1);
                             }
-                            if (random2 > 0.9 || random3 > 0.9 || random4 > 0.96 || random5 > 0.9 || random6 > 0.99 || random7 > 0.94) {
+                            if (random2 > 0.95 || random3 > 0.95 || random4 > 0.98 || random5 > 0.95 || random6 > 0.995 || random7 > 0.97) {
                                 last_msg +=
                                     '\n\n' + '身为采药师的你发现了' + caoyao + '并把它放进了口袋';
                             }
