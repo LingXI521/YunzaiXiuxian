@@ -176,30 +176,7 @@ export class UserSellAll extends plugin {
         await Synchronization_ASS(e);
         return;
     }
-      async yeschushou(e) {
-        //不开放私聊功能
-        if (!e.isGroup) {
-            return;
-        }
-        /** 内容 */
-        let usr_qq = e.user_id;
-        let new_msg = this.e.message;
-        let choice = new_msg[0].text;
-        let now = new Date();
-        if (choice == "取消") {
-            await this.reply('已经取消出售');
-            this.finish('yeschushou');
-            return;
-        } else if (choice == "确认出售") {
-            await redis.set("xiuxian:player:" + usr_qq + ":yeschushou", 1);
-            //console.log(this.getContext().recall);
-
-                e.reply('请再次输入#一键出售+类型');
-                this.finish('yeschushou');
-                return;
-
-        }
-        }
+      
 
 
     //一键出售
@@ -214,13 +191,6 @@ export class UserSellAll extends plugin {
         if (!ifexistplay) {
             return;
         }
-        let lhxq = await redis.get("xiuxian:player:" + usr_qq + ":yeschushou");
-        if (lhxq != 1) {
-            e.reply('回复:【确认出售】或者【取消】进行选择');
-            this.setContext('yeschushou');
-            return;
-        }
-            await redis.set("xiuxian:player:" + usr_qq + ":yeschushou", 0);
         let najie = await data.getData("najie", usr_qq);
         let commodities_price = 0
         let wupin = ['装备', '丹药', '道具', '功法', '草药', '材料', '盒子'];
