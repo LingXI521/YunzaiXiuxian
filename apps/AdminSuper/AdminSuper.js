@@ -1045,11 +1045,15 @@ export async function synchronization(e) {
       }
     });
     //画手修复1.9产生的纳戒同名物品bug
-    let wupin=[装备,丹药,道具,功法,草药,材料,盒子,仙宠,仙宠口粮]
-    for (let index = 0; index < wupin.length; index++) {
-        let element = wupin[index];
-        najie.element=najie.element.filter(item=>item.数量!=null);
-    }
+    najie.装备=najie.装备.filter(item=>item.数量!=null);
+    najie.丹药=najie.丹药.filter(item=>item.数量!=null);
+    najie.道具=najie.道具.filter(item=>item.数量!=null);
+    najie.功法=najie.功法.filter(item=>item.数量!=null);
+    najie.草药=najie.草药.filter(item=>item.数量!=null);
+    najie.材料=najie.材料.filter(item=>item.数量!=null);
+    najie.盒子=najie.盒子.filter(item=>item.数量!=null);
+    najie.仙宠=najie.仙宠.filter(item=>item.数量!=null);
+    najie.仙宠口粮=najie.仙宠口粮.filter(item=>item.数量!=null);
     //修
     if (!isNotNull(player.血量上限)) {
       player.血量上限 = 1;
