@@ -152,12 +152,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="四重魔功")
     {
-      if (x<50)
+      if (x<45)
       {
-        e.reply("魔石不足50个,当前魔石数量"+x+"个");
+        e.reply("魔石不足45个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -50);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -45);
       if (random<0.55)
       {
         player.灵根 = {
@@ -179,12 +179,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="五重魔功")
     {
-      if (x<60)
+      if (x<55)
       {
-        e.reply("魔石不足60个,当前魔石数量"+x+"个");
+        e.reply("魔石不足55个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -60);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -55);
       if (random<0.45)
       {
         player.灵根 = {
@@ -206,12 +206,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="六重魔功")
     {
-      if (x<70)
+      if (x<65)
       {
-        e.reply("魔石不足70个,当前魔石数量"+x+"个");
+        e.reply("魔石不足65个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -70);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -65);
       if (random<0.35)
       {
         player.灵根 = {
@@ -233,12 +233,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="七重魔功")
     {
-      if (x<80)
+      if (x<75)
       {
-        e.reply("魔石不足80个,当前魔石数量"+x+"个");
+        e.reply("魔石不足75个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -80);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -75);
       if (random<0.25)
       {
         player.灵根 = {
@@ -260,12 +260,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="八重魔功")
     {
-      if (x<90)
+      if (x<85)
       {
-        e.reply("魔石不足90个,当前魔石数量"+x+"个");
+        e.reply("魔石不足85个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -90);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -85);
       if (random<0.15)
       {
         player.灵根 = {
