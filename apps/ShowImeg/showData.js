@@ -971,8 +971,7 @@ export async function get_player_img(e) {
             }
         }
     }
-    let action = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
-    action = JSON.parse(action);
+    let action = player.皮肤
     let player_data = {
         pifu:action,
         user_id: usr_qq,
