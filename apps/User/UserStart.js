@@ -131,6 +131,7 @@ export class UserStart extends plugin {
             "神魄段数": 0,
             "魔道值": 0,
             "仙宠": [],
+            "皮肤":0,
             "幸运": data.necklace_list.find(item => item.name == "幸运儿").加成
         }
         await Write_player(usr_qq, new_player);
