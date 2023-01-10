@@ -1044,8 +1044,12 @@ export async function synchronization(e) {
         仙宠口粮.islockd = 0;
       }
     });
-    //修复1.9产生的纳戒同名物品bug
-    najie.材料=najie.材料.filter(item=>item.数量!=null);
+    //画手修复1.9产生的纳戒同名物品bug
+    let wupin=[装备,丹药,道具,功法,草药,材料,盒子,仙宠,仙宠口粮]
+    for (let index = 0; index < wupin.length; index++) {
+        let element = wupin[index];
+        najie.element=najie.element.filter(item=>item.数量!=null);
+    }
     //修
     if (!isNotNull(player.血量上限)) {
       player.血量上限 = 1;
