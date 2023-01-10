@@ -1023,29 +1023,36 @@ export class UserHome extends plugin {
                 e.reply(`${thing_name}服用成功，将在之后的 10 次冒险旅途中为你提高幸运值！`);
                 return;
             }
-            if (this_danyao.type == "闭关") {
+            if (this_danyao.type == '闭关') {
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
                         if (action[i].biguan > 0) {
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
-                            e.reply(`上次服用的药效还没过,等以后再服用吧`)
-                            return
+                            e.reply(`上次服用的药效还没过,等以后再服用吧`);
+                            return;
                         }
                         if (action[i].biguan.typeof != Number || action[i].biguan < 0) {
-                            action[i].biguan = quantity
+                            action[i].biguan = quantity;
+                        } else {
+                            action[i].biguan += quantity;
                         }
-                        action[i].biguan += quantity
-                        action[i].biguanxl += this_danyao.biguan
-                        player.修炼效率提升 += action[i].biguanxl
-                        e.reply(`${thing_name}提高了你的忍耐力,提高了下次闭关的效率,当前提高${action[i].biguanxl * 100}%`)
+                        action[i].biguanxl += this_danyao.biguan;
+                        player.修炼效率提升 += action[i].biguanxl;
+                        e.reply(
+                            `${thing_name}提高了你的忍耐力,提高了下次闭关的效率,当前提高${
+                            action[i].biguanxl * 100
+                            }%`
+                        );
                     }
                 }
-                await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-                await data.setData("player", usr_qq, player);
+                await redis.set(
+                    'xiuxian:player:' + 10 + ':biguang',
+                    JSON.stringify(action)
+                );
+                await data.setData('player', usr_qq, player);
 
                 return;
             }
-
             if (this_danyao.type == "仙缘") {
 
                 if (quantity != 1) {
