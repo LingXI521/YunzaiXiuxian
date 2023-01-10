@@ -109,34 +109,29 @@ export class UserHome extends plugin {
                 break;
             }
         }
-        if (i==data.duihuan.length)
-        {
+        if (i == data.duihuan.length) {
             e.reply("兑换码不存在!");
             return;
         }
         let action = await redis.get("xiuxian:player:" + usr_qq + ":duihuan");//兑换码
         action = await JSON.parse(action);
-        if (action==null)
-        {
-            action=[];
+        if (action == null) {
+            action = [];
         }
-        for (var k=0;k<action.length;k++)
-        {
-            if (action[k]==name)
-            {
+        for (var k = 0; k < action.length; k++) {
+            if (action[k] == name) {
                 e.reply("你已经兑换过该兑换码了");
                 return;
             }
         }
         action.push(name);
         await redis.set("xiuxian:player:" + usr_qq + ":duihuan", JSON.stringify(action));
-        let msg=[];
-        for (var k=0;k<data.duihuan[i].thing.length;k++)
-        {
+        let msg = [];
+        for (var k = 0; k < data.duihuan[i].thing.length; k++) {
             await Add_najie_thing(usr_qq, data.duihuan[i].thing[k].name, data.duihuan[i].thing[k].class, data.duihuan[i].thing[k].数量);
-            msg.push("\n"+data.duihuan[i].thing[k].name+"x"+data.duihuan[i].thing[k].数量);
+            msg.push("\n" + data.duihuan[i].thing[k].name + "x" + data.duihuan[i].thing[k].数量);
         }
-        e.reply("恭喜获得:"+msg);
+        e.reply("恭喜获得:" + msg);
         return;
     }
     async check_player(e) {
@@ -939,9 +934,9 @@ export class UserHome extends plugin {
                 return;
             }
             var equipment = await Read_equipment(usr_qq);
-            if(eq.type=="项链"){
-                if(eq.属性=="幸运"){
-                    player.幸运-=equipment.项链.加成
+            if (eq.type == "项链") {
+                if (eq.属性 == "幸运") {
+                    player.幸运 -= equipment.项链.加成
                 }
             }
             await instead_equipment(usr_qq, eq);
@@ -966,8 +961,8 @@ export class UserHome extends plugin {
             //这里要找到丹药
             let this_danyao;
             try {
-                  this_danyao = data.danyao_list.find(item => item.name == thing_name)
-                || data.newdanyao_list.find(item => item.name == thing_name);
+                this_danyao = data.danyao_list.find(item => item.name == thing_name)
+                    || data.newdanyao_list.find(item => item.name == thing_name);
                 try {
                     if (this_danyao == undefined) {
                         this_danyao = data.timedanyao_list.find(item => item.name == thing_name);
@@ -1042,7 +1037,7 @@ export class UserHome extends plugin {
                         action[i].biguan += quantity
                         action[i].biguanxl += this_danyao.biguan
                         player.修炼效率提升 += action[i].biguanxl
-                        e.reply(`${thing_name}提高了你的忍耐力,提高了下次闭关的效率,当前提高${action[i].biguanxl* 100}%`)
+                        e.reply(`${thing_name}提高了你的忍耐力,提高了下次闭关的效率,当前提高${action[i].biguanxl * 100}%`)
                     }
                 }
                 await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
@@ -1094,25 +1089,31 @@ export class UserHome extends plugin {
 
             if (this_danyao.type == '炼神') {
                 if (quantity != 1) {
-                    e.reply(`一次闭关只能拥有一条炼神之力`)
+                    e.reply(`一次闭关只能拥有一条炼神之力`);
                     await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
 
-                    return
+                    return;
                 }
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
                         if (action[i].lianti != 0) {
                             e.reply(`已经拥有一道炼神之力了,身体无法承受第二道炼神之力`);
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
-                            return
+                            return;
                         }
-                        if (action[i].lianti == 0) {
+                        if (action[i].lianti > 0) { }
+                        else {
                             action[i].lianti = 1;
+                            action[i].beiyong4 = this_danyao.lianshen
                             await redis.set(
                                 'xiuxian:player:' + 10 + ':biguang',
                                 JSON.stringify(action)
                             );
-                            e.reply(`服用了${thing_name},获得了炼神之力,下次闭关获得了炼神之力,当前炼神之力为${this_danyao.lianshen * 100}%`);
+                            e.reply(
+                                `服用了${thing_name},获得了炼神之力,下次闭关获得了炼神之力,当前炼神之力为${
+                                this_danyao.lianshen * 100
+                                }%`
+                            );
                             return;
                         }
                     }
