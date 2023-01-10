@@ -192,7 +192,7 @@ export class UserSellAll extends plugin {
             return;
         } else if (choice == "确认出售") {
             await redis.set("xiuxian:player:" + usr_qq + ":lunhui", 1);
-            e.reply("请再次输入#一键出售！");
+            e.reply('请再次输入#一键出售+类型');
             //console.log(this.getContext().recall);
             this.finish('yeslunhui');
             return;
