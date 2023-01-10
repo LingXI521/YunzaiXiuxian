@@ -961,6 +961,10 @@ export async function synchronization(e) {
             player.addluckyNo = 0;
         }
         let i = 0;
+        let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
+        action2 = JSON.parse(action2);
+        action2=1;
+        await redis.set('xiuxian:player:' + usr_qq + ':pifu',JSON.stringify(action2));
         let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
         action = await JSON.parse(action);
         if (action == null) {
