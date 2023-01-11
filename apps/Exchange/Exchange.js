@@ -241,7 +241,8 @@ export class Exchange extends plugin {
         ) {
             thing_amount = 1;
         }
-        if (thing_value <= 0) {
+        if (thing_value <= 1) {
+            e.reply('休想卡bug');
             return;
         }
         if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
