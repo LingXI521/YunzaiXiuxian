@@ -825,9 +825,6 @@ export async function synchronization(e) {
     if (!e.isMaster) {
         return;
     }
-    if (!e.isGroup) {
-        return;
-    }
     e.reply('存档开始同步');
     let playerList = [];
     let files = fs

@@ -176,9 +176,6 @@ export class UserSellAll extends plugin {
         await Synchronization_ASS(e);
         return;
     }
-      
-
-
     //一键出售
     async Sell_all_comodities(e) {
         //不开放私聊功能

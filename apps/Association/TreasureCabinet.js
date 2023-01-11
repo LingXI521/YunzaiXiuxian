@@ -896,12 +896,7 @@ export async function Synchronization_ASS(e) {
     if (!e.isMaster) {
         return;
     }
-    if (!e.isGroup) {
-        return;
-    }
-
     e.reply("宗门开始同步");
-
     let assList = [];
     let files = fs
         .readdirSync("./plugins/xiuxian-emulator-plugin/resources/data/association")

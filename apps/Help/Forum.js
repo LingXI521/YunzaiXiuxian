@@ -515,9 +515,6 @@ export async function Pushforum_ASS(e) {
     if (!e.isMaster) {
         return;
     }
-    if (!e.isGroup) {
-        return;
-    }
     e.reply("冒险家协会开始同步");
     let Forum;
     try {
