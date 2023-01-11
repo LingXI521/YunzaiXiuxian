@@ -143,15 +143,15 @@ export class Forum extends plugin {
                     fnc: 'Searchforum'
                 },
                 {
-                    reg: '^#发布委托.*$',
+                    reg: '^#发布委托[\u4e00-\u9fa5]*\\*[1-9]\d*\\*[1-9]\d*(*[\u4e00-\u9fa5])?',
                     fnc: 'Pushforum'
                 },
                 {
-                    reg: '^#接受委托.*$',
+                    reg: '^#接受委托[1-9]\d*$',
                     fnc: 'Put'
                 },
                 {
-                    reg: '^#取消委托.*$',
+                    reg: '^#取消委托[1-9]\d*$',
                     fnc: 'off'
                 }
             ]
@@ -224,8 +224,6 @@ export class Forum extends plugin {
         if (!e.isGroup) {
             return;
         }
-        // e.reply("功能修复中")
-        // return
         if (usr_qq == 80000000) {
             return;
         }
