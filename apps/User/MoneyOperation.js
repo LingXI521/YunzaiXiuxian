@@ -31,7 +31,7 @@ export class MoneyOperation extends plugin {
             priority: 600,
             rule: [
                 {
-                    reg: '^#赠送[\u4e00-\u9fa5]*(\*[\u4e00-\u9fa5])?\*[1-9]\d*$',
+                    reg: '^#赠送[\u4e00-\u9fa5]*(\\*[\u4e00-\u9fa5])?\\*[1-9]\d*$',
                     fnc: 'Give'
                 },
                 {
