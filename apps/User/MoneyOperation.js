@@ -247,7 +247,7 @@ export class MoneyOperation extends plugin {
         //获取发送灵石数量
         let msg = e.msg.replace("赠送", "");
         if (msg.startsWith("灵石")) {
-            let lingshi = msg.replace("灵石", "");
+            let lingshi = msg.replace("灵石*", "");
             //校验输入灵石数
             if (parseInt(lingshi) == parseInt(lingshi) && parseInt(lingshi) >= 1000) {
                 lingshi = parseInt(lingshi);
