@@ -1016,6 +1016,7 @@ export async function get_player_img(e) {
         player_atk: player.攻击,
         player_def: player.防御,
         player_bao: player.暴击率,
+         player_bao2: player.暴击伤害,
         occupation: occupation,
         occupation_level: occupation_level_name,
         occupation_exp: occupation_exp,
