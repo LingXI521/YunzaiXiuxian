@@ -783,7 +783,7 @@ export class Occupation extends plugin {
                 e.reply("你的仙宠只是在旁边看着")
             }
         }
-        if (danyao == "神心丹" || danyao == "九阶淬体丹" || danyao == "九阶玄元丹") {
+        if (danyao == "神心丹" || danyao == "九阶淬体丹" || danyao == "九阶玄元丹"||danyao=="破境丹") {
             await Add_najie_thing(usr_qq, danyao, "丹药", res_n);
             e.reply(`${tmp_msg}炼制失败${lose}次，得到${danyao}${res_n}颗，获得炼丹经验${total_exp * m}`);
         } else {
