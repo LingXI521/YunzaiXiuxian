@@ -1067,16 +1067,16 @@ export async function synchronization(e) {
             }
             仙宠口粮.数量=Math.floor(仙宠口粮.数量);
         });
-        //画手修复1.9产生的纳戒同名物品bug
-        najie.装备 = najie.装备.filter(item => item.数量 != null);
-        najie.丹药 = najie.丹药.filter(item => item.数量 != null);
-        najie.道具 = najie.道具.filter(item => item.数量 != null);
-        najie.功法 = najie.功法.filter(item => item.数量 != null);
-        najie.草药 = najie.草药.filter(item => item.数量 != null);
-        najie.材料 = najie.材料.filter(item => item.数量 != null);
-        najie.盒子 = najie.盒子.filter(item => item.数量 != null);
-        najie.仙宠 = najie.仙宠.filter(item => item.数量 != null);
-        najie.仙宠口粮 = najie.仙宠口粮.filter(item => item.数量 != null);
+        //画手修复1.11产生的纳戒同名物品bug和纳戒数量为0的问题
+        najie.装备 = najie.装备.filter(item => item.数量 != null || item.数量 != 0);
+        najie.丹药 = najie.丹药.filter(item => item.数量 != null || item.数量 != 0);
+        najie.道具 = najie.道具.filter(item => item.数量 != null || item.数量 != 0);
+        najie.功法 = najie.功法.filter(item => item.数量 != null || item.数量 != 0);
+        najie.草药 = najie.草药.filter(item => item.数量 != null || item.数量 != 0);
+        najie.材料 = najie.材料.filter(item => item.数量 != null || item.数量 != 0);
+        najie.盒子 = najie.盒子.filter(item => item.数量 != null || item.数量 != 0);
+        najie.仙宠 = najie.仙宠.filter(item => item.数量 != null || item.数量 != 0);
+        najie.仙宠口粮 = najie.仙宠口粮.filter(item => item.数量 != null || item.数量 != 0);
         //修
         if (!isNotNull(player.血量上限)) {
             player.血量上限 = 1;
