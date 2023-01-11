@@ -60,7 +60,7 @@ export class admin extends plugin {
                     );
                     return;
                 }
-                that.e.reply("开发人员提醒您:\n[DD斩首]\n严禁游戏充值\n[再氪两单嘛][香菜]\n[xh][啵唧][墨宇]提醒您\n请珍惜生命\n切莫沉迷修仙！\n[仓库地址]\nhttps://gitee.com/YUAN__YU/xiuxian-emulator-plugin\n记得#一键同步");
+                that.e.reply("开发人员提醒您:\n[DD斩首]\n严禁游戏充值\n[再氪两单嘛][香菜]\n[xh][啵唧][墨宇]提醒您\n请珍惜生命\n切莫沉迷修仙！\n[仓库地址]\nhttps://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/\n记得#一键同步");
                 that.e.reply("修仙插件更新成功，正在尝试重新启动Yunzai以应用更新...");
                 timer && clearTimeout(timer);
                 timer = setTimeout(async () => {
