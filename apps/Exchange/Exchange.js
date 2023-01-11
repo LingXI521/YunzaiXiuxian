@@ -241,7 +241,7 @@ export class Exchange extends plugin {
         ) {
             thing_amount = 1;
         }
-        if (thing_value <= 1) {
+        if (thing_value < 1) {
             e.reply('休想卡bug');
             return;
         }
