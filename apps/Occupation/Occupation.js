@@ -224,7 +224,7 @@ export class Occupation extends plugin {
         if (parseInt(time) == parseInt(time)) {
             time = parseInt(time);
             var y = 15;//时间
-            var x = 32;//循环次数
+            var x = 48;//循环次数
             //如果是 >=16*33 ----   >=30
             for (var i = x; i > 0; i--) {
                 if (time >= y * i) {
@@ -307,7 +307,7 @@ export class Occupation extends plugin {
         let now_time = new Date().getTime();
         let time;
         var y = 15;//固定时间
-        var x = 32;//循环次数
+        var x = 48;//循环次数
 
         if (end_time > now_time) {//属于提前结束
             time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
