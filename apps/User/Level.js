@@ -301,7 +301,7 @@ export class Level extends plugin {
         if (now_level_id < 42) {
             let random = Math.random()
             if (random < now_level_id / 60 * 0.5 / 5) {
-                let random2 = Math.trunc(Math.random() * (data.xianchon.length - 20));
+                let random2 = Math.trunc(Math.random() * (data.xianchon.length - 15));
                 random2 = (Math.ceil((random2 + 1) / 5) - 1) * 5;
                 e.reply("修仙本是逆天而行,神明愿意降下自己的恩泽.这只[" + data.xianchon[random2].name + "],将伴随与你,愿你修仙路上不再独身一人.`")
                 await Add_najie_thing(usr_qq, data.xianchon[random2].name, "仙宠", 1)
@@ -309,7 +309,7 @@ export class Level extends plugin {
         } else {
             let random = Math.random()
             if (random < now_level_id / 60 * 0.5) {
-                let random2 = Math.trunc(Math.random() * (data.xianchon.length - 20));
+                let random2 = Math.trunc(Math.random() * (data.xianchon.length - 15));
                 random2 = (Math.ceil((random2 + 1) / 5) - 1) * 5;
                 e.reply("修仙本是逆天而行,神明愿意降下自己的恩泽.这只[" + data.xianchon[random2].name + "],将伴随与你,愿你修仙路上不再独身一人.`")
                 await Add_najie_thing(usr_qq, data.xianchon[random2].name, "仙宠", 1)
