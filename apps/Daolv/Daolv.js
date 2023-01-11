@@ -1,8 +1,8 @@
 
 import plugin from '../../../../lib/plugins/plugin.js'
-import { __PATH } from "../Xiuxian/xiuxian.js"
+import { fstadd_qinmidu, __PATH } from "../Xiuxian/xiuxian.js"
 import { segment } from "oicq";
-import { exist_najie_thing,existplayer,Read_player,find_qinmidu,Read_qinmidu,Write_qinmidu} from "../Xiuxian/xiuxian.js"
+import { exist_najie_thing,existplayer,Read_player,find_qinmidu,Read_qinmidu,Write_qinmidu,add_qinmidu,Add_najie_thing} from "../Xiuxian/xiuxian.js"
 
 let x=0;
 let chaoshi_time
@@ -35,6 +35,10 @@ export class Daolv extends plugin {
                 {
                     reg: '^(我同意|我拒绝)$',
                     fnc: 'xuanze2'
+                },
+                {
+                    reg: '^赠予.*',
+                    fnc: 'get_dift'
                 },
             ]
         })
@@ -281,6 +285,50 @@ export class Daolv extends plugin {
             x=0;
             return;
         }
+    }
+
+    async get_dift(e)
+    {
+        if (!e.isGroup) {
+            return;
+        }
+        let isat = e.message.some((item) => item.type === "at");
+        if (!isat) {
+            return;
+        }
+        let atItem = e.message.filter((item) => item.type === "at");
+        let B = atItem[0].qq;
+        let A = e.user_id;
+        let ifexistplay = await existplayer(A);
+        if (!ifexistplay) {
+            return;
+        }
+        if (A == B) { e.reply("精神分裂?"); return; }
+        let ifexistplay_B = await existplayer(B);
+        if (!ifexistplay_B) { e.reply("修仙者不可对凡人出手!"); return; }
+        var thing = e.msg.replace('赠予', '');
+        thing = thing.trim();
+        let ishavejz = await exist_najie_thing(A, "百合花篮", "道具");
+        if (!ishavejz) {
+            e.reply("你没有[百合花篮]");
+            return;
+        }
+        let pd=await find_qinmidu(A,B);
+        if (pd==false)
+        {
+            await fstadd_qinmidu(A,B);
+        }
+        else if (pd==0)
+        {
+            e.reply(`对方已有道侣`);
+            return;
+        }
+        await add_qinmidu(A,B,60);
+        await Add_najie_thing(A, "百合花篮", "道具", -1);
+        e.reply(`你们的亲密度增加了60`);
+        return;
+        
+        
     }
 
 }
