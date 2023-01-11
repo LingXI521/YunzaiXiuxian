@@ -152,7 +152,7 @@
 - group: 礼尚往来
   list:
     - icon: help-icon_10
-      title: "@群友赠送灵石1000"
+      title: "@群友赠送灵石*1000"
       desc: "@群友孝敬前辈/@群友资助后辈"
     - icon: help-icon_10
       title: "@群友赠送咸鱼宝剑(*普)*N"
