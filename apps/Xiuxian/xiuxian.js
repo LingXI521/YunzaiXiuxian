@@ -147,6 +147,11 @@ export async function Write_equipment(usr_qq, equipment) {
     player["防御"] = equ_def + defense;
     player["血量上限"] = equ_HP + blood;
     player["暴击率"] = equ_bao + strike;
+    player["暴击伤害"] = equ_bao + strike + 1.5;
+    if (!isNotNull(player.仙宠)) { }
+    else if (player.仙宠.type == "暴伤") {
+        player["暴击伤害"] = equ_bao + strike + 1.5 + player.仙宠.加成;
+    }
     if (equipment.武器.name == "灭仙剑" && equipment.法宝.name == "灭仙符" && equipment.护具.name == "灭仙衣" && player.魔道值 > 999) {
         player.攻击 = Math.trunc(1.15 * player.攻击);
     }
@@ -528,12 +533,12 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                 //for(let i=0;i<x;i++){
                 let equipment0 = JSON.parse(JSON.stringify(equipment));
                 equipment0.pinji = pinji;
-                if(isNotNull(equipment0.加成)){
-                    equipment0.加成 = Number((equipment.加成 * z*1.5).toFixed(2));
-                    if(equipment0.加成==0){
-                        equipment0.加成=0.10
+                if (isNotNull(equipment0.加成)) {
+                    equipment0.加成 = Number((equipment.加成 * z * 1.5).toFixed(2));
+                    if (equipment0.加成 == 0) {
+                        equipment0.加成 = 0.10
                     }
-                }else{
+                } else {
                     equipment0.atk = Math.floor(equipment.atk * z);
                     equipment0.def = Math.floor(equipment.def * z);
                     equipment0.HP = Math.floor(equipment.HP * z);
@@ -822,10 +827,10 @@ export async function Getmsg_battle(A_player, B_player) {
         if (cnt % 2 == 0) {
             let baoji = baojishanghai(A_player.暴击率);
             if (!isNotNull(A_player.仙宠)) {
-        //判断有无仙宠
-      } else if (A_player.仙宠.type == '暴伤') {
-        baoji = baojishanghai(A_player.暴击率) + A_player.仙宠.加成;
-      }
+                //判断有无仙宠
+            } else if (A_player.仙宠.type == '暴伤') {
+                baoji = baojishanghai(A_player.暴击率) + A_player.仙宠.加成;
+            }
             let 伤害 = Harm(A_player.攻击, B_player.防御);
             let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
             伤害 = Math.trunc(baoji * 伤害 + 法球伤害);
@@ -877,9 +882,9 @@ ${A_player.名号}攻击了${B_player.名号}，${ifbaoji(baoji)}造成伤害${�
             let baoji = baojishanghai(B_player.暴击率);
             if (!isNotNull(B_player.仙宠)) {
                 //判断有无仙宠
-              } else if (B_player.仙宠.type == '暴伤') {
+            } else if (B_player.仙宠.type == '暴伤') {
                 baoji = baojishanghai(B_player.暴击率) + B_player.仙宠.加成;
-              }
+            }
             let 伤害 = Harm(B_player.攻击, A_player.防御);
             let 法球伤害 = Math.trunc(B_player.攻击 * B_player.法球倍率);
             伤害 = Math.trunc(baoji * 伤害 + 法球伤害);
@@ -968,9 +973,9 @@ export async function TEXT_battle(A_player, B_player) {
             let baoji = baojishanghai(A_player.暴击率);
             if (!isNotNull(A_player.仙宠)) {
                 //判断有无仙宠
-              } else if (A_player.仙宠.type == '暴伤') {
+            } else if (A_player.仙宠.type == '暴伤') {
                 baoji = baojishanghai(A_player.暴击率) + A_player.仙宠.加成;
-              }
+            }
             let 伤害 = Harm(A_player.攻击, B_player.防御);
             let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
             let 持续伤害 = 0
@@ -1021,9 +1026,9 @@ export async function TEXT_battle(A_player, B_player) {
             let baoji = baojishanghai(B_player.暴击率);
             if (!isNotNull(B_player.仙宠)) {
                 //判断有无仙宠
-              } else if (B_player.仙宠.type == '暴伤') {
+            } else if (B_player.仙宠.type == '暴伤') {
                 baoji = baojishanghai(B_player.暴击率) + B_player.仙宠.加成;
-              }
+            }
             let 伤害 = Harm(B_player.攻击, A_player.防御);
             let 法球伤害 = Math.trunc(B_player.攻击 * B_player.法球倍率);
             伤害 = Math.trunc(baoji * 伤害 + 法球伤害);
@@ -1346,16 +1351,16 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     // let random=1
 
     //项链加成
-    let element=A_lin
+    let element = A_lin
     element = element.replace("仙之心·", '');
-    console.log("神之心:"+element)
-    console.log("项链:"+equipment.项链.属性)
-    if(equipment.项链.属性==element){
-        let ran=Math.random()
-        let panduan=A_player.幸运>ran
-        if(true){
-            att*=1+equipment.项链.加成
-            msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加"+equipment.项链.加成*100+"%")
+    console.log("神之心:" + element)
+    console.log("项链:" + equipment.项链.属性)
+    if (equipment.项链.属性 == element) {
+        let ran = Math.random()
+        let panduan = A_player.幸运 > ran
+        if (true) {
+            att *= 1 + equipment.项链.加成
+            msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加" + equipment.项链.加成 * 100 + "%")
         }
     }
 
@@ -1414,7 +1419,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push(A_player.名号 + "拿起[磐岩结绿]使用了古华剑派独门剑技[雨画笼山]向" + B_player.名号 + "挥舞了过来")
             if (A_lin == yuansu[1]) {
                 msg.push("触发磐岩结绿被动技能:[护国的无垢之心],血量恢复30%\n手中的水元素异常贴切[磐岩结绿]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升130%")
-                if ( A_player.当前血量+A_player.血量上限*0.3 >= A_player.血量上限 *1.3) {
+                if (A_player.当前血量 + A_player.血量上限 * 0.3 >= A_player.血量上限 * 1.3) {
                     A_player.当前血量 = A_player.血量上限
                 } else {
                     A_player.当前血量 += A_player.血量上限 * 0.3
@@ -1442,7 +1447,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("仙宠【" + A_player.仙宠.name + "】辅佐了[" + A_player.名号 + "]，使其的伤害增加了[" + lastatt_msg + "]防御增加了[" + A_player.防御 * A_player.仙宠.加成 + "]血量增加了[" + lastHP_msg + "]")
         }
     }
-    
+
     if (donjie) {//冻结
         cnt6++
     }
@@ -1762,9 +1767,9 @@ export async function Write_qinmidu(qinmidu) {
     })
     return;
 }
-export async function baoshang(A_player){
+export async function baoshang(A_player) {
     let player = await Read_player
-    
+
 }
 export async function fstadd_qinmidu(A, B) {
     let qinmidu;
