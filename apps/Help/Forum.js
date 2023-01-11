@@ -336,21 +336,30 @@ export class Forum extends plugin {
         if (thing_name.length == 0) {
             e.reply("未填写需求");
             return;
-        } else if (thing_amount == undefined) {
-            e.reply("未填写需求数量");
-            return;
-        } else if (thing_value == undefined) {
-            e.reply("未填写委托金额");
+        } 
+        if (
+            thing_amount < 1 ||
+            thing_amount == null ||
+            thing_amount == undefined ||
+            thing_amount == NaN
+        ) {
+            e.reply("凯瑟琳:故意找茬是吧")
             return;
         }
-        if (thing_amount < 0) {
+        if (thing_value < 1) {
             e.reply("凯瑟琳:故意找茬是吧")
             return
         }
-        if (thing_value < 0) {
-            e.reply("凯瑟琳:故意找茬是吧")
-            return
+        if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
+        } else {
+            return;
         }
+        if (!isNaN(parseFloat(thing_amount)) && isFinite(thing_amount)) {
+        } else {
+            return;
+        }
+        thing_amount = Math.ceil(thing_amount);
+        thing_value =  Math.ceil(thing_value);
 
         console.log(player.灵石)
         if (thing_value > player.灵石 || player.灵石 < 0) {
