@@ -1,4 +1,32 @@
 [
+    	{
+		"name": "破境丹",
+		"type": "突破增加10%概率成功","exp1":"",
+		"materials": [
+			{
+				"name": "万年人参",
+				"amount": 20
+			},
+			{
+				"name": "千年人参",
+				"amount": 20
+			},
+			{
+				"name": "百年人参",
+				"amount": 20
+			},
+			{
+				"name": "十年人参",
+				"amount": 20
+			}
+		],
+		"rate": 0.5,
+		"level_limit": 15,
+		"exp": [
+			2400,
+			2400
+		]
+	},
 	{
 		"name": "辟谷丹",
 		"materials": [
