@@ -325,6 +325,8 @@ async RE_lingeng(e) {
     };
     await Write_player(usr_qq, player);
     e.reply("恭喜你,转世魔头成功!");
+    /** 结束上下文 */
+    this.finish('RE_lingeng');
     return;
   }
 }
