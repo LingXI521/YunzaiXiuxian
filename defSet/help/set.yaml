@@ -22,6 +22,12 @@
     - icon: help-icon_8
       title: "#关上怪物"
       desc: "手动关闭"  
+    - icon: help-icon_8
+      title: "#开启天理"
+      desc: "手动开启"  
+    - icon: help-icon_8
+      title: "#开启散兵"
+      desc: "手动开启"  
 
 - group: 行为状态
   list:
