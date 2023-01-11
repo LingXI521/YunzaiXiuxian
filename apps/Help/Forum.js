@@ -143,7 +143,7 @@ export class Forum extends plugin {
                     fnc: 'Searchforum'
                 },
                 {
-                    reg: '^#发布委托[\u4e00-\u9fa5]*\\*[1-9]\d*\\*[1-9]\d*(*[\u4e00-\u9fa5])?',
+                    reg: '^#发布委托[\u4e00-\u9fa5]*\\*[1-9]\d*\\*[1-9]\d*(\\*[\u4e00-\u9fa5])?',
                     fnc: 'Pushforum'
                 },
                 {
