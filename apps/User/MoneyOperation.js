@@ -51,7 +51,7 @@ export class MoneyOperation extends plugin {
                     fnc: 'Fuli'
                 },
                 {
-                    reg: '^#发(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链)[\u4e00-\u9fa5]*\\*[1-9]\d*$',
+                    reg: '^#发(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链)[\u4e00-\u9fa5]*\\*[1-9]\d*',
                     fnc: 'wup'
                 },
                 {
