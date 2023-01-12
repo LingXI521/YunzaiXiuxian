@@ -35,26 +35,18 @@ export class Exchange extends plugin {
             /** 优先级，数字越小等级越高 */
             priority: 600,
             rule: [
-                /*{
-                            reg: '^#冲水堂$',
-                            fnc: 'supermarket'
-                        },*/
                 {
                     reg: '^#冲水堂$',
                     fnc: 'show_supermarket',
                 },
                 {
-                    reg: '^#上架.*$',
+                    reg: '^#上架.*\\*[1-9]\d*\\*[1-9]\d*',
                     fnc: 'onsell',
                 },
                 {
-                    reg: '^#下架.*$',
+                    reg: '^#下架[1-9]\d*',
                     fnc: 'Offsell',
                 },
-                /*{
-                            reg: '^#选购.*$',
-                            fnc: 'purchase'
-                        },*/
                 {
                     reg: '^#选购[^*]*(\\*[0-9]*)?$',
                     fnc: 'purchase',
@@ -62,7 +54,6 @@ export class Exchange extends plugin {
             ],
         });
     }
-
     async Offsell(e) {
         if (!e.isGroup) {
             return;

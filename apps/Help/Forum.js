@@ -143,15 +143,15 @@ export class Forum extends plugin {
                     fnc: 'Searchforum'
                 },
                 {
-                    reg: '^#发布委托[\u4e00-\u9fa5]*\\*[1-9]\d*\\*[1-9]\d*(\\*[\u4e00-\u9fa5])?',
+                    reg: '^#发布委托.*\\*[1-9]\d*\\*[1-9]\d*(\\*[\u4e00-\u9fa5])?',
                     fnc: 'Pushforum'
                 },
                 {
-                    reg: '^#接受委托[1-9]\d*$',
+                    reg: '^#接受委托[1-9]\d*',
                     fnc: 'Put'
                 },
                 {
-                    reg: '^#取消委托[1-9]\d*$',
+                    reg: '^#取消委托[1-9]\d*',
                     fnc: 'off'
                 }
             ]
@@ -170,8 +170,6 @@ export class Forum extends plugin {
         if (!ifexistplay) {
             return;
         }
-        // e.reply("功能修复中")
-        // return
         let title0 = e.msg.replace("#", '');
         title0 = title0.replace("取消委托", '');
         title0 = Number(title0);
@@ -328,7 +326,6 @@ export class Forum extends plugin {
         title0 = title0.replace("发布委托", '');
         //内容
         let code = title0.split("\*");
-        console.log(code)
         let thing_name = code[0];//东西
         let thing_amount = code[1];//数量
         let thing_value = code[2];//价格
@@ -434,7 +431,7 @@ export class Forum extends plugin {
         var day = myDate.getDate();  //获取当前日(1-31)
         var newDay = year + '-' + month + '-' + day;//获取完整年月日
         let now_time = new Date().getTime();
-        let time = 10;//分钟
+        let time = 1;//分钟
         if (thing_exist.class == "装备") {
             var wupin = {
                 "title": thing_name,//发布名
