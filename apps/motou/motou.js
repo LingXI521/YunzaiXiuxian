@@ -373,7 +373,7 @@ async mojie(e)
       e.reply("修为不足");
       return;
   }
-  player.魔道值-=200;
+  player.魔道值-=100;
   player.修为-=4000000;
   await Write_player(usr_qq, player);
   var time = 60;//时间（分钟）
