@@ -408,6 +408,7 @@ export class PlayerControl extends plugin {
         let msg = [segment.at(usr_qq)];
               //炼丹师丹药修正
         let transformation="修为"
+        let xueqi=0;
         let action3 = await redis.get("xiuxian:player:" + 10 + ":biguang");//数据放在redis里
         action3 = await JSON.parse(action3);
         for (var i = 0; i < action3.length; i++) {
@@ -432,8 +433,9 @@ export class PlayerControl extends plugin {
             if (rand < 0.2) {
                 rand = Math.trunc(rand * 10) + 45;
                 other_xiuwei = rand * time;
+                xueqi=Math.trunc(rand * time * action3[i].beiyong4);
                 if(transformation=="血气"){
-                    msg.push("\n本次闭关顿悟,受到炼神之力修正,额外增加血气:" + rand * time*action3[i].beiyong4);
+                    msg.push("\n本次闭关顿悟,受到炼神之力修正,额外增加血气:" + xueqi);
 
                 }else{
                 msg.push("\n本次闭关顿悟,额外增加修为:" + rand * time);
@@ -443,8 +445,9 @@ export class PlayerControl extends plugin {
             else if (rand > 0.8) {
                 rand = Math.trunc(rand * 10) + 5;
                 other_xiuwei = -1 * rand * time;
+                xueqi=Math.trunc(rand * time * action3[i].beiyong4);
                 if(transformation=="血气"){
-                    msg.push("\n,由于你闭关时隔壁装修,导致你差点走火入魔,受到炼神之力修正,血气下降" + rand * time*action3[i].beiyong4);
+                    msg.push("\n,由于你闭关时隔壁装修,导致你差点走火入魔,受到炼神之力修正,血气下降" +xueqi);
 
                 }else{
                     msg.push("\n由于你闭关时隔壁装修,导致你差点走火入魔,修为下降" + rand * time);
