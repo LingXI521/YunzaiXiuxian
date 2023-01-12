@@ -152,7 +152,7 @@ export class Taopaotask extends plugin {
                             }
                             else {
                                 var num=weizhi.Grade+1;
-                                last_msg += "\n在躲避追杀中,没能躲过此劫,被抓进了天牢\n在地牢中你找到了秘境之匙x"+num;
+                                last_msg += "\n在躲避追杀中,没能躲过此劫,被抓进了天牢\n在天牢中你找到了秘境之匙x"+num;
                                 await Add_najie_thing(player_id, "秘境之匙", "道具", num);
                                 delete arr.group_id;
                                 shop[i].state = 0;
