@@ -125,12 +125,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="三重魔功")
     {
-      if (x<40)
+      if (x<30)
       {
-        e.reply("魔石不足40个,当前魔石数量"+x+"个");
+        e.reply("魔石不足30个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -40);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -30);
       if (random<0.7)
       {
         player.灵根 = {
@@ -152,12 +152,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="四重魔功")
     {
-      if (x<45)
+      if (x<40)
       {
-        e.reply("魔石不足45个,当前魔石数量"+x+"个");
+        e.reply("魔石不足40个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -45);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -40);
       if (random<0.6)
       {
         player.灵根 = {
@@ -179,12 +179,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="五重魔功")
     {
-      if (x<55)
+      if (x<40)
       {
-        e.reply("魔石不足55个,当前魔石数量"+x+"个");
+        e.reply("魔石不足40个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -55);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -40);
       if (random<0.5)
       {
         player.灵根 = {
@@ -206,12 +206,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="六重魔功")
     {
-      if (x<65)
+      if (x<40)
       {
-        e.reply("魔石不足65个,当前魔石数量"+x+"个");
+        e.reply("魔石不足40个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -65);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -40);
       if (random<0.4)
       {
         player.灵根 = {
@@ -233,12 +233,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="七重魔功")
     {
-      if (x<75)
+      if (x<50)
       {
-        e.reply("魔石不足75个,当前魔石数量"+x+"个");
+        e.reply("魔石不足50个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -75);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -50);
       if (random<0.3)
       {
         player.灵根 = {
@@ -260,12 +260,12 @@ export class motou extends plugin {
     }
     else if (player.灵根.name=="八重魔功")
     {
-      if (x<85)
+      if (x<50)
       {
-        e.reply("魔石不足85个,当前魔石数量"+x+"个");
+        e.reply("魔石不足50个,当前魔石数量"+x+"个");
         return;
       }
-      await Add_najie_thing(usr_qq, "魔石", "道具", -85);
+      await Add_najie_thing(usr_qq, "魔石", "道具", -50);
       if (random<0.2)
       {
         player.灵根 = {
@@ -446,12 +446,12 @@ async xianji(e)
       e.reply("你没有魔石");
       return;
   }
-  if (x<15)
+  if (x<10)
   {
-    e.reply("魔石不足15个,当前魔石数量"+x+"个");
+    e.reply("魔石不足10个,当前魔石数量"+x+"个");
     return;
   }
-  await Add_najie_thing(usr_qq, "魔石", "道具", -15);
+  await Add_najie_thing(usr_qq, "魔石", "道具", -10);
   let wuping_length;
   let wuping_index;
   let wuping;
