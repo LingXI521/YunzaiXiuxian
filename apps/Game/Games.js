@@ -230,6 +230,10 @@ export class Games extends plugin {
         if (gameswitch != true) {
             return;
         }
+        if(true){
+            e.reply('春节期间不能接触金银坊');
+            return;
+        }
         //用户固定写法
         let usr_qq = e.user_id;
         //不开放私聊功能
