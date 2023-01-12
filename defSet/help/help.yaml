@@ -3,6 +3,9 @@
     - icon: help-icon_2
       title: "#踏入仙途 #再入仙途 #轮回"
       desc: "创建存档，转世重生"
+    - icon: help-icon_2
+      title: "#设置性别男/女"
+      desc: "设置性别"
     - icon: help-icon_3
       title: "#改名张三 #设置道宣"
       desc: "修改道号，个性签名"
