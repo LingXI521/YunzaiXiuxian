@@ -1535,11 +1535,11 @@ export class UserHome extends plugin {
                     return;
                 }
             } else if (thing_name == "生命强化") {
-                if (player.生命加成 < 9000000) {
+                if (player.生命加成 < 900000000) {
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    player.生命加成 += 100000;
-                    player.血量上限 += 100000;
-                    player.当前血量 += 100000;
+                    player.生命加成 += 1000000;
+                    player.血量上限 += 1000000;
+                    player.当前血量 += 1000000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的法宝变强了，生命+100000`);
                     return;
@@ -1563,7 +1563,7 @@ export class UserHome extends plugin {
                     e.reply(`你还是提升点魔道值再用吧!`);
                     return;
                 }
-                if (player.生命加成 < 90000000) {
+                if (player.生命加成 < 900000000) {
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     player.生命加成 += 100000;
                     player.血量上限 += 100000;
