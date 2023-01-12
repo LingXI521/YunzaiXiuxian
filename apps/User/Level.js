@@ -130,7 +130,7 @@ export class Level extends plugin {
                 return;
             } else if (bad_time > 0.1) {
                 await redis.set("xiuxian:player:" + usr_qq + ":last_LevelMaxup_time", now_Time);
-                e.reply(`憋红了脸，境界突破失败,等到${Time}分钟后再尝试吧`);
+                e.reply(`恭喜你破体失败，就你个倒霉蛋还敢破体,等到${Time}分钟后再尝试吧`);
                 return;
             } else {
                 await Add_血气(usr_qq, -1 * need_exp * 0.2);
@@ -288,7 +288,7 @@ export class Level extends plugin {
                 return;
             } else if (bad_time > 0.1) {
                 await redis.set("xiuxian:player:" + usr_qq + ":last_Levelup_time", now_Time);//获得上次的时间戳
-                e.reply(`憋红了脸，境界突破失败,等到${Time}分钟后再尝试吧`);
+                e.reply(`恭喜你突破失败，就你个倒霉蛋还敢突破,等到${Time}分钟后再尝试吧`);
                 return;
             } else {
                 await Add_修为(usr_qq, -1 * need_exp * 0.2);
