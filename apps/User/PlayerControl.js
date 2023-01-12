@@ -143,17 +143,11 @@ export class PlayerControl extends plugin {
         if (!e.isGroup) {
             return;
         }
-
         let usr_qq = e.user_id;//用户qq
         //有无存档
         if (!await existplayer(usr_qq)) {
             return;
         }
-        // e.reply("整个修仙世界的妖都快杀绝种了，万仙盟决定颁布《野生妖怪保护法》，不能去降妖了")
-        // return
-
-
-
         //获取游戏状态
         let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
         //防止继续其他娱乐行为
@@ -161,7 +155,6 @@ export class PlayerControl extends plugin {
             e.reply("修仙：游戏进行中...");
             return;
         }
-
         //获取时间
         let time = e.msg.replace("#", "");
         time = time.replace("降妖", "");
@@ -170,7 +163,7 @@ export class PlayerControl extends plugin {
         if (parseInt(time) == parseInt(time)) {
             time = parseInt(time);//你选择的时间
             var y = 15;//固定时间
-            var x = 32;//循环次数
+            var x = 48;//循环次数
             //如果是 >=16*33 ----   >=30
             for (var i = x; i > 0; i--) {
                 if (time >= y * i) {
@@ -194,9 +187,6 @@ export class PlayerControl extends plugin {
             e.reply("你都伤成这样了,先去疗伤吧");
             return;
         }
-
-
-
         //查询redis中的人物动作
         let action = await redis.get("xiuxian:player:" + usr_qq + ":action");
         action = JSON.parse(action);
@@ -211,7 +201,6 @@ export class PlayerControl extends plugin {
                 return;
             }
         }
-
         let action_time = time * 60 * 1000;//持续时间，单位毫秒
         let arr = {
             "action": "降妖",//动作
@@ -230,20 +219,13 @@ export class PlayerControl extends plugin {
             "plant": "1",//采药-开启
             "mine": "1",//采矿-开启
         };
-
         if (e.isGroup) {
             arr.group_id = e.group_id;
         }
-
         await redis.set("xiuxian:player:" + usr_qq + ":action", JSON.stringify(arr));//redis设置动作
-
-
         e.reply(`现在开始降妖${time}分钟`);
-
         return true;
     }
-
-
     /**
      * 人物结束闭关
      * @param e
@@ -341,7 +323,6 @@ export class PlayerControl extends plugin {
         if (action.action != "降妖") {
             return;
         }
-
         //结算
         let end_time = action.end_time;
         let start_time = action.end_time - action.time;
@@ -397,9 +378,6 @@ export class PlayerControl extends plugin {
         delete arr.group_id;//结算完去除group_id
         await redis.set("xiuxian:player:" + e.user_id + ":action", JSON.stringify(arr));
     }
-
-
-
     /**
      * 闭关结算
      * @param usr_qq

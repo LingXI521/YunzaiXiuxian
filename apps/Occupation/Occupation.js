@@ -210,13 +210,10 @@ export class Occupation extends plugin {
         if (!await existplayer(usr_qq)) {
             return;
         }
-
         //不开放私聊
         if (!e.isGroup) {
             return;
         }
-
-
         //获取游戏状态
         let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
         //防止继续其他娱乐行为
@@ -310,8 +307,6 @@ export class Occupation extends plugin {
         if (action.action != "采药") {
             return;
         }
-
-
         //结算
         let end_time = action.end_time;
         let start_time = action.end_time - action.time;
@@ -349,13 +344,11 @@ export class Occupation extends plugin {
                 time = 0;
             }
         }
-
         if (e.isGroup) {
             await this.plant_jiesuan(e.user_id, time, false, e.group_id);//提前闭关结束不会触发随机事件
         } else {
             await this.plant_jiesuan(e.user_id, time, false);//提前闭关结束不会触发随机事件
         }
-
         let arr = action;
         arr.is_jiesuan = 1;//结算状态
         arr.plant = 1;//采药状态
@@ -368,21 +361,16 @@ export class Occupation extends plugin {
         delete arr.group_id;//结算完去除group_id
         await redis.set("xiuxian:player:" + e.user_id + ":action", JSON.stringify(arr));
     }
-
-
     async mine(e) {
         let usr_qq = e.user_id;//用户qq
         //有无存档
         if (!await existplayer(usr_qq)) {
             return;
         }
-
         //不开放私聊
         if (!e.isGroup) {
             return;
         }
-
-
         //获取游戏状态
         let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
         //防止继续其他娱乐行为
@@ -396,7 +384,6 @@ export class Occupation extends plugin {
             await Add_灵石(usr_qq, -200)
             return
         }
-
         //获取时间
         let time = e.msg.replace("#采矿", "");
         time = time.replace("分钟", "");
@@ -420,7 +407,6 @@ export class Occupation extends plugin {
             //不设置时间默认30分钟
             time = 30;
         }
-
         //查询redis中的人物动作
         let action = await redis.get("xiuxian:player:" + usr_qq + ":action");
         action = JSON.parse(action);
@@ -478,8 +464,6 @@ export class Occupation extends plugin {
         if (action.action != "采矿") {
             return;
         }
-
-
         //结算
         let end_time = action.end_time;
         let start_time = action.end_time - action.time;
@@ -487,7 +471,6 @@ export class Occupation extends plugin {
         let time;
         var y = this.xiuxianConfigData.mine.time;//固定时间
         var x = this.xiuxianConfigData.mine.cycle;//循环次数
-
         if (end_time > now_time) {//属于提前结束
             time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
             //超过就按最低的算，即为满足30分钟才结算一次
