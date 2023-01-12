@@ -311,10 +311,15 @@ export class MoneyOperation extends plugin {
                 return;
             }
             let thing_exist = await foundthing(thing_name);
+           
             if (!thing_exist) {
             e.reply(`这方世界没有[${thing_name}]`);
             return;
             }
+            if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
+            e.reply(`轮回功法${thing_name}禁止出售。`)
+            return;
+        }
             let thing;
             let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class)
             if (thing_exist.class == "装备") {
