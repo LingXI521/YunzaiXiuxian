@@ -77,6 +77,7 @@ export class PlayerControlTask extends plugin {
                         let blood = parseInt(player.血量上限 * 0.02);
                         let time = parseInt(action.time) / 1000 / 60;//分钟
                         let rand = Math.random();
+                        let xueqi=0;
                         let other_xiuwei = 0;
                         //炼丹师丹药修正
                         let transformation = "修为"
@@ -98,8 +99,9 @@ export class PlayerControlTask extends plugin {
                                 if (rand < 0.2) {
                                     rand = Math.trunc(rand * 10) + 45;
                                     other_xiuwei = rand * time;
+                                    xueqi=Math.trunc(rand * time * action3[i].beiyong4);
                                     if (transformation == "血气") {
-                                        msg.push("\n本次闭关顿悟,受到炼神之力修正,额外增加血气:" + rand * time * action3[i].beiyong4);
+                                        msg.push("\n本次闭关顿悟,受到炼神之力修正,额外增加血气:" + xueqi);
 
                                     } else {
                                         msg.push("\n本次闭关顿悟,额外增加修为:" + rand * time);
@@ -107,8 +109,9 @@ export class PlayerControlTask extends plugin {
                                 } else if (rand > 0.8) {
                                     rand = Math.trunc(rand * 10) + 5;
                                     other_xiuwei = -1 * rand * time;
+                                    xueqi=Math.trunc(rand * time * action3[i].beiyong4);
                                     if (transformation == "血气") {
-                                        msg.push("\n,由于你闭关时隔壁装修,导致你差点走火入魔,受到炼神之力修正,血气下降" + rand * time * action3[i].beiyong4);
+                                        msg.push("\n,由于你闭关时隔壁装修,导致你差点走火入魔,受到炼神之力修正,血气下降" + xueqi);
 
                                     } else {
                                         msg.push("\n由于你闭关时隔壁装修,导致你差点走火入魔,修为下降" + rand * time);
@@ -137,8 +140,9 @@ export class PlayerControlTask extends plugin {
                                 arr.Place_actionplus = 1;//沉迷状态
                                 delete arr.group_id;//结算完去除group_id
                                 await redis.set("xiuxian:player:" + player_id + ":action", JSON.stringify(arr));
+                               xueqi=Math.trunc( xiuwei * time * action3[i].beiyong4);
                                 if (transformation == "血气") {
-                                    msg.push("\n受到炼神之力的影响,增加气血:" + xiuwei * time * action3[i].beiyong4, "血量增加:" + blood * time);
+                                    msg.push("\n受到炼神之力的影响,增加气血:" + xueqi, "血量增加:" + blood * time);
                                 } else {
                                     msg.push("\n增加修为:" + xiuwei * time, "血量增加:" + blood * time);
                                 }
