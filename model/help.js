@@ -31,10 +31,12 @@ export default class Help extends base {
     let helpData = xiuxianCfg.getdefSet("help", "helpcopy");
     let versionData = xiuxianCfg.getdefSet("version", "version");
     const version = (versionData && versionData.length && versionData[0].version) || "1.0.4";
+    const version_name = (versionData && versionData.length && versionData[0].name) || "1.0.4";
     return {
       ...this.screenData,
       saveId: "help",
       version: version,
+      version_name: version_name,
       helpData,
     };
   }
@@ -47,11 +49,12 @@ export default class Help extends base {
 
     let versionData = xiuxianCfg.getdefSet("version", "version");
     const version = (versionData && versionData.length && versionData[0].version) || "1.0.4";
-
+    const version_name = (versionData && versionData.length && versionData[0].name) || "1.0.4";
     return {
       ...this.screenData,
       saveId: "help",
       version: version,
+      version_name: version_name,
       helpData,
     };
   }
@@ -60,10 +63,12 @@ export default class Help extends base {
     let helpData = xiuxianCfg.getdefSet("help", "set");
     let versionData = xiuxianCfg.getdefSet("version", "version");
     const version = (versionData && versionData.length && versionData[0].version) || "1.0.4";
+    const version_name = (versionData && versionData.length && versionData[0].name) || "1.0.4";
     return {
       ...this.screenData,
       saveId: "help",
       version: version,
+      version_name: version_name,
       helpData,
     };
   }
@@ -72,10 +77,12 @@ export default class Help extends base {
     let helpData = xiuxianCfg.getdefSet("help", "Association");
     let versionData = xiuxianCfg.getdefSet("version", "version");
     const version = (versionData && versionData.length && versionData[0].version) || "1.0.4";
+    const version_name = (versionData && versionData.length && versionData[0].name) || "1.0.4";
     return {
       ...this.screenData,
       saveId: "help",
       version: version,
+      version_name: version_name,
       helpData,
     };
   }
