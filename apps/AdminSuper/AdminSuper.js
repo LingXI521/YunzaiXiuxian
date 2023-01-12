@@ -408,28 +408,6 @@ export class AdminSuper extends plugin {
         return;
     }
 
-    async DeleteBoss(e) {
-        if (!e.isMaster) {
-            return;
-        }
-        //不开放私聊功能
-        if (!e.isGroup) {
-            return;
-        }
-        //boss分为金角大王、银角大王、魔王
-        //魔王boss
-        await redis.set('BossMaxplus', 1);
-        await redis.del('BossMaxplus');
-        //金角大王
-        await redis.set('BossMax', 1);
-        await redis.del('BossMax');
-        //银角大王
-        await redis.set('BossMini', 1);
-        await redis.del('BossMini');
-        e.reply('关闭成功');
-        return;
-    }
-
     async DeleteForum(e) {
         if (!e.isMaster) {
             return;
@@ -954,6 +932,9 @@ export async function synchronization(e) {
         if (!isNotNull(player.islucky)) {
             player.islucky = 0;
         }
+        if (!isNotNull(player.sex)) {
+            player.sex = 0;
+        }
         // if (!isNotNull(player.辟谷丹)) {
         //     player.辟谷丹 = 0;
         // }
@@ -963,8 +944,8 @@ export async function synchronization(e) {
         let i = 0;
         let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
         action2 = JSON.parse(action2);
-        action2=1;
-        await redis.set('xiuxian:player:' + usr_qq + ':pifu',JSON.stringify(action2));
+        action2 = 1;
+        await redis.set('xiuxian:player:' + usr_qq + ':pifu', JSON.stringify(action2));
         let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
         action = await JSON.parse(action);
         if (action == null) {
@@ -1017,55 +998,55 @@ export async function synchronization(e) {
             if (!isNotNull(装备.islockd)) {
                 装备.islockd = 0;
             }
-            装备.数量=Math.floor(装备.数量);
+            装备.数量 = Math.floor(装备.数量);
         });
         najie.丹药.forEach(丹药 => {
             if (!isNotNull(丹药.islockd)) {
                 丹药.islockd = 0;
             }
-            丹药.数量=Math.floor(丹药.数量);
+            丹药.数量 = Math.floor(丹药.数量);
         });
         najie.道具.forEach(道具 => {
             if (!isNotNull(道具.islockd)) {
                 道具.islockd = 0;
             }
-            道具.数量=Math.floor(道具.数量);
+            道具.数量 = Math.floor(道具.数量);
         });
         najie.功法.forEach(功法 => {
             if (!isNotNull(功法.islockd)) {
                 功法.islockd = 0;
             }
-            功法.数量=Math.floor(功法.数量);
+            功法.数量 = Math.floor(功法.数量);
         });
         najie.草药.forEach(草药 => {
             if (!isNotNull(草药.islockd)) {
                 草药.islockd = 0;
             }
-            草药.数量=Math.floor(草药.数量);
+            草药.数量 = Math.floor(草药.数量);
         });
         najie.材料.forEach(材料 => {
             if (!isNotNull(材料.islockd)) {
                 材料.islockd = 0;
             }
-            材料.数量=Math.floor(材料.数量);
+            材料.数量 = Math.floor(材料.数量);
         });
         najie.盒子.forEach(盒子 => {
             if (!isNotNull(盒子.islockd)) {
                 盒子.islockd = 0;
             }
-            盒子.数量=Math.floor(盒子.数量);
+            盒子.数量 = Math.floor(盒子.数量);
         });
         najie.仙宠.forEach(仙宠 => {
             if (!isNotNull(仙宠.islockd)) {
                 仙宠.islockd = 0;
             }
-            仙宠.数量=Math.floor(仙宠.数量);
+            仙宠.数量 = Math.floor(仙宠.数量);
         });
         najie.仙宠口粮.forEach(仙宠口粮 => {
             if (!isNotNull(仙宠口粮.islockd)) {
                 仙宠口粮.islockd = 0;
             }
-            仙宠口粮.数量=Math.floor(仙宠口粮.数量);
+            仙宠口粮.数量 = Math.floor(仙宠口粮.数量);
         });
         //画手修复1.11产生的纳戒同名物品bug和纳戒数量为0的问题
         najie.装备 = najie.装备.filter(item => item.数量 != null || item.数量 != 0);
