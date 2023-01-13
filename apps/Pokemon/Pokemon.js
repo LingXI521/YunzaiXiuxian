@@ -193,7 +193,8 @@ export class Pokemon extends plugin {
         let thing_name = code[0]; //物品
         let thing_value = code[1]; //数量
         if (!isNotNull(thing_value) || thing_value < 0) {
-            thing_value = 1;
+            e.reply('休想卡bug');
+            return;
         }
         if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
         } else {
