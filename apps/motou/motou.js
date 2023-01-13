@@ -446,12 +446,12 @@ async xianji(e)
       e.reply("你没有魔石");
       return;
   }
-  if (x<10)
+  if (x<8)
   {
-    e.reply("魔石不足10个,当前魔石数量"+x+"个");
+    e.reply("魔石不足8个,当前魔石数量"+x+"个");
     return;
   }
-  await Add_najie_thing(usr_qq, "魔石", "道具", -10);
+  await Add_najie_thing(usr_qq, "魔石", "道具", -8);
   let wuping_length;
   let wuping_index;
   let wuping;
