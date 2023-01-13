@@ -193,8 +193,11 @@
       title: "#封神榜"
       desc: "仙人战力榜"
     - icon: help-icon_17
-      title: "#神魄榜，#魔道榜，#强化榜，#镇妖塔榜"
+      title: "#神魄榜，#强化榜，#镇妖塔榜"
       desc: "查看榜"
+    - icon: help-icon_17
+      title: "#魔道榜"
+      desc: "谁是大魔头"
       
 
 - group: 灵笼棋局(数独)
