@@ -223,9 +223,12 @@ export class TreasureCabinet extends plugin {
             e.reply('休想卡bug');
             return;
         }
-        if (thing_value <= 0) {
+        if (thing_value <= 1) {
+             e.reply('休想卡bug');
             return;
         }
+        thing_acunot=Math.ceil(thing_acunot);
+        thing_value=Math.ceil(thing_value);
         if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
         } else {
             return;
