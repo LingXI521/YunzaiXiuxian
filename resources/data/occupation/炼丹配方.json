@@ -5,19 +5,19 @@
 		"materials": [
 			{
 				"name": "万年人参",
-				"amount": 20
+				"amount": 5
 			},
 			{
 				"name": "千年人参",
-				"amount": 20
+				"amount": 5
 			},
 			{
 				"name": "百年人参",
-				"amount": 20
+				"amount":5
 			},
 			{
 				"name": "十年人参",
-				"amount": 20
+				"amount": 5
 			}
 		],
 		"rate": 0.5,
