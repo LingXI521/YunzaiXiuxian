@@ -115,7 +115,12 @@ export class Xijie extends plugin {
             暴击率: player.暴击率,
             灵根: player.灵根,
             法球倍率: player.灵根.法球倍率,
+            魔值:0,
         };
+        if (player.魔道值>999)
+        {
+            A_player.魔值=1;
+        }
         var time = 15; //时间（分钟）
         let action_time = 60000 * time; //持续时间，单位毫秒
         let arr = {
