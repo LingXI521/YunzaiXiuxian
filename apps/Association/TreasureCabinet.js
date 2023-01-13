@@ -220,7 +220,8 @@ export class TreasureCabinet extends plugin {
             return;
         }
         if (thing_acunot < 1 || thing_acunot == null || thing_acunot == undefined || thing_acunot == NaN) {
-            thing_acunot = 1;
+            e.reply('休想卡bug');
+            return;
         }
         if (thing_value <= 0) {
             return;
