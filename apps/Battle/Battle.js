@@ -624,8 +624,8 @@ export async function zd_battle(A_player, B_player) {
         msg.push(B_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
       }
       if (A_player.魔道值 > 999) {
-        var buff = Math.trunc(A_player.魔道值 / 1000) / 20 + 1;
-        if (buff > 2) buff = 2;
+        var buff = Math.trunc(A_player.魔道值 / 1000) / 40 + 1;
+        if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
       }
       伤害 = Math.trunc(伤害);
@@ -814,8 +814,8 @@ ${B_player.名号}冻结中`);
         msg.push(A_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
       }
       if (B_player.魔道值 > 999) {
-        var buff = Math.trunc(B_player.魔道值 / 1000) / 20 + 1;
-        if (buff > 2) buff = 2;
+        var buff = Math.trunc(B_player.魔道值 / 1000) / 40 + 1;
+        if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
       }
       伤害 = Math.trunc(伤害);
