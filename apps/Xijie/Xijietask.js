@@ -120,7 +120,7 @@ export class Xijietask extends plugin {
                         }
                         let Data_battle;
                         let last_msg="";
-                        if (A_player.魔道值<1000)
+                        if (A_player.魔值==0)
                         {
                             //根据魔道值决定先后手顺序
                             Data_battle = await zd_battle(A_player, B_player);
