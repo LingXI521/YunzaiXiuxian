@@ -48,7 +48,7 @@ export class AssociationAdmin extends plugin {
                     fnc: 'huz'
                 },
                 {
-                    reg: '^#维护护宗大阵.*$',
+                    reg: '^#维护护宗大阵[1-9]\d*',
                     fnc: 'weihu'
                 },
                 {
@@ -60,7 +60,7 @@ export class AssociationAdmin extends plugin {
                     fnc: 'Deleteuser'
                 },
                 {
-                    reg: '^#逐出.*$',
+                    reg: '^#逐出[1-9]\d*',
                     fnc: 'Deleteusermax'
                 }
             ]

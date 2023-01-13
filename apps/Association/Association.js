@@ -31,7 +31,7 @@ export class Association extends plugin {
                     fnc: 'Exit_association'
                 },
                 {
-                    reg: '^#宗门(上交|上缴|捐赠)灵石.*$',
+                    reg: '^#宗门(上交|上缴|捐赠)灵石[1-9]\d*',
                     fnc: 'give_association_lingshi'
                 },
                 {
@@ -43,7 +43,7 @@ export class Association extends plugin {
                     fnc: 'Logs_donate'
                 },
                 {
-                    reg: '^#(宗门列表)$',
+                    reg: '^#宗门列表$',
                     fnc: 'List_appointment'
                 }
             ]

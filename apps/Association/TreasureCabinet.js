@@ -49,7 +49,7 @@ export class TreasureCabinet extends plugin {
                     fnc: 'Summon_Divine_Beast'
                 },
                 {
-                    reg: '^#喂给神兽.*$',
+                    reg: '^#喂给神兽.*(\\*[1-9]\d*)?',
                     fnc: 'Feed_Beast'
                 },
                 {
