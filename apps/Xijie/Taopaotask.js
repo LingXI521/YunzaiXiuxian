@@ -114,9 +114,9 @@ export class Taopaotask extends plugin {
                             A_player.当前血量 -= npc_damage;
                             last_msg += B_player.名号+"似乎不屑追你,只是随手丢出神通,剩余血量"+A_player.当前血量;
                         }
-                        else if (Random < 0.3) {
-                            A_player.当前血量 -= Math.trunc(npc_damage*0.3);
-                            last_msg += "你引起了"+B_player.名号+"的兴趣,"+B_player.名号+"决定试探你,只用了三分力,剩余血量"+A_player.当前血量;
+                        else if (Random < 0.2) {
+                            A_player.当前血量 -= Math.trunc(npc_damage*0.6);
+                            last_msg += "你引起了"+B_player.名号+"的兴趣,"+B_player.名号+"决定试探你,只用了六分力,剩余血量"+A_player.当前血量;
                         }
                         else if (Random < 0.5) {
                             A_player.当前血量 -= Math.trunc(npc_damage*1.5);
