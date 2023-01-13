@@ -803,8 +803,11 @@ export class TreasureCabinet extends plugin {
         let code = thing.split("\*");
         let thing_name = code[0];//物品
         let thing_value = code[1];//数量
-        if (!isNotNull(thing_value) || thing_value < 0) { thing_value = 1 }
-
+        if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
+            e.reply('休想卡bug');
+            return;
+        }
+        thing_value=Math.ceil(thing_value)
 
         //判断列表中是否存在，不存在不能卖,并定位是什么物品
         let thing_exist = await foundthing(thing_name);
