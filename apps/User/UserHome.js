@@ -941,6 +941,7 @@ export class UserHome extends plugin {
             }
             await instead_equipment(usr_qq, eq);
             let img = await get_equipment_img(e);
+            equipment = await Read_equipment(usr_qq);
             if (equipment.武器.name == "灭仙剑" && equipment.法宝.name == "灭仙符" && equipment.护具.name == "灭仙衣" && player.魔道值 > 999) {
                 e.reply("你已激活灭仙三件套效果");
             }
