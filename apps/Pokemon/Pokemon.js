@@ -27,7 +27,7 @@ export class Pokemon extends plugin {
                     fnc: 'Fight',
                 },
                 {
-                    reg: '^#喂给仙宠.*$',
+                    reg: '^#喂给仙宠.*(\\*[\u4e00-\u9fa5])?\\*[1-9]\d*',
                     fnc: 'feed',
                 },
                 {
