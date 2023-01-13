@@ -127,7 +127,7 @@ export class Taopaotask extends plugin {
                             last_msg += "你成功的吸引了所有的仇恨,"+B_player.名号+"已经快要抓到你了,强大的攻击已经到了你的面前,剩余血量"+A_player.当前血量;
                         }
                         else if (Random < 0.9) {
-                            A_player.当前血量 -= Math.trunc(npc_damage*2);
+                            A_player.当前血量 -= Math.trunc(npc_damage*1.8);
                             last_msg += "你们近乎贴脸飞行,"+B_player.名号+"的攻势愈加猛烈,已经快招架不住了,剩余血量"+A_player.当前血量;
                         }
                         else{
