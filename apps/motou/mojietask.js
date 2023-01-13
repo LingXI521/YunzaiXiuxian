@@ -131,9 +131,6 @@ export class mojietask extends plugin {
                         let xiuwei = 0;
                         xiuwei = Math.trunc(2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
                         qixue = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                        if (thing_name != '' || thing_class != '') {
-                            await Add_najie_thing(player_id, thing_name, thing_class, n);
-                        }
                         if (await exist_najie_thing(player_id, "修魔丹", "道具")) {
                             xiuwei*=60;
                             xiuwei=Math.trunc(xiuwei);
@@ -143,6 +140,9 @@ export class mojietask extends plugin {
                             qixue*=13;
                             qixue=Math.trunc(qixue);
                             await Add_najie_thing(player_id, "血魔丹", "道具", -1);
+                        }
+                        if (thing_name != '' || thing_class != '') {
+                            await Add_najie_thing(player_id, thing_name, thing_class, n);
                         }
                         last_msg +=m +',获得修为' +xiuwei +',气血' +qixue;
                         msg.push('\n' + player.名号 + last_msg );
