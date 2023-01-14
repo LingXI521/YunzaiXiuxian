@@ -100,10 +100,10 @@ export class GuessLanternRiddles extends plugin {
             let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
             let Today = await shijianc(nowTime);
             let lastsign_time = await getLastsign2(usr_qq);//获得上次签到日期
-            // if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
-            //     e.reply(`今日已经签到过了`);
-            //     return;
-            // }
+            if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
+                 e.reply(`今日已经签到过了`);
+                 return;
+             }
             let Sign_Yesterday;        //昨日日是否签到
             if (Yesterday.Y == lastsign_time.Y && Yesterday.M == lastsign_time.M && Yesterday.D == lastsign_time.D) {
                 Sign_Yesterday = true;
@@ -121,9 +121,9 @@ export class GuessLanternRiddles extends plugin {
                 e.reply("您已领取过新年礼包了,不能再领取了")
                 return
             }
-            // if(!Sign_Yesterday){//昨天没有签到,连续签到天数清零
-            //     player.新年签到天数=0
-            // }
+             if(!Sign_Yesterday){//昨天没有签到,连续签到天数清零
+                 player.新年签到天数=0
+             }
             player.新年签到天数 += 1;
             data.setData("player", usr_qq, player);
             if (player.新年签到天数 == 7) {
