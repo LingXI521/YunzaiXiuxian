@@ -1353,7 +1353,7 @@ export class UserHome extends plugin {
                 }
             }
             if (thing_name == "神器石") {
-                if (player.魔道值 >0) {
+                if ((player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42))) {
                     e.reply("你尝试使用它,但是失败了")
                     return
                 }
@@ -1659,6 +1659,49 @@ export class UserHome extends plugin {
             else if (thing_name == "甲魂石") {
                 if (player.魔道值 < 1000) {
                     e.reply(`你还是提升点魔道值再用吧!`);
+                    return;
+                }
+                if (player.防御加成 < 9000000) {
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                    player.防御加成 += 10000;
+                    player.防御 += 10000;
+                    await Write_player(usr_qq, player);
+                    e.reply(`你的防御力提高了`);
+                    return;
+                }
+            }
+            else if (thing_name == "武神石") {
+                if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
+                    e.reply(`你尝试使用它,但是失败了`);
+                    return;
+                }
+                if (player.攻击加成 < 9000000) {
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                    player.攻击加成 += 10000;
+                    player.攻击 += 10000;
+                    await Write_player(usr_qq, player);
+                    e.reply(`你的攻击力提高了`);
+                    return;
+                }
+            }
+            else if (thing_name == "法神石") {
+                if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
+                    e.reply(`你尝试使用它,但是失败了`);
+                    return;
+                }
+                if (player.生命加成 < 90000000) {
+                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                    player.生命加成 += 100000;
+                    player.血量上限 += 100000;
+                    player.当前血量 += 100000;
+                    await Write_player(usr_qq, player);
+                    e.reply(`你的生命值提高了`);
+                    return;
+                }
+            }
+            else if (thing_name == "甲神石") {
+                if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
+                    e.reply(`你尝试使用它,但是失败了`);
                     return;
                 }
                 if (player.防御加成 < 9000000) {
