@@ -386,7 +386,7 @@ export async function player_efficiency(usr_qq) {
 //检查纳戒内物品是否存在
 //判断物品
 //要用await
-export async function exist_najie_thing(usr_qq, thing_name, thing_class) {
+export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pinji=null) {
     let najie = await Read_najie(usr_qq);
     if (!isNotNull(najie.草药)) {
         najie.草药 = [];
@@ -398,7 +398,7 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class) {
     }
     let ifexist;
     if (thing_class == "装备") {
-        ifexist = najie.装备.find(item => item.name == thing_name);
+        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
     }
     if (thing_class == "丹药") {
         ifexist = najie.丹药.find(item => item.name == thing_name);
@@ -433,7 +433,7 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class) {
 //检查纳戒内物品是否锁定
 //判断物品
 //要用await
-export async function Locked_najie_thing(usr_qq, thing_name, thing_class) {
+export async function Locked_najie_thing(usr_qq, thing_name, thing_class,thing_pinji=null) {
     let najie = await Read_najie(usr_qq);
     if (!isNotNull(najie.草药)) {
         najie.草药 = [];
@@ -445,7 +445,7 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class) {
     }
     let ifexist;
     if (thing_class == "装备") {
-        ifexist = najie.装备.find(item => item.name == thing_name);
+        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
     }
     if (thing_class == "丹药") {
         ifexist = najie.丹药.find(item => item.name == thing_name);

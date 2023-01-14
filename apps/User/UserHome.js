@@ -60,7 +60,7 @@ export class UserHome extends plugin {
                 reg: '^#购买((.*)|(.*)*(.*))$',
                 fnc: 'Buy_comodities'
             }, {
-                reg: '^#出售((.*)|(.*)*(.*))$',
+                reg: '^#出售.*(\\*[\u4e00-\u9fa5])?\\*[1-9]\d*',
                 fnc: 'Sell_comodities'
             }, {
                 reg: '^#哪里有(.*)$',
@@ -1842,24 +1842,37 @@ export class UserHome extends plugin {
         thing = thing.replace("出售", '');
         let code = thing.split("\*");
         //数量判断
-        let thing_name = code[0];
-        let quantity = 0;//指令里写的数量
-        if (parseInt(code[1]) != parseInt(code[1])) {
-            quantity = 1;
-        } else if (parseInt(code[1]) < 1) {
-            e.reply(`输入物品数量小于1,现在默认为1`);
-            quantity = 1;
-        } else {
-            quantity = parseInt(code[1]);
+        let pinji=null;
+        let thing_name=null;
+        let quantity=0;
+        if (code.length==2) {
+            thing_name=code[0];
+            quantity=code[1];
         }
-        //e.reply(`thing_name:${thing_name},   quantity:${quantity}`);
+        else if(code.length==3){
+            thing_name=code[0];
+            pinji=code[1];
+            quantity=code[2];
+        }
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
             e.reply(`万宝楼不回收这样的东西:${thing_name}`);
             return;
         }
+        if (pinji != null) {
+            let pj = {
+                "劣": 0,
+                "普": 1,
+                "优": 2,
+                "精": 3,
+                "极": 4,
+                "绝": 5,
+                "顶": 6
+            }
+            pj = pj[pinji];
+        }
         //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
+        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class,pj);
         if (!thing_quantity) {//没有
             e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
             return;
@@ -1869,7 +1882,7 @@ export class UserHome extends plugin {
             return;
         }
         //锁定禁止出售
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class) == 1) {
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
             e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
             return;
         }
