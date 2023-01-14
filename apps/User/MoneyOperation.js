@@ -321,7 +321,6 @@ export class MoneyOperation extends plugin {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         }
-            let thing;
             let pj = {
                 "劣": 0,
                 "普": 1,
@@ -343,9 +342,8 @@ export class MoneyOperation extends plugin {
             if (number >= amount) {
                 if (thing_exist.class == "装备")
                 {
-                    let pinji = thing.pinji;
-                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pinji);
-                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pinji);
+                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pj);
+                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pj);
                 }
                 else
                 {
@@ -355,7 +353,6 @@ export class MoneyOperation extends plugin {
                 e.reply([segment.at(A_qq), segment.at(B_qq), `${B_player.名号} 获得了由 ${A_player.名号}赠送的[${thing_name}]×${amount}`]);
             } else {
                 e.reply(`你还没有这么多[${thing_name}]`);
-                
             }
         }
     }
