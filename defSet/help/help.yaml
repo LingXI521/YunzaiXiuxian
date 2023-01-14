@@ -15,6 +15,9 @@
     - icon: help-icon_7
       title: "#我的装备"
       desc: "查看身上的装备"
+    - icon: help-icon_7
+      title: "#我的饰品"
+      desc: "查看身上的饰品"
     - icon: help-icon_4
       title: "#修仙签到"
       desc: "修仙每日签到"
