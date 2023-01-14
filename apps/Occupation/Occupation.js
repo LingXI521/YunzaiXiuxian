@@ -15,7 +15,7 @@ import { zd_battle } from "../Battle/Battle.js"
 /**
  * 境界模块
  */
-let allaction = false; 
+let allaction = false;
 export class Occupation extends plugin {
     constructor() {
         super({
@@ -51,6 +51,10 @@ export class Occupation extends plugin {
                 {
                     reg: '^#丹药配方$',
                     fnc: 'show_danfang'
+                },
+                {
+                    reg: '^#我的药效$',
+                    fnc: 'yaoxiao',
                 },
                 {
                     reg: '^#装备图纸$',
@@ -106,7 +110,7 @@ export class Occupation extends plugin {
             e.reply(`没有[${occupation}]这项职业`);
             return;
         }
-         await Go(e);
+        await Go(e);
         if (allaction) {
         } else {
             return;
@@ -177,7 +181,7 @@ export class Occupation extends plugin {
         let player = await Read_player(usr_qq);
         let action = await redis.get("xiuxian:player:" + usr_qq + ":fuzhi");//副职
         action = await JSON.parse(action);
-         await Go(e);
+        await Go(e);
         if (allaction) {
         } else {
             return;
@@ -187,7 +191,7 @@ export class Occupation extends plugin {
             e.reply(`您还没有副职哦`);
             return;
         }
-         
+
         let a, b, c;
         a = action.职业名;
         b = action.职业经验;
@@ -682,7 +686,55 @@ export class Occupation extends plugin {
         e.reply(img);
         return;
     }
-
+    async yaoxiao(e) {
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let action = await redis.get('xiuxian:player:' + 10 + ':biguang');
+        action = await JSON.parse(action);
+        let usr_qq = e.user_id;
+        let i = 0;
+        let m = '丹药效果:';
+        for (i = 0; i < action.length; i++) {
+            if (action[i].qq == usr_qq) {
+                if (action[i].ped > 0) {
+                    m += `\n仙缘丹药力${action[i].beiyong1 * 100}%药效${action[i].ped}次`;
+                }
+                if (action[i].lianti > 0) {
+                    m += `\n炼神丹药力${action[i].beiyong4 * 100}%药效${
+                        action[i].lianti
+                        }次`;
+                }
+                if (action[i].lianti > 0) {
+                    m += `\n神赐丹药力${action[i].beiyong3 * 100}% 药效${
+                        action[i].beiyong2
+                        }次`;
+                }
+                if (action[i].biguan > 0) {
+                    m += `\n辟谷丹药力${action[i].biguanxl * 100}%药效${
+                        action[i].biguan
+                        }次`;
+                }
+                let player = await data.getData('player', usr_qq);
+                if (player.islucky > 0) {
+                    m += `\n福源丹药力${player.addluckyNo * 100}%药效${player.islucky}次`;
+                }
+                if (player.breakthrough == true) {
+                    m += `\n破境丹生效中`;
+                }
+                e.reply(m);
+            }
+        }
+        let player = await data.getData('player', usr_qq);
+        if (player.islucky > 0) {
+            m += `\n福源丹药力${player.addluckyNo * 100}%药效${player.islucky}次`;
+        }
+        if (player.breakthrough == true) {
+            m += `\n破境丹生效中`;
+        }
+        return;
+    }
 
     async show_tuzhi(e) {
         if (!e.isGroup) {
@@ -778,15 +830,15 @@ export class Occupation extends plugin {
                 e.reply("你的仙宠只是在旁边看着")
             }
         }
-        if (danyao == "神心丹" || danyao == "九阶淬体丹" || danyao == "九阶玄元丹"||danyao=="破境丹") {
+        if (danyao == "神心丹" || danyao == "九阶淬体丹" || danyao == "九阶玄元丹" || danyao == "破境丹") {
             await Add_najie_thing(usr_qq, danyao, "丹药", res_n);
             e.reply(`${tmp_msg}炼制失败${lose}次，得到${danyao}${res_n}颗，获得炼丹经验${total_exp * m}`);
         } else {
             let dengjixiuzheng = player.occupation_level
             let newrandom = Math.random()
             let newrandom2 = Math.random()
-            if (newrandom >= 0.1 + dengjixiuzheng * 3/100) {
-                await Add_najie_thing(usr_qq, "凡品"+danyao, "丹药", res_n);
+            if (newrandom >= 0.1 + dengjixiuzheng * 3 / 100) {
+                await Add_najie_thing(usr_qq, "凡品" + danyao, "丹药", res_n);
                 e.reply(`${tmp_msg}炼制失败${lose}次，得到"凡品"${danyao}${res_n}颗，获得炼丹经验${total_exp * m}`);
             } else {
                 if (newrandom2 >= 0.4) {
@@ -840,7 +892,7 @@ export class Occupation extends plugin {
 
         let rate = 0;
 
-        if (player.occupation_level > 0 ) {
+        if (player.occupation_level > 0) {
             rate = data.occupation_exp_list.find(item => item.id == player.occupation_level).rate;
             rate = rate * 10
             rate = rate * 0.025
