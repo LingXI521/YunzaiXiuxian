@@ -255,7 +255,7 @@ export class Battle extends plugin {
     }
     //本次打劫时间存入缓存
     await redis.set('xiuxian:player:' + A + ':last_dajie_time', nowTime); //存入缓存
-    if (await exist_najie_thing(B, "替身人偶", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
+    if (await exist_najie_thing(B, "替身人偶", "道具") && B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
       e.reply(B_player.名号+"使用了道具替身人偶,躲过了此次打劫");
       await Add_najie_thing(B, "替身人偶", "道具", -1);
       return;
