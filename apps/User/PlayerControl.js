@@ -461,7 +461,7 @@ export class PlayerControl extends plugin {
             await Add_najie_thing(usr_qq, "魔界秘宝", "道具", -1);
             msg.push("\n消耗了道具[魔界秘宝],额外增加"+other_x+"修为");
         }
-        if (await exist_najie_thing(usr_qq, "神界秘宝", "道具") && player.魔道值<1) {
+        if (await exist_najie_thing(usr_qq, "神界秘宝", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
             qixue=Math.trunc(xiuwei*0.1*time);
             await Add_najie_thing(usr_qq, "神界秘宝", "道具", -1);
             msg.push("\n消耗了道具[神界秘宝],额外增加"+qixue+"血气");
