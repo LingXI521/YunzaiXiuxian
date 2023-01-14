@@ -118,6 +118,28 @@ export class mojietask extends plugin {
                           t1 = 2 + Math.random();
                           t2 = 2 + Math.random();
                         }
+                        let random = Math.random();
+                        if (random < player.幸运) {
+                          if (random < player.addluckyNo) {
+                            last_msg += '福源丹生效，所以在';
+                          } else if (player.仙宠.type == '幸运') {
+                            last_msg += '仙宠使你在探索中欧气满满，所以在';
+                          }
+                          n++;
+                          last_msg +=
+                            '探索过程中意外发现了两份机缘,最终获取机缘数量将翻倍\n';
+                        }
+                        if (player.islucky > 0) {
+                          player.islucky--;
+                          if (player.islucky != 0) {
+                            fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
+                          } else {
+                            fyd_msg = `  \n本次探索后，福源丹已失效\n`;
+                            player.幸运 -= player.addluckyNo;
+                            player.addluckyNo = 0;
+                          }
+                          await data.setData('player', player_id, player);
+                        }
                         //默认结算装备数
                         let now_level_id;
                         let now_physique_id;
