@@ -941,6 +941,9 @@ export async function synchronization(e) {
         if (!isNotNull(player.addluckyNo)) {
             player.addluckyNo = 0;
         }
+        if (!isNotNull(player.神石)) {
+            player.神石 = 0;
+        }
         let i = 0;
         let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
         action2 = JSON.parse(action2);
