@@ -632,6 +632,11 @@ export async function zd_battle(A_player, B_player) {
         if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
       }
+      if (B_player.魔道值 < 1) {
+        var buff = Math.trunc(B_player.神石*0.000625);
+        if (buff > 0.5) buff = 0.5;
+        伤害 *= (1-buff);
+      }
       伤害 = Math.trunc(伤害);
       B_player.当前血量 -= 伤害;
       B_player.防御 = bfangyu;
@@ -821,6 +826,11 @@ ${B_player.名号}冻结中`);
         var buff = Math.trunc(B_player.魔道值 / 1000) / 40 + 1;
         if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
+      }
+      if (A_player.魔道值 < 1) {
+        var buff = Math.trunc(A_player.神石*0.000625);
+        if (buff > 0.5) buff = 0.5;
+        伤害 *= (1-buff);
       }
       伤害 = Math.trunc(伤害);
       A_player.当前血量 -= 伤害;
