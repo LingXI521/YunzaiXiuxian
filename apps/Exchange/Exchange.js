@@ -233,9 +233,10 @@ export class Exchange extends plugin {
         }
         else if(code.length==4){
             thing_name=code[0];
-            thing_value=code[1];
-            thing_amount=code[2];
-            pinji=code[3];
+            pinji=code[1];
+            thing_value=code[2];
+            thing_amount=code[3];
+            
         }
         if (
             thing_amount < 1 ||
