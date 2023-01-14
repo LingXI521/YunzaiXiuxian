@@ -219,7 +219,7 @@ export async function get_XianChong_img(e) {
  * @return image
  */
 export async function get_daoju_img(e) {
-    let j;
+    let i;
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
@@ -249,7 +249,7 @@ export async function get_daoju_img(e) {
         if (count == 0)
             break;
     }
-    for (var i = 0; i < daoju_list.length; i++) {
+    for (i = 0; i < daoju_list.length; i++) {
         if (najie.道具.find(item => item.name == daoju_list[i].name)) {
             if(daoju_list[i].type!="练气幻影卡面" && daoju_list[i].type!="装备幻影卡面"){
                 daoju_have.push(daoju_list[i])
