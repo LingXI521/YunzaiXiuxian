@@ -1259,38 +1259,33 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的道具`);
                 return;
             }
-                        let kamian = najie.道具.find(item => item.name == thing_name);
-            if(kamian.type=="练气幻影卡面"){
-                let player=await Read_player(usr_qq)
-                let photo=kamian.id
+            if(thing.type=="练气幻影卡面"){
+                let photo=thing.id
                 if(player.练气皮肤==photo){
-                    e.reply("您的卡面已经是"+kamian.name)
+                    e.reply("您的卡面已经是"+thing.name)
                     return
                 }
                 let old=data.daoju_list.find(item=>item.id==player.练气皮肤)
-                console.log(old)
                 player.练气皮肤=photo
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
                 await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+kamian.type+"【"+kamian.name+"】成功")
+                e.reply("更换"+thing.type+"【"+thing.name+"】成功")
                 return
                 
             }
-            if(kamian.type=="装备幻影卡面"){
-                let player=await Read_player(usr_qq)
-                let photo=kamian.id
+            if(thing.type=="装备幻影卡面"){
+                let photo=thing.id
                 if(player.装备皮肤==photo){
-                    e.reply("您的卡面已经是"+kamian.name)
+                    e.reply("您的卡面已经是"+thing.name)
                     return
                 }
                 let old=data.daoju_list.find(item=>item.id==player.装备皮肤)
-                console.log(old)
                 player.装备皮肤=photo
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
                 await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+kamian.type+"【"+kamian.name+"】成功")
+                e.reply("更换"+thing.type+"【"+thing.name+"】成功")
                 return
                 
             }
