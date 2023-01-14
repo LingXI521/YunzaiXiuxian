@@ -914,8 +914,8 @@ export class UserHome extends plugin {
                 quantity = 1;
                 e.reply("同种装备只能同时佩戴一个。");
             }
-            let pinji=null;
-            pinji=code[2];
+            let pinji = null;
+            pinji = code[2];
             let pj = {
                 "劣": 0,
                 "普": 1,
@@ -925,11 +925,11 @@ export class UserHome extends plugin {
                 "绝": 5,
                 "顶": 6
             }
-            if (pinji!=null) {
+            if (pinji != null) {
                 pj = pj[pinji];
             }
             //x是纳戒内有的数量
-            let x = await exist_najie_thing(usr_qq,thing_name,"装备",pj);
+            let x = await exist_najie_thing(usr_qq, thing_name, "装备", pj);
             if (!x) {//没有
                 e.reply(`你没有[${thing_name}]*${pinji}这样的装备`);
                 return;
@@ -962,6 +962,12 @@ export class UserHome extends plugin {
             }
             if (equipment.武器.name == "诛仙枪" && equipment.法宝.name == "诛仙花" && equipment.护具.name == "诛仙甲" && player.魔道值 > 999) {
                 e.reply("你已激活诛仙三件套效果");
+            }
+            if (equipment.武器.name == "光明剑" && equipment.法宝.name == "光明符" && equipment.护具.name == "光明衣" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
+                e.reply("你已激活光明三件套效果");
+            }
+            if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神星甲" && player.魔道值 < 1 && (player.灵根.type == "转生" || player.level_id > 41)) {
+                e.reply("你已激活日月三件套效果");
             }
             e.reply(img);
             return;
@@ -1967,17 +1973,17 @@ export class UserHome extends plugin {
         thing = thing.replace("出售", '');
         let code = thing.split("\*");
         //数量判断
-        let pinji=null;
-        let thing_name=null;
-        let quantity=0;
-        if (code.length==2) {
-            thing_name=code[0];
-            quantity=code[1];
+        let pinji = null;
+        let thing_name = null;
+        let quantity = 0;
+        if (code.length == 2) {
+            thing_name = code[0];
+            quantity = code[1];
         }
-        else if(code.length==3){
-            thing_name=code[0];
-            pinji=code[1];
-            quantity=code[2]; 
+        else if (code.length == 3) {
+            thing_name = code[0];
+            pinji = code[1];
+            quantity = code[2];
         }
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
@@ -1997,7 +2003,7 @@ export class UserHome extends plugin {
             pj = pj[pinji];
         }
         //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class,pj);
+        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class, pj);
         if (!thing_quantity) {//没有
             e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
             return;
@@ -2007,7 +2013,7 @@ export class UserHome extends plugin {
             return;
         }
         //锁定禁止出售
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class, pj) == 1) {
             e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
             return;
         }
@@ -2016,7 +2022,7 @@ export class UserHome extends plugin {
             return;
         }
         //数量够,数量减少,灵石增加
-        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity,pj);
+        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity, pj);
         let commodities_price = thing_exist.出售价 * quantity;
         await Add_灵石(usr_qq, commodities_price);
         e.reply(`出售成功!  获得${commodities_price}灵石,还剩余${thing_name}*${thing_quantity - quantity} `);
