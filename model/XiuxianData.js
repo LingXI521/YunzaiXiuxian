@@ -138,6 +138,18 @@ class XiuxianData {
         this.duihuan = JSON.parse(fs.readFileSync(`${this.lib_path}/兑换列表.json`));
         //神界
         this.shenjie = JSON.parse(fs.readFileSync(`${this.lib_path}/神界列表.json`));
+        //加载灯谜
+        this.Lantern_riddles= JSON.parse(fs.readFileSync(`${this.lib_path}/灯谜.json`));
+        //加载酿酒配方
+        this.Niangjiu=JSON.parse(fs.readFileSync(`${this.lib_path}/酿酒配方.json`));
+        //加载宝石列表
+        this.baoshi=JSON.parse(fs.readFileSync(`${this.lib_path}/宝石.json`));
+        //加载卡池
+        this.xianding=JSON.parse(fs.readFileSync(`${this.lib_path}/限定up.json`));
+        this.changzhu=JSON.parse(fs.readFileSync(`${this.lib_path}/常驻.json`));
+        //加载卡面列表
+        this.kamian=JSON.parse(fs.readFileSync(`${this.lib_path}/幻影卡面列表.json`));
+
     }
 
 
