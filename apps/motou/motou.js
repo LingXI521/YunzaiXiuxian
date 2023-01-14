@@ -35,7 +35,6 @@ export class motou extends plugin {
         },
       ],
     });
-    this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
   }
 
   async add_lingeng(e) {
