@@ -1064,7 +1064,7 @@ export async function get_player_img(e) {
             }
         }
     }
-    let action = player.皮肤
+    let action = player.练气皮肤
     let player_data = {
         pifu:action,
         user_id: usr_qq,
