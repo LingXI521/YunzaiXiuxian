@@ -826,6 +826,9 @@ export async function synchronization(e) {
         if (isNotNull(player.境界)) {
             player.境界 = undefined;
         }
+        if (isNotNull(player.皮肤)) {
+            player.皮肤 = undefined;
+        }
         if (isNotNull(player.基础血量)) {
             player.基础血量 = undefined;
         }
@@ -926,8 +929,8 @@ export async function synchronization(e) {
         if (!isNotNull(player.幸运)) {
             player.幸运 = 0;
         }
-        if (!isNotNull(player.皮肤)) {
-            player.皮肤 = 0;
+        if (!isNotNull(player.练气皮肤)) {
+            player.练气皮肤 = 0;
         }
         if (!isNotNull(player.装备皮肤)) {
             player.装备皮肤 = 0;
