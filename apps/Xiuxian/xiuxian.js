@@ -560,7 +560,7 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                 let equipment0 = JSON.parse(JSON.stringify(equipment));
                 equipment0.pinji = pinji;
                 if (isNotNull(equipment0.加成)) {
-                    equipment0.加成 = Number((equipment.加成 * z * 1.5).toFixed(2));
+                    equipment0.加成 = Number((equipment.加成 * z).toFixed(2));
                     if (equipment0.加成 == 0) {
                         equipment0.加成 = 0.10
                     }
