@@ -36,6 +36,10 @@ export class showData extends plugin {
                     fnc: "show_equipment",
                 },
                 {
+                    reg: "^#我的饰品$",
+                    fnc: "show_equipment2",
+                },
+                {
                     reg: "^#我的炼体$",
                     fnc: "show_power",
                 },
@@ -90,6 +94,15 @@ export class showData extends plugin {
         return;
     }
 
+    async show_equipment2(e) {
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let img = await get_equipment_img2(e);
+        e.reply(img);
+        return;
+    }
     async show_equipment(e) {
         //不开放私聊功能
         if (!e.isGroup) {
@@ -236,11 +249,15 @@ export async function get_daoju_img(e) {
         if (count == 0)
             break;
     }
-    for (i = 0; i < daoju_list.length; i++) {
+    for (var i = 0; i < daoju_list.length; i++) {
         if (najie.道具.find(item => item.name == daoju_list[i].name)) {
-            daoju_have.push(daoju_list[i])
+            if(daoju_list[i].type!="练气幻影卡面" && daoju_list[i].type!="装备幻影卡面"){
+                daoju_have.push(daoju_list[i])
+            }
         } else {
-            daoju_need.push(daoju_list[i])
+            if(daoju_list[i].type!="练气幻影卡面" && daoju_list[i].type!="装备幻影卡面"){
+                daoju_need.push(daoju_list[i])
+            }
         }
     }
     let player_data = {
@@ -254,7 +271,63 @@ export async function get_daoju_img(e) {
         ...data1
     })
 }
-
+/**
+ * 返回该玩家的幻影图片
+ * @return image
+ */
+ export async function get_huanying_img(e) {
+    let usr_qq = e.user_id;
+    let ifexistplay = data.existData('player', usr_qq)
+    if (!ifexistplay) {
+        return
+    }
+    let player = await data.getData('player', usr_qq)
+    if (!isNotNull(player.level_id)) {
+        e.reply('请先#同步信息')
+        return
+    }
+    let najie = await Read_najie(usr_qq);
+    let user_name = player.名号
+    let daoju_have = []
+    let daoju_need = []
+    let daoju_list = data.daoju_list
+    let t;
+    for (var i = 0; i < daoju_list.length - 1; i++) {
+        var count = 0;
+        for (var j = 0; j < daoju_list.length - i - 1; j++) {
+            if (daoju_list[j].出售价 > daoju_list[j + 1].出售价) {
+                t = daoju_list[j];
+                daoju_list[j] = daoju_list[j + 1];
+                daoju_list[j + 1] = t;
+                count = 1;
+            }
+        }
+        if (count == 0)
+            break;
+    }
+    for (var i = 0; i < daoju_list.length; i++) {
+        if (najie.道具.find(item => item.name == daoju_list[i].name)) {
+            if(daoju_list[i].type=="练气幻影卡面"|| daoju_list[i].type=="装备幻影卡面"){
+                daoju_have.push(daoju_list[i])
+            }
+        } else {
+            if(daoju_list[i].type=="练气幻影卡面"|| daoju_list[i].type=="装备幻影卡面"){
+                daoju_need.push(daoju_list[i])
+            }
+        }
+    }
+    let player_data = {
+        user_id: usr_qq,
+        nickname: user_name,
+        daoju_have,
+        daoju_need
+    }
+    const data1 = await new Show(e).get_huanying(player_data)
+    let img = await puppeteer.screenshot('daoju', {
+        ...data1
+    })
+    return img
+}
 /**
  * 返回该玩家的护具图片
  * @return image
@@ -949,6 +1022,11 @@ export async function get_player_img(e) {
     } else {
         法宝评级 = pinji[equipment.法宝.pinji];
     }
+    if (!isNotNull(equipment.项链.pinji)) {
+        var 项链评级 = "无"
+    } else {
+        var 项链评级 = pinji[equipment.项链.pinji]
+    }
     let rank_lianqi = data.Level_list.find(item => item.level_id == player.level_id).level
     let expmax_lianqi = data.Level_list.find(item => item.level_id == player.level_id).exp
     let rank_llianti = data.LevelMax_list.find(item => item.level_id == player.Physique_id).level
@@ -1045,6 +1123,7 @@ export async function get_player_img(e) {
         武器评级: 武器评级,
         护具评级: 护具评级,
         法宝评级: 法宝评级,
+        项链评级:项链评级,
         修仙版本: versionData
     }
     const data1 = await new Show(e).get_playerData(player_data);
@@ -1220,14 +1299,40 @@ export async function get_equipment_img(e) {
         player_bao: bao,
         player_maxHP: player.血量上限,
         player_nowHP: player.当前血量,
-        pifu:player.装备皮肤
+        pifu:Number(player.装备皮肤)
     }
     const data1 = await new Show(e).get_equipmnetData(player_data);
     return await puppeteer.screenshot("equipment", {
         ...data1,
     });
 }
-
+export async function get_equipment_img2(e) {
+    let usr_qq = e.user_id;
+    let player = await data.getData("player", usr_qq);
+    let ifexistplay = data.existData("player", usr_qq);
+    if (!ifexistplay) {
+        return;
+    }
+    var bao = Math.trunc(parseInt(player.暴击率 * 100))
+    let equipment = await data.getData("equipment", usr_qq);
+    let player_data = {
+        user_id: usr_qq,
+        mdz: player.魔道值,
+        nickname: player.名号,
+        necklace:equipment.项链,
+        player_atk: player.攻击,
+        player_def: player.防御,
+        player_bao: bao,
+        player_maxHP: player.血量上限,
+        player_nowHP: player.当前血量,
+        pifu:Number(player.装备皮肤)
+    }
+    const data1 = await new Show(e).get_equipmnetData2(player_data);
+    let img = await puppeteer.screenshot("equipment2", {
+        ...data1,
+    });
+    return img;
+}
 /**
  * 返回该玩家的纳戒图片
  * @return image
@@ -1264,7 +1369,8 @@ export async function get_najie_img(e) {
         najie_hezi: najie.盒子,
         strand_hp: strand_hp,
         strand_lingshi: strand_lingshi,
-        修仙版本: versionData
+        修仙版本: versionData,
+        pifu:player.练气皮肤
     }
     const data1 = await new Show(e).get_najieData(player_data);
     return await puppeteer.screenshot("najie", {
