@@ -253,7 +253,12 @@ export class Battle extends plugin {
     } else {
       final_msg.push(`${A_player.名号}向${B_player.名号}发起了打劫。`);
     }
-
+    //本次打劫时间存入缓存
+    await redis.set('xiuxian:player:' + A + ':last_dajie_time', nowTime); //存入缓存
+    if (await exist_najie_thing(B, "替身人偶", "道具") && B_player.魔道值<1) {
+      e.reply(B_player.名号+"使用了道具替身人偶,躲过了此次打劫");
+      await Add_najie_thing(B, "替身人偶", "道具", -1);
+  }
     //校验有没有灵根,没有的,随机一个写进存档,之后可以删掉 ()
     if (A_player.灵根 == null || A_player.灵根 == undefined) {
       A_player.灵根 = await get_random_talent();
@@ -337,8 +342,6 @@ export class Battle extends plugin {
       return;
     }
     e.reply(final_msg);
-    //本次打劫时间存入缓存
-    await redis.set('xiuxian:player:' + A + ':last_dajie_time', nowTime); //存入缓存
     return;
   }
 
