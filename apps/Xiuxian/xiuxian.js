@@ -1735,7 +1735,16 @@ export async function getLastsign(usr_qq) {
     }
     return false;
 }
-
+//获取上次新年签到时间
+export async function getLastsign2(usr_qq) {
+    //查询redis中的人物动作
+    let time = await redis.get("xiuxian:player:" + usr_qq + ":lastsign_time2");
+    if (time != null) {
+        let data = await shijianc(parseInt(time))
+        return data;
+    }
+    return false;
+}
 //获取当前人物状态
 export async function getPlayerAction(usr_qq) {
     //查询redis中的人物动作
@@ -1907,7 +1916,36 @@ export async function find_qinmidu(A, B) {
         return qinmidu[i].亲密度;
     }
 }
+export async function anti_cheating(e){
+    let memberMap = await e.group.getMemberMap();
+    let arrMember = Array.from(memberMap.values());
 
+    var the_idcard = arrMember.filter(item => {
+        return item.user_id == e.user_id
+    })
+    let the_id = the_idcard[0]
+    let c=the_id.join_time*1000
+    let a = new Date();
+    let v = a.getTime();
+    let d=v-c
+    //别偷看小号检测代码了,这里都是加密的
+    let D=Math.trunc(d/1000/3600/24)
+    let player=await Read_player(e.user_id)
+    let wwwaw=0x10ef+-0x17*0x1a3+-0x2*-0xa67;
+    let wwwawa=-0x3*0x5b9+0x24a8+-0x1367;
+    let wwwawaa=Math.trunc(D/2)
+    let wwwawaaa=0x2607+-0x1cf*-0x9+-0x3649;
+    let wwwawaaaa=0x90*-0xf+0x2098+0x4e*-0x4e;
+    let wwwawaaaaaa=0x1*-0x2589+0xbe*0x11+0x194f;
+    let wwwawaaaaa=0x1*0x1e62+-0x1588*-0x1+0xf*-0x376;
+    let wwwawaaaaaaa=-0x1449+0x1b7*0x1+0x12b0;
+    var obfuscator=D>wwwawaaaaaaa&&player['\x6c\x65\x76\x65\x6c\x5f\x69\x64']>wwwaw&&player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64']>wwwawa&&player.连续签到天数>wwwawaa&&player.修炼效率提升>wwwawaaa&&player.镇妖塔层数>wwwawaaaa&&player.神魄段数>wwwawaaaaaa&&player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77']==wwwawaaaaa
+    if(obfuscator){
+        return D
+    }else{
+        return false
+    }
+}
 //遍历物品
 export async function foundthing(thing_name) {
     for (var i = 0; i < data.daoju_list.length; i++) {
