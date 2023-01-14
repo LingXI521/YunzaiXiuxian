@@ -344,21 +344,15 @@ export class Exchange extends plugin {
         let time = 2; //分钟
         let najie = await Read_najie(usr_qq);
         if (thing_exist.class == '装备') {
-            for (var i = 0; najie.装备.length > i; i++) {
-                console.log(i);
-                if (najie.装备[i].name == thing_name) {
-                    var yes = najie.装备[i];
-                    console.log(yes);
-                }
-            }
+           
             let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
-            pinji = pinji[yes.pinji];
+            pinji = pinji[pj];
             var wupin = {
                 qq: usr_qq,
                 name: thing_exist,
                 price: thing_value,
                 pinji: pinji,
-                pinji2: yes.pinji,
+                pinji2: pj,
                 aconut: thing_amount,
                 whole: whole,
                 now_time: now_time,
@@ -369,7 +363,7 @@ export class Exchange extends plugin {
                 thing_name,
                 thing_exist.class,
                 -thing_amount,
-                yes.pinji
+               pj
             );
         } else {
             var wupin = {
