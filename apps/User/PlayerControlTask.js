@@ -4,7 +4,7 @@ import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
 import fs from "node:fs"
 import { segment } from "oicq"
-import { isNotNull, exist_najie_thing, Add_najie_thing } from "../Xiuxian/xiuxian.js"
+import { isNotNull, exist_najie_thing, Add_najie_thing, Add_血气 } from "../Xiuxian/xiuxian.js"
 
 /**
  * 定时任务
@@ -77,7 +77,7 @@ export class PlayerControlTask extends plugin {
                         let blood = parseInt(player.血量上限 * 0.02);
                         let time = parseInt(action.time) / 1000 / 60;//分钟
                         let rand = Math.random();
-                        let xueqi=0;
+                        let xueqi = 0;
                         let other_xiuwei = 0;
                         //炼丹师丹药修正
                         let transformation = "修为"
@@ -99,7 +99,7 @@ export class PlayerControlTask extends plugin {
                                 if (rand < 0.2) {
                                     rand = Math.trunc(rand * 10) + 45;
                                     other_xiuwei = rand * time;
-                                    xueqi=Math.trunc(rand * time * action3[i].beiyong4);
+                                    xueqi = Math.trunc(rand * time * action3[i].beiyong4);
                                     if (transformation == "血气") {
                                         msg.push("\n本次闭关顿悟,受到炼神之力修正,额外增加血气:" + xueqi);
 
@@ -109,7 +109,7 @@ export class PlayerControlTask extends plugin {
                                 } else if (rand > 0.8) {
                                     rand = Math.trunc(rand * 10) + 5;
                                     other_xiuwei = -1 * rand * time;
-                                    xueqi=Math.trunc(rand * time * action3[i].beiyong4);
+                                    xueqi = Math.trunc(rand * time * action3[i].beiyong4);
                                     if (transformation == "血气") {
                                         msg.push("\n,由于你闭关时隔壁装修,导致你差点走火入魔,受到炼神之力修正,血气下降" + xueqi);
 
@@ -118,12 +118,18 @@ export class PlayerControlTask extends plugin {
                                     }
                                 }
                                 let other_x = 0;
+                                let qixue = 0
                                 if (await exist_najie_thing(player_id, "魔界秘宝", "道具") && player.魔道值 > 999) {
-                                    other_x += Math.trunc(xiuwei * 0.15*time);
+                                    other_x += Math.trunc(xiuwei * 0.15 * time);
                                     await Add_najie_thing(player_id, "魔界秘宝", "道具", -1);
                                     msg.push("\n消耗了道具[魔界秘宝],额外增加" + other_x + "修为");
                                 }
-
+                                if (await exist_najie_thing(player_id, "神界秘宝", "道具") && player.魔道值 < 1) {
+                                    qixue = Math.trunc(xiuwei * 0.1 * time);
+                                    await Add_najie_thing(player_id, "神界秘宝", "道具", -1);
+                                    msg.push("\n消耗了道具[神界秘宝],额外增加" + qixue + "血气");
+                                    await Add_血气(player_id, qixue);
+                                }
 
                                 await this.setFileValue(player_id, xiuwei * time + other_xiuwei + other_x, transformation);
                                 await this.setFileValue(player_id, blood * time, "当前血量");
@@ -140,7 +146,7 @@ export class PlayerControlTask extends plugin {
                                 arr.Place_actionplus = 1;//沉迷状态
                                 delete arr.group_id;//结算完去除group_id
                                 await redis.set("xiuxian:player:" + player_id + ":action", JSON.stringify(arr));
-                               xueqi=Math.trunc( xiuwei * time * action3[i].beiyong4);
+                                xueqi = Math.trunc(xiuwei * time * action3[i].beiyong4);
                                 if (transformation == "血气") {
                                     msg.push("\n受到炼神之力的影响,增加气血:" + xueqi, "血量增加:" + blood * time);
                                 } else {
