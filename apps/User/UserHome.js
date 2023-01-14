@@ -1969,9 +1969,9 @@ export class UserHome extends plugin {
             return;
         }
         //命令判断
-        let thing = e.msg[0].replace("#", '');
+        let thing = e.msg.replace("#", '');
         thing = thing.replace("出售", '');
-        let code = thing.split("\*");//加下标[0]，防止出现沙雕输入的数字有空格；
+        let code = thing.split("\*");
         //数量判断
         let pinji = null;
         let thing_name = null;
@@ -1988,6 +1988,10 @@ export class UserHome extends plugin {
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
             e.reply(`万宝楼不回收这样的东西:${thing_name}`);
+            return;
+        }
+        if (quantity==NaN) {
+            e.reply("看你输的数是啥玩意！");
             return;
         }
         let pj = {
