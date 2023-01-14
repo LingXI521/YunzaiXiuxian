@@ -1851,8 +1851,9 @@ export class UserHome extends plugin {
         }
         else if(code.length==3){
             thing_name=code[0];
-            pinji=code[1];
-            quantity=code[2];
+            quantity=code[1];
+            pinji=code[2];
+            
         }
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
