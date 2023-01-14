@@ -1,0 +1,35 @@
+- group: 新年快乐
+  list:
+    - icon: help-icon_13
+      title: '#出题吧'
+      desc: '猜灯谜'
+    - icon: help-icon_11
+      title: '#酿制'
+      desc: '酿造兔年好酒'
+    - icon: help-icon_10
+      title: '#赠与巴巴托斯'
+      desc: '献给风神好酒,获得风神祝福'
+    - icon: help-icon_11
+      title: '#酿酒配方'
+      desc: '查看酿酒秘诀'
+    - icon: help-icon_49
+      title: '#集齐五符,召唤年兽!'
+      desc: '召唤boss,获得新年贺礼'
+    - icon: help-icon_4
+      title: '#新年签到'
+      desc: '每日好礼'
+    - icon: help-icon_14
+      title: '#单抽(新年常驻|新年限定up)'
+      desc: '抽卡!哇是七七'
+    - icon: help-icon_14
+      title: '#十连抽(新年常驻|新年限定up)'
+      desc: '抽卡!哇是十个七七'
+    - icon: help-icon_59
+      title: '#自选存档皮肤'
+      desc: '自选存档皮肤+皮肤编号+类型+(练气/装备)'
+    - icon: help-icon_71
+      title: '#我的饰品'
+      desc: '查看项链'
+    - icon: help-icon_70
+      title: '#幻影楼'
+      desc: '查看皮肤列表'
