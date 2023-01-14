@@ -21,6 +21,9 @@
     - icon: help-icon_45
       title: "#炼制+丹药名*N"
       desc: "炼制丹药"
+    - icon: help-icon_42
+      title: '#我的药效'
+      desc: '查看剩余药效'
     - icon: help-icon_40
       title: "#打造+装备名"
       desc: "打造装备"
