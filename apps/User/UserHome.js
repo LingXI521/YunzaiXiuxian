@@ -1859,16 +1859,16 @@ export class UserHome extends plugin {
             e.reply(`万宝楼不回收这样的东西:${thing_name}`);
             return;
         }
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
         if (pinji != null) {
-            let pj = {
-                "劣": 0,
-                "普": 1,
-                "优": 2,
-                "精": 3,
-                "极": 4,
-                "绝": 5,
-                "顶": 6
-            }
             pj = pj[pinji];
         }
         //纳戒中的数量
