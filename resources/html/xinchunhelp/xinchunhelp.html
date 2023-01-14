@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="preload" href="../../font/HYWH-65W.ttf" as="font" crossorigin />
+    <link rel="preload" href="../../font/HYWH-85W.ttf" as="font" crossorigin />
+    <link rel="preload" href="../../font/NZBZ.ttf" as="font" crossorigin />
+    <link
+      rel="preload"
+      href="../../font/tttgbnumber.ttf"
+      as="font"
+      crossorigin
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{pluResPath}}/html/xinchunhelp/common.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{pluResPath}}/html/xinchunhelp/xinchunhelp.css"
+    />
+  </head>
+
+  <body class="elem-default default-mode">
+    <div class="container" id="container">
+      <div class="info_box">
+        <div class="head-box type">
+          <div class="title">
+            新春列表<span class="version">{{version}}</span>
+          </div>
+          <div class="label">
+            Yunzai-Bot &#38; xiuxian-emulator-plugin<span class="version"
+              >{{version}}</span
+            >「{{version_name}}」
+          </div>
+        </div>
+      </div>
+
+      {{each helpData val}}
+      <div class="cont-box">
+        <div class="help-group">{{val.group}}</div>
+        <div class="help-table">
+          <div class="tr">
+            {{each val.list item}}
+            <div class="td">
+              <span class="help-icon {{item.icon}}"></span>
+              <strong class="help-title">{{item.title}}</strong>
+              <span class="help-desc">{{item.desc}}</span>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+      <div class="copyright">
+        Created By Yunzai-Bot<span class="version">3.0.0</span> &
+        xiuxian-emulator-plugin<span class="version">{{version}}</span>
+      </div>
+    </div>
+  </body>
+</html>
