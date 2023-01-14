@@ -988,7 +988,6 @@ export async function get_player_img(e) {
     }
     let action = player.皮肤
     let player_data = {
-        pufu_2:player.装备皮肤,
         pifu:action,
         user_id: usr_qq,
         player,  // 玩家数据
@@ -1220,7 +1219,8 @@ export async function get_equipment_img(e) {
         player_def: player.防御,
         player_bao: bao,
         player_maxHP: player.血量上限,
-        player_nowHP: player.当前血量
+        player_nowHP: player.当前血量,
+        pufu:player.装备皮肤
     }
     const data1 = await new Show(e).get_equipmnetData(player_data);
     return await puppeteer.screenshot("equipment", {
