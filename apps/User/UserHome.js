@@ -1352,6 +1352,73 @@ export class UserHome extends plugin {
                     return
                 }
             }
+            if (thing_name == "神器石") {
+                if (player.魔道值 >0) {
+                    e.reply("你尝试使用它,但是失败了")
+                    return
+                }
+                let equipment = await Read_equipment(usr_qq);
+                let equ = [];
+                for (var i = 0; i < data.equipment_list.length; i++) {
+                    if (data.equipment_list[i].name == equipment.武器.name) {
+                        equ[0] = (data.equipment_list[i]);
+                    } else if (data.equipment_list[i].name == equipment.法宝.name) {
+                        equ[1] = (data.equipment_list[i]);
+                    } else if (data.equipment_list[i].name == equipment.护具.name) {
+                        equ[2] = (data.equipment_list[i]);
+                    }
+                }
+                for (var i = 0; i < data.timeequipmen_list.length; i++) {
+                    if (data.timeequipmen_list[i].name == equipment.武器.name) {
+                        equ[0] = (data.timeequipmen_list[i]);
+                    } else if (data.timeequipmen_list[i].name == equipment.法宝.name) {
+                        equ[1] = (data.timeequipmen_list[i]);
+                    } else if (data.timeequipmen_list[i].name == equipment.护具.name) {
+                        equ[2] = (data.timeequipmen_list[i]);
+                    }
+                }
+                let random = Math.random();
+                if (random < 0.2) {
+                    var randomd1 = Math.floor(Math.random() * 6)
+                    if (isNotNull(equipment.武器.pinji)) {
+                        equipment.武器.pinji = randomd1
+                    }
+                }
+                else if (random < 0.6) {
+                    var randomd2 = Math.floor(Math.random() * 6)
+                    if (isNotNull(equipment.护具.pinji)) {
+                        equipment.护具.pinji = randomd2
+                    }
+                }
+                else {
+                    var randomd3 = Math.floor(Math.random() * 6)
+                    if (isNotNull(equipment.法宝.pinji)) {
+                        equipment.法宝.pinji = randomd3
+                    }
+                }
+                await Write_equipment(usr_qq, equipment)
+                if (equ.length != 3) {
+                    e.reply("error，装备不存在")
+                    return;
+                }
+                let z
+                z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][equipment.武器.pinji];
+                equipment.武器.atk = Math.floor(equ[0].atk * z);
+                equipment.武器.def = Math.floor(equ[0].def * z);
+                equipment.武器.HP = Math.floor(equ[0].HP * z);
+                z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][equipment.护具.pinji];
+                equipment.护具.atk = Math.floor(equ[2].atk * z);
+                equipment.护具.def = Math.floor(equ[2].def * z);
+                equipment.护具.HP = Math.floor(equ[2].HP * z);
+                z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][equipment.法宝.pinji];
+                equipment.法宝.atk = Math.floor(equ[1].atk * z);
+                equipment.法宝.def = Math.floor(equ[1].def * z);
+                equipment.法宝.HP = Math.floor(equ[1].HP * z);
+                await Write_equipment(usr_qq, equipment)
+                await Add_najie_thing(usr_qq, "神器石", "道具", -1)
+                e.reply("使用成功,发送#我的装备查看属性")
+                return
+            }
             if (thing_name == "魔器石") {
                 if (player.魔道值 < 1000) {
                     e.reply("你还不是魔头,无法使用")
