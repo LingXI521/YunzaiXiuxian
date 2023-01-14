@@ -706,7 +706,7 @@ export class TreasureCabinet extends plugin {
                 await Add_najie_thing(usr_qq, item_name, item_class, 1);
             } else if (ass.宗门神兽 == "青龙") {
                 //给功法，赐福加修为
-                if (flag == 0.1 && res == 1 && randomB > 0.8) {
+                if (flag <= 0.1 && res == 1 && randomB > 0.8) {
                     location = Math.floor(Math.random() * (data.qinlong.length / res));
                     item_name = data.qinlong[location].name;
                     item_class = data.qinlong[location].class;
