@@ -225,7 +225,6 @@ export class GuessLanternRiddles extends plugin {
                 if(type=="装备"){
                     kamian = data.daoju_list.find(item => item.id == photo && item.type=="装备幻影卡面");
                 }
-                let kamian = data.daoju_list.find(item => item.id == photo);
                 let player=await Read_player(usr_qq)
                 player.练气皮肤=kamian.id
                 await Write_player(usr_qq,player)
