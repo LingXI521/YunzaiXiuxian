@@ -304,6 +304,7 @@ export class MoneyOperation extends plugin {
                 pinji = thing_name_pinji_amount[1];
                 amount = Number(thing_name_pinji_amount[2]);
             }
+            e.reply(`${thing_name}、${pinji}、${amount}`);
             if (amount == NaN) {
                 return;
             } else if (amount < 0) {
