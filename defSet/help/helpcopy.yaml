@@ -59,7 +59,7 @@
     - icon: help-icon_43
       title: "#喂给仙宠+食物名称"
       desc: "升级仙宠"
-- group: 魔界
+- group: 魔/神界
   list:
     - icon: help-icon_43
       title: "#供奉魔石"
@@ -70,6 +70,18 @@
     - icon: help-icon_43
       title: "#献祭魔石"
       desc: "获取随机物品"
+    - icon: help-icon_43
+      title: "#供奉神石"
+      desc: "提高战斗属性"
+    - icon: help-icon_43
+      title: "#踏入神界"
+      desc: "消耗灵石"
+    - icon: help-icon_43
+      title: "#参悟神石"
+      desc: "获取随机丹药"
+    - icon: help-icon_43
+      title: "#打开闪闪发光的石头"
+      desc: ""
 - grop: -塔-
   list:
     - icon: help-icon_19
