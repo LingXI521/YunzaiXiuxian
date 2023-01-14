@@ -904,6 +904,7 @@ export class UserHome extends plugin {
         }
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
+        e.reply(thing_exist);
         if (!thing_exist) {
             e.reply(`你在瞎说啥呢?哪来的【${thing_name}】?`);
             return;
@@ -914,7 +915,7 @@ export class UserHome extends plugin {
                 e.reply("同种装备只能同时佩戴一个。");
             }
             //x是纳戒内有的数量
-            let x = await exist_najie_thing(usr_qq, thing_name, "装备",thing_exist.pinji);
+            let x = await exist_najie_thing(usr_qq,thing_name,"装备",thing_exist.pinji);
             if (!x) {//没有
                 e.reply(`你没有【${thing_name}】这样的装备`);
                 return;
