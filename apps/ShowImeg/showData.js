@@ -988,7 +988,7 @@ export async function get_player_img(e) {
     }
     let action = player.皮肤
     let player_data = {
-        pufu_2:player.纳戒皮肤,
+        pufu_2:player.装备皮肤,
         pifu:action,
         user_id: usr_qq,
         player,  // 玩家数据
