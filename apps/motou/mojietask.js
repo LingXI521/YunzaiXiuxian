@@ -160,7 +160,7 @@ export class mojietask extends plugin {
                             await Add_najie_thing(player_id, "修魔丹", "道具", -1);
                         }
                         if (await exist_najie_thing(player_id, "血魔丹", "道具")) {
-                            qixue*=15;
+                            qixue*=12;
                             qixue=Math.trunc(qixue);
                             await Add_najie_thing(player_id, "血魔丹", "道具", -1);
                         }
