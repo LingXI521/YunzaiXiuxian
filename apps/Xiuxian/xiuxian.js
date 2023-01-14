@@ -389,7 +389,14 @@ export async function player_efficiency(usr_qq) {
     data.setData("player", usr_qq, player);
     return;
 }
-
+/**
+ * 
+ * @param {*} usr_qq 玩家qq
+ * @param {*} thing_name 物品名
+ * @param {*} thing_class 物品类别
+ * @param {*} thing_pinji 可选参数，装备品阶
+ * @returns 
+ */
 //检查纳戒内物品是否存在
 //判断物品
 //要用await
