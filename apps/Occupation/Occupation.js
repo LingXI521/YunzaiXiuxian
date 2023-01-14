@@ -177,16 +177,17 @@ export class Occupation extends plugin {
         let player = await Read_player(usr_qq);
         let action = await redis.get("xiuxian:player:" + usr_qq + ":fuzhi");//副职
         action = await JSON.parse(action);
-        if (action == null) {
-            action = [];
-            e.reply(`您还没有副职哦`);
-            return;
-        }
          await Go(e);
         if (allaction) {
         } else {
             return;
         }
+        if (action == null) {
+            action = [];
+            e.reply(`您还没有副职哦`);
+            return;
+        }
+         
         let a, b, c;
         a = action.职业名;
         b = action.职业经验;
