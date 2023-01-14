@@ -328,7 +328,7 @@ export class SecretPlace extends plugin {
             return true;
         }
         let dazhe=1;
-        if (await exist_najie_thing(usr_qq, "仙府通行证", "道具") && player.魔道值<1) {
+        if (await exist_najie_thing(usr_qq, "仙府通行证", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
             dazhe=0;
             e.reply(player.名号+"使用了道具仙府通行证,本次仙府免费");
             await Add_najie_thing(usr_qq, "仙府通行证", "道具", -1);
@@ -414,12 +414,12 @@ export class SecretPlace extends plugin {
             await add_time(usr_qq);
         }
         let dazhe=1;
-        if (await exist_najie_thing(usr_qq, "仙境优惠券", "道具") && player.魔道值<1) {
+        if (await exist_najie_thing(usr_qq, "仙境优惠券", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
             dazhe=0.7;
             e.reply(player.名号+"使用了道具仙境优惠券,本次消耗减少30%");
             await Add_najie_thing(usr_qq, "仙境优惠券", "道具", -1);
         }
-        else if (await exist_najie_thing(usr_qq, "昆仑山通行证", "道具") && player.魔道值<1 && didian=="昆仑山") {
+        else if (await exist_najie_thing(usr_qq, "昆仑山通行证", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41) && didian=="昆仑山") {
             dazhe=0;
             e.reply(player.名号+"使用了道具昆仑山通行证,本次仙境免费");
             await Add_najie_thing(usr_qq, "昆仑山通行证", "道具", -1);
