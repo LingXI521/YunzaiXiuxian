@@ -3,7 +3,7 @@ import Show from "../../model/show.js";
 import puppeteer from "../../../../lib/puppeteer/puppeteer.js";
 import data from '../../model/XiuxianData.js'
 import { __PATH } from "../Xiuxian/xiuxian.js"
-import { get_gongfa_img,get_danyao_img,get_wuqi_img,get_fabao_img,get_huju_img,get_daoju_img,get_XianChong_img} from '../ShowImeg/showData.js'
+import { get_gongfa_img,get_danyao_img,get_wuqi_img,get_fabao_img,get_huju_img,get_daoju_img,get_XianChong_img,get_huanying_img} from '../ShowImeg/showData.js'
 /**
  * 生图模块
  */
@@ -46,6 +46,10 @@ export class Showningmeng extends plugin {
                  {
                     reg: "^#仙宠楼$",
                     fnc: "Show_XianChong",
+                },
+                {
+                    reg: "^#幻影楼$",
+                    fnc: "Show_HuanYing",
                 },
                 /*{
                     reg: "^#法宝楼$",
@@ -185,6 +189,16 @@ export class Showningmeng extends plugin {
           return;
         }
         let img = await get_daoju_img(e);
+        e.reply(img);
+        return;
+    }
+    //幻影楼
+    async Show_HuanYing(e) {
+
+        if (!e.isGroup) {
+          return;
+        }
+        let img = await get_huanying_img(e);
         e.reply(img);
         return;
     }
