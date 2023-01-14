@@ -86,7 +86,7 @@ async function Pu(e, x) {
             "顶": 6
         }
         if (thingless.pinji!=null) {
-            pj = pj[pinji];
+            pj = pj[thingless.pinji];
         }
         let najieNumber = await exist_najie_thing(usr_qq, thingless.thing.name, thingless.thing.class,pj)
         if (najieNumber == false) {
