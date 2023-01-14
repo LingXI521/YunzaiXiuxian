@@ -218,11 +218,12 @@ export class GuessLanternRiddles extends plugin {
             }
             else
             {
+                let kamian=""
                 if(type=="练气"){
-                    var kamian = data.daoju_list.find(item => item.id == photo && item.type=="练气幻影卡面");
+                    kamian = data.daoju_list.find(item => item.id == photo && item.type=="练气幻影卡面");
                 }
                 if(type=="装备"){
-                    var kamian = data.daoju_list.find(item => item.id == photo && item.type=="装备幻影卡面");
+                    kamian = data.daoju_list.find(item => item.id == photo && item.type=="装备幻影卡面");
                 }
                 let kamian = data.daoju_list.find(item => item.id == photo);
                 let player=await Read_player(usr_qq)
