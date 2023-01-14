@@ -173,9 +173,9 @@ export async function Write_equipment(usr_qq, equipment) {
     if (equipment.武器.name == "光明剑" && equipment.法宝.name == "光明符" && equipment.护具.name == "光明衣" && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
         player.攻击 = Math.trunc(1.15 * player.攻击);
     }
-    if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神日甲" && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
+    if (equipment.武器.name == "神月剑" && equipment.法宝.name == "神日花" && equipment.护具.name == "神星甲" && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
         player.攻击 = Math.trunc(1.05 * player.攻击);
-        player.血量上限 = Math.trunc(1.15 * player.血量上限);
+        player.血量上限 = Math.trunc(1.2 * player.血量上限);
     }
     await Write_player(usr_qq, player);
     await Add_HP(usr_qq, 0);
