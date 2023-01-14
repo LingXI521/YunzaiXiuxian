@@ -409,14 +409,14 @@ export class SecretPlace extends plugin {
         }
         let dazhe=1;
         if (await exist_najie_thing(usr_qq, "仙境优惠券", "道具") && player.魔道值<1) {
-            dazhe=0.5;
-            e.reply(player.名号+"使用了道具仙境优惠券,本次消耗减半");
+            dazhe=0.7;
+            e.reply(player.名号+"使用了道具仙境优惠券,本次消耗减少");
             await Add_najie_thing(usr_qq, "仙境优惠券", "道具", -1);
         }
-        else if (await exist_najie_thing(usr_qq, "仙境通行证", "道具") && player.魔道值<1) {
+        else if (await exist_najie_thing(usr_qq, "昆仑山通行证", "道具") && player.魔道值<1 && didian=="昆仑山") {
             dazhe=0;
-            e.reply(player.名号+"使用了道具仙境通行证,本次仙境免费");
-            await Add_najie_thing(usr_qq, "仙境通行证", "道具", -1);
+            e.reply(player.名号+"使用了道具昆仑山通行证,本次仙境免费");
+            await Add_najie_thing(usr_qq, "昆仑山通行证", "道具", -1);
         }
         let Price = weizhi.Price*dazhe;
         await Add_灵石(usr_qq, -Price);
