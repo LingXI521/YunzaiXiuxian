@@ -294,9 +294,9 @@ export class MoneyOperation extends plugin {
             //     e.reply(`${A_player.名号}你一个大魔头还妄想出现在尘世？`);
             //     return;
             // }
-            let thing_name_pinji_amount = msg.substr(0).split("*");
+            let thing_name_pinji_amount = msg.substr(0).split("\*");
             let thing_name = thing_name_pinji_amount[0];
-            let amount = 1;
+            let amount = null;
             let pinji = null;
             if (thing_name_pinji_amount.length == 2) {
                 amount = Number(thing_name_pinji_amount[1]);
@@ -321,53 +321,39 @@ export class MoneyOperation extends plugin {
             return;
         }
             let thing;
-            let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class)
-            if (thing_exist.class == "装备") {
-                if (pinji != null) {
-                    let pj = {
-                        "劣": 0,
-                        "普": 1,
-                        "优": 2,
-                        "精": 3,
-                        "极": 4,
-                        "绝": 5,
-                        "顶": 6
-                    }
-                    pj = pj[pinji];
-                    if (pinji == undefined) {
-                        e.reply(`品级参数错误，请从劣/普/优/精/极/绝/顶中选择一个`);
-                        return;
-                    }
-                    thing = A_najie.装备.find(item => item.name == thing_name && item.pinji == pj);
-                } else {
-                    thing = A_najie.装备.find(item => item.name == thing_name);
-                }
+            let pj = {
+                "劣": 0,
+                "普": 1,
+                "优": 2,
+                "精": 3,
+                "极": 4,
+                "绝": 5,
+                "顶": 6
             }
-                if (thing==undefined &&thing_exist=="装备")
+            if (pinji!=null) {
+                pj = pj[pinji];
+            }
+            let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class,pj)
+            if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class,pj) == 1) {
+                //锁定
+                e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
+                return;
+            }
+            if (number >= amount) {
+                if (thing_exist.class == "装备")
                 {
-                    e.reply(`你没有[${thing_name}](${pinji})`);
-                    return;
+                    let pinji = thing.pinji;
+                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pinji);
+                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pinji);
                 }
-                if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class) == 1) {
-                    //锁定
-                    e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
-                    return;
+                else
+                {
+                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount);
+                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount);
                 }
-                if (number >= amount) {
-                    if (thing_exist.class == "装备")
-                    {
-                        let pinji = thing.pinji;
-                        await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pinji);
-                        await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pinji);
-                    }
-                    else
-                    {
-                        await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount);
-                        await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount);
-                    }
-                    e.reply([segment.at(A_qq), segment.at(B_qq), `${B_player.名号} 获得了由 ${A_player.名号}赠送的[${thing_name}]×${amount}`]);
-                } else {
-                    e.reply(`你还没有这么多[${thing_name}]`);
+                e.reply([segment.at(A_qq), segment.at(B_qq), `${B_player.名号} 获得了由 ${A_player.名号}赠送的[${thing_name}]×${amount}`]);
+            } else {
+                e.reply(`你还没有这么多[${thing_name}]`);
                 
             }
             
