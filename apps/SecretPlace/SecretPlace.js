@@ -2,7 +2,7 @@
 import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
-import { Read_player, existplayer, ForwardMsg, isNotNull, sleep,  exist_najie_thing, } from '../Xiuxian/xiuxian.js'
+import { Read_player, existplayer, ForwardMsg, isNotNull, sleep,  exist_najie_thing,Add_najie_thing } from '../Xiuxian/xiuxian.js'
 import { Add_灵石, Add_修为 } from '../Xiuxian/xiuxian.js'
 import { add_mingdang, add_time } from "../jiance/jiance.js"
 
@@ -407,7 +407,18 @@ export class SecretPlace extends plugin {
             await add_mingdang(usr_qq);
             await add_time(usr_qq);
         }
-        let Price = weizhi.Price;
+        let dazhe=1;
+        if (await exist_najie_thing(usr_qq, "仙境优惠券", "道具") && player.魔道值<1) {
+            dazhe=0.5;
+            e.reply(player.名号+"使用了道具仙境优惠券,本次消耗减半");
+            await Add_najie_thing(usr_qq, "仙境优惠券", "道具", -1);
+        }
+        else if (await exist_najie_thing(usr_qq, "仙境通行证", "道具") && player.魔道值<1) {
+            dazhe=0;
+            e.reply(player.名号+"使用了道具仙境通行证,本次仙境免费");
+            await Add_najie_thing(usr_qq, "仙境通行证", "道具", -1);
+        }
+        let Price = weizhi.Price*dazhe;
         await Add_灵石(usr_qq, -Price);
         const time = this.xiuxianConfigData.CD.secretplace;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
