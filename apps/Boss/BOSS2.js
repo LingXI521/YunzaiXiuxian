@@ -497,7 +497,7 @@ export class BOSS2 extends plugin {
                         WorldBossStatus.防御+=yuansu.fyjiachen
                     }
                     msg=yuansu.msg
-                    let BOSS_To_Player_Damage = Harm(BOSSCurrentAttack, Math.trunc(CurrentPlayerAttributes.防御*0.2 ));
+                    let BOSS_To_Player_Damage = Harm(BOSSCurrentAttack, Math.trunc(CurrentPlayerAttributes.防御*0.1 ));
                     if (Random < 0.015) {
                         msg.push("【天理】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 2.2);
@@ -781,9 +781,9 @@ async function InitWorldBoss() {
     let X = AverageDamage * 0.01;
     Bot.logger.mark(`[天理] 化神玩家总数：${player_quantity}`);
     Bot.logger.mark(`[天理] 生成基数:${X}`);
-    let Health =  Math.trunc(X * 28 * player_quantity*2);
-    let Attack = Math.trunc(X*200);
-    let Defence = Math.trunc(X*190);
+    let Health =  Math.trunc(X * 30 * player_quantity*2);
+    let Attack = Math.trunc(X*220);
+    let Defence = Math.trunc(X*200);
     let yuansu=["仙之心·火","仙之心·水","仙之心·雷","仙之心·冰","仙之心·木"];
     let index = Math.trunc(Math.random() * yuansu.length);
     let linggen = yuansu[index];
