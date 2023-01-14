@@ -168,7 +168,7 @@ export async function Write_equipment(usr_qq, equipment) {
     }
     if (equipment.武器.name == "诛仙枪" && equipment.法宝.name == "诛仙花" && equipment.护具.name == "诛仙甲" && player.魔道值 > 999) {
         player.攻击 = Math.trunc(1.05 * player.攻击);
-        player.血量上限 = Math.trunc(1.15 * player.血量上限);
+        player.血量上限 = Math.trunc(1.2 * player.血量上限);
     }
     await Write_player(usr_qq, player);
     await Add_HP(usr_qq, 0);
