@@ -89,8 +89,6 @@ export class GuessLanternRiddles extends plugin {
             if (!e.isGroup) {
                 return;
             }
-            e.reply(`功能待修复`)
-            return
             let usr_qq = e.user_id;
             //有无账号
             let ifexistplay = await existplayer(usr_qq);
