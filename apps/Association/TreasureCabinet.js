@@ -7,7 +7,7 @@ import { timestampToTime, shijianc, get_random_fromARR, ForwardMsg, Getmsg_battl
 import { Add_灵石, Add_HP, Add_血气, Add_修为, Add_najie_thing, isNotNull, Read_player, __PATH, foundthing } from '../Xiuxian/xiuxian.js'
 import path from "path"
 import { existplayer } from "../Xiuxian/xiuxian.js";
-import { exist_najie_thing, Read_equipment, Write_equipment, Write_player } from "../Xiuxian/xiuxian.js";
+import { exist_najie_thing,Locked_najie_thing, Read_equipment, Write_equipment, Write_player } from "../Xiuxian/xiuxian.js";
 
 
 /**
@@ -806,6 +806,16 @@ export class TreasureCabinet extends plugin {
         let code = thing.split("\*");
         let thing_name = code[0];//物品
         let thing_value = code[1];//数量
+        let pinji=null;
+        if (code.length==2) {
+            thing_name=code[0];
+            thing_value=code[1];
+        }
+        else if(code.length==3){
+            thing_name=code[0];
+            thing_value=code[1];
+            pinji=code[2];
+        }
         if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
             e.reply('休想卡bug');
             return;
@@ -818,12 +828,29 @@ export class TreasureCabinet extends plugin {
             e.reply(`神兽不吃这样的东西:${thing_name}`);
             return;
         }
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
+        if (pinji != null) {
+            pj = pj[pinji];
+        }
+
 
         //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
+        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class,pj);
 
         if (thing_quantity < thing_value || !thing_quantity) {//没有
             e.reply(`【${thing_name}】数量不足`);
+            return;
+        }
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
+            e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
             return;
         }
 
