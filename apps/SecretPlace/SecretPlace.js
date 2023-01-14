@@ -327,7 +327,13 @@ export class SecretPlace extends plugin {
             e.reply("到了地图上的地点，发现洞府前有一句前人留下的遗言:‘至少有10w修为才能抵御仙威！’");
             return true;
         }
-        let Price = weizhi.Price;
+        let dazhe=1;
+        if (await exist_najie_thing(usr_qq, "仙府通行证", "道具") && player.魔道值<1) {
+            dazhe=0;
+            e.reply(player.名号+"使用了道具仙府通行证,本次仙府免费");
+            await Add_najie_thing(usr_qq, "仙府通行证", "道具", -1);
+        }
+        let Price = weizhi.Price*dazhe;
         await Add_灵石(usr_qq, -Price);
         const time = this.xiuxianConfigData.CD.timeplace;//时间（分钟）
         let action_time = 60000 * time;//持续时间，单位毫秒
