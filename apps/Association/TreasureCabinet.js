@@ -804,8 +804,8 @@ export class TreasureCabinet extends plugin {
         let thing = e.msg.replace("#", '');
         thing = thing.replace("喂给神兽", '');
         let code = thing.split("\*");
-        let thing_name = code[0];//物品
-        let thing_value = code[1];//数量
+        let thing_name = null;//物品
+        let thing_value = null;//数量
         let pinji=null;
         if (code.length==2) {
             thing_name=code[0];
@@ -813,8 +813,8 @@ export class TreasureCabinet extends plugin {
         }
         else if(code.length==3){
             thing_name=code[0];
-            thing_value=code[1];
-            pinji=code[2];
+            pinji=code[1];
+            thing_value=code[2];
         }
         if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
             e.reply('休想卡bug');
