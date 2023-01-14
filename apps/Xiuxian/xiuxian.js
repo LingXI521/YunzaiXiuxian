@@ -34,6 +34,7 @@ export const __PATH = {
     qinmidu: path.join(__dirname, "/resources/data/qinmidu"),
     backup: path.join(__dirname, "/resources/backup"),
     player_pifu_path: path.join(__dirname, "/resources/img/player_pifu"),
+    equipment_pifu_path: path.join(__dirname, "/resources/img/equipment_pifu"),
 }
 let xiuxianSetFile = "./plugins/xiuxian-emulator-plugin/config/xiuxian/xiuxian.yaml";
 if (!fs.existsSync(xiuxianSetFile)) {
