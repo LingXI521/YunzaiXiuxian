@@ -258,6 +258,7 @@ export class Battle extends plugin {
     if (await exist_najie_thing(B, "替身人偶", "道具") && B_player.魔道值<1) {
       e.reply(B_player.名号+"使用了道具替身人偶,躲过了此次打劫");
       await Add_najie_thing(B, "替身人偶", "道具", -1);
+      return;
   }
     //校验有没有灵根,没有的,随机一个写进存档,之后可以删掉 ()
     if (A_player.灵根 == null || A_player.灵根 == undefined) {
