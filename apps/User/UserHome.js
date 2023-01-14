@@ -1891,7 +1891,7 @@ export class UserHome extends plugin {
             return;
         }
         //数量够,数量减少,灵石增加
-        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity);
+        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity,pj);
         let commodities_price = thing_exist.出售价 * quantity;
         await Add_灵石(usr_qq, commodities_price);
         e.reply(`出售成功!  获得${commodities_price}灵石,还剩余${thing_name}*${thing_quantity - quantity} `);
