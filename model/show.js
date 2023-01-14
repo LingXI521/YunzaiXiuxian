@@ -49,7 +49,14 @@ export default class Game extends base {
       ...myData,
     };
   }
-
+  async get_huanying(myData) {
+    this.model = 'huanying';
+    return {
+      ...this.screenData,
+      saveId: 'huanying',
+      ...myData,
+    };
+  }
   async get_hujuData(myData) {
     this.model = 'huju';
     return {
@@ -94,7 +101,14 @@ export default class Game extends base {
       ...myData,
     };
   }
-
+  async get_equipmnetData2(myData) {
+    this.model = 'equipment2';
+    return {
+      ...this.screenData,
+      saveId: 'equipment2',
+      ...myData,
+    };
+  }
   async get_najieData(myData) {
     this.model = 'najie';
     return {
@@ -401,6 +415,14 @@ export default class Game extends base {
     return {
       ...this.screenData,
       saveId: 'tuzhi',
+      ...myData,
+    };
+  }
+  async get_NIANGJIU(myData) {
+    this.model = 'niangjiu';
+    return {
+      ...this.screenData,
+      saveId: 'niangjiu',
       ...myData,
     };
   }
