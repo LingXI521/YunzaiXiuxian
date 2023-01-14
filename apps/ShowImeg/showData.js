@@ -219,7 +219,7 @@ export async function get_XianChong_img(e) {
  * @return image
  */
 export async function get_daoju_img(e) {
-    let i;
+    let j;
     let usr_qq = e.user_id;
     let ifexistplay = data.existData('player', usr_qq)
     if (!ifexistplay) {
