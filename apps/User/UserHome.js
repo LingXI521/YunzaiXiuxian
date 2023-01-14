@@ -1313,6 +1313,11 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, "多莉的消息", "道具", -1);
                 return
             }
+            if (thing_name == "闹钟呼唤器") {
+                e.reply([segment.at(1564856979), "闹钟！！有人找你"])
+                await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", -1);
+                return
+            }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
