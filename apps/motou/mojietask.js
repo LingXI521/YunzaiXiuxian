@@ -83,6 +83,7 @@ export class mojietask extends plugin {
                         let t1;
                         let t2;
                         let last_msg = '';
+                        let fyd_msg = '';
                         if (random1 <= x) {
                           if (random2 <= y) {
                             if (random3 <= z) {
@@ -167,7 +168,7 @@ export class mojietask extends plugin {
                             await Add_najie_thing(player_id, thing_name, thing_class, n);
                         }
                         last_msg +=m +',获得修为' +xiuwei +',气血' +qixue;
-                        msg.push('\n' + player.名号 + last_msg );
+                        msg.push('\n' + player.名号 + last_msg+ fyd_msg );
                         let arr = action;
                         if (arr.cishu == 1) {
                           //把状态都关了
