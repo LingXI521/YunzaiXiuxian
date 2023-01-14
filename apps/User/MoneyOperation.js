@@ -294,7 +294,7 @@ export class MoneyOperation extends plugin {
             //     e.reply(`${A_player.名号}你一个大魔头还妄想出现在尘世？`);
             //     return;
             // }
-            let thing_name_pinji_amount = msg.substr(0).split("\*");
+            let thing_name_pinji_amount = msg.split("\*");
             let thing_name = thing_name_pinji_amount[0];
             let amount = null;
             let pinji = null;
@@ -356,7 +356,6 @@ export class MoneyOperation extends plugin {
                 e.reply(`你还没有这么多[${thing_name}]`);
                 
             }
-            
         }
     }
 
