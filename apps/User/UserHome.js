@@ -914,7 +914,7 @@ export class UserHome extends plugin {
                 e.reply("同种装备只能同时佩戴一个。");
             }
             //x是纳戒内有的数量
-            let x = await exist_najie_thing(usr_qq, thing_name, "装备");
+            let x = await exist_najie_thing(usr_qq, thing_name, "装备",thing_exist.pinji);
             if (!x) {//没有
                 e.reply(`你没有【${thing_name}】这样的装备`);
                 return;
