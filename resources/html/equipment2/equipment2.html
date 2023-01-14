@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/equipment2/equipment2.css" />
+  <link rel="preload" href="../../font/tttgbnumber.ttf" as="font" />
+  <link rel="shortcut icon" href="#" />
+  <style type="text/css">
+    body {
+      transform: scale(1);
+    width: 100%;
+    height: 440px;
+    margin: 0;
+    text-align: center;
+    background-image: url('{{pluResPath}}/img/equipment_pifu/{{pifu}}.jpg');
+    background-size: 100% auto;
+}
+</style>
+</head>
+
+<body>
+  <div class="user_width">
+    <div class="user_left">
+      <div class="user_left_top">
+        <div class="user_font_title">[项链]</div>
+        <div class="user_font">名称:{{necklace.name}}({{['劣','普','优','精','极','绝','顶'][necklace.pinji]}})</div>
+        <div class="user_font">{{necklace.属性}}属性加成：{{necklace.加成*100}}%</div>
+      </div>
+      <div class="user_left_buttom">
+        <div class="user_font_title">[敬请期待]</div>
+      </div>
+      <div class="user_left_buttom">
+        <div class="user_font_title">[敬请期待]</div>
+      </div>
+      <div class="user_left_buttom">
+        <div class="user_font_title">[敬请期待]</div>
+      </div>
+    </div>
+    <div class="user_right">
+      <div class="user_right_top">
+        <div class="user_font_title">[敬请期待]</div>
+      <div class="user_right_buttom">
+        <div class="user_font_title">[属性板]</div>
+        <div class="user_font2">道号:{{nickname}}</div>
+        <div class="user_font2">血量:{{player_nowHP}}/{{player_maxHP}}</div>
+        <div class="user_font2">攻击:{{player_atk}}</div>
+        <div class="user_font2">防御:{{player_def}}</div>
+        <div class="user_font2">暴击率:{{(player_bao).toFixed(0)}}%</div>
+      </div>
+    </div>
+  </div>
+  <style>
+
+  </style>
+
+</body>
+
+</html>
