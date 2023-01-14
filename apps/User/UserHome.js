@@ -1969,9 +1969,9 @@ export class UserHome extends plugin {
             return;
         }
         //命令判断
-        let thing = e.msg.replace("#", '');
+        let thing = e.msg[0].replace("#", '');
         thing = thing.replace("出售", '');
-        let code = thing[0].split("\*");//加下标[0]，防止出现沙雕输入的数字有空格；
+        let code = thing.split("\*");//加下标[0]，防止出现沙雕输入的数字有空格；
         //数量判断
         let pinji = null;
         let thing_name = null;
