@@ -1220,7 +1220,7 @@ export async function get_equipment_img(e) {
         player_bao: bao,
         player_maxHP: player.血量上限,
         player_nowHP: player.当前血量,
-        pufu:player.装备皮肤
+        pifu:player.装备皮肤
     }
     const data1 = await new Show(e).get_equipmnetData(player_data);
     return await puppeteer.screenshot("equipment", {
