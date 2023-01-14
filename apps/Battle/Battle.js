@@ -632,7 +632,7 @@ export async function zd_battle(A_player, B_player) {
         if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
       }
-      if (B_player.魔道值 < 1) {
+      if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
         var buff = Math.trunc(B_player.神石*0.000625);
         if (buff > 0.5) buff = 0.5;
         伤害 *= (1-buff);
@@ -827,7 +827,7 @@ ${B_player.名号}冻结中`);
         if (buff > 1.5) buff = 1.5;
         伤害 *= buff;
       }
-      if (A_player.魔道值 < 1) {
+      if (A_player.魔道值<1 && (A_player.灵根.type == "转生" || A_player.level_id >41)) {
         var buff = Math.trunc(A_player.神石*0.000625);
         if (buff > 0.5) buff = 0.5;
         伤害 *= (1-buff);
