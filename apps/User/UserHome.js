@@ -1269,7 +1269,11 @@ export class UserHome extends plugin {
                 player.练气皮肤=photo
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
-                await Add_najie_thing(usr_qq,old.name,"道具",1)
+                if(player.练气皮肤==0){
+                    await Add_najie_thing(usr_qq,"幻影-山水","道具",1)
+                }else{
+                    await Add_najie_thing(usr_qq,old.name,"道具",1)
+                }
                 e.reply("更换"+thing.type+"【"+thing.name+"】成功")
                 return
                 
@@ -1284,7 +1288,11 @@ export class UserHome extends plugin {
                 player.装备皮肤=photo
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
-                await Add_najie_thing(usr_qq,old.name,"道具",1)
+                if(player.装备皮肤==0){
+                    await Add_najie_thing(usr_qq,"幻影-墨","道具",1)
+                }else{
+                    await Add_najie_thing(usr_qq,old.name,"道具",1)
+                }
                 e.reply("更换"+thing.type+"【"+thing.name+"】成功")
                 return
                 
