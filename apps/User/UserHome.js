@@ -2152,6 +2152,7 @@ export class UserHome extends plugin {
             
         }
             if (thing_name == "石铲") {
+                  let si = parseInt(player.血量上限 * 1); 
                 let daomu = Math.round(Math.random() * 4)
                 if (daomu > 0) {
                     if (daomu < 2) {
@@ -2168,11 +2169,11 @@ export class UserHome extends plugin {
                         return
                     }
                     if (daomu > 2 && daomu < 4) {
-                        await Add_修为(usr_qq, 50000);
-                        await Add_血气(usr_qq, 50000);
-                        await Add_HP(usr_qq, -500000);
+                     
+                        await Add_修为(usr_qq, 800);
+                        await Add_HP(usr_qq, si);
                         await Add_najie_thing(usr_qq, "石铲", "道具", -1);
-                        e.reply(["你随便找了个地方就寻宝，未曾想找到了一群僵尸，你只击败了一部分就落荒而逃，修为增加50000,血气增加50000,血量降低500000"])
+                        e.reply(["你随便找了个地方就寻宝，未曾想找到了一群僵尸，你只击败了一部分就落荒而逃,只获得了800修为"])
                         return
                     }
                     if (daomu > 3 && daomu < 5) {
@@ -2221,6 +2222,7 @@ export class UserHome extends plugin {
                 }
             }
             if (thing_name == "洛阳铲") {
+                let si = parseInt(player.血量上限 * 1);
                 let jianshao = parseInt(player.血量上限 * 0.25);
                 let daomu = Math.round(Math.random() * 4)
                 if (daomu > 0) {
@@ -2253,9 +2255,9 @@ export class UserHome extends plugin {
                     }
                 } else {
                     await Add_灵石(usr_qq, -5000000);
-                    await Add_HP(usr_qq, -jianshao);
+                    await Add_HP(usr_qq, -si);
                     await Add_najie_thing(usr_qq, "洛阳铲", "道具", -1);
-                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + jianshao + ",灵石被他劫走了5000000")
+                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + ",灵石被他劫走了5000000")
                     return
                 }
             }
@@ -2282,6 +2284,7 @@ export class UserHome extends plugin {
             }
             
             if (thing_name == "钻石铲") {
+                  let si = parseInt(player.血量上限 * 1); 
                 let jianshao = parseInt(player.血量上限 * 0.25);
                 let daomu = Math.round(Math.random() * 4)
                 if (daomu > 0) {
@@ -2302,10 +2305,10 @@ export class UserHome extends plugin {
                         } else {
                            
                             await Add_najie_thing(usr_qq, "火把", "道具", -1);     
-                            await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);
+                            await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1);
                             await Add_修为(usr_qq, 5000000);
                             await Add_血气(usr_qq, 5000000);   
-                            e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一些钻石锭，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
+                            e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个仙子邀约，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
                             return
                         }
                     }
@@ -2324,9 +2327,9 @@ export class UserHome extends plugin {
                 } else {
                     
                     await Add_灵石(usr_qq, -5000000);
-                    await Add_HP(usr_qq, -jianshao);
+                    await Add_HP(usr_qq, si);
                     cishu = cishu - 1;
-                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + jianshao + "灵石被他劫走了5000000")
+                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + "灵石被他劫走了5000000")
                     return
                 }
             }
