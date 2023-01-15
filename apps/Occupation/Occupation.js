@@ -1322,6 +1322,7 @@ export class Occupation extends plugin {
             学习的功法: player.学习的功法,
             灵根: player.灵根,
             魔道值: player.魔道值,
+            神石:player.神石,
             法球倍率: player.灵根.法球倍率,
             仙宠: player.仙宠
         }
