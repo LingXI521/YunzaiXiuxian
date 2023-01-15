@@ -102,6 +102,12 @@ export class Occupation extends plugin {
         if (!ifexistplay) {
             return;
         }
+         await Go(e);
+        if (!allaction) {
+            return;
+        } else {
+            
+        }
         let occupation = e.msg.replace("#转职", "");
         let player = await Read_player(usr_qq);
         let player_occupation = player.occupation;
@@ -110,12 +116,6 @@ export class Occupation extends plugin {
             e.reply(`没有[${occupation}]这项职业`);
             return;
         }
-        await Go(e);
-        if (allaction) {
-        } else {
-            return;
-        }
-
         let now_level_id
         now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
         if (now_level_id < 17 && occupation == "采矿师") {
@@ -178,20 +178,20 @@ export class Occupation extends plugin {
         if (!ifexistplay) {
             return;
         }
+         await Go(e);
+        if (!allaction) {
+            return;
+        } else {
+            
+        }
         let player = await Read_player(usr_qq);
         let action = await redis.get("xiuxian:player:" + usr_qq + ":fuzhi");//副职
         action = await JSON.parse(action);
-        await Go(e);
-        if (allaction) {
-        } else {
-            return;
-        }
         if (action == null) {
             action = [];
             e.reply(`您还没有副职哦`);
             return;
         }
-
         let a, b, c;
         a = action.职业名;
         b = action.职业经验;
