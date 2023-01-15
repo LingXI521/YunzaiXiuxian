@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/niangjiu/niangjiu.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="../../html/player/player.css" /> -->
+  <link rel="preload" href="../../font/tttgbnumber.ttf" as="font" />
+  <!-- <link rel="preload" href="../../img/player/xiuxian-01.png" as="image" /> -->
+  <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+	<div> 
+		<div class="user_bottom1">
+  <!-- 你要是闲得无聊,每个装备可以搞个icon -->
+		<div class="use_data">
+			<div class="user_font use_data_head" style="text-align: center;padding-left: 0px;">
+				<div>酿酒配方</div>
+				<div style="font-size:0.8em;">酿制指令：#酿制+佳酿名</div>
+			</div>
+			<div class="use_data_body">
+				{{each danfang_list item}}
+					<div class="user_font">
+						<div >
+							<div style="display:inline-block;">【{{item.type}}】{{item.name}}</div>
+							<div class="rate" style="width:180px">酿制成功率:{{~~(item.成功率*100)}}%</div>
+						</div>
+							<div class="info">{{item.type}}：{{if item.type=="血量"}}{{item.HP}}{{else if item.type=="修为"}}{{item.exp1}}{{else if item.type=="血气"}}{{item.exp2}}{{/if}}</div>
+						<div>
+							<div class="info">配方：</div>
+							<div style="padding:10px">
+							{{each item.配方 ittem}}
+								<div class="info" style="width:250px;">{{ittem.name}}×{{ittem.数量}}</div>
+							{{/each}}
+							</div>
+						</div>
+						
+					</div>
+				{{/each}}
+			</div>
+		</div>
+		</div>
+  </div>
+  <style>
+
+  </style>
+
+</body>
+
+</html>

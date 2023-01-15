@@ -1941,13 +1941,13 @@ export async function anti_cheating(e){
     let player=await Read_player(e.user_id)
     let wwwaw=0x10ef+-0x17*0x1a3+-0x2*-0xa67;
     let wwwawa=-0x3*0x5b9+0x24a8+-0x1367;
-    let wwwawaa=Math.trunc(D/4)
+    let wwwawaa=0
     let wwwawaaa=0x2607+-0x1cf*-0x9+-0x3649;
     let wwwawaaaa=0x90*-0xf+0x2098+0x4e*-0x4e;
     let wwwawaaaaaa=0x1*-0x2589+0xbe*0x11+0x194f;
     let wwwawaaaaa=0x1*0x1e62+-0x1588*-0x1+0xf*-0x376;
     let wwwawaaaaaaa=-0x1449+0x1b7*0x1+0x12b0;
-    var obfuscator=D>wwwawaaaaaaa&&player['\x6c\x65\x76\x65\x6c\x5f\x69\x64']>wwwaw&&player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64']>wwwawa&&player.连续签到天数>wwwawaa&&player.修炼效率提升>wwwawaaa&&player.镇妖塔层数>wwwawaaaa&&player.神魄段数>wwwawaaaaaa&&player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77']==wwwawaaaaa
+    var obfuscator=D>wwwawaaaaaaa&&player['\x6c\x65\x76\x65\x6c\x5f\x69\x64']>wwwaw&&player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64']>wwwawa&&player.连续签到天数>wwwawaa&&player.修炼效率提升>wwwawaaa&&player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77']==wwwawaaaaa
     if(obfuscator){
         return D
     }else{

@@ -128,7 +128,7 @@ export class shenren extends plugin {
     {
       thing="魔石";
     }
-    e.reply("你打开了石头,获得了"+thing+"x3" );
+    e.reply("你打开了石头,获得了"+thing+"x2" );
     await Add_najie_thing(usr_qq, thing, "道具", 3);
     return;
   }
