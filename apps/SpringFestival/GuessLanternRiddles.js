@@ -84,6 +84,10 @@ export class GuessLanternRiddles extends plugin {
     }
 
         async Add_lhd(e){
+            if (!e.isMaster) {
+               e.reply('只允许开发人员使用');
+                return;
+            }
             let a=await anti_cheating(e)
             e.reply("返回"+a)
         }
