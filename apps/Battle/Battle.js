@@ -134,7 +134,7 @@ export class Battle extends plugin {
     ).level_id;
 
     //A是仙人，B不是仙人
-    if (now_level_idAA > 42 && now_level_idBB <= 41) {
+    if (now_level_idAA > 41 && now_level_idBB <= 41) {
       e.reply(`仙人不可对凡人出手！`);
       return;
     }
