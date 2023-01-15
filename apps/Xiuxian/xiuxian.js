@@ -451,7 +451,14 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
     }
     return false;
 }
-
+/**
+ * 
+ * @param {*} usr_qq 用户qq
+ * @param {*} thing_name 物品名
+ * @param {*} thing_class 物品类别
+ * @param {*} thing_pinji 品级 劣-顶
+ * @returns 
+ */
 //检查纳戒内物品是否锁定
 //判断物品
 //要用await
@@ -511,6 +518,7 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class,thing_p
  * @param thing_name  物品名称
  * @param thing_class  物品类别
  * @param n  操作的数量,取+增加,取 -减少
+ * @param pinji 品级 0-6
  * @returns 无
  */
 export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji = null) {
@@ -563,28 +571,16 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                     pinji = Math.floor(Math.random() * 3)
                 }
             }
-            let pj = {
-                "劣": 0,
-                "普": 1,
-                "优": 2,
-                "精": 3,
-                "极": 4,
-                "绝": 5,
-                "顶": 6
-            }
-            if (pinji!=null) {
-                pj = pj[pinji];
-            }
-            let e = await najie.装备.find(item => item.name == name && item.pinji == pj);
+            let e = await najie.装备.find(item => item.name == name && item.pinji == pinji);
             if (!isNotNull(e)) {
-                let z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][pj];
+                let z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][pinji];
                 var equipment = data.equipment_list.find(item => item.name == name);
                 if (!isNotNull(equipment)) {
                     equipment = data.timeequipmen_list.find(item => item.name == name);
                 }
                 //for(let i=0;i<x;i++){
                 let equipment0 = JSON.parse(JSON.stringify(equipment));
-                equipment0.pinji = pj;
+                equipment0.pinji = pinji;
                 if (isNotNull(equipment0.加成)) {
                     equipment0.加成 = Number((equipment.加成 * z).toFixed(2));
                     if (equipment0.加成 == 0) {
@@ -613,7 +609,7 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                 najie.装备.find(item => item.name == name).数量 = x;
             }
         } else {
-            najie.装备.find(item => item.name == name && item.pinji == pj).数量 += x;
+            najie.装备.find(item => item.name == name && item.pinji == pinji).数量 += x;
         }
         najie.装备 = najie.装备.filter(item => item.数量 > 0);
         await Write_najie(usr_qq, najie);

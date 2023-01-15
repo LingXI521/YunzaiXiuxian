@@ -329,8 +329,20 @@ export class MoneyOperation extends plugin {
             if (number >= amount) {
                 if (thing_exist.class == "装备")
                 {
-                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pinji);
-                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pinji);
+                    let pj = {
+                        "劣": 0,
+                        "普": 1,
+                        "优": 2,
+                        "精": 3,
+                        "极": 4,
+                        "绝": 5,
+                        "顶": 6
+                    }
+                    if (pinji!=null) {
+                        pj = pj[pinji];
+                    }
+                    await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pj);
+                    await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pj);
                 }
                 else
                 {
