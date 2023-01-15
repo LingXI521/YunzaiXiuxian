@@ -395,7 +395,7 @@ export async function player_efficiency(usr_qq) {
  * @param {*} usr_qq 玩家qq
  * @param {*} thing_name 物品名
  * @param {*} thing_class 物品类别
- * @param {*} thing_pinji 可选参数，装备品阶，劣、优等
+ * @param {*} thing_pinji 可选参数，装备品阶，汉字劣、优等
  * @returns 物品数量或者false
  */
 //检查纳戒内物品是否存在
@@ -456,7 +456,7 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
  * @param {*} usr_qq 用户qq
  * @param {*} thing_name 物品名
  * @param {*} thing_class 物品类别
- * @param {*} thing_pinji 品级 劣-顶
+ * @param {*} thing_pinji 品级 汉字 劣-顶
  * @returns 
  */
 //检查纳戒内物品是否锁定
@@ -518,7 +518,7 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class,thing_p
  * @param thing_name  物品名称
  * @param thing_class  物品类别
  * @param n  操作的数量,取+增加,取 -减少
- * @param pinji 品级 0-6
+ * @param pinji 品级 数字0-6
  * @returns 无
  */
 export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji = null) {
