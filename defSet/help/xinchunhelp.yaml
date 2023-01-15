@@ -13,8 +13,11 @@
       title: '#酿酒配方'
       desc: '查看酿酒秘诀'
     - icon: help-icon_49
-      title: '#集齐五符,召唤年兽!'
+      title: '#集齐五符,召唤年兽！'
       desc: '召唤boss,获得新年贺礼'
+    - icon: help-icon_49
+      title: '#五符兑换！'
+      desc: '集齐一套符找堂主兑换'
     - icon: help-icon_4
       title: '#新年签到'
       desc: '每日好礼'
@@ -33,3 +36,4 @@
     - icon: help-icon_70
       title: '#幻影楼'
       desc: '查看皮肤列表'
+
