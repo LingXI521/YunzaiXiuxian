@@ -153,7 +153,7 @@
       desc: "服用"
     - icon: help-icon_51
       title: "#装备+装备名"
-      desc: "装备"
+      desc: "加*品级,可指定品级"
 
 - group: 君子爱财
   list:
