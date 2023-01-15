@@ -32,8 +32,8 @@ export class tzzyt extends plugin {
         }
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
-            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 48) {
-                e.reply("修为至超过55级无法接触【镇妖塔】");
+            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 50) {
+                e.reply("修为至超过50级无法接触【镇妖塔】");
                 return true;
             }
     let usr_qq = e.user_id;
