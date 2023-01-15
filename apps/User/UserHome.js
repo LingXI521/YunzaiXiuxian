@@ -893,29 +893,23 @@ export class UserHome extends plugin {
         msg = msg.replace("#", '');
         let code = msg.split("\*");
         let thing_name = code[0];
-        let quantity;
-        if (parseInt(code[1]) != parseInt(code[1])) {
-            quantity = 1;
-        } else if (parseInt(code[1]) < 1) {
-            e.reply(`输入物品数量小于1,现在默认为1`);
+        let quantity=code[1];
+        if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
             quantity = 1;
         } else {
-            quantity = parseInt(code[1]);
+            quantity = code[1].replace(/[^0-9]/ig, "");
+        }
+        if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
+            quantity = 1;
         }
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
-        e.reply(thing_exist);
         if (!thing_exist) {
             e.reply(`你在瞎说啥呢?哪来的【${thing_name}】?`);
             return;
         }
         if (func == "装备") {
-            if (quantity != 1) {
-                quantity = 1;
-                e.reply("同种装备只能同时佩戴一个。");
-            }
-            let pinji = null;
-            pinji = code[2];
+            let x;
             let pj = {
                 "劣": 0,
                 "普": 1,
@@ -925,36 +919,41 @@ export class UserHome extends plugin {
                 "绝": 5,
                 "顶": 6
             }
-            if (pinji != null) {
-                pj = pj[pinji];
+            if (code[1]==undefined)
+            {
+                x = await exist_najie_thing(usr_qq, thing_name, "装备");
             }
-            //x是纳戒内有的数量
-            let x = await exist_najie_thing(usr_qq, thing_name, "装备", pj);
+            else
+            {
+                pj = pj[code[1]];
+                if (pj==undefined) return; 
+                x = await exist_najie_thing(usr_qq, thing_name, "装备", pj);
+            }
             if (!x) {//没有
-                e.reply(`你没有[${thing_name}]*${pinji}这样的装备`);
+                e.reply(`你没有【${thing_name}】这样的装备`);
                 return;
             }
-            let v = najie.装备.find(item => item.name == thing_name);
-            let z = v.pinji;//随便找一个
-            let changdu = najie.装备.length;//列表长度
-            for (var i = 0; changdu > i; i++) {//遍历列表有没有比那把强的
-                if (najie.装备[i].name == thing_name && najie.装备[i].pinji > z) {
-                    v = najie.装备[i];
+            let equ;
+            if (code[1]==undefined)
+            {
+                equ = najie.装备.find(item => item.name == thing_name);
+                for (var i = 0; i<najie.装备.length; i++) {//遍历列表有没有比那把强的
+                    if (najie.装备[i].name == thing_name && najie.装备[i].pinji > equ.pinji) {
+                        equ = najie.装备[i];
+                    }
                 }
             }
-            let eq = v;
-            //console.log(eq)
-            if (x < quantity) {//不够
-                e.reply(`你目前没有【${thing_name}】`);
-                return;
+            else
+            {
+                equ = najie.装备.find(item => item.name == thing_name && item.pinji==pj);
             }
             var equipment = await Read_equipment(usr_qq);
-            if (eq.type == "项链") {
-                if (eq.属性 == "幸运") {
+            if (equ.type == "项链") {
+                if (equ.属性 == "幸运") {
                     player.幸运 -= equipment.项链.加成
                 }
             }
-            await instead_equipment(usr_qq, eq);
+            await instead_equipment(usr_qq, equ);
             let img = await get_equipment_img(e);
             equipment = await Read_equipment(usr_qq);
             if (equipment.武器.name == "灭仙剑" && equipment.法宝.name == "灭仙符" && equipment.护具.name == "灭仙衣" && player.魔道值 > 999) {
