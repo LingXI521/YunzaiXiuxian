@@ -468,14 +468,17 @@ export class PlayerControl extends plugin {
             await Add_血气(usr_qq, qixue);
         }
         //设置修为，设置血量
-        await this.setFileValue(usr_qq, xiuwei * time + other_xiuwei+other_x, transformation);//丹药修正
+        
         await this.setFileValue(usr_qq, blood * time, "当前血量");
 
         //给出消息提示
         if(transformation=="血气"){
+            await this.setFileValue(usr_qq, (xiuwei * time + other_xiuwei+other_x)*action3[i].beiyong4, transformation);//丹药修正
         msg.push("\n受到炼神之力的影响,增加血气:" + xiuwei * time*action3[i].beiyong4, "  获得治疗,血量增加:" + blood * time);}
     else{
+        await this.setFileValue(usr_qq, xiuwei * time + other_xiuwei+other_x, transformation);
         if (is_random) {
+            
             msg.push("\n增加气血:" + xiuwei * time, "  获得治疗,血量增加:" + blood * time+"炼神之力消散了");
         } else {
             msg.push("\n增加修为:" + xiuwei * time, "  获得治疗,血量增加:" + blood * time);
