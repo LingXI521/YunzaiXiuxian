@@ -76,7 +76,19 @@ async function Pu(e, x) {
     let time = (end_time - nowtime) / 60000;
     time = Math.ceil(time);
     if (time <= 0) {
-        let najieNumber = await exist_najie_thing(usr_qq, thingless.thing.name, thingless.thing.class,thingless.pinji)
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
+        if (thingless.pinji!=null) {
+            pj = pj[thingless.pinji];
+        }
+        let najieNumber = await exist_najie_thing(usr_qq, thingless.thing.name, thingless.thing.class,pj)
         if (najieNumber == false) {
             najieNumber = 0
         }

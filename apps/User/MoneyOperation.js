@@ -320,8 +320,20 @@ export class MoneyOperation extends plugin {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         }
-            let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class,pinji)
-            if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class,pinji) == 1) {
+            let pj = {
+                "劣": 0,
+                "普": 1,
+                "优": 2,
+                "精": 3,
+                "极": 4,
+                "绝": 5,
+                "顶": 6
+            }
+            if (pinji!=null) {
+                pj = pj[pinji];
+            }
+            let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class,pj)
+            if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class,pj) == 1) {
                 //锁定
                 e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
                 return;
@@ -329,18 +341,6 @@ export class MoneyOperation extends plugin {
             if (number >= amount) {
                 if (thing_exist.class == "装备")
                 {
-                    let pj = {
-                        "劣": 0,
-                        "普": 1,
-                        "优": 2,
-                        "精": 3,
-                        "极": 4,
-                        "绝": 5,
-                        "顶": 6
-                    }
-                    if (pinji!=null) {
-                        pj = pj[pinji];
-                    }
                     await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pj);
                     await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pj);
                 }
@@ -355,7 +355,6 @@ export class MoneyOperation extends plugin {
             }
         }
     }
-
     //发红包
     async Give_honbao(e) {
         //不开放私聊功能

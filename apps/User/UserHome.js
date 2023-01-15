@@ -2522,8 +2522,20 @@ export class UserHome extends plugin {
             e.reply("看你输的数是啥玩意！");
             return;
         }
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
+        if (pinji != null) {
+            pj = pj[pinji];
+        }
         //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class, pinji);
+        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class, pj);
         if (!thing_quantity) {//没有
             e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
             return;
@@ -2533,7 +2545,7 @@ export class UserHome extends plugin {
             return;
         }
         //锁定禁止出售
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class, pinji) == 1) {
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class, pj) == 1) {
             e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
             return;
         }
@@ -2542,7 +2554,7 @@ export class UserHome extends plugin {
             return;
         }
         //数量够,数量减少,灵石增加
-        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity, pinji);
+        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity, pj);
         let commodities_price = thing_exist.出售价 * quantity;
         await Add_灵石(usr_qq, commodities_price);
         e.reply(`出售成功!  获得${commodities_price}灵石,还剩余${thing_name}*${thing_quantity - quantity} `);

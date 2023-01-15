@@ -268,14 +268,26 @@ export class Exchange extends plugin {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         } 
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
+        if (pinji != null) {
+            pj = pj[pinji];
+        }
         //判断戒指中是否存在
-        let thing_quantity = await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pinji);
+        let thing_quantity = await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pj);
         if (!thing_quantity) {
             //没有
             e.reply(`你没有[${thing_name}]这样的${thing_exist.class}`);
             return;
         }
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pinji) == 1) {
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
             //锁定
             e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
             return;

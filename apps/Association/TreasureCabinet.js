@@ -828,14 +828,28 @@ export class TreasureCabinet extends plugin {
             e.reply(`神兽不吃这样的东西:${thing_name}`);
             return;
         }
+        let pj = {
+            "劣": 0,
+            "普": 1,
+            "优": 2,
+            "精": 3,
+            "极": 4,
+            "绝": 5,
+            "顶": 6
+        }
+        if (pinji != null) {
+            pj = pj[pinji];
+        }
+
+
         //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class,pinji);
+        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class,pj);
 
         if (thing_quantity < thing_value || !thing_quantity) {//没有
             e.reply(`【${thing_name}】数量不足`);
             return;
         }
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pinji) == 1) {
+        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
             e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
             return;
         }

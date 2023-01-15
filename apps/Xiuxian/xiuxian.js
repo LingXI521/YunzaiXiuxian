@@ -413,14 +413,7 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
     }
     let ifexist;
     if (thing_class == "装备") {
-        let pj = {"劣": 0,"普": 1,"优": 2,"精": 3,"极": 4,"绝": 5,"顶": 6}
-        if (thing_pinji != null) {
-            pj = pj[thing_pinji];
-        }
-        else{
-            e.reply("看看你输的品级是啥玩意？");
-        }
-        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==pj);
+        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
     }
     if (thing_class == "丹药") {
         ifexist = najie.丹药.find(item => item.name == thing_name);
@@ -474,14 +467,7 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class,thing_p
     }
     let ifexist;
     if (thing_class == "装备") {
-        let pj = {"劣": 0,"普": 1,"优": 2,"精": 3,"极": 4,"绝": 5,"顶": 6}
-        if (thing_pinji != null) {
-            pj = pj[thing_pinji];
-        }
-        else{
-            e.reply("看看你输的品级是啥玩意？");
-        }
-        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==pj);
+        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
     }
     if (thing_class == "丹药") {
         ifexist = najie.丹药.find(item => item.name == thing_name);
