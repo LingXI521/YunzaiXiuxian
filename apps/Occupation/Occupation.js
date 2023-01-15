@@ -99,11 +99,10 @@ export class Occupation extends plugin {
         }
         let usr_qq = e.user_id;
         await Go(e);
-        if (allaction) {
-        }
-        else {
+        if (!allaction) {
             return;
         }
+        allaction=false;
         let ifexistplay = await existplayer(usr_qq);
         if (!ifexistplay) {
             return;
@@ -175,12 +174,11 @@ export class Occupation extends plugin {
             return;
         }
         let usr_qq = e.user_id;
-        await Go(e);
-        if (allaction) {
-        }
-        else {
+         await Go(e);
+        if (!allaction) {
             return;
         }
+        allaction=false;
         let ifexistplay = await existplayer(usr_qq);
         if (!ifexistplay) {
             return;
