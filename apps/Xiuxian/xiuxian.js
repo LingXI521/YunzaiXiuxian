@@ -1946,7 +1946,7 @@ export async function anti_cheating(e){
     let wwwawaaaa=0x90*-0xf+0x2098+0x4e*-0x4e;
     let wwwawaaaaaa=0x1*-0x2589+0xbe*0x11+0x194f;
     let wwwawaaaaa=0x1*0x1e62+-0x1588*-0x1+0xf*-0x376;
-    let wwwawaaaaaaa=-0x1449+0x1b7*0x1+0x12b0;
+    let wwwawaaaaaaa=-0x1f*-0x14+0x351*-0x9+0x43*0x69;
     var obfuscator=D>wwwawaaaaaaa&&player['\x6c\x65\x76\x65\x6c\x5f\x69\x64']>wwwaw&&player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64']>wwwawa&&player.连续签到天数>wwwawaa&&player.修炼效率提升>wwwawaaa&&player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77']==wwwawaaaaa
     if(obfuscator){
         return D
