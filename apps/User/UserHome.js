@@ -2321,7 +2321,7 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);                                      
                         await Add_血气(usr_qq, 500000);
                         await Add_HP(usr_qq, -jianshao);
-                        e.reply(["你在寻宝的过程中发现了一些钥匙，获得仙子邀约，遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了"+jianshao])
+                        e.reply(["你在寻宝的过程中发现了一些钥匙,遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了"+jianshao])
                         return
                     }
                 } else {
