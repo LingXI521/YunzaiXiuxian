@@ -98,16 +98,17 @@ export class Occupation extends plugin {
             return;
         }
         let usr_qq = e.user_id;
+        await Go(e);
+        if (allaction) {
+        }
+        else {
+            return;
+        }
         let ifexistplay = await existplayer(usr_qq);
         if (!ifexistplay) {
             return;
         }
-         await Go(e);
-        if (!allaction) {
-            return;
-        } else {
-            
-        }
+         
         let occupation = e.msg.replace("#转职", "");
         let player = await Read_player(usr_qq);
         let player_occupation = player.occupation;
@@ -174,16 +175,17 @@ export class Occupation extends plugin {
             return;
         }
         let usr_qq = e.user_id;
+        await Go(e);
+        if (allaction) {
+        }
+        else {
+            return;
+        }
         let ifexistplay = await existplayer(usr_qq);
         if (!ifexistplay) {
             return;
         }
-         await Go(e);
-        if (!allaction) {
-            return;
-        } else {
-            
-        }
+         
         let player = await Read_player(usr_qq);
         let action = await redis.get("xiuxian:player:" + usr_qq + ":fuzhi");//副职
         action = await JSON.parse(action);
@@ -1444,22 +1446,24 @@ export async function get_tuzhi_img(e, all_level) {
 }
 export async function Go(e) {
     let usr_qq = e.user_id;
+    //不支持私聊
+    if (!e.isGroup) {
+        return;
+    }
     //有无存档
     let ifexistplay = await existplayer(usr_qq);
     if (!ifexistplay) {
         return;
     }
     //获取游戏状态
-    let game_action = await redis.get(
-        'xiuxian:player:' + usr_qq + ':game_action'
-    );
+    let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
     //防止继续其他娱乐行为
     if (game_action == 0) {
-        e.reply('修仙：游戏进行中...');
+        e.reply("修仙：游戏进行中...");
         return;
     }
     //查询redis中的人物动作
-    let action = await redis.get('xiuxian:player:' + usr_qq + ':action');
+    let action = await redis.get("xiuxian:player:" + usr_qq + ":action");
     action = JSON.parse(action);
     if (action != null) {
         //人物有动作查询动作结束时间
@@ -1467,16 +1471,16 @@ export async function Go(e) {
         let now_time = new Date().getTime();
         if (now_time <= action_end_time) {
             let m = parseInt((action_end_time - now_time) / 1000 / 60);
-            let s = parseInt((action_end_time - now_time - m * 60 * 1000) / 1000);
-            e.reply('正在' + action.action + '中,剩余时间:' + m + '分' + s + '秒');
+            let s = parseInt(((action_end_time - now_time) - m * 60 * 1000) / 1000);
+            e.reply("正在" + action.action + "中,剩余时间:" + m + "分" + s + "秒");
             return;
         }
     }
-    //let player = await Read_player(usr_qq);
-    //if (player.当前血量 < 200) {
-    //    e.reply("你都伤成这样了,就不要出去浪了");
-    //    return;
-    //}
+    let player = await Read_player(usr_qq);
+    if (player.当前血量 < 200) {
+        e.reply("你都伤成这样了,就不要出去浪了");
+        return;
+    }
     allaction = true;
     return;
 }
