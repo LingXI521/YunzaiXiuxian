@@ -52,7 +52,7 @@ export class DSC extends plugin {
     //防御
     let Defence = 10000*神魄段数;
     //奖励下降
-    let Reward = 1200*神魄段数;
+    let Reward = 800*神魄段数;
     let bosszt = {
         "Health": Health,
         "OriginHealth": Health,
