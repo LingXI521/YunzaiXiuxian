@@ -228,23 +228,23 @@ export class BOSS3 extends plugin {
 
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
-            // if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id < 22) {
-            //     e.reply("修为至少达到化神初期才能参与挑战");
-            //     return true;
-            // }
+            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id < 22) {
+                e.reply("修为至少达到化神初期才能参与挑战");
+                return true;
+            }
 
-            // let action = await redis.get("xiuxian:player:" + e.user_id + ":action");
-            // action = JSON.parse(action);
-            // if (action != null) {
-            //     let action_end_time = action.end_time;
-            //     let now_time = new Date().getTime();
-            //     if (now_time <= action_end_time) {
-            //         let m = parseInt((action_end_time - now_time) / 1000 / 60);
-            //         let s = parseInt(((action_end_time - now_time) - m * 60 * 1000) / 1000);
-            //         e.reply("正在" + action.action + "中,剩余时间:" + m + "分" + s + "秒");
-            //         return;
-            //     }
-            // }
+            let action = await redis.get("xiuxian:player:" + e.user_id + ":action");
+            action = JSON.parse(action);
+            if (action != null) {
+                let action_end_time = action.end_time;
+                let now_time = new Date().getTime();
+                if (now_time <= action_end_time) {
+                    let m = parseInt((action_end_time - now_time) / 1000 / 60);
+                    let s = parseInt(((action_end_time - now_time) - m * 60 * 1000) / 1000);
+                    e.reply("正在" + action.action + "中,剩余时间:" + m + "分" + s + "秒");
+                    return;
+                }
+            }
 
             if (CurrentPlayerAttributes.当前血量 <= 200000) {
                 e.reply("还是先疗伤吧，别急着参战了");
@@ -259,7 +259,7 @@ export class BOSS3 extends plugin {
                 let Seconds = Math.trunc((300000 - (new Date().getTime() - WorldBOSSBattleCD[e.user_id])) / 1000);
                 if (Seconds <= 300 && Seconds >= 0) {
                     e.reply(`刚刚一战消耗了太多气力，还是先歇息一会儿吧~(剩余${Seconds}秒)`);
-                    // return true;
+                    return true;
                 }
             }
 
