@@ -194,11 +194,11 @@ export class shenren extends plugin {
       e.reply("你没有资格进入神界");
       return;
     }
-    if (player.灵石 < 1850000) {
+    if (player.灵石 < 2200000) {
       e.reply("灵石不足");
       return;
     }
-    player.灵石 -= 1850000;
+    player.灵石 -= 2200000;
     if (Today.Y == lastdagong_time.Y && Today.M == lastdagong_time.M && Today.D == lastdagong_time.D && player.神界次数 == 0) {
       e.reply("今日次数用光了,请明日再来吧");
       return;
