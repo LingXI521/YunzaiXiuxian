@@ -167,7 +167,7 @@ export class mojietask extends plugin {
                         if (thing_name != '' || thing_class != '') {
                             await Add_najie_thing(player_id, thing_name, thing_class, n);
                         }
-                        last_msg +=m +',获得修为' +xiuwei +',气血' +qixue;
+                        last_msg +=m +',获得修为' +xiuwei +',气血' +qixue+',剩余次数' +(action.cishu - 1);
                         msg.push('\n' + player.名号 + last_msg+ fyd_msg );
                         let arr = action;
                         if (arr.cishu == 1) {
