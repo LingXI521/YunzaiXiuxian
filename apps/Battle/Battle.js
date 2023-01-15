@@ -628,13 +628,13 @@ export async function zd_battle(A_player, B_player) {
         msg.push(B_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
       }
       if (A_player.魔道值 > 999) {
-        var buff = Math.trunc(A_player.魔道值 / 1000) / 40 + 1;
-        if (buff > 1.5) buff = 1.5;
+        var buff = Math.trunc(A_player.魔道值 / 1000) / 100 + 1;
+        if (buff > 1.2) buff = 1.2;
         伤害 *= buff;
       }
       if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
-        var buff = Math.trunc(B_player.神石*0.000625);
-        if (buff > 0.5) buff = 0.5;
+        var buff = Math.trunc(B_player.神石*0.00025);
+        if (buff > 0.2) buff = 0.2;
         伤害 *= (1-buff);
       }
       伤害 = Math.trunc(伤害);
@@ -823,13 +823,13 @@ ${B_player.名号}冻结中`);
         msg.push(A_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
       }
       if (B_player.魔道值 > 999) {
-        var buff = Math.trunc(B_player.魔道值 / 1000) / 40 + 1;
-        if (buff > 1.5) buff = 1.5;
+        var buff = Math.trunc(B_player.魔道值 / 1000) / 100 + 1;
+        if (buff > 1.2) buff = 1.2;
         伤害 *= buff;
       }
       if (A_player.魔道值<1 && (A_player.灵根.type == "转生" || A_player.level_id >41)) {
-        var buff = Math.trunc(A_player.神石*0.000625);
-        if (buff > 0.5) buff = 0.5;
+        var buff = Math.trunc(B_player.神石*0.00025);
+        if (buff > 0.2) buff = 0.2;
         伤害 *= (1-buff);
       }
       伤害 = Math.trunc(伤害);
