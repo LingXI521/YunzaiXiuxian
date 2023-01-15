@@ -31,10 +31,7 @@ export class DSC extends plugin {
         if (!e.isGroup) {
             return;
         }
-         if(true){
-            e.reply("春节前无法接触【锻神池】");
-            return;
-        }
+        
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
             if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 53) {
@@ -66,6 +63,11 @@ export class DSC extends plugin {
         "KilledTime": -1,
         "Reward": Reward,
     };
+    if(play.神魄段数>1500){
+        play.神魄段数=1500;
+    e.reply("神魄段最多1500！！");
+    return;
+   }
             let BattleFrame = 0, TotalDamage = 0, msg = [];
             let BOSSCurrentAttack = bosszt.isAngry ? Math.trunc(bosszt.Attack * 1.8) : bosszt.isWeak ? Math.trunc(bosszt.Attack * 0.7) : bosszt.Attack;
             let BOSSCurrentDefence = bosszt.isWeak ? Math.trunc(bosszt.Defence * 0.7) : bosszt.Defence;
