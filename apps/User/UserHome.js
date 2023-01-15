@@ -2478,6 +2478,7 @@ export class UserHome extends plugin {
         //价格
         let commodities_price = ifexist.出售价 * 1.2 * quantity;
         let addWorldmoney = ifexist.出售价 * 0.2 * quantity;
+        commodities_price =Math.trunc(commodities_price);
         //判断金额
         if (lingshi < commodities_price) {
             e.reply(`口袋里的灵石不足以支付${thing_name},还需要${commodities_price - lingshi}灵石`);
