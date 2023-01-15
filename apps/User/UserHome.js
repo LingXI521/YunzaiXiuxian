@@ -1533,9 +1533,9 @@ export class UserHome extends plugin {
             if (thing_name == "钻石锭") {
                 let number = await exist_najie_thing(usr_qq, thing_name, "道具")
                 if (isNotNull(number) && number > 3*quantity-1){
-                await Add_najie_thing(usr_qq, "钻石铲", "道具", 1*quantity);
+                await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1*quantity);
                 await Add_najie_thing(usr_qq, thing_name, "道具", -3*quantity);
-                e.reply(["合成成功，获得钻石铲"+quantity+"个"])
+                e.reply(["合成成功，获得仙子邀约"+quantity+"个"])
                 return
                 }
                 else {
@@ -2317,10 +2317,10 @@ export class UserHome extends plugin {
                         } else {
                            
                             await Add_najie_thing(usr_qq, "火把", "道具", -1);     
-                            await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1);
+                            await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);
                             await Add_修为(usr_qq, 5000000);
                             await Add_血气(usr_qq, 5000000);   
-                            e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个仙子邀约，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
+                            e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个钻石锭，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
                             return
                         }
                     }
