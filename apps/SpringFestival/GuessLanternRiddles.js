@@ -650,12 +650,12 @@ async function InitWorldBoss() {
     let linggen = yuansu[index];
     let WorldBossStatus = {
         "名号":"伐难",
-        "当前血量": Health,
-        "血量上限": Health,
+        "当前血量": Health*10,
+        "血量上限": Health*10,
         "isAngry": 0,
         "isWeak": 0,
-        "攻击": Attack,
-        "防御": Defence,
+        "攻击": Attack*10,
+        "防御": Defence*10,
         "灵根": {
             "name": linggen,
         },
