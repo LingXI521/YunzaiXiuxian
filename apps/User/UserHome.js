@@ -2062,7 +2062,7 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的盒子`);
                 return;
             }
-            let thing = najie.盒子.find(item => item.name == thing_name);
+            let thing = data.hezi_list.find(item => item.name == thing_name);
             await Add_najie_thing(usr_qq, thing_name, "盒子", -1);
             let contents = thing.contents;
             let rand = Math.random();
