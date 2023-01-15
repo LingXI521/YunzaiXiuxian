@@ -3,7 +3,7 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import common from "../../../../lib/common/common.js"
 import config from "../../model/Config.js"
 import data from '../../model/XiuxianData.js'
-import { player_efficiency, Read_player, existplayer, isNotNull,exist_najie_thing,Add_najie_thing,Add_血气 } from '../Xiuxian/xiuxian.js'
+import { player_efficiency, Read_player, existplayer, isNotNull,exist_najie_thing,Add_najie_thing,Add_血气,Add_修为 } from '../Xiuxian/xiuxian.js'
 import { segment } from "oicq"
 
 /**
@@ -455,11 +455,12 @@ export class PlayerControl extends plugin {
             }
         }
         let other_x=0;
-        let qixue=0
+        let qixue=0;
         if (await exist_najie_thing(usr_qq, "魔界秘宝", "道具") && player.魔道值>999) {
             other_x=Math.trunc(xiuwei*0.15*time);
             await Add_najie_thing(usr_qq, "魔界秘宝", "道具", -1);
             msg.push("\n消耗了道具[魔界秘宝],额外增加"+other_x+"修为");
+            await Add_修为(usr_qq, other_x);
         }
         if (await exist_najie_thing(usr_qq, "神界秘宝", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41)) {
             qixue=Math.trunc(xiuwei*0.1*time);
@@ -473,10 +474,10 @@ export class PlayerControl extends plugin {
 
         //给出消息提示
         if(transformation=="血气"){
-            await this.setFileValue(usr_qq, (xiuwei * time + other_xiuwei+other_x)*action3[i].beiyong4, transformation);//丹药修正
+            await this.setFileValue(usr_qq, (xiuwei * time + other_xiuwei)*action3[i].beiyong4, transformation);//丹药修正
         msg.push("\n受到炼神之力的影响,增加血气:" + xiuwei * time*action3[i].beiyong4, "  获得治疗,血量增加:" + blood * time);}
     else{
-        await this.setFileValue(usr_qq, xiuwei * time + other_xiuwei+other_x, transformation);
+        await this.setFileValue(usr_qq, xiuwei * time + other_xiuwei, transformation);
         if (is_random) {
             
             msg.push("\n增加气血:" + xiuwei * time, "  获得治疗,血量增加:" + blood * time+"炼神之力消散了");
