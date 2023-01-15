@@ -30,14 +30,10 @@ export class tzzyt extends plugin {
         if (!e.isGroup) {
             return;
         }
-        if(true){
-            e.reply("春节前无法接触【镇妖塔】");
-            return;
-        }
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
             if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 48) {
-                e.reply("修为至超过48级无法接触【镇妖塔】");
+                e.reply("修为至超过55级无法接触【镇妖塔】");
                 return true;
             }
     let usr_qq = e.user_id;
@@ -103,6 +99,11 @@ export class tzzyt extends plugin {
         "KilledTime": -1,
         "Reward": Reward,
     };
+    if(player.镇妖塔层数>4500){
+        player.镇妖塔层数=4500;
+        e.reply('镇妖塔最高4500层');
+        return;
+    }
             if (CurrentPlayerAttributes.当前血量 <= 10000*ZYTcs) {
                 e.reply("还是先疗伤吧，死了可就叽了");
                 return true;
