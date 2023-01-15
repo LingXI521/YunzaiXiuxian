@@ -916,8 +916,20 @@ export class UserHome extends plugin {
             }
             let pinji = null;
             pinji = code[2];
+            let pj = {
+                "劣": 0,
+                "普": 1,
+                "优": 2,
+                "精": 3,
+                "极": 4,
+                "绝": 5,
+                "顶": 6
+            }
+            if (pinji != null) {
+                pj = pj[pinji];
+            }
             //x是纳戒内有的数量
-            let x = await exist_najie_thing(usr_qq, thing_name, "装备", pinji);
+            let x = await exist_najie_thing(usr_qq, thing_name, "装备", pj);
             if (!x) {//没有
                 e.reply(`你没有[${thing_name}]*${pinji}这样的装备`);
                 return;
