@@ -14,7 +14,7 @@ import {
   Add_修为,
   Add_血气,
   Add_HP,
-  exist_najie_thing,
+  exist_najie_thing,Write_player
 } from '../Xiuxian/xiuxian.js';
 import { mjzd_battle } from '../Battle/Battle.js';
 
