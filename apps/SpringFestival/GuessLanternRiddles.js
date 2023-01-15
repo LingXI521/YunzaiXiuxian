@@ -395,10 +395,17 @@ export class GuessLanternRiddles extends plugin {
     async answer(e){
         let MITI = await redis.get("xiuxian:player:" + e.user_id + ":GuessLanternRiddles");
         if (this.e.msg == data.Lantern_riddles[MITI].谜底) {
-            let character=["银","银","银","银","银","银","花","花","花","花","花","造","造","造","造","造","造","造","福","盈","盈","盈","盈","盈","盈"]
+            let character=["银","花","造","盈"]
+
             let random=Math.trunc(Math.random()*character.length)
-            await Add_najie_thing(e.user_id,character[random],"道具",1)
-            e.reply(`哎呀呀,居然猜对了,这张[${character[random]}]字符就赠与你啦`);
+            let random2=Math.random()
+            if(random2>0.95){
+                await Add_najie_thing(e.user_id,"福","道具",1)
+                e.reply(`哎呀呀,居然猜对了,你是本店的幸运客户！这张[福]字符就赠与你啦`);
+            }else{
+                await Add_najie_thing(e.user_id,character[random],"道具",1)
+                e.reply(`哎呀呀,居然猜对了,这张[${character[random]}]字符就赠与你啦`);
+            }
         }
         else {
             e.reply(`很可惜呢,没有猜对呢,本堂主就送你一株霓裳花作为安慰奖吧`);
