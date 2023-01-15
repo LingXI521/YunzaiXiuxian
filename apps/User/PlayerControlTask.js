@@ -131,7 +131,7 @@ export class PlayerControlTask extends plugin {
                                     await Add_血气(player_id, qixue);
                                 }
 
-                                await this.setFileValue(player_id, xiuwei * time + other_xiuwei + other_x, transformation);
+                                
                                 await this.setFileValue(player_id, blood * time, "当前血量");
 
                                 if (action.acount == null) {
@@ -148,8 +148,10 @@ export class PlayerControlTask extends plugin {
                                 await redis.set("xiuxian:player:" + player_id + ":action", JSON.stringify(arr));
                                 xueqi = Math.trunc(xiuwei * time * action3[i].beiyong4);
                                 if (transformation == "血气") {
+                                    await this.setFileValue(player_id, (xiuwei * time + other_xiuwei + other_x)* action3[i].beiyong4, transformation);
                                     msg.push("\n受到炼神之力的影响,增加气血:" + xueqi, "血量增加:" + blood * time);
                                 } else {
+                                     await this.setFileValue(player_id, xiuwei * time + other_xiuwei + other_x, transformation);
                                     msg.push("\n增加修为:" + xiuwei * time, "血量增加:" + blood * time);
                                 }
                                 await redis.set("xiuxian:player:" + player_id + ":action", JSON.stringify(arr));
