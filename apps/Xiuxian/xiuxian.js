@@ -563,16 +563,28 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                     pinji = Math.floor(Math.random() * 3)
                 }
             }
-            let e = await najie.装备.find(item => item.name == name && item.pinji == pinji);
+            let pj = {
+                "劣": 0,
+                "普": 1,
+                "优": 2,
+                "精": 3,
+                "极": 4,
+                "绝": 5,
+                "顶": 6
+            }
+            if (pinji!=null) {
+                pj = pj[pinji];
+            }
+            let e = await najie.装备.find(item => item.name == name && item.pinji == pj);
             if (!isNotNull(e)) {
-                let z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][pinji];
+                let z = [0.8, 1, 1.1, 1.2, 1.3, 1.5, 2.0][pj];
                 var equipment = data.equipment_list.find(item => item.name == name);
                 if (!isNotNull(equipment)) {
                     equipment = data.timeequipmen_list.find(item => item.name == name);
                 }
                 //for(let i=0;i<x;i++){
                 let equipment0 = JSON.parse(JSON.stringify(equipment));
-                equipment0.pinji = pinji;
+                equipment0.pinji = pj;
                 if (isNotNull(equipment0.加成)) {
                     equipment0.加成 = Number((equipment.加成 * z).toFixed(2));
                     if (equipment0.加成 == 0) {
@@ -601,7 +613,7 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
                 najie.装备.find(item => item.name == name).数量 = x;
             }
         } else {
-            najie.装备.find(item => item.name == name && item.pinji == pinji).数量 += x;
+            najie.装备.find(item => item.name == name && item.pinji == pj).数量 += x;
         }
         najie.装备 = najie.装备.filter(item => item.数量 > 0);
         await Write_najie(usr_qq, najie);
