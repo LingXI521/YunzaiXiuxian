@@ -55,6 +55,10 @@ export class GuessLanternRiddles extends plugin {
                     fnc: 'D'
                 },
                 {
+                    reg: '^#五符兑换$',
+                    fnc: 'E'
+                },
+                {
                     reg: '^#新年签到$',
                     fnc: 'daily_gift2'
                 },
@@ -569,6 +573,41 @@ export class GuessLanternRiddles extends plugin {
         //刷新伐难
         await InitWorldBoss()
         e.reply("千年的封印再次被破开,上古魔神战争残留的煞气溢出,幻化成夜叉——伐难");
+
+    }
+
+
+        async E(e){
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        //有无存档
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        await Go(e);
+        if (allaction) {
+            console.log(allaction);
+        }
+        else {
+            return;
+        }
+        allaction = false;
+        let peifang=["银","花","造","福","盈"]
+        for(var i=0;i<peifang.length;i++){
+            let thing_quantity = await exist_najie_thing(usr_qq, peifang[i], "道具");
+            if (!thing_quantity) {//没有
+                e.reply(`堂主:你缺少【${peifang[i]}】字符,不能兑换哦`);
+                return;
+            }
+            await Add_najie_thing(usr_qq,peifang[i],"道具",-1)
+        }
+
+        await Add_najie_thing(usr_qq,"纠缠之缘","道具",5)
+        e.reply("恭喜集齐五符！这五颗粉色的球球就是你的奖励啦！")
 
     }
 
