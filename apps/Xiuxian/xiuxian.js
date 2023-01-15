@@ -413,7 +413,14 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
     }
     let ifexist;
     if (thing_class == "装备") {
-        ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
+        if (thing_pinji==null)
+        {
+            ifexist = najie.装备.find(item => item.name == thing_name);
+        }
+        else
+        {
+            ifexist = najie.装备.find(item => item.name == thing_name&&item.pinji==thing_pinji);
+        }
     }
     if (thing_class == "丹药") {
         ifexist = najie.丹药.find(item => item.name == thing_name);
