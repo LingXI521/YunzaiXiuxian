@@ -649,6 +649,7 @@ export class Tiandibang extends plugin {
                 暴击率: player.暴击率,
                 灵根: player.灵根,
                 魔道值:player.魔道值,
+                神石:player.神石,
                 法球倍率:player.灵根.法球倍率,
                 学习的功法:player.学习的功法,
                 qq: this_qq,
@@ -767,6 +768,7 @@ async  function re_bangdang(e) {
             法球倍率:player.灵根.法球倍率,
             学习的功法:player.学习的功法,
             魔道值:player.魔道值,
+            神石:player.神石,
             qq: this_qq,
             次数:3,
             积分: 0
