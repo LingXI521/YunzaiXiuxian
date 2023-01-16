@@ -40,7 +40,7 @@ export class Exchange extends plugin {
                     fnc: 'show_supermarket',
                 },
                 {
-                    reg: '^#上架.*(\\*[\u4e00-\u9fa5])?(\\*[1-9]\d)*(\\*[1-9]\d)*',
+                    reg: '^#上架.*',
                     fnc: 'onsell',
                 },
                 {
