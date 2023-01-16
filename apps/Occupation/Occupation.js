@@ -706,7 +706,7 @@ export class Occupation extends plugin {
                         action[i].lianti
                         }次`;
                 }
-                if (action[i].lianti > 0) {
+                if (action[i].beiyong2 > 0) {
                     m += `\n神赐丹药力${action[i].beiyong3 * 100}% 药效${
                         action[i].beiyong2
                         }次`;
