@@ -63,9 +63,10 @@ export class DSC extends plugin {
         "KilledTime": -1,
         "Reward": Reward,
     };
-    if(play.神魄段数>1500){
-        play.神魄段数=1500;
+     if(神魄段数>1500){
+        CurrentPlayerAttributes.神魄段数=1500;
     e.reply("神魄段最多1500！！");
+    await data.setData("player", e.user_id, CurrentPlayerAttributes); 
     return;
    }
             let BattleFrame = 0, TotalDamage = 0, msg = [];
