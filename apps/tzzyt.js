@@ -106,6 +106,17 @@ export class tzzyt extends plugin {
         await data.setData("player", e.user_id, CurrentPlayerAttributes); 
         return;
     }
+     var Time = 2;
+   let now_Time = new Date().getTime(); //获取当前时间戳
+   let shuangxiuTimeout = parseInt(60000 * Time);
+   let last_time = await redis.get("xiuxian:player:" + usr_qq + "CD");//获得上次的时间戳,
+   last_time = parseInt(last_time);
+   if (now_Time < last_time + shuangxiuTimeout) {
+       let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
+       let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
+       e.reply("正在CD中，" + `剩余cd:  ${Couple_m}分 ${Couple_s}秒`);
+       return;
+   }
             if (CurrentPlayerAttributes.当前血量 <= 10000*ZYTcs) {
                 e.reply("还是先疗伤吧，死了可就叽了");
                 return true;
@@ -175,6 +186,7 @@ export class tzzyt extends plugin {
                 await ForwardMsg(e, msg);
                 e.reply("战斗过长，仅展示部分内容");
             }
+            await redis.set("xiuxian:player:" + usr_qq + "CD", now_Time);
             if (bosszt.Health == 0) {
                 CurrentPlayerAttributes.镇妖塔层数 += 5;
                 CurrentPlayerAttributes.灵石 += Reward;      
