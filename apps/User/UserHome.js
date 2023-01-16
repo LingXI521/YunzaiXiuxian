@@ -1118,6 +1118,7 @@ export class UserHome extends plugin {
                 }
                 return;
             }
+            }
 
 
             if (this_danyao.type == '炼神') {
@@ -1159,6 +1160,7 @@ export class UserHome extends plugin {
                             e.reply(`已经拥有神兽赐福了,下次再用吧`);
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
                             return;
+                          }
                         if (action[i].beiyong2 > 0) {
                             action[i].beiyong2 += quantity
                         }
