@@ -769,8 +769,8 @@ export class BOSS3 extends plugin {
                             continue;
                         }
                         e.reply("拦截失败")
-                        await Add_najie_thing(CurrentPlayer.id,"仙子的邀约","道具",1)
-                        Bot.logger.mark(`[伐难副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得仙子的赏识,获得道具【仙子的邀约】x1`);
+                        await Add_najie_thing(CurrentPlayer.id,"仙子邀约","道具",1)
+                        Bot.logger.mark(`[伐难副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得仙子的赏识,获得道具【仙子邀约】x1`);
                             
                         await redis.set("xiuxian:player:" + CurrentPlayer.id + ":Guanghangon", JSON.stringify(action2+1))
 
