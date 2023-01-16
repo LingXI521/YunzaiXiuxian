@@ -1250,11 +1250,15 @@ export class UserHome extends plugin {
             }
         }
         if (func == "消耗") {
-            let thing = data.daoju_list.find(item => item.name == thing_name);
-            let x = await exist_najie_thing(usr_qq, thing_name, "道具");
-            let y = await exist_najie_thing(usr_qq, thing_name, "草药");
-            let z = await exist_najie_thing(usr_qq, thing_name, "装备");
-            if (!x && !y && !z) {
+            let thing;
+            if (thing_exist.class=="道具")
+                thing = data.daoju_list.find(item => item.name == thing_name);
+            else if (thing_exist.class=="装备")
+                thing = data.timeequipmen_list.find(item => item.name == thing_name);
+            else if (thing_exist.class=="草药")
+                thing = data.caoyao_list.find(item => item.name == thing_name);
+            let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
+            if (!x) {
                 e.reply(`你没有【${thing_name}】这样的道具`);
                 return;
             }
