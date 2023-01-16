@@ -103,8 +103,8 @@ export class UserSellAll extends plugin {
         //命令判断
         let code=e.msg.replace("#一键赠送");
         let thing_class=code[0];
-        for (let index = 0; index < A_najie[thing_class].length; index++) {
-            const element = A_najie[index];
+        for (let index = 0; index < (A_najie[thing_class]).length; index++) {
+            const element = A_najie[thing_class][index];
             if (thing_class=="装备") {
                 if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
                     continue;
