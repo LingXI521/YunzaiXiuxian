@@ -69,6 +69,17 @@ export class DSC extends plugin {
     await data.setData("player", e.user_id, CurrentPlayerAttributes); 
     return;
    }
+   var Time = 2;
+   let now_Time = new Date().getTime(); //获取当前时间戳
+   let shuangxiuTimeout = parseInt(60000 * Time);
+   let last_time = await redis.get("xiuxian:player:" + usr_qq + "CD");//获得上次的时间戳,
+   last_time = parseInt(last_time);
+   if (now_Time < last_time + shuangxiuTimeout) {
+       let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
+       let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
+       e.reply("正在CD中，" + `剩余cd:  ${Couple_m}分 ${Couple_s}秒`);
+       return;
+   }
             let BattleFrame = 0, TotalDamage = 0, msg = [];
             let BOSSCurrentAttack = bosszt.isAngry ? Math.trunc(bosszt.Attack * 1.8) : bosszt.isWeak ? Math.trunc(bosszt.Attack * 0.7) : bosszt.Attack;
             let BOSSCurrentDefence = bosszt.isWeak ? Math.trunc(bosszt.Defence * 0.7) : bosszt.Defence;
@@ -114,6 +125,7 @@ export class DSC extends plugin {
                 await ForwardMsg(e, msg);
                 e.reply("战斗过长，仅展示部分内容");
             }
+            await redis.set("xiuxian:player:" + usr_qq + "CD", now_Time);
             if (bosszt.Health == 0) {
                 CurrentPlayerAttributes.神魄段数 += 5;
                 CurrentPlayerAttributes.血气 += Reward;      
