@@ -1542,18 +1542,14 @@ export class UserHome extends plugin {
                     return
                 }
             }         
-            if (thing_name == "闹钟呼唤器") {
-                e.reply([segment.at(1564856979), "闹钟！！有人找你"])
-                await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", -1);
-                return
-            }
+           
     if (thing_name == "雪铃零藏的新春木盒"){
                 let daomu=Math.round(Math.random()*4)
                 if(daomu>0){
                 if(daomu<2){
                 await Add_najie_thing(usr_qq, "玄土", "材料", 1000000);
                 await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply(["你打开了雪铃零藏的新春木盒,里面有一袋红宝石"])
+                e.reply(["你打开了雪铃零藏的新春木盒,里面有一袋玄土"])
                 return
                 }
                 if(daomu>1&&daomu<3){
