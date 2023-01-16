@@ -385,6 +385,17 @@ export class GuessLanternRiddles extends plugin {
             e.reply("灯谜要被猜完了啦，不能再猜了")
             return
         }
+         var Time = 2;
+   let now_Time = new Date().getTime(); //获取当前时间戳
+   let shuangxiuTimeout = parseInt(60000 * Time);
+   let last_time = await redis.get("xiuxian:player:" + usr_qq + "CD");//获得上次的时间戳,
+   last_time = parseInt(last_time);
+   if (now_Time < last_time + shuangxiuTimeout) {
+       let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
+       let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
+       e.reply("正在CD中，" + `剩余cd:  ${Couple_m}分 ${Couple_s}秒`);
+       return;
+   }
         let random=Math.trunc(Math.random()*data.Lantern_riddles.length)
         e.reply("听好啦！本堂主要出题了！")
         await sleep(3000)
@@ -392,6 +403,7 @@ export class GuessLanternRiddles extends plugin {
         await redis.set("xiuxian:player:" + usr_qq + ":GuessLanternRiddles", random)
         /** 设置上下文 */
         this.setContext('answer');
+         await redis.set("xiuxian:player:" + usr_qq + "CD", now_Time);
         /** 回复 */
         await e.reply('请在120秒内作答哦,超时则啥都没有哦(可以私聊给我答案哦)', false, { at: true });
         return;
