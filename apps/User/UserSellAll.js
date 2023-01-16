@@ -101,7 +101,7 @@ export class UserSellAll extends plugin {
         let A_najie = await data.getData("najie", A_qq);
         let B_najie = await data.getData("najie", B_qq);
         //命令判断
-        let code=e.msg.replace("#一键赠送");
+        let code=e.msg.replace("#一键赠送","");
         let thing_class=code;
         e.reply(thing_class);
         for (let index = 0; index < A_najie[thing_class].length; index++) {
