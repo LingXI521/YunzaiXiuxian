@@ -192,7 +192,7 @@ export class Exchange extends plugin {
         return;
     }
 
-    //上架
+        //上架
     async onsell(e) {
         if (!e.isGroup) {
             return;
@@ -208,56 +208,14 @@ export class Exchange extends plugin {
         if (!ifexistplay) {
             return;
         }
-        //let Ex = await redis.get("xiuxian:player:" + usr_qq + ":Exchange");
-        //if (Ex == 1) {
-        //    e.reply("已有上架物品");
-        //    return;
-        //}
-        let player = await Read_player(usr_qq)
-        // if (player.魔道值 > 100) {
-        //     e.reply(`${player.名号}你一个大魔头还妄想出现在尘世？`);
-        //     return;
-        // }
+        let najie = await Read_najie(usr_qq);
         let thing = e.msg.replace('#', '');
         thing = thing.replace('上架', '');
         let code = thing.split('*');
         let thing_name = code[0]; //物品
         let thing_value = code[1]; //价格
-        let thing_amount = code[2]; //数量
-        let pinji=null;
-        if (code.length==3) {
-            thing_name=code[0];
-            thing_value=code[1];
-            thing_amount=code[2];
-            
-        }
-        else if(code.length==4){
-            thing_name=code[0];
-            pinji=code[1];
-            thing_value=code[2];
-            thing_amount=code[3];
-            
-        }
-        if (
-            thing_amount < 1 ||
-            thing_amount == null ||
-            thing_amount == undefined ||
-            thing_amount == NaN
-        ) {
-            thing_amount = 1;
-        }
-        if (thing_value < 1) {
-            e.reply('休想卡bug');
-            return;
-        }
-        if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
-        } else {
-            return;
-        }
-        if (!isNaN(parseFloat(thing_amount)) && isFinite(thing_amount)) {
-        } else {
-            return;
-        }
+        let thing_amount=code[2];//数量
+        let thing_piji; //品级
         //判断列表中是否存在，不存在不能卖,并定位是什么物品
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
@@ -267,7 +225,8 @@ export class Exchange extends plugin {
         if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
-        } 
+        }
+        //确定数量和品级
         let pj = {
             "劣": 0,
             "普": 1,
@@ -277,61 +236,61 @@ export class Exchange extends plugin {
             "绝": 5,
             "顶": 6
         }
-        if (pinji != null) {
-            pj = pj[pinji];
+        pj = pj[code[1]]
+        if (pj!=undefined)
+        {
+            thing_piji=code[1];;
+            thing_value=code[2];//价格
+            thing_amount=code[3]//数量
         }
+        else
+        {
+            if (thing_exist.class=="装备")
+            {
+                let equ= najie.装备.find(item => item.name == thing_name);
+                for (var i = 0; i<najie.装备.length; i++) {//遍历列表有没有比那把强的
+                    if (najie.装备[i].name == thing_name && najie.装备[i].pinji < equ.pinji) {
+                        equ = najie.装备[i];
+                    }
+                }
+                pj=equ.pinji;
+                let pinji2=['劣','普','优','精','极','绝','顶']
+                thing_piji=pinji2[pj]
+            }
+        }
+        if (thing_value==null)
+        {
+            e.reply(`未输入价格`);
+            return;
+        }
+        thing_value = thing_value.replace(/[^0-9]/ig, "");
+        if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
+            e.reply(`错误价格`);
+            return;
+        }
+        if (thing_amount < 1 || thing_amount == null || thing_amount == undefined || thing_amount == NaN) {
+            thing_amount = 1;
+        } else {
+            thing_amount = thing_amount.replace(/[^0-9]/ig, "");
+        }
+        if (thing_amount < 1 || thing_amount == null || thing_amount == undefined || thing_amount == NaN) {
+            thing_amount = 1;
+        }
+        
+        thing_value=thing_value.replace(/[^0-9]/ig, "");
+        let x=await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pj);
         //判断戒指中是否存在
-        let thing_quantity = await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pj);
-        if (!thing_quantity) {
+        if (!x) {
             //没有
             e.reply(`你没有[${thing_name}]这样的${thing_exist.class}`);
             return;
         }
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class,pj) == 1) {
-            //锁定
-            e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
-            return;
-        }
         //判断戒指中的数量
-        if (thing_quantity < thing_amount) {
+        if (x< thing_amount) {
             //不够
-            e.reply(`你目前只有[${thing_name}]*${thing_quantity}`);
+            e.reply(`你目前只有[${thing_name}]*${x}`);
             return;
         }
-        //修正数值非整数
-        thing_value = Math.trunc(thing_value); //价格
-        thing_amount = Math.trunc(thing_amount); //数量
-        // 价格阈值设定
-        /*if (thing_value <= thing_exist.出售价 * 0.8 && thing_exist.出售价 != 1) {
-            e.reply('价格过低');
-            return;
-        }
-        if (thing_value >= thing_exist.出售价 * 3 && thing_exist.出售价 != 1) {
-            e.reply('价格过高');
-            return;
-        }
-        if(thing_exist.出售价 == 1 && thing_value > 5000000) {
-            e.reply('价格过高');
-            return;
-        }*/
-        /* if (z >= 5) {
-                //是限定武器：价格随意至少10w
-                if (thing_value <= 100000 && thing_value > 100000000) {
-                    //价格过低，价格过高
-                    e.reply("限定物品错误价格");
-                    return;
-                }
-            }
-            else {
-                if (thing_value <= thing_exist.出售价 * 0.8) {
-                    e.reply("价格过低");
-                    return;
-                }
-                if (thing_value >= thing_exist.出售价 * 3) {
-                    e.reply("价格过高");
-                    return;
-            }
-            } */
         let Exchange;
         try {
             Exchange = await Read_Exchange();
@@ -343,29 +302,19 @@ export class Exchange extends plugin {
         let whole = thing_value * thing_amount;
         whole = Math.trunc(whole);
         let time = 2; //分钟
-        let najie = await Read_najie(usr_qq);
         if (thing_exist.class == '装备') {
-           
-            let pinji = ['劣', '普', '优', '精', '极', '绝', '顶'];
-            pinji = pinji[pj];
             var wupin = {
                 qq: usr_qq,
                 name: thing_exist,
                 price: thing_value,
-                pinji: pinji,
+                pinji: thing_piji,
                 pinji2: pj,
                 aconut: thing_amount,
                 whole: whole,
                 now_time: now_time,
                 end_time: now_time + 60000 * time,
             };
-            await Add_najie_thing(
-                usr_qq,
-                thing_name,
-                thing_exist.class,
-                -thing_amount,
-               pj
-            );
+            await Add_najie_thing(usr_qq,thing_name,thing_exist.class,-thing_amount,pj);
         } else {
             var wupin = {
                 qq: usr_qq,
@@ -376,12 +325,7 @@ export class Exchange extends plugin {
                 now_time: now_time,
                 end_time: now_time + 60000 * time,
             };
-            await Add_najie_thing(
-                usr_qq,
-                thing_name,
-                thing_exist.class,
-                -thing_amount
-            );
+            await Add_najie_thing(usr_qq,thing_name,thing_exist.class,-thing_amount);
         }
         //
         Exchange.push(wupin);
