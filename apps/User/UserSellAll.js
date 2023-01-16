@@ -9,7 +9,7 @@ import {
     foundthing,
     Write_najie, Read_najie, isNotNull
 } from '../Xiuxian/xiuxian.js'
-import {Add_灵石, Add_najie_thing, Add_修为, Add_player_学习功法, Add_血气} from '../Xiuxian/xiuxian.js'
+import {Add_灵石, Add_najie_thing, Add_修为, Add_player_学习功法, Add_血气,Locked_najie_thing} from '../Xiuxian/xiuxian.js'
 import {__PATH} from "../Xiuxian/xiuxian.js"
 import {get_equipment_img} from '../ShowImeg/showData.js'
 import {synchronization} from '../AdminSuper/AdminSuper.js'
@@ -65,9 +65,69 @@ export class UserSellAll extends plugin {
                 {
                     reg: '^#(锁定|解锁)(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮).*$',
                     fnc: 'locked'
+                },
+                {
+                    reg: '^#一键赠送(装备|道具|丹药|功法|草药|材料|盒子|仙宠|仙宠口粮)$',
+                    fnc: 'all_give'
                 }
             ]
         })
+    }
+    async all_give(e){
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        //这是自己的
+        let A_qq = e.user_id;
+        //自己没存档
+        let ifexistplay = await existplayer(A_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        //对方
+        let isat = e.message.some((item) => item.type === "at");
+        if (!isat) {
+            return;
+        }
+        let atItem = e.message.filter((item) => item.type === "at");//获取at信息
+        let B_qq = atItem[0].qq;//对方qq
+        //对方没存档
+        ifexistplay = await existplayer(B_qq);
+        if (!ifexistplay) {
+            e.reply(`此人尚未踏入仙途`);
+            return;
+        }
+        let A_najie = await data.getData("najie", A_qq);
+        let B_najie = await data.getData("najie", B_qq);
+        //命令判断
+        let code=e.msg.replace("#一键赠送");
+        let thing_class=code[0];
+        for (let index = 0; index < A_najie[thing_class].length; index++) {
+            const element = A_najie[index];
+            if (thing_class=="装备") {
+                if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
+                    continue;
+                }
+                else{
+                    let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
+                    await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
+                    await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
+                }
+            }
+            if (thing_class!="装备") {
+                if (await Locked_najie_thing(A_qq, element.name, element.class)==1) {
+                    continue;
+                }
+                else{
+                    let number=await exist_najie_thing(A_qq,element.name,element.class);
+                    await Add_najie_thing(A_qq, element.name,element.class, -number);
+                    await Add_najie_thing(B_qq, element.name, element.class, number);
+                }
+            }
+        }
+        e.reply(`一键赠送${thing_class}完成"`);
+        return;
     }
 
     async locked(e) {
