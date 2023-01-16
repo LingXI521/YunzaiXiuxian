@@ -27,7 +27,7 @@ export class shenren extends plugin {
           fnc: 'canwu',
         },
         {
-          reg: '^#打开闪闪发光的石头$',
+          reg: '^#敲开闪闪发光的石头$',
           fnc: 'open_shitou',
         },
       ],
