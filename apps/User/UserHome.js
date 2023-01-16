@@ -1164,7 +1164,7 @@ export class UserHome extends plugin {
                         action[i].beiyong3 = this_danyao.概率
                         e.reply(`${player.名号}获得了神兽的恩赐,赐福的概率增加了,当前剩余次数${action[i].beiyong2}`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-                        console.log(action[i]);
+                        
                     }
 
                 }
