@@ -2178,7 +2178,7 @@ export class UserHome extends plugin {
                 }
             }
             if (thing_name == "玩具铲") {
-                let daomu = Math.round(Math.random() * 2)
+                let daomu = Math.round(Math.random() * 5)
                 if (daomu > 0) {
                     if (daomu < 2) {
                         await Add_najie_thing(usr_qq, "幸运草", "道具", 1);
@@ -2190,6 +2190,24 @@ export class UserHome extends plugin {
                         await Add_najie_thing(usr_qq, "钻石尘埃", "道具", 9);
                         await Add_najie_thing(usr_qq, "玩具铲", "道具", -1);
                         e.reply(["你因为熊孩子的恶作剧而生气的四处张望，看到了一个小孩子正在朝你做鬼脸，你追了上去却追丢了，最终只获得了一挫钻石尘埃"])
+                        return
+                    }
+                    if (daomu > 2 && daomu < 4) {
+                        await Add_najie_thing(usr_qq, "钻石微粒", "道具", 3);
+                        await Add_najie_thing(usr_qq, "玩具铲", "道具", -1);
+                        e.reply(["你因为熊孩子的恶作剧而生气的四处张望，看到了一个小孩子正在朝你做鬼脸，你追了上去却追丢了，最终只获得了一挫钻石微粒"])
+                        return
+                    }
+                    if (daomu > 3 && daomu < 5) {
+                        await Add_najie_thing(usr_qq, "秘境之匙", "道具", 1);
+                        await Add_najie_thing(usr_qq, "玩具铲", "道具", -1);
+                        e.reply(["你因为熊孩子的恶作剧而生气的四处张望，看到了一个小孩子正在朝你做鬼脸，你追了上去却追丢了，最终只获得了一个绿色的钥匙"])
+                        return
+                    }
+                    if (daomu > 4 && daomu < 6) {
+                        await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", 1);
+                        await Add_najie_thing(usr_qq, "玩具铲", "道具", -1);
+                        e.reply(["你因为熊孩子的恶作剧而生气的四处张望，看到了一个小孩子正在朝你做鬼脸，你追了上去却追丢了，最终只获得了一个没用的东西"])
                         return
                     }
                    
