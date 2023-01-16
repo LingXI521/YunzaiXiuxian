@@ -128,7 +128,7 @@ export class AdminSuper extends plugin {
             e.reply("你输入了个啥")
             return
         }
-        let containSpecial =new RegExp(/[(\ )(\~)(\~)(\!)(\！)(\@)(\#)(\$)(\￥)(\%)(\^)(\……)(\&)(\*)(\()(\（)(\))(\）)(\-)(\_))(\——)(\+)(\=)(\[)(\【)(\])(\】)(\{)(\})(\|))(\、))(\)(\\)(\;)(\；)(\:)(\：)(\')(\‘)(\’)(\")(\“)(\”)(\,)(\，)(\.)(\。)(\/)(\《)(\<)(\>)(\》)(\?)(\？)(\)]+/);
+        let containSpecial =new RegExp(/[1-9]\d*/);
         console.log(containSpecial.test(number2))
         if (!containSpecial.test(number2)) {
             e.reply("你小子")
