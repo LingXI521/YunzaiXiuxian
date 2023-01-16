@@ -1085,7 +1085,6 @@ export class UserHome extends plugin {
                     if (action[i].qq == usr_qq) {
                         if (action[i].ped <= 0 || action[i].ped.typeof != Number) { action[i].ped = 5 }
                         else {
-                            console.log(action[i].ped);
                             e.reply(`还有药力剩余,等使用完再服用吧`)
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
                             return
@@ -1102,13 +1101,19 @@ export class UserHome extends plugin {
             if (this_danyao.type == '凝仙') {
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
+                        if(action[i].beiyong1==1||action[i].beiyong3==0.5){
+                            e.reply(`圣品丹药过于强大无法凝仙`)
+                            Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity)
+                            return;
+                        }else{
 
                         if (action[i].biguan > 0) { action[i].biguan += this_danyao.机缘 * quantity }
                         if (action[i].lianti > 0) { action[i].lianti += this_danyao.机缘 * quantity }
                         if (action[i].ped > 0) { action[i].ped += this_danyao.机缘 * quantity }
-                        console.log(this_danyao.机缘);
+                        if (action[i].beiyong2 > 0) { action[i].beiyong2 += this_danyao.机缘 * quantity }
                         e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
+                        }
                     }
                 }
                 return;
