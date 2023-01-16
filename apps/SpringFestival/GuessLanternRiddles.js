@@ -578,6 +578,8 @@ export class GuessLanternRiddles extends plugin {
                 e.reply(`你没有【${peifang[i]}】字符,召唤失败`);
                 return;
             }
+        }
+        for(var i=0;i<peifang.length;i++){
             await Add_najie_thing(usr_qq,peifang[i],"道具",-1)
         }
 
@@ -614,6 +616,8 @@ export class GuessLanternRiddles extends plugin {
                 e.reply(`堂主:你缺少【${peifang[i]}】字符,不能兑换哦`);
                 return;
             }
+        }
+        for(var i=0;i<peifang.length;i++){
             await Add_najie_thing(usr_qq,peifang[i],"道具",-1)
         }
 
