@@ -2016,6 +2016,11 @@ export class UserHome extends plugin {
             }
         }
         if (func == "寻宝") {
+            let player = await Read_player(usr_qq);
+  if (player.当前血量 < 200) {
+      e.reply("你都伤成这样了,就不要出去浪了");
+    return;
+  }
             await Go(e);
         if (allaction) {
             console.log(allaction);
@@ -2624,11 +2629,7 @@ export async function Go(e) {
             return;
         }
     }
-    let player = await Read_player(usr_qq);
-  if (player.当前血量 < 200) {
-      e.reply("你都伤成这样了,就不要出去浪了");
-    return;
-  }
+    
     allaction = true;
     return;
 }
