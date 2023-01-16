@@ -127,6 +127,9 @@
     - icon: help-icon_53
       title: "#一键出售+类型名"
       desc: "装备/丹药/道具/功法/草药"
+    - icon: help-icon_53
+      title: "#一键赠送+类型名"
+      desc: "装备/丹药/道具/功法/草药等"
 
 - group: 
   list:
