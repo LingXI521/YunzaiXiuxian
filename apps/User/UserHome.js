@@ -2521,12 +2521,12 @@ export class UserHome extends plugin {
         let quantity = 0;
         if (code.length == 2) {
             thing_name = code[0];
-            quantity = code[1];
+            quantity = code[1].replace(/[^0-9]/ig, "");
         }
         else if (code.length == 3) {
             thing_name = code[0];
             pinji = code[1];
-            quantity = code[2];
+            quantity = code[2].replace(/[^0-9]/ig, "");
         }
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
