@@ -99,13 +99,6 @@ export class UserSellAll extends plugin {
             e.reply(`此人尚未踏入仙途`);
             return;
         }
-         await Go(e);
-        if (allaction) {
-            console.log(allaction);
-        } else {
-            return;
-        }
-        allaction = false;
         let A_najie = await data.getData("najie", A_qq);
         let B_najie = await data.getData("najie", B_qq);
         //命令判断
