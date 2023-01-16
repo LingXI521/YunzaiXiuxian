@@ -126,7 +126,7 @@ export class UserSellAll extends plugin {
                 }
             }
         }
-        e.reply(`一键赠送${thing_class}完成"`);
+        e.reply(`一键赠送${thing_class}完成`);
         return;
     }
 
