@@ -40,7 +40,7 @@ export class Exchange extends plugin {
                     fnc: 'show_supermarket',
                 },
                 {
-                    reg: '^#上架.*',
+                    reg: '^#上架.*$',
                     fnc: 'onsell',
                 },
                 {
