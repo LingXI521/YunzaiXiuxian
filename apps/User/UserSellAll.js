@@ -106,27 +106,14 @@ export class UserSellAll extends plugin {
         let thing_class=code;
         for (let index = 0; index < A_najie[thing_class].length; index++) {
             const element = A_najie[thing_class][index];
-            //if (thing_class=="装备") {
-                if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
-                    continue;
-                }
-                else{
-                    let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
-                    await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
-                    await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
-                }
-            //}
-            /*
-            if (thing_class!="装备") {
-                if (await Locked_najie_thing(A_qq, element.name, element.class)==1) {
-                    continue;
-                }
-                else{
-                    let number=await exist_najie_thing(A_qq,element.name,element.class);
-                    await Add_najie_thing(A_qq, element.name,element.class, -number);
-                    await Add_najie_thing(B_qq, element.name, element.class, number);
-                }
-            }*/
+            if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
+                continue;
+            }
+            else{
+                let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
+                await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
+                await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
+            }
         }
         e.reply(`一键赠送${thing_class}完成`);
         return;
