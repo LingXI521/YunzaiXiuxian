@@ -414,7 +414,7 @@ export class SecretPlace extends plugin {
             await add_time(usr_qq);
         }
         let dazhe=1;
-        if (await exist_najie_thing(usr_qq, "杀神崖通行证", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41) && didian=="昆仑山") {
+        if (await exist_najie_thing(usr_qq, "杀神崖通行证", "道具") && player.魔道值<1 && (player.灵根.type == "转生" || player.level_id >41) && didian=="杀神崖") {
             dazhe=0;
             e.reply(player.名号+"使用了道具杀神崖通行证,本次仙境免费");
             await Add_najie_thing(usr_qq, "杀神崖通行证", "道具", -1);
