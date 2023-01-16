@@ -99,9 +99,11 @@ export class tzzyt extends plugin {
         "KilledTime": -1,
         "Reward": Reward,
     };
-    if(player.镇妖塔层数>4500){
-        player.镇妖塔层数=4500;
-        e.reply('镇妖塔最高4500层');
+    
+     if(player.镇妖塔层数>4500){
+        CurrentPlayerAttributes.镇妖塔层数 =4500;
+        e.reply('镇妖塔层数最多4500');
+        await data.setData("player", e.user_id, CurrentPlayerAttributes); 
         return;
     }
             if (CurrentPlayerAttributes.当前血量 <= 10000*ZYTcs) {
