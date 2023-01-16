@@ -2049,8 +2049,10 @@ export class UserHome extends plugin {
                         return
                     }
                     if (daomu > 2 && daomu < 4) {
-                        await Add_灵石(usr_qq, -500000);
-                        e.reply(["你兴致勃勃的就去寻宝了，未曾想遇到了一路劫匪，在交了500000灵石的过路费后失望而归"])
+                        await Add_修为(usr_qq, 100000);
+                        await Add_血气(usr_qq, 100000);
+                        await Add_HP(usr_qq, -500000)
+                        e.reply(["你兴致勃勃的就去寻宝了，未曾想遇到了一路劫匪，你击败了他们获得了修为100000,血气100000,血量减少了500000"])
                         return
                     }
                     if (daomu > 3 && daomu < 5) {
@@ -2175,10 +2177,10 @@ export class UserHome extends plugin {
                         return
                     }
                 } else {
-                    await Add_灵石(usr_qq, -5000000);
+                    await Add_修为(usr_qq, 800);
                     await Add_HP(usr_qq, -si);
                     await Add_najie_thing(usr_qq, "洛阳铲", "道具", -1);
-                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + ",灵石被他劫走了5000000")
+                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + ",只获得了800修为")
                     return
                 }
             }
@@ -2265,10 +2267,10 @@ export class UserHome extends plugin {
                     }
                 } else {
                     
-                    await Add_灵石(usr_qq, -5000000);
+                    await Add_修为(usr_qq, 800);
                     await Add_HP(usr_qq, si);
                     cishu = cishu - 1;
-                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + "灵石被他劫走了5000000")
+                    e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + "只获得了800修为")
                     return
                 }
             }
