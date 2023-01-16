@@ -15,6 +15,7 @@ import {
     ForwardMsg,
     TEXT_battle,
     Read_updata_log,
+    Add_HP,
 } from '../Xiuxian/xiuxian.js';
 import {Read_Exchange, Write_Exchange} from '../Exchange/Exchange.js';
 import {Read_player, __PATH} from '../Xiuxian/xiuxian.js';
@@ -85,11 +86,112 @@ export class AdminSuper extends plugin {
                     reg: '^#炼丹师更新$',
                     fnc: 'liandanshi',
                 },
+                {
+                    reg: '^#自降修为.*$',
+                    fnc: 'off_xiuwei',
+                },
+                {
+                    reg: '^#自降境界至.*$',
+                    fnc: 'off_level',
+                },
             ],
         });
         this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
     }
+    async off_xiuwei(e){
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        //有无账号
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        var number2 = e.msg.replace('#自降修为', '');
+        let player=await Read_player(usr_qq)
+        number2=Math.floor(number2)
+        if(number2<0){
+            number2=1000
+        }
+        if(player.修为<number2){
+            e.reply("你没有那么多修为")
+            return
+        }
+        Number(number2)
+        if(!isNotNull(number2)){
+            e.reply("未输入数量")
+            return
+        }
+        if(number2==""){
+            e.reply("你输入了个啥")
+            return
+        }
+        let containSpecial =new RegExp(/[(\ )(\~)(\~)(\!)(\！)(\@)(\#)(\$)(\￥)(\%)(\^)(\……)(\&)(\*)(\()(\（)(\))(\）)(\-)(\_))(\——)(\+)(\=)(\[)(\【)(\])(\】)(\{)(\})(\|))(\、))(\)(\\)(\;)(\；)(\:)(\：)(\')(\‘)(\’)(\")(\“)(\”)(\,)(\，)(\.)(\。)(\/)(\《)(\<)(\>)(\》)(\?)(\？)(\)]+/);
+        console.log(containSpecial.test(number2))
+        if (!containSpecial.test(number2)) {
+            e.reply("你小子")
+           return
+        
+        }
+        await Add_修为(usr_qq,-number2)
+        e.reply("扣除成功")
+        
+    }
+    async off_level(e){
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        //有无账号
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        var number2 = e.msg.replace('#自降境界至', '');
+        let player=await Read_player(usr_qq)
+        let newjingjie=data.Level_list.find(item=>item.level==number2)
+        if(!isNotNull(newjingjie)){
+            e.reply("未找到"+number2+"境界")
+            return
+        }
+        if(player.level_id<newjingjie.level_id){
+            e.reply("你小子")
+            return
+        }
+        if(newjingjie.level_id<42 && player.level_id>41){
+            e.reply("你想再渡一次劫？")
+            return
+        }
+        //境界下降,攻防血重新加载,当前血量拉满
+        if(newjingjie.level_id==1){
+            e.reply("修仙者还想回归尘世？")
+            return
+        }
+        let oldjingjie=data.Level_list.find(item=>item.level_id==player.level_id)
 
+        player.level_id = newjingjie.level_id;
+
+        player.攻击-=oldjingjie.基础攻击
+        player.防御-=oldjingjie.基础防御
+        player.血量上限-=oldjingjie.基础血量
+        player.暴击率-=oldjingjie.基础暴击
+        await Write_player(usr_qq, player);
+        player.攻击+=newjingjie.基础攻击
+        player.防御+=newjingjie.基础防御
+        player.血量上限+=newjingjie.基础血量
+        player.暴击率+=newjingjie.基础暴击
+        await Write_player(usr_qq, player);
+        //刷新装备
+        let equipment = await Read_equipment(usr_qq);
+        await Write_equipment(usr_qq, equipment);
+        //补血
+        await Add_HP(usr_qq, 99999999);
+        e.reply("扣除成功")
+        
+    }
     async liandanshi(e) {
         if (!e.isMaster) {
             e.reply('你凑什么热闹');
