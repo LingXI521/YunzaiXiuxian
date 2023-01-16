@@ -809,12 +809,12 @@ export class TreasureCabinet extends plugin {
         let pinji=null;
         if (code.length==2) {
             thing_name=code[0];
-            thing_value=code[1];
+            thing_value=code[1].replace(/[^0-9]/ig, "");
         }
         else if(code.length==3){
             thing_name=code[0];
             pinji=code[1];
-            thing_value=code[2];
+            thing_value=code[2].replace(/[^0-9]/ig, "");
         }
         if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
             e.reply('休想卡bug');
