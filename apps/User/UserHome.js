@@ -1114,7 +1114,7 @@ export class UserHome extends plugin {
                         e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
                         
-                    }
+                    
                 }
                 return;
             }
