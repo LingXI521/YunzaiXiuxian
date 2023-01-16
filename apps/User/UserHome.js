@@ -2118,6 +2118,13 @@ export class UserHome extends plugin {
             }
         }
         if (func == "寻宝") {
+            await Go(e);
+        if (allaction) {
+            console.log(allaction);
+        } else {
+            return;
+        }
+        allaction = false;
             let x = await exist_najie_thing(usr_qq, thing_name, "道具");
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的道具`);
@@ -2344,7 +2351,100 @@ export class UserHome extends plugin {
                     return
                 }
             }
-        }  
+        } 
+        if(func=="合成"){
+        if (thing_name == "钻石微粒") {
+            let number = await exist_najie_thing(usr_qq, "钻石尘埃", "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石微粒", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq, "钻石尘埃", "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石微粒"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的钻石尘埃")
+                return
+            }
+        }    
+        if (thing_name == "钻石碎屑") {
+            let number = await exist_najie_thing(usr_qq, "钻石微粒", "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石碎屑", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq, "钻石微粒", "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石碎屑"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+"钻石微粒")
+                return
+            }
+        }    
+        if (thing_name == "钻石碎片") {
+            let number = await exist_najie_thing(usr_qq, "钻石碎屑", "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq, "钻石碎屑", "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石碎片"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+"钻石碎屑")
+                return
+            }
+        }    
+        if (thing_name == "钻石碎块") {
+            let number = await exist_najie_thing(usr_qq, "钻石碎片", "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石碎块", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq,"钻石碎片" , "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石碎块"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+"钻石碎片")
+                return
+            }
+        }    
+        if (thing_name == "钻石石块") {
+            let number = await exist_najie_thing(usr_qq, "钻石碎块", "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石石块", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq, "钻石碎块", "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石石块"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+"钻石碎块")
+                return
+            }
+        }        
+        if (thing_name == "钻石锭") {
+            let number = await exist_najie_thing(usr_qq, "钻石石块" , "道具")
+            if (isNotNull(number) && number > 3*quantity-1){
+            await Add_najie_thing(usr_qq, "钻石锭", "材料", 1*quantity);
+            await Add_najie_thing(usr_qq,  "钻石石块", "道具", -3*quantity);
+            e.reply(["合成成功，获得钻石锭"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+ "钻石石块")
+                return
+            }
+        }   
+        if (thing_name == "仙子邀约") {
+            let number = await exist_najie_thing(usr_qq, "钻石锭", "道具")
+            if (isNotNull(number) && number > 5*quantity-1){
+            await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1*quantity);
+            await Add_najie_thing(usr_qq, "钻石锭", "道具", -5*quantity);
+            e.reply(["合成成功，获得仙子邀约"+quantity+"个"])
+            return
+            }
+            else {
+                e.reply("你没有足够的"+"钻石锭")
+                return
+            }
+        }
+    }          
         return;
     }
 
