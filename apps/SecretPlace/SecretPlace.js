@@ -138,7 +138,15 @@ export class SecretPlace extends plugin {
         if (!isNotNull(weizhi)) {
             return;
         }
-        if (player.灵石 < weizhi.Price) {
+        if(didian=="广寒宫"){
+            let yes=await exist_najie_thing(usr_qq,"仙子的邀约","道具")
+            if(!yes){
+                e.reply("你没有[仙子的邀约],无法到达广寒宫")
+                return
+            }else{
+                await Add_najie_thing(usr_qq,"仙子的邀约","道具",-1)
+            }
+        }else  if (player.灵石 < weizhi.Price) {
             e.reply("没有灵石寸步难行,攒到" + weizhi.Price + "灵石才够哦~");
             return true;
         }
