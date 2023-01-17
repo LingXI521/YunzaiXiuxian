@@ -109,11 +109,9 @@ export class UserSellAll extends plugin {
             if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
                 continue;
             }
-            else{
-                let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
-                await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
-                await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
-            }
+            let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
+            await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
+            await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
         }
         e.reply(`一键赠送${thing_class}完成`);
         return;
