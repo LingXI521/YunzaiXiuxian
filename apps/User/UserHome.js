@@ -54,7 +54,7 @@ export class UserHome extends plugin {
                 reg: '^#(存|取)灵石(.*)$',
                 fnc: 'Take_lingshi'
             }, {
-                reg: '^#(装备|消耗|服用|学习|打开|解除封印|寻宝)((.*)|(.*)*(.*))$',
+                reg: '^#(装备|消耗|服用|学习|打开|解除封印|寻宝|合成)((.*)|(.*)*(.*))$',
                 fnc: 'Player_use'
             }, {
                 reg: '^#购买((.*)|(.*)*(.*))$',
@@ -887,7 +887,7 @@ export class UserHome extends plugin {
         let player = await Read_player(usr_qq);
         let najie = await Read_najie(usr_qq);
         //检索方法
-        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝/);
+        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成/);
         let func = reg.exec(e.msg);
         let msg = e.msg.replace(reg, '');
         msg = msg.replace("#", '');
