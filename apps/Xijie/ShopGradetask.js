@@ -1,7 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js'
 import config from "../../model/Config.js"
-import data from '../../model/XiuxianData.js'
 import { Write_shop,Read_shop} from "../Xijie/Xijie.js"
+import { dati2} from "../SpringFestival/GuessLanternRiddles.js"
 
 export class ShopGradetask extends plugin {
     constructor() {
@@ -32,5 +32,11 @@ export class ShopGradetask extends plugin {
             }
         }
         await Write_shop(shop);
+        let action = await redis.get("xiuxian:player:" + 1 + ":dati");
+        action = await JSON.parse(action);
+        if (action=="1")
+        {
+            await dati2();
+        }
     }
 }
