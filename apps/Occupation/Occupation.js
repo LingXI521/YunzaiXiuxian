@@ -1081,12 +1081,11 @@ export class Occupation extends plugin {
 
             player_B.法球倍率 = player_B.灵根.法球倍率;
             let buff = 1 + player.occupation_level * 0.055;
-            let buff2=1 + player.occupation_level * 0.055/2;
             let player_A = {
                 id: player.id,
                 名号: player.名号,
                 攻击: parseInt(player.攻击 * buff),
-                防御: parseInt(player.防御* buff2),
+                防御: parseInt(player.防御),
                 当前血量: parseInt(player.血量上限),
                 暴击率: player.暴击率,
                 学习的功法: player.学习的功法,
@@ -1286,10 +1285,8 @@ export class Occupation extends plugin {
         }
         let player = await Read_player(usr_qq);
         let buff = 1;
-        let buff2=1;
         if (player.occupation == "侠客") {
             buff = 1 + player.occupation_level * 0.055;
-            buff2=1 + player.occupation_level * 0.055/2;
         }
         let last_msg = "";
         let player_B = await Read_player(qq);
@@ -1319,7 +1316,7 @@ export class Occupation extends plugin {
             id: player.id,
             名号: player.名号,
             攻击: parseInt(player.攻击 * buff),
-            防御: parseInt(player.防御* buff2),
+            防御: parseInt(player.防御),
             当前血量: parseInt(player.血量上限),
             暴击率: player.暴击率,
             学习的功法: player.学习的功法,
