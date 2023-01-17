@@ -1108,7 +1108,7 @@ export class UserHome extends plugin {
                     if (action[i].qq == usr_qq) {
                         if (action[i].beiyong1 == 1 || action[i].beiyong3 == 1) {
                             e.reply(`圣品丹药过于强大无法凝仙`)
-                            Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity)
+                            await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity)
                             return;
                         }
 
