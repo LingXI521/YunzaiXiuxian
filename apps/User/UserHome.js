@@ -893,7 +893,7 @@ export class UserHome extends plugin {
         msg = msg.replace("#", '');
         let code = msg.split("\*");
         let thing_name = code[0];
-        let quantity=code[1];
+        let quantity = code[1];
         if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
             quantity = 1;
         } else {
@@ -919,14 +919,12 @@ export class UserHome extends plugin {
                 "绝": 5,
                 "顶": 6
             }
-            if (code[1]==undefined)
-            {
+            if (code[1] == undefined) {
                 x = await exist_najie_thing(usr_qq, thing_name, "装备");
             }
-            else
-            {
+            else {
                 pj = pj[code[1]];
-                if (pj==undefined) return; 
+                if (pj == undefined) return;
                 x = await exist_najie_thing(usr_qq, thing_name, "装备", pj);
             }
             if (!x) {//没有
@@ -934,18 +932,16 @@ export class UserHome extends plugin {
                 return;
             }
             let equ;
-            if (code[1]==undefined)
-            {
+            if (code[1] == undefined) {
                 equ = najie.装备.find(item => item.name == thing_name);
-                for (var i = 0; i<najie.装备.length; i++) {//遍历列表有没有比那把强的
+                for (var i = 0; i < najie.装备.length; i++) {//遍历列表有没有比那把强的
                     if (najie.装备[i].name == thing_name && najie.装备[i].pinji > equ.pinji) {
                         equ = najie.装备[i];
                     }
                 }
             }
-            else
-            {
-                equ = najie.装备.find(item => item.name == thing_name && item.pinji==pj);
+            else {
+                equ = najie.装备.find(item => item.name == thing_name && item.pinji == pj);
             }
             var equipment = await Read_equipment(usr_qq);
             if (equ.type == "项链") {
@@ -1052,7 +1048,7 @@ export class UserHome extends plugin {
                             e.reply(`上次服用的药效还没过,等以后再服用吧`);
                             return;
                         }
-                        if (action[i].biguan.typeof != Number || action[i].biguan < 0) {
+                        if (typeof action[i].biguan != "number" || action[i].biguan < 0) {
                             action[i].biguan = quantity;
                         } else {
                             action[i].biguan += quantity;
@@ -1074,34 +1070,43 @@ export class UserHome extends plugin {
 
                 return;
             }
-            if (this_danyao.type == "仙缘") {
-
+            if (this_danyao.type == '仙缘') {
                 if (quantity != 1) {
-                    e.reply(`只能服用一枚仙缘丹哦`)
+                    e.reply(`只能服用一枚仙缘丹哦`);
                     await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
-                    return
+                    return;
                 }
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
-                        if (action[i].ped <= 0 || action[i].ped.typeof != Number) { action[i].ped = 5 }
-                        else {
-                            e.reply(`还有药力剩余,等使用完再服用吧`)
+                        if (action[i].ped <= 0 || typeof action[i].ped != 'number') {
+                            action[i].ped = 5;
+
+                        } else {
+                            e.reply(`还有药力剩余,等使用完再服用吧`);
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
-                            return
+                            return;
                         }
-                        action[i].beiyong1 += this_danyao.gailv
+                        action[i].beiyong1 = this_danyao.gailv;
+                        if (action[i].beiyong1 > 0.3 && action[i].beiyong1 != 1) {
+                            action[i].beiyong1 = 0.3
+                        }
                     }
                 }
-                await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
+                await redis.set(
+                    'xiuxian:player:' + 10 + ':biguang',
+                    JSON.stringify(action)
+                );
 
-                await data.setData("player", usr_qq, player);
-                e.reply(`${thing_name}赐予${player.名号}仙缘,${player.名号}得到了仙兽的祝福`)
+                await data.setData('player', usr_qq, player);
+                e.reply(
+                    `${thing_name}赐予${player.名号}仙缘,${player.名号}得到了仙兽的祝福`
+                );
                 return;
             }
             if (this_danyao.type == '凝仙') {
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
-                        if(action[i].beiyong1==1||action[i].beiyong3==1){
+                        if (action[i].beiyong1 == 1 || action[i].beiyong3 == 1) {
                             e.reply(`圣品丹药过于强大无法凝仙`)
                             Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity)
                             return;
@@ -1113,11 +1118,11 @@ export class UserHome extends plugin {
                         if (action[i].beiyong2 > 0) { action[i].beiyong2 += this_danyao.机缘 * quantity }
                         e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-                        
-                    
+
+
+                    }
+                    return;
                 }
-                return;
-            }
             }
 
 
@@ -1156,11 +1161,11 @@ export class UserHome extends plugin {
             if (this_danyao.type == '神赐') {
                 for (i = 0; i < action.length; i++) {
                     if (action[i].qq == usr_qq) {
-                          if (action[i].beiyong2 != 0) {
+                        if (action[i].beiyong2 != 0) {
                             e.reply(`已经拥有神兽赐福了,下次再用吧`);
                             await Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity);
                             return;
-                          }
+                        }
                         if (action[i].beiyong2 > 0) {
                             action[i].beiyong2 += quantity
                         }
@@ -1170,7 +1175,7 @@ export class UserHome extends plugin {
                         action[i].beiyong3 = this_danyao.概率
                         e.reply(`${player.名号}获得了神兽的恩赐,赐福的概率增加了,当前剩余次数${action[i].beiyong2}`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-                        
+
                     }
 
                 }
@@ -1266,78 +1271,78 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
-            if(thing_exist.type=="练气幻影卡面"){
-                let photo=thing_exist.id
-                if(player.练气皮肤==photo){
-                    e.reply("您的卡面已经是"+thing_exist.name)
+            if (thing_exist.type == "练气幻影卡面") {
+                let photo = thing_exist.id
+                if (player.练气皮肤 == photo) {
+                    e.reply("您的卡面已经是" + thing_exist.name)
                     return
                 }
-                let old=data.daoju_list.find(item=>item.id==player.练气皮肤)
-                player.练气皮肤=photo
-                await Write_player(usr_qq,player)
-                await Add_najie_thing(usr_qq,thing_name,"道具",-1)
-                await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+thing_exist.type+"【"+thing_exist.name+"】成功")
+                let old = data.daoju_list.find(item => item.id == player.练气皮肤)
+                player.练气皮肤 = photo
+                await Write_player(usr_qq, player)
+                await Add_najie_thing(usr_qq, thing_name, "道具", -1)
+                await Add_najie_thing(usr_qq, old.name, "道具", 1)
+                e.reply("更换" + thing_exist.type + "【" + thing_exist.name + "】成功")
                 return
-                
+
             }
-            if(thing_exist.type=="装备幻影卡面"){
-                let photo=thing_exist.id
-                if(player.装备皮肤==photo){
-                    e.reply("您的卡面已经是"+thing_exist.name)
+            if (thing_exist.type == "装备幻影卡面") {
+                let photo = thing_exist.id
+                if (player.装备皮肤 == photo) {
+                    e.reply("您的卡面已经是" + thing_exist.name)
                     return
                 }
-                let old=data.daoju_list.find(item=>item.id==player.装备皮肤)
-                player.装备皮肤=photo
-                await Write_player(usr_qq,player)
-                await Add_najie_thing(usr_qq,thing_name,"道具",-1)
-                await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+thing_exist.type+"【"+thing_exist.name+"】成功")
+                let old = data.daoju_list.find(item => item.id == player.装备皮肤)
+                player.装备皮肤 = photo
+                await Write_player(usr_qq, player)
+                await Add_najie_thing(usr_qq, thing_name, "道具", -1)
+                await Add_najie_thing(usr_qq, old.name, "道具", 1)
+                e.reply("更换" + thing_exist.type + "【" + thing_exist.name + "】成功")
                 return
-                
+
             }
-           if (thing_name == "分数") {
-                    await Add_najie_thing(usr_qq, "【剑法】残云封天剑", "装备", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "草药", -1);
-                    e.reply(`成功兑换武器：《【剑法】残云封天剑》`);
-                    return
+            if (thing_name == "分数") {
+                await Add_najie_thing(usr_qq, "【剑法】残云封天剑", "装备", 1);
+                await Add_najie_thing(usr_qq, thing_name, "草药", -1);
+                e.reply(`成功兑换武器：《【剑法】残云封天剑》`);
+                return
             }
-            
-            
-            
-                if (thing_name == "圣令") {
-                    await Add_najie_thing(usr_qq, "四圣麒麟甲", "装备", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply(`成功兑换：四圣麒麟甲`);
-                    return
+
+
+
+            if (thing_name == "圣令") {
+                await Add_najie_thing(usr_qq, "四圣麒麟甲", "装备", 1);
+                await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                e.reply(`成功兑换：四圣麒麟甲`);
+                return
             }
-            
-                if (thing_name == "武器造化机缘") {
-                    let l = data.wuqizaohua
-                    let rn = Math.floor(Math.random() * l.length + 1)
-                    let th = l[rn].name
-                    await Add_najie_thing(usr_qq, th, "装备", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "装备", -1);
-                    e.reply(`成功兑换：` + th);
-                    return
+
+            if (thing_name == "武器造化机缘") {
+                let l = data.wuqizaohua
+                let rn = Math.floor(Math.random() * l.length + 1)
+                let th = l[rn].name
+                await Add_najie_thing(usr_qq, th, "装备", 1);
+                await Add_najie_thing(usr_qq, thing_name, "装备", -1);
+                e.reply(`成功兑换：` + th);
+                return
             }
-                if (thing_name == "护具造化机缘") {
-                    let l = data.hujuzaohua
-                    let rn = Math.floor(Math.random() * l.length + 1)
-                    let th = l[rn].name
-                    await Add_najie_thing(usr_qq, th, "装备", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "装备", -1);
-                    e.reply(`成功兑换：` + th);
-                    return
+            if (thing_name == "护具造化机缘") {
+                let l = data.hujuzaohua
+                let rn = Math.floor(Math.random() * l.length + 1)
+                let th = l[rn].name
+                await Add_najie_thing(usr_qq, th, "装备", 1);
+                await Add_najie_thing(usr_qq, thing_name, "装备", -1);
+                e.reply(`成功兑换：` + th);
+                return
             }
-                if (thing_name == "法宝造化机缘") {
-                    let l = data.fabaozaohua
-                    let rn = Math.floor(Math.random() * l.length + 1)
-                    let th = l[rn].name
-                    await Add_najie_thing(usr_qq, th, "装备", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "装备", -1);
-                    e.reply(`成功兑换：` + th);
-                    return
+            if (thing_name == "法宝造化机缘") {
+                let l = data.fabaozaohua
+                let rn = Math.floor(Math.random() * l.length + 1)
+                let th = l[rn].name
+                await Add_najie_thing(usr_qq, th, "装备", 1);
+                await Add_najie_thing(usr_qq, thing_name, "装备", -1);
+                e.reply(`成功兑换：` + th);
+                return
             }
             if (thing_name == "多莉的消息") {
                 e.reply([segment.at(3140947982), "多莉！！来客人了！！"])
@@ -1349,79 +1354,84 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", -1);
                 return
             }
-         if (thing_name == "寻宝工具盒") {
-            let chanzi=Math.round(Math.random()*13)
-            let shuliang=Math.round(Math.random()*4)
-            if(quantity<2){
-            if(shuliang>0){
-            if(chanzi>0&&chanzi<4){
-            await Add_najie_thing(usr_qq, "木铲", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply(["你打开了"+thing_name+"发现了木铲，获得木铲"+shuliang+"个"])
-            return}
-            if(chanzi>3&&chanzi<7){
-            await Add_najie_thing(usr_qq, "石铲", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply(["你打开了"+thing_name+"发现了石铲，获得石铲"+shuliang+"个"])
-            return}
-            if(chanzi>6&&chanzi<9){
-            await Add_najie_thing(usr_qq, "铁铲", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply(["你打开了"+thing_name+"发现了铁铲，获得铁铲"+shuliang+"个"])
-            return}
-            if(chanzi>8&&chanzi<11){
-            await Add_najie_thing(usr_qq, "洛阳铲", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply(["你打开了"+thing_name+"发现了洛阳铲，获得洛阳铲"+shuliang+"个"])
-            return}
-            if(chanzi>10&&chanzi<12){
-            await Add_najie_thing(usr_qq, "钻石铲", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply(["你打开了"+thing_name+"发现了钻石铲，获得钻石铲"+shuliang+"个"])
-            return}
-            else{
-            await Add_najie_thing(usr_qq, "未点燃的火把", "道具", shuliang);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply("你兴致勃勃的打开了这个盒子，结果只找到了几根未点燃的火把")
-            return
-            }
-        }else{
-            await Add_najie_thing(usr_qq, "玩具铲", "道具", 1);
-            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-            e.reply("你充满期待的打开了盒子，结果发现只是小孩的恶作剧，获得了玩具铲1个")
-            return
-            }
-            }
-            else{
-            e.reply("因为寄术原因一次只能开启一个！")
-            return
-            }
+            if (thing_name == "寻宝工具盒") {
+                let chanzi = Math.round(Math.random() * 13)
+                let shuliang = Math.round(Math.random() * 4)
+                if (quantity < 2) {
+                    if (shuliang > 0) {
+                        if (chanzi > 0 && chanzi < 4) {
+                            await Add_najie_thing(usr_qq, "木铲", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply(["你打开了" + thing_name + "发现了木铲，获得木铲" + shuliang + "个"])
+                            return
+                        }
+                        if (chanzi > 3 && chanzi < 7) {
+                            await Add_najie_thing(usr_qq, "石铲", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply(["你打开了" + thing_name + "发现了石铲，获得石铲" + shuliang + "个"])
+                            return
+                        }
+                        if (chanzi > 6 && chanzi < 9) {
+                            await Add_najie_thing(usr_qq, "铁铲", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply(["你打开了" + thing_name + "发现了铁铲，获得铁铲" + shuliang + "个"])
+                            return
+                        }
+                        if (chanzi > 8 && chanzi < 11) {
+                            await Add_najie_thing(usr_qq, "洛阳铲", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply(["你打开了" + thing_name + "发现了洛阳铲，获得洛阳铲" + shuliang + "个"])
+                            return
+                        }
+                        if (chanzi > 10 && chanzi < 12) {
+                            await Add_najie_thing(usr_qq, "钻石铲", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply(["你打开了" + thing_name + "发现了钻石铲，获得钻石铲" + shuliang + "个"])
+                            return
+                        }
+                        else {
+                            await Add_najie_thing(usr_qq, "未点燃的火把", "道具", shuliang);
+                            await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                            e.reply("你兴致勃勃的打开了这个盒子，结果只找到了几根未点燃的火把")
+                            return
+                        }
+                    } else {
+                        await Add_najie_thing(usr_qq, "玩具铲", "道具", 1);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply("你充满期待的打开了盒子，结果发现只是小孩的恶作剧，获得了玩具铲1个")
+                        return
+                    }
+                }
+                else {
+                    e.reply("因为寄术原因一次只能开启一个！")
+                    return
+                }
             }
             //寄术原因，写了很多多余的东西，但是能跑
             if (thing_name == "猫猫藏的新春礼盒") {
-                let cishu=Math.round(Math.random()*7);
-                if(quantity<2){
-                if(cishu>0&&cishu<4){
-                    await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply(["你打开了"+thing_name+"发现了雪铃零藏的新春木盒，获得雪铃零藏的新春木盒1个"])
-                    return;
-                }else if(cishu>4&&cishu<7){
-                    await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", 1);
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);   
-                    e.reply(["你打开了"+thing_name+"发现了闹钟藏的新春铁盒，获得闹钟藏的新春铁盒1个"])
-                    return;
-                }else if(cishu==7){
-                    await Add_灵石(usr_qq, 2000000);
-                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);  
-                    e.reply("你打开了"+thing_name+",里面有一袋灵石")
-                }else{
-                    
-                await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                e.reply("你打开了"+thing_name+"什么也没有发现")
-                return;
-                }
-                }else{
+                let cishu = Math.round(Math.random() * 7);
+                if (quantity < 2) {
+                    if (cishu > 0 && cishu < 4) {
+                        await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply(["你打开了" + thing_name + "发现了雪铃零藏的新春木盒，获得雪铃零藏的新春木盒1个"])
+                        return;
+                    } else if (cishu > 4 && cishu < 7) {
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", 1);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply(["你打开了" + thing_name + "发现了闹钟藏的新春铁盒，获得闹钟藏的新春铁盒1个"])
+                        return;
+                    } else if (cishu == 7) {
+                        await Add_灵石(usr_qq, 2000000);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply("你打开了" + thing_name + ",里面有一袋灵石")
+                    } else {
+
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply("你打开了" + thing_name + "什么也没有发现")
+                        return;
+                    }
+                } else {
                     e.reply("因为寄术原因一次只能开启一个！")
                     return
                 }
@@ -1429,102 +1439,102 @@ export class UserHome extends plugin {
             if (thing_name == "打火石") {
                 let huoshi = await exist_najie_thing(usr_qq, "打火石", "道具")
                 let number = await exist_najie_thing(usr_qq, "未点燃的火把", "道具")
-                if (isNotNull(huoshi) && huoshi > 1*quantity-1){
-                if (isNotNull(number) && number > 5*quantity-1){
-                await Add_najie_thing(usr_qq, "火把", "道具", 5*quantity);
-                await Add_najie_thing(usr_qq, "未点燃的火把", "道具", -5*quantity);
-                await Add_najie_thing(usr_qq, "打火石", "道具", -quantity);
-                e.reply(["你使用打火石点燃了火把，获得火把"+5*quantity+"个"])
-                return
-                }else {
-                    e.reply("你的未点燃的火把不足"+5*quantity+"个，你感觉太亏了，便放弃了")
+                if (isNotNull(huoshi) && huoshi > 1 * quantity - 1) {
+                    if (isNotNull(number) && number > 5 * quantity - 1) {
+                        await Add_najie_thing(usr_qq, "火把", "道具", 5 * quantity);
+                        await Add_najie_thing(usr_qq, "未点燃的火把", "道具", -5 * quantity);
+                        await Add_najie_thing(usr_qq, "打火石", "道具", -quantity);
+                        e.reply(["你使用打火石点燃了火把，获得火把" + 5 * quantity + "个"])
+                        return
+                    } else {
+                        e.reply("你的未点燃的火把不足" + 5 * quantity + "个，你感觉太亏了，便放弃了")
+                        return
+                    }
+                } else {
+                    e.reply("你没有足够的" + thing_name)
                     return
-                }
-            }else{
-                    e.reply("你没有足够的"+thing_name)
-                    return
-                }
-            }    
-            
-           
-    if (thing_name == "雪铃零藏的新春木盒"){
-                let daomu=Math.round(Math.random()*4)
-                if(daomu>0){
-                if(daomu<2){
-                await Add_najie_thing(usr_qq, "玄土", "材料", 1000000);
-                await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply(["你打开了雪铃零藏的新春木盒,里面有一袋玄土"])
-                return
-                }
-                if(daomu>1&&daomu<3){
-                await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
-                await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply(["你打开了雪铃零藏的新春木盒，里面有一些钥匙"])
-                return
-                }
-                if(daomu>2&&daomu<4){
-                await Add_灵石(usr_qq, -1000000);
-                await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply(["你打开了雪铃零藏的新春木盒，未曾想里面是八个蛋，去医院消耗了100w灵石"])
-                return
-                }
-                if(daomu>3&&daomu<5){
-                    await Add_灵石(usr_qq, 5000000);
-                await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply(["你打开了雪铃零藏的新春木盒，里面有很多灵石， 你发达了"])
-                return
-                }
-                }
-                else{
-                await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
-                e.reply("你打开了雪铃零藏的新春木盒，里面什么都没有")
-                return
                 }
             }
-    if (thing_name == "闹钟藏的新春铁盒"){
-                let daomu=Math.round(Math.random()*6)
-                if(daomu>0){
-                if(daomu<2){
-                await Add_najie_thing(usr_qq, "庚金", "材料", 1000000);
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply(["你打开了闹钟藏的新春铁盒,里面有一袋庚金"])
-                return
+
+
+            if (thing_name == "雪铃零藏的新春木盒") {
+                let daomu = Math.round(Math.random() * 4)
+                if (daomu > 0) {
+                    if (daomu < 2) {
+                        await Add_najie_thing(usr_qq, "玄土", "材料", 1000000);
+                        await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了雪铃零藏的新春木盒,里面有一袋玄土"])
+                        return
+                    }
+                    if (daomu > 1 && daomu < 3) {
+                        await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
+                        await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了雪铃零藏的新春木盒，里面有一些钥匙"])
+                        return
+                    }
+                    if (daomu > 2 && daomu < 4) {
+                        await Add_灵石(usr_qq, -1000000);
+                        await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了雪铃零藏的新春木盒，未曾想里面是八个蛋，去医院消耗了100w灵石"])
+                        return
+                    }
+                    if (daomu > 3 && daomu < 5) {
+                        await Add_灵石(usr_qq, 5000000);
+                        await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了雪铃零藏的新春木盒，里面有很多灵石， 你发达了"])
+                        return
+                    }
                 }
-                if(daomu>1&&daomu<3){
-                await Add_najie_thing(usr_qq, "新年快乐剑", "装备", 1);
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply(["你打开了闹钟藏的新春铁盒，里面有一把武器，竟然是新年快乐剑"])
-                return
+                else {
+                    await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", -1);
+                    e.reply("你打开了雪铃零藏的新春木盒，里面什么都没有")
+                    return
                 }
-                if(daomu>2&&daomu<4){
-                await Add_najie_thing(usr_qq, "新年快乐符", "装备", 1);
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply(["你打开了闹钟藏的新春铁盒，里面有一个法宝，竟然是新年快乐符"])
-                return
+            }
+            if (thing_name == "闹钟藏的新春铁盒") {
+                let daomu = Math.round(Math.random() * 6)
+                if (daomu > 0) {
+                    if (daomu < 2) {
+                        await Add_najie_thing(usr_qq, "庚金", "材料", 1000000);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟藏的新春铁盒,里面有一袋庚金"])
+                        return
+                    }
+                    if (daomu > 1 && daomu < 3) {
+                        await Add_najie_thing(usr_qq, "新年快乐剑", "装备", 1);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟藏的新春铁盒，里面有一把武器，竟然是新年快乐剑"])
+                        return
+                    }
+                    if (daomu > 2 && daomu < 4) {
+                        await Add_najie_thing(usr_qq, "新年快乐符", "装备", 1);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟藏的新春铁盒，里面有一个法宝，竟然是新年快乐符"])
+                        return
+                    }
+                    if (daomu > 3 && daomu < 5) {
+                        await Add_najie_thing(usr_qq, "新年快乐甲", "装备", 1);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟藏的新春铁盒，里面有一个甲，竟然是新年快乐甲"])
+                        return
+                    }
+                    if (daomu > 4 && daomu < 6) {
+                        await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟藏的新春铁盒，里面有一些秘境之匙"])
+                        return;
+                    }
+                    if (daomu == 6) {
+                        await Add_灵石(usr_qq, -1000000);
+                        await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
+                        e.reply(["你打开了闹钟的新春铁盒，未曾想里面是八个蛋，去医院消耗了100w灵石"])
+                        return
+                    }
                 }
-                if(daomu>3&&daomu<5){
-                await Add_najie_thing(usr_qq, "新年快乐甲", "装备", 1);
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply(["你打开了闹钟藏的新春铁盒，里面有一个甲，竟然是新年快乐甲"])
-                return
-                }
-                if(daomu>4&&daomu<6){
-                    await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
+                else {
                     await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                    e.reply(["你打开了闹钟藏的新春铁盒，里面有一些秘境之匙"])
-                    return;
-                }
-                if(daomu==6){
-                    await Add_灵石(usr_qq, -1000000);
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply(["你打开了闹钟的新春铁盒，未曾想里面是八个蛋，去医院消耗了100w灵石"])
-                return
-                }
-                }
-                else{
-                await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", -1);
-                e.reply("你打开了闹钟藏的新春铁盒，里面什么都没有")
-                return
+                    e.reply("你打开了闹钟藏的新春铁盒，里面什么都没有")
+                    return
                 }
             }
             if (thing_name == "轮回阵旗") {
@@ -2019,17 +2029,17 @@ export class UserHome extends plugin {
         }
         if (func == "寻宝") {
             let player = await Read_player(usr_qq);
-  if (player.当前血量 < 200) {
-      e.reply("你都伤成这样了,就不要出去浪了");
-    return;
-  }
+            if (player.当前血量 < 200) {
+                e.reply("你都伤成这样了,就不要出去浪了");
+                return;
+            }
             await Go(e);
-        if (allaction) {
-            console.log(allaction);
-        } else {
-            return;
-        }
-        allaction = false;
+            if (allaction) {
+                console.log(allaction);
+            } else {
+                return;
+            }
+            allaction = false;
             let x = await exist_najie_thing(usr_qq, thing_name, "道具");
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的道具`);
@@ -2040,7 +2050,7 @@ export class UserHome extends plugin {
                 if (daomu > 0) {
                     if (daomu < 2) {
                         await Add_najie_thing(usr_qq, "庚金", "材料", 300000);
-                        await Add_najie_thing(usr_qq, "木铲", "道具", -1); 
+                        await Add_najie_thing(usr_qq, "木铲", "道具", -1);
                         e.reply(["你随便找了个位置就开启寻宝，未曾想挖到了一袋不知道是谁扔在这里的庚金"])
                         return
                     }
@@ -2063,7 +2073,7 @@ export class UserHome extends plugin {
                         e.reply(["你在寻宝的时候意外发现了一个猫猫藏的新春礼盒"])
                         return
                     }
-                    if (daomu > 4&& daomu < 6) {
+                    if (daomu > 4 && daomu < 6) {
                         await Add_najie_thing(usr_qq, "秘境之匙", "道具", 1);
                         await Add_najie_thing(usr_qq, "木铲", "道具", -1);
                         e.reply(["你在寻宝的时候意外发现了一把钥匙,你觉得以后可能会有用处,于是带回家了"])
@@ -2074,10 +2084,10 @@ export class UserHome extends plugin {
                     e.reply("你寻宝了半天，都没有发现任何东西，失望的你只好回家去了")
                     return
                 }
-            
-        }
+
+            }
             if (thing_name == "石铲") {
-                  let si = parseInt(player.血量上限 * 1); 
+                let si = parseInt(player.血量上限 * 1);
                 let daomu = Math.round(Math.random() * 4)
                 if (daomu > 0) {
                     if (daomu < 2) {
@@ -2094,7 +2104,7 @@ export class UserHome extends plugin {
                         return
                     }
                     if (daomu > 2 && daomu < 4) {
-                     
+
                         await Add_修为(usr_qq, 800);
                         await Add_HP(usr_qq, -si);
                         await Add_najie_thing(usr_qq, "石铲", "道具", -1);
@@ -2219,15 +2229,15 @@ export class UserHome extends plugin {
                         e.reply(["你因为熊孩子的恶作剧而生气的四处张望，看到了一个小孩子正在朝你做鬼脸，你追了上去却追丢了，最终只获得了一个没用的东西"])
                         return
                     }
-                   
-                } else {        
+
+                } else {
                     await Add_najie_thing(usr_qq, "玩具铲", "道具", -1);
                     e.reply("你拿着玩具铲去寻宝，结果什么都没有找到");
                 }
             }
-            
+
             if (thing_name == "钻石铲") {
-                  let si = parseInt(player.血量上限 * 1); 
+                let si = parseInt(player.血量上限 * 1);
                 let jianshao = parseInt(player.血量上限 * 0.25);
                 let daomu = Math.round(Math.random() * 4)
                 if (daomu > 0) {
@@ -2239,18 +2249,18 @@ export class UserHome extends plugin {
                     }
                     if (daomu > 1 && daomu < 3) {
                         let huoba = await exist_najie_thing(usr_qq, "火把", "道具");
-                       
-                        if (!huoba) {                     
-                            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);  
+
+                        if (!huoba) {
+                            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);
                             await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                             e.reply(`你朝着深处寻宝，在很深的地方看到了一个宝地，因为没有火把你不敢朝着深处探索你只好无功而返了，在返回的时候看到了一个钻石石块，你把他捡起来放入了纳戒`);
                             return;
                         } else {
-                           await Add_najie_thing(usr_qq, "幸运草", "道具", 1);  
-                            await Add_najie_thing(usr_qq, "火把", "道具", -1);     
+                            await Add_najie_thing(usr_qq, "幸运草", "道具", 1);
+                            await Add_najie_thing(usr_qq, "火把", "道具", -1);
                             await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);
                             await Add_修为(usr_qq, 5000000);
-                            await Add_血气(usr_qq, 5000000);   
+                            await Add_血气(usr_qq, 5000000);
                             e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个幸运草与钻石锭，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
                             return
                         }
@@ -2260,15 +2270,15 @@ export class UserHome extends plugin {
                         e.reply(["你在挖掘的时候意外的挖到了钻石碎片，你吓了一跳，但是考虑到它的价格，还是老老实实的将它放入了纳戒"])
                         return
                     }
-                    if (daomu > 3 && daomu < 5) {     
-                        await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);                                      
+                    if (daomu > 3 && daomu < 5) {
+                        await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
                         await Add_血气(usr_qq, 500000);
                         await Add_HP(usr_qq, -jianshao);
-                        e.reply(["你在寻宝的过程中发现了一些钥匙,遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了"+jianshao])
+                        e.reply(["你在寻宝的过程中发现了一些钥匙,遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了" + jianshao])
                         return
                     }
                 } else {
-                    
+
                     await Add_修为(usr_qq, 800);
                     await Add_HP(usr_qq, -si);
                     cishu = cishu - 1;
@@ -2276,100 +2286,100 @@ export class UserHome extends plugin {
                     return
                 }
             }
-        } 
-        if(func=="合成"){
-        if (thing_name == "钻石微粒") {
-            let number = await exist_najie_thing(usr_qq, "钻石尘埃", "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石微粒", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq, "钻石尘埃", "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石微粒"+quantity+"个"])
-            return
+        }
+        if (func == "合成") {
+            if (thing_name == "钻石微粒") {
+                let number = await exist_najie_thing(usr_qq, "钻石尘埃", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石微粒", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石尘埃", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石微粒" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的钻石尘埃")
+                    return
+                }
             }
-            else {
-                e.reply("你没有足够的钻石尘埃")
-                return
+            if (thing_name == "钻石碎屑") {
+                let number = await exist_najie_thing(usr_qq, "钻石微粒", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石碎屑", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石微粒", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石碎屑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石微粒")
+                    return
+                }
             }
-        }    
-        if (thing_name == "钻石碎屑") {
-            let number = await exist_najie_thing(usr_qq, "钻石微粒", "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石碎屑", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq, "钻石微粒", "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石碎屑"+quantity+"个"])
-            return
+            if (thing_name == "钻石碎片") {
+                let number = await exist_najie_thing(usr_qq, "钻石碎屑", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石碎屑", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石碎片" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石碎屑")
+                    return
+                }
             }
-            else {
-                e.reply("你没有足够的"+"钻石微粒")
-                return
+            if (thing_name == "钻石碎块") {
+                let number = await exist_najie_thing(usr_qq, "钻石碎片", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石碎块", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石碎片", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石碎块" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石碎片")
+                    return
+                }
             }
-        }    
-        if (thing_name == "钻石碎片") {
-            let number = await exist_najie_thing(usr_qq, "钻石碎屑", "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq, "钻石碎屑", "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石碎片"+quantity+"个"])
-            return
+            if (thing_name == "钻石石块") {
+                let number = await exist_najie_thing(usr_qq, "钻石碎块", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石石块", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石碎块", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石石块" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石碎块")
+                    return
+                }
             }
-            else {
-                e.reply("你没有足够的"+"钻石碎屑")
-                return
+            if (thing_name == "钻石锭") {
+                let number = await exist_najie_thing(usr_qq, "钻石石块", "道具")
+                if (isNotNull(number) && number > 3 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "钻石锭", "材料", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石石块", "道具", -3 * quantity);
+                    e.reply(["合成成功，获得钻石锭" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石石块")
+                    return
+                }
             }
-        }    
-        if (thing_name == "钻石碎块") {
-            let number = await exist_najie_thing(usr_qq, "钻石碎片", "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石碎块", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq,"钻石碎片" , "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石碎块"+quantity+"个"])
-            return
-            }
-            else {
-                e.reply("你没有足够的"+"钻石碎片")
-                return
-            }
-        }    
-        if (thing_name == "钻石石块") {
-            let number = await exist_najie_thing(usr_qq, "钻石碎块", "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石石块", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq, "钻石碎块", "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石石块"+quantity+"个"])
-            return
-            }
-            else {
-                e.reply("你没有足够的"+"钻石碎块")
-                return
-            }
-        }        
-        if (thing_name == "钻石锭") {
-            let number = await exist_najie_thing(usr_qq, "钻石石块" , "道具")
-            if (isNotNull(number) && number > 3*quantity-1){
-            await Add_najie_thing(usr_qq, "钻石锭", "材料", 1*quantity);
-            await Add_najie_thing(usr_qq,  "钻石石块", "道具", -3*quantity);
-            e.reply(["合成成功，获得钻石锭"+quantity+"个"])
-            return
-            }
-            else {
-                e.reply("你没有足够的"+ "钻石石块")
-                return
-            }
-        }   
-        if (thing_name == "仙子邀约") {
-            let number = await exist_najie_thing(usr_qq, "钻石锭", "道具")
-            if (isNotNull(number) && number > 5*quantity-1){
-            await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1*quantity);
-            await Add_najie_thing(usr_qq, "钻石锭", "道具", -5*quantity);
-            e.reply(["合成成功，获得仙子邀约"+quantity+"个"])
-            return
-            }
-            else {
-                e.reply("你没有足够的"+"钻石锭")
-                return
+            if (thing_name == "仙子邀约") {
+                let number = await exist_najie_thing(usr_qq, "钻石锭", "道具")
+                if (isNotNull(number) && number > 5 * quantity - 1) {
+                    await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1 * quantity);
+                    await Add_najie_thing(usr_qq, "钻石锭", "道具", -5 * quantity);
+                    e.reply(["合成成功，获得仙子邀约" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的" + "钻石锭")
+                    return
+                }
             }
         }
-    }          
         return;
     }
 
@@ -2502,7 +2512,7 @@ export class UserHome extends plugin {
         //价格
         let commodities_price = ifexist.出售价 * 1.2 * quantity;
         let addWorldmoney = ifexist.出售价 * 0.2 * quantity;
-        commodities_price =Math.trunc(commodities_price);
+        commodities_price = Math.trunc(commodities_price);
         //判断金额
         if (lingshi < commodities_price) {
             e.reply(`口袋里的灵石不足以支付${thing_name},还需要${commodities_price - lingshi}灵石`);
@@ -2558,7 +2568,7 @@ export class UserHome extends plugin {
             e.reply(`万宝楼不回收这样的东西:${thing_name}`);
             return;
         }
-        if (quantity==NaN) {
+        if (quantity == NaN) {
             e.reply("看你输的数是啥玩意！");
             return;
         }
@@ -2633,7 +2643,7 @@ export async function Go(e) {
             return;
         }
     }
-    
+
     allaction = true;
     return;
 }
