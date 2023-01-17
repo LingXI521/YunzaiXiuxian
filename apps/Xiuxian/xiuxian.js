@@ -366,7 +366,7 @@ export async function player_efficiency(usr_qq) {
             gongfa_efficiency += ifexist2.修炼加成;
         }
     }
-    if (player.仙宠 ?.type == '修炼') { // 是否存在修炼仙宠
+    if (player.仙宠.type == '修炼') { // 是否存在修炼仙宠
         xianchong_efficiency = player.仙宠.加成; // 存在修炼仙宠，仙宠效率为仙宠效率加成
     }
     if (parseInt(player.修炼效率提升) != parseInt(player.修炼效率提升)) {
@@ -375,13 +375,16 @@ export async function player_efficiency(usr_qq) {
     let bgdan = 0
     let action = await redis.get("xiuxian:player:" + 10 + ":biguang");
     action = await JSON.parse(action);
-    for (i = 0; i < action.length; i++) {
+    if (action!=null)
+    {
+        for (i = 0; i < action.length; i++) {
 
-        if (action[i].qq == usr_qq) {
-            bgdan = action[i].biguanxl;
-            break
+            if (action[i].qq == usr_qq) {
+                bgdan = action[i].biguanxl;
+                break
+            }
+    
         }
-
     }
     if (parseInt(player.修炼效率提升) != parseInt(player.修炼效率提升)) {
         player.修炼效率提升 = 0;
