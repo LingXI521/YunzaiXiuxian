@@ -94,16 +94,8 @@ export class GuessLanternRiddles extends plugin {
         action = await JSON.parse(action);
         action = 1;
         await redis.set("xiuxian:player:" + 1 + ":dati", JSON.stringify(action));
-        let File = fs.readdirSync(__PATH.player_path);
-        File = File.filter(file => file.endsWith(".json"));
-        let File_length = File.length;
-        for (var k = 0; k < File_length; k++) {
-            let this_qq = File[k].replace(".json", '');
-            this_qq = parseInt(this_qq);
-            let players = await Read_player(this_qq);
-            players.灯谜 = 0;
-            await Write_player(this_qq, players);
-        }
+        await dati2();
+        e.reply('已开启每日刷新!')
         return;
     }
     async Add_lhd(e) {
@@ -784,4 +776,17 @@ async function GetAverageDamage() {
         "fairy_nums": fairyNums
     }
     return res;
+}
+export async function dati2() {
+    let File = fs.readdirSync(__PATH.player_path);
+    File = File.filter(file => file.endsWith(".json"));
+    let File_length = File.length;
+    for (var k = 0; k < File_length; k++) {
+        let this_qq = File[k].replace(".json", '');
+        this_qq = parseInt(this_qq);
+        let players = await Read_player(this_qq);
+        players.灯谜 = 0;
+        await Write_player(this_qq, players);
+    }
+    return;
 }
