@@ -2,10 +2,10 @@
   list:
     - icon: help-icon_13
       title: '#答题刷新开'
-      desc: '开启后每天自动刷新'
+      desc: '开启后每天自动刷新(管理员)'
     - icon: help-icon_13
       title: '#小号检测关'
-      desc: '关闭后所有人都能参与活动'
+      desc: '关闭后所有人都能参与活动(管理员)'
     - icon: help-icon_13
       title: '#出题吧'
       desc: '猜灯谜'
