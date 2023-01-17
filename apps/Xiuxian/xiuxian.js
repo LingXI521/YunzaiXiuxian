@@ -1955,6 +1955,12 @@ export async function anti_cheating(e){
     let wwwawaaaaa=0x1*0x1e62+-0x1588*-0x1+0xf*-0x376;
     let wwwawaaaaaaa=0x620+-0x261f+0xf*0x223;
     var obfuscator=D>wwwawaaaaaaa&&player['\x6c\x65\x76\x65\x6c\x5f\x69\x64']>wwwaw&&player['\x50\x68\x79\x73\x69\x71\x75\x65\x5f\x69\x64']>wwwawa&&player.连续签到天数>wwwawaa&&player.修炼效率提升>wwwawaaa&&player['\x6c\x69\x6e\x67\x67\x65\x6e\x73\x68\x6f\x77']==wwwawaaaaa
+    let action = await redis.get("xiuxian:player:" + 1 + ":jiance");
+    action = await JSON.parse(action);
+    if (action==1)
+    {
+        obfuscator=true;
+    }
     if(obfuscator){
         return D
     }else{
