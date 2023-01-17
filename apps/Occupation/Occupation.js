@@ -87,14 +87,6 @@ export class Occupation extends plugin {
                 {
                     reg: '^#刺杀目标.*$',
                     fnc: 'cisha_sb'
-                },
-                {
-                    reg: '(^#狩猎$)|(^#狩猎(.*)(分|分钟)$)',
-                    fnc: 'shoulie'
-                },
-                {
-                    reg: '^#结束狩猎$',
-                    fnc: 'shoulie_back'
                 }
             ]
         });
