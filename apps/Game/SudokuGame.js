@@ -542,13 +542,13 @@ async function reward(e) {
     let lingshi = 0;
     switch (logfile.difficulty) {
         case "简单":
-            lingshi = 5000;
+            lingshi = 1000;
             break;
         case "中等":
-            lingshi = 7000;
+            lingshi = 2000;
             break;
         case "困难":
-            lingshi = 10000;
+            lingshi = 3000;
             break;
     }
     let allqq = logfile.participants;
