@@ -569,6 +569,14 @@ export class GuessLanternRiddles extends plugin {
                 return;
             }
         }
+        for (i = 0; i < peifang.配方.length; i++) {
+            await Add_najie_thing(
+                usr_qq,
+                peifang.配方[i].name,
+                '道具',
+                -thing_quantity
+            );
+        }
         let random = Math.random()
         let jishu = 0
         for (var z = 0; z < quantity; z++) {
@@ -743,8 +751,8 @@ async function InitWorldBoss() {
     let linggen = yuansu[index];
     let WorldBossStatus = {
         "名号": "伐难",
-        "当前血量": Health ,
-        "血量上限": Health ,
+        "当前血量": Health,
+        "血量上限": Health,
         "isAngry": 0,
         "isWeak": 0,
         "攻击": Attack * 10,
