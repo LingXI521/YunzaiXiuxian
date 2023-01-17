@@ -2259,7 +2259,7 @@ export class UserHome extends plugin {
                         let huoba = await exist_najie_thing(usr_qq, "火把", "道具");
 
                         if (!huoba) {
-                            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);
+                            await Add_najie_thing(usr_qq, "打火石", "道具", 1);
                             await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                             e.reply(`你朝着深处寻宝，在很深的地方看到了一个宝地，因为没有火把你不敢朝着深处探索你只好无功而返了，在返回的时候看到了一个钻石石块，你把他捡起来放入了纳戒`);
                             return;
@@ -2267,6 +2267,7 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "幸运草", "道具", 1);
                             await Add_najie_thing(usr_qq, "火把", "道具", -1);
                             await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);
+                             await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                             await Add_修为(usr_qq, 5000000);
                             await Add_血气(usr_qq, 5000000);
                             e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个幸运草与钻石锭，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
@@ -2275,18 +2276,20 @@ export class UserHome extends plugin {
                     }
                     if (daomu > 2 && daomu < 4) {
                         await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);
+                         await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                         e.reply(["你在挖掘的时候意外的挖到了钻石碎片，你吓了一跳，但是考虑到它的价格，还是老老实实的将它放入了纳戒"])
                         return
                     }
                     if (daomu > 3 && daomu < 5) {
                         await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
+                         await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                         await Add_血气(usr_qq, 500000);
                         await Add_HP(usr_qq, -jianshao);
                         e.reply(["你在寻宝的过程中发现了一些钥匙,遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了" + jianshao])
                         return
                     }
                 } else {
-
+                    await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                     await Add_修为(usr_qq, 800);
                     await Add_HP(usr_qq, -si);
                     cishu = cishu - 1;
