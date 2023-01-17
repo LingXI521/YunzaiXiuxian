@@ -253,6 +253,81 @@ export class OccupationTask extends plugin {
 
                     }
                 }
+                if (action.mine == "0") {
+                    //这里改一改,要在结束时间的前一分钟提前结算
+                    //时间过了
+                     end_time=end_time-60000*2;
+                    if (now_time > end_time) {
+                        log_mag += "当前人物未结算，结算状态";
+                        let player = data.getData("player", player_id);
+                        let now_level_id;
+                        if (!isNotNull(player.level_id)){
+                            return;
+                        }
+						
+						// var size=this.xiuxianConfigData.mine.size;
+                        let time = parseInt(action.time) / 1000 / 60;//最高480分钟
+                        //以下1到5为每种的数量
+						let mine_amount1 = Math.floor((1.8+Math.random()*0.4)*time);//(1.8+随机0到0.4)x时间(分钟)
+						let mine_amount2 = Math.floor((1.8+Math.random()*0.4)*time);//(1.8+随机0到0.4)x时间(分钟)
+						let mine_amount3 = Math.floor(time/30);//时间除30
+						let mine_amount4 = Math.floor(time/30);//时间除30
+						let mine_amount5 = Math.floor(time/30);//时间除30
+                        let rate = data.occupation_exp_list.find(item => item.id == player.occupation_level).rate*10;
+                        let exp = 0;
+                        let ext = "";
+                        if(player.occupation=="猎户"){
+                            exp = time*10;
+                            time *= rate;
+                            ext = `你是猎户，获得狩猎经验${exp}，额外获得猎物${Math.floor(rate * 100)}%，`;
+                        }
+                        let end_amount=Math.floor(4*(rate+1)*(mine_amount1))//普通矿石
+                        let end_amount2=Math.floor(4*(rate+1)*(mine_amount3))//稀有
+                        if(player.level_id<=21){
+            
+                            end_amount*=player.level_id/40
+                            end_amount2*=player.level_id/40
+                            msg.push("由于你境界不足化神,在狗熊岭遇见熊大熊二，摆脱他们花了很多时间，收入降低" + (1 - player.level_id / 40) * 50 + "%\n")
+                        }else{
+                            end_amount*=player.level_id/40
+                            end_amount2*=player.level_id/40
+                        }
+
+                        //mine_amount1 = parseInt(mine_amount1 * time);
+                        //mine_amount2 = parseInt(mine_amount2 * time);
+                        //mine_amount3 = parseInt(mine_amount3 * time);
+                        //mine_amount4 = parseInt(mine_amount4 * time);
+                        let usr_qq=player.id
+                        end_amount = Math.floor(end_amount);
+                        end_amount2 = Math.floor(end_amount2);
+                        await Add_najie_thing(usr_qq, "野兔", "材料", end_amount);
+                        await Add_najie_thing(usr_qq, "野鸡", "材料", end_amount);
+                        await Add_najie_thing(usr_qq, "野猪", "材料", end_amount);
+                        await Add_najie_thing(usr_qq, "野牛", "材料", end_amount);
+                        await Add_najie_thing(usr_qq, "野羊", "材料", end_amount);
+                        await Add_职业经验(usr_qq,exp);
+                        msg.push(`\n狩猎归来，${ext}\n收获野兔×${end_amount}\n野鸡×${end_amount}\n野猪×${end_amount}\n野牛×${end_amount}\n野羊×${end_amount}\n`);
+
+                        let arr = action;
+                        //把状态都关了
+                        arr.mine = 1;//采矿状态
+                        arr.mine = 1;//闭状态
+                        arr.shutup = 1;//闭关状态
+                        arr.working = 1;//降妖状态
+                        arr.power_up = 1;//渡劫状态
+                        arr.Place_action = 1;//秘境
+                        arr.Place_actionplus = 1;//沉迷状态
+                        delete arr.group_id;//结算完去除group_id
+                        await redis.set("xiuxian:player:" + player_id + ":action", JSON.stringify(arr));
+                        //msg.push("\n增加修为:" + xiuwei * time, "血量增加:" + blood * time);
+                        if (is_group) {
+                            await this.pushInfo(push_address, is_group, msg)
+                        } else {
+                            await this.pushInfo(player_id, is_group, msg);
+                        }
+
+                    }
+                }
 
             }
         }
