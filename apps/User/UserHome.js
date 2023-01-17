@@ -1110,18 +1110,18 @@ export class UserHome extends plugin {
                             e.reply(`圣品丹药过于强大无法凝仙`)
                             Add_najie_thing(usr_qq, this_danyao.name, '丹药', quantity)
                             return;
-                        } else {
-
-                            if (action[i].biguan > 0) { action[i].biguan += this_danyao.机缘 * quantity }
-                            if (action[i].lianti > 0) { action[i].lianti += this_danyao.机缘 * quantity }
-                            if (action[i].ped > 0) { action[i].ped += this_danyao.机缘 * quantity }
-                            if (action[i].beiyong2 > 0) { action[i].beiyong2 += this_danyao.机缘 * quantity }
-                            e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
-                            await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-                            return;
                         }
-                    }
 
+                        if (action[i].biguan > 0) { action[i].biguan += this_danyao.机缘 * quantity }
+                        if (action[i].lianti > 0) { action[i].lianti += this_danyao.机缘 * quantity }
+                        if (action[i].ped > 0) { action[i].ped += this_danyao.机缘 * quantity }
+                        if (action[i].beiyong2 > 0) { action[i].beiyong2 += this_danyao.机缘 * quantity }
+                        e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
+                        await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
+
+
+                    }
+                    return;
                 }
             }
 
@@ -1408,15 +1408,15 @@ export class UserHome extends plugin {
                 }
             }
             //寄术原因，写了很多多余的东西，但是能跑
-            if (thing_name == "猫猫藏的新春礼盒") {
+             if (thing_name == "猫猫藏的新春礼盒") {
                 let cishu = Math.round(Math.random() * 7);
                 if (quantity < 2) {
-                    if (cishu == 1) {
+                    if (cishu==1) {
                         await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply(["你打开了" + thing_name + "发现了雪铃零藏的新春木盒，获得雪铃零藏的新春木盒1个"])
                         return;
-                    } else if (cishu == 2) {
+                    } else if (cishu==2) {
                         await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", 1);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply(["你打开了" + thing_name + "发现了闹钟藏的新春铁盒，获得闹钟藏的新春铁盒1个"])
@@ -1425,19 +1425,21 @@ export class UserHome extends plugin {
                         await Add_灵石(usr_qq, 2000000);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply("你打开了" + thing_name + ",里面有一袋灵石")
-                    } else if (cishu == 4) {
+                        return;
+                    } else if(cishu==4){
                         await Add_灵石(usr_qq, -1000000);
-                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1); 
                         e.reply("你打开了" + thing_name + "里面有一个八个蛋,你去医院花费了100w灵石")
                         return;
-                    } else if (cishu == 5) {
+                    }else if(cishu==5){
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", 1);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply(["你打开了" + thing_name + "发现了清灵藏的新春木盒，获得清灵藏的新春木盒1个"])
                         return;
-                    } else {
-                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                    }else{
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1); 
                         e.reply("你打开了" + thing_name + "里面什么都没有")
+                        return;
                     }
                 } else {
                     e.reply("因为寄术原因一次只能开启一个！")
@@ -2267,7 +2269,7 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "幸运草", "道具", 1);
                             await Add_najie_thing(usr_qq, "火把", "道具", -1);
                             await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);
-                            await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
+                             await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                             await Add_修为(usr_qq, 5000000);
                             await Add_血气(usr_qq, 5000000);
                             e.reply(["你朝着深处寻宝，在很深的地方找到了一个宝地，你拿出了纳戒中的火把进行探索最终在宝地深处发现了一个幸运草与钻石锭，你欣喜的将他们放进纳戒，在探索过程中遇到了一些怪物，你击败了他们，修为增加了5000000，血气增加了5000000"])
@@ -2276,13 +2278,13 @@ export class UserHome extends plugin {
                     }
                     if (daomu > 2 && daomu < 4) {
                         await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);
-                        await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
+                         await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                         e.reply(["你在挖掘的时候意外的挖到了钻石碎片，你吓了一跳，但是考虑到它的价格，还是老老实实的将它放入了纳戒"])
                         return
                     }
                     if (daomu > 3 && daomu < 5) {
                         await Add_najie_thing(usr_qq, "秘境之匙", "道具", 2);
-                        await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
+                         await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                         await Add_血气(usr_qq, 500000);
                         await Add_HP(usr_qq, -jianshao);
                         e.reply(["你在寻宝的过程中发现了一些钥匙,遇见了在地底修炼的妖兽，你击败了他们，血气增加了500000,血量降低了" + jianshao])
