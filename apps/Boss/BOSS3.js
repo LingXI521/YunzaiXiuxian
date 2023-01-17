@@ -466,6 +466,10 @@ export class BOSS3 extends plugin {
                         msg.push(WorldBossStatus.名号+"触电了,受到了"+持续伤害+"的感电伤害")
                     }
                     Player_To_BOSS_Damage=Math.trunc(Player_To_BOSS_Damage);
+                    if(Player_To_BOSS_Damage>WorldBossStatus.血量上限/10){
+                        Player_To_BOSS_Damage=Math.trunc(WorldBossStatus.血量上限/10)
+                        msg.push("你的攻击过于强大，被天地法则限制")
+                    }
                     WorldBossStatus.当前血量 -= Player_To_BOSS_Damage;
                     if ((WorldBossStatus.灵根.name=="仙之心·水"&&CurrentPlayerAttributes.灵根.name=="仙之心·木") || (WorldBossStatus.灵根.name=="仙之心·木"&&CurrentPlayerAttributes.灵根.name=="仙之心·水"))
                     {
