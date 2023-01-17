@@ -1408,28 +1408,36 @@ export class UserHome extends plugin {
                 }
             }
             //寄术原因，写了很多多余的东西，但是能跑
-            if (thing_name == "猫猫藏的新春礼盒") {
+             if (thing_name == "猫猫藏的新春礼盒") {
                 let cishu = Math.round(Math.random() * 7);
                 if (quantity < 2) {
-                    if (cishu > 0 && cishu < 4) {
+                    if (cishu==1) {
                         await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply(["你打开了" + thing_name + "发现了雪铃零藏的新春木盒，获得雪铃零藏的新春木盒1个"])
                         return;
-                    } else if (cishu > 4 && cishu < 7) {
+                    } else if (cishu==2) {
                         await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具", 1);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply(["你打开了" + thing_name + "发现了闹钟藏的新春铁盒，获得闹钟藏的新春铁盒1个"])
                         return;
-                    } else if (cishu == 7) {
+                    } else if (cishu == 3) {
                         await Add_灵石(usr_qq, 2000000);
                         await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                         e.reply("你打开了" + thing_name + ",里面有一袋灵石")
-                    } else {
-
-                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                        e.reply("你打开了" + thing_name + "什么也没有发现")
+                    } else if(cishu==4){
+                        await Add_灵石(usr_qq, -1000000);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1); 
+                        e.reply("你打开了" + thing_name + "里面有一个八个蛋,你去医院花费了100w灵石")
                         return;
+                    }else if(cishu==5){
+                        await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", 1);
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                        e.reply(["你打开了" + thing_name + "发现了清灵藏的新春木盒，获得清灵藏的新春木盒1个"])
+                        return;
+                    }else{
+                        await Add_najie_thing(usr_qq, thing_name, "道具", -1); 
+                        e.reply("你打开了" + thing_name + "里面什么都没有")
                     }
                 } else {
                     e.reply("因为寄术原因一次只能开启一个！")
