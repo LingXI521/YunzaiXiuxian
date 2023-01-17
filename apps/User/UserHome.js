@@ -1261,22 +1261,15 @@ export class UserHome extends plugin {
             }
         }
         if (func == "消耗") {
-            let thing;
-            if (thing_exist.class=="道具")
-                thing = data.daoju_list.find(item => item.name == thing_name);
-            else if (thing_exist.class=="装备")
-                thing = data.timeequipmen_list.find(item => item.name == thing_name);
-            else if (thing_exist.class=="草药")
-                thing = data.caoyao_list.find(item => item.name == thing_name);
             let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
-            if(thing.type=="练气幻影卡面"){
-                let photo=thing.id
+            if(thing_exist.type=="练气幻影卡面"){
+                let photo=thing_exist.id
                 if(player.练气皮肤==photo){
-                    e.reply("您的卡面已经是"+thing.name)
+                    e.reply("您的卡面已经是"+thing_exist.name)
                     return
                 }
                 let old=data.daoju_list.find(item=>item.id==player.练气皮肤)
@@ -1284,14 +1277,14 @@ export class UserHome extends plugin {
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
                 await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+thing.type+"【"+thing.name+"】成功")
+                e.reply("更换"+thing_exist.type+"【"+thing_exist.name+"】成功")
                 return
                 
             }
-            if(thing.type=="装备幻影卡面"){
-                let photo=thing.id
+            if(thing_exist.type=="装备幻影卡面"){
+                let photo=thing_exist.id
                 if(player.装备皮肤==photo){
-                    e.reply("您的卡面已经是"+thing.name)
+                    e.reply("您的卡面已经是"+thing_exist.name)
                     return
                 }
                 let old=data.daoju_list.find(item=>item.id==player.装备皮肤)
@@ -1299,79 +1292,52 @@ export class UserHome extends plugin {
                 await Write_player(usr_qq,player)
                 await Add_najie_thing(usr_qq,thing_name,"道具",-1)
                 await Add_najie_thing(usr_qq,old.name,"道具",1)
-                e.reply("更换"+thing.type+"【"+thing.name+"】成功")
+                e.reply("更换"+thing_exist.type+"【"+thing_exist.name+"】成功")
                 return
                 
             }
            if (thing_name == "分数") {
-                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"草药")
-                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, "【剑法】残云封天剑", "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "草药", -1);
                     e.reply(`成功兑换武器：《【剑法】残云封天剑》`);
                     return
-                }else{
-                    e.reply('你没有'+thing_name)
-                }
             }
             
             
             
                 if (thing_name == "圣令") {
-                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
-                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, "四圣麒麟甲", "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     e.reply(`成功兑换：四圣麒麟甲`);
                     return
-                }else{
-                    e.reply('你没有'+thing_name)
-                }
             }
             
-            
-           
                 if (thing_name == "武器造化机缘") {
                     let l = data.wuqizaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
-                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
-                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
-                }else{
-                    e.reply('你没有'+thing_name)
-                }
             }
                 if (thing_name == "护具造化机缘") {
                     let l = data.hujuzaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
-                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
-                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
-                }else{
-                    e.reply('你没有'+thing_name)
-                }
             }
                 if (thing_name == "法宝造化机缘") {
                     let l = data.fabaozaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
-                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
-                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
-                }else{
-                    e.reply('你没有'+thing_name)
-                }
             }
             if (thing_name == "多莉的消息") {
                 e.reply([segment.at(3140947982), "多莉！！来客人了！！"])
