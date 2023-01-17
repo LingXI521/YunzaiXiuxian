@@ -1081,11 +1081,12 @@ export class Occupation extends plugin {
 
             player_B.法球倍率 = player_B.灵根.法球倍率;
             let buff = 1 + player.occupation_level * 0.055;
+            let buff2=1 + player.occupation_level * 0.055/2;
             let player_A = {
                 id: player.id,
                 名号: player.名号,
                 攻击: parseInt(player.攻击 * buff),
-                防御: parseInt(player.防御* buff/2),
+                防御: parseInt(player.防御* buff2),
                 当前血量: parseInt(player.血量上限),
                 暴击率: player.暴击率,
                 学习的功法: player.学习的功法,
@@ -1110,7 +1111,7 @@ export class Occupation extends plugin {
                 last_msg += "【全服公告】" + player_B.名号 + "失去了1000000灵石,罪恶得到了洗刷,魔道值-50,无名侠客获得了部分灵石,自己的正气提升了,同时获得了更多的悬赏加成";
             }
             else if (msg.find(item => item == B_win)) {
-                var shangjing = Math.trunc(action.arm[num].赏金 * 0.3);
+                var shangjing = Math.trunc(action.arm[num].赏金 * 0.5);
                 player.当前血量 = 0;
                 player.灵石 += shangjing;
                 player.魔道值 -= 5;
@@ -1285,8 +1286,10 @@ export class Occupation extends plugin {
         }
         let player = await Read_player(usr_qq);
         let buff = 1;
+        let buff2=1;
         if (player.occupation == "侠客") {
             buff = 1 + player.occupation_level * 0.055;
+            buff2=1 + player.occupation_level * 0.055/2;
         }
         let last_msg = "";
         let player_B = await Read_player(qq);
@@ -1316,7 +1319,7 @@ export class Occupation extends plugin {
             id: player.id,
             名号: player.名号,
             攻击: parseInt(player.攻击 * buff),
-            防御: parseInt(player.防御* buff/2),
+            防御: parseInt(player.防御* buff2),
             当前血量: parseInt(player.血量上限),
             暴击率: player.暴击率,
             学习的功法: player.学习的功法,
