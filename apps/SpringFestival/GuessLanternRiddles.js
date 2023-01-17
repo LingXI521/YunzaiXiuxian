@@ -81,10 +81,25 @@ export class GuessLanternRiddles extends plugin {
                 {
                     reg: '^#答题刷新开$',
                     fnc: 'dati'
+                },
+                {
+                    reg: '^#小号检测关$',
+                    fnc: 'jiance'
                 }
             ]
         })
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
+    }
+    async jiance(e) {
+        if (!e.isMaster) {
+            return;
+        }
+        let action = await redis.get("xiuxian:player:" + 1 + ":jiance");
+        action = await JSON.parse(action);
+        action = 1;
+        await redis.set("xiuxian:player:" + 1 + ":jiance", JSON.stringify(action));
+        e.reply('小号检测以关闭!')
+        return;
     }
     async dati(e) {
         if (!e.isMaster) {
