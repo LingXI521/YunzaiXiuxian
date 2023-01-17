@@ -85,5 +85,3 @@ najie_price: # 纳戒升级消耗 需要对应najie_num保持数据量一致
 
 Group: #推送群
   - 1111
-dati: #答题开关
-  - 0
