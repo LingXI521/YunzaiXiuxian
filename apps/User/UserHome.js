@@ -2275,7 +2275,7 @@ export class UserHome extends plugin {
                         let huoba = await exist_najie_thing(usr_qq, "火把", "道具");
                        
                         if (!huoba) {                     
-                            await Add_najie_thing(usr_qq, "钻石锭", "道具", 1);  
+                            await Add_najie_thing(usr_qq, "钻石碎片", "道具", 1);  
                             await Add_najie_thing(usr_qq, "钻石铲", "道具", -1);
                             e.reply(`你朝着深处寻宝，在很深的地方看到了一个宝地，因为没有火把你不敢朝着深处探索你只好无功而返了，在返回的时候看到了一个钻石石块，你把他捡起来放入了纳戒`);
                             return;
