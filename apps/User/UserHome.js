@@ -1270,7 +1270,7 @@ export class UserHome extends plugin {
                 thing = data.caoyao_list.find(item => item.name == thing_name);
             let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
-                e.reply(`你没有【${thing_name}】这样的道具`);
+                e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
             if(thing.type=="练气幻影卡面"){
@@ -1303,53 +1303,74 @@ export class UserHome extends plugin {
                 return
                 
             }
-            let najie = await Read_najie(usr_qq)
-            let ifexist = najie.草药.find(item => item.name == thing_name);
-            if (isNotNull(ifexist)) {
-                if (ifexist.name == "圣令" || ifexist.type == "分数") {
+           if (thing_name == "分数") {
+                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"草药")
+                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, "【剑法】残云封天剑", "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "草药", -1);
                     e.reply(`成功兑换武器：《【剑法】残云封天剑》`);
                     return
+                }else{
+                    e.reply('你没有'+thing_name)
                 }
             }
-            ifexist = najie.道具.find(item => item.name == thing_name);
-            if (isNotNull(ifexist)) {
-                if (ifexist.name == "圣令") {
+            
+            
+            
+                if (thing_name == "圣令") {
+                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
+                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, "四圣麒麟甲", "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     e.reply(`成功兑换：四圣麒麟甲`);
                     return
+                }else{
+                    e.reply('你没有'+thing_name)
                 }
             }
-            ifexist = najie.装备.find(item => item.name == thing_name);
-            if (isNotNull(ifexist)) {
-                if (ifexist.name == "武器造化机缘") {
+            
+            
+           
+                if (thing_name == "武器造化机缘") {
                     let l = data.wuqizaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
+                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
+                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
+                }else{
+                    e.reply('你没有'+thing_name)
                 }
-                if (ifexist.name == "护具造化机缘") {
+            }
+                if (thing_name == "护具造化机缘") {
                     let l = data.hujuzaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
+                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
+                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
+                }else{
+                    e.reply('你没有'+thing_name)
                 }
-                if (ifexist.name == "法宝造化机缘") {
+            }
+                if (thing_name == "法宝造化机缘") {
                     let l = data.fabaozaohua
                     let rn = Math.floor(Math.random() * l.length + 1)
                     let th = l[rn].name
+                    let wuqi = await exist_najie_thing(usr_qq,thing_name ,"装备")
+                    if (isNotNull(wuqi) && wuqi > 1*quantity-1){
                     await Add_najie_thing(usr_qq, th, "装备", 1);
                     await Add_najie_thing(usr_qq, thing_name, "装备", -1);
                     e.reply(`成功兑换：` + th);
                     return
+                }else{
+                    e.reply('你没有'+thing_name)
                 }
             }
             if (thing_name == "多莉的消息") {
