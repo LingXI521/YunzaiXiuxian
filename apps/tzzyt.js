@@ -100,7 +100,7 @@ export class tzzyt extends plugin {
         "Reward": Reward,
     };
     
-     if(player.镇妖塔层数>4500){
+     if(player.镇妖塔层数>=4500){
         CurrentPlayerAttributes.镇妖塔层数 =4500;
         e.reply('镇妖塔层数最多4500');
         await data.setData("player", e.user_id, CurrentPlayerAttributes); 
