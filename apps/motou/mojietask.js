@@ -155,12 +155,12 @@ export class mojietask extends plugin {
                         xiuwei = Math.trunc(2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
                         qixue = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
                         if (await exist_najie_thing(player_id, "修魔丹", "道具")) {
-                            xiuwei*=80;
+                            xiuwei*=100;
                             xiuwei=Math.trunc(xiuwei);
                             await Add_najie_thing(player_id, "修魔丹", "道具", -1);
                         }
                         if (await exist_najie_thing(player_id, "血魔丹", "道具")) {
-                            qixue*=12;
+                            qixue*=18;
                             qixue=Math.trunc(qixue);
                             await Add_najie_thing(player_id, "血魔丹", "道具", -1);
                         }
