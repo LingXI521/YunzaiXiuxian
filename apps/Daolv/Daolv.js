@@ -313,21 +313,23 @@ export class Daolv extends plugin {
             e.reply("你没有[百合花篮]");
             return;
         }
-        
-       let bagedan=await exist_najie_thing(A, "八个蛋", "道具");
-        if(!bagedan){
+        let pd=await find_qinmidu(A,B);
+        if (pd==false)
+        {
+            await fstadd_qinmidu(A,B);
+        }
+        else if (pd==0)
+        {
+            e.reply(`对方已有道侣`);
+            return;
+        }
+      
         await add_qinmidu(A,B,60);
         await Add_najie_thing(A, "百合花篮", "道具", -1);
         e.reply(`你们的亲密度增加了60`);
         return;
-        }else{
-            let si = parseInt(player.血量上限 * 1);
-            await Add_HP(usr_qq, -si);
-            await Add_najie_thing(A, "百合花篮", "道具", -1);
-            await Add_najie_thing(A, "八个蛋", "道具", -1);
-            e.reply(A+"在百合花篮里藏了一个八个蛋,八个蛋爆炸了,"+B+"措不及防被炸死了")
-            return;
-        }
+        
+        
         
     }
 
