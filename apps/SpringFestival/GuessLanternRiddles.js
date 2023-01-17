@@ -2,10 +2,10 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
 import fs from "fs"
-import { Read_player, existplayer, get_random_talent, getLastsign, Read_equipment,sleep,exist_najie_thing, Add_血气, getLastsign2 } from '../Xiuxian/xiuxian.js'
+import { Read_player, existplayer, get_random_talent, getLastsign, Read_equipment, sleep, exist_najie_thing, Add_血气, getLastsign2 } from '../Xiuxian/xiuxian.js'
 import { Write_equipment, Write_player, Write_najie } from '../Xiuxian/xiuxian.js'
-import { shijianc, get_random_fromARR, isNotNull,ForwardMsg } from '../Xiuxian/xiuxian.js'
-import { Add_灵石, Add_HP, Add_修为, Add_najie_thing,anti_cheating } from '../Xiuxian/xiuxian.js'
+import { shijianc, get_random_fromARR, isNotNull, ForwardMsg } from '../Xiuxian/xiuxian.js'
+import { Add_灵石, Add_HP, Add_修为, Add_najie_thing, anti_cheating } from '../Xiuxian/xiuxian.js'
 import { get_player_img, get_gongfa_img } from '../ShowImeg/showData.js'
 import { segment } from "oicq"
 import { __PATH } from "../Xiuxian/xiuxian.js"
@@ -77,285 +77,304 @@ export class GuessLanternRiddles extends plugin {
                 {
                     reg: '^#1$',
                     fnc: 'Add_lhd'
+                },
+                {
+                    reg: '^#答题刷新开$',
+                    fnc: 'dati'
                 }
             ]
         })
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
     }
-
-        async Add_lhd(e){
-            if (!e.isMaster) {
-               e.reply('只允许开发人员使用');
-                return;
-            }
-            let a=await anti_cheating(e)
-            e.reply("返回"+a)
-        }
-        //新年签到
-        async daily_gift2(e) {
-            //不开放私聊功能
-            if (!e.isGroup) {
-                return;
-            }
-            let usr_qq = e.user_id;
-            //有无账号
-            let ifexistplay = await existplayer(usr_qq);
-            if (!ifexistplay) {
-                return;
-            }
-            let now = new Date();
-            let nowTime = now.getTime(); //获取当前日期的时间戳
-            let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
-            let Today = await shijianc(nowTime);
-            let lastsign_time = await getLastsign2(usr_qq);//获得上次签到日期
-            if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
-                 e.reply(`今日已经签到过了`);
-                 return;
-             }
-            let Sign_Yesterday;        //昨日日是否签到
-            if (Yesterday.Y == lastsign_time.Y && Yesterday.M == lastsign_time.M && Yesterday.D == lastsign_time.D) {
-                Sign_Yesterday = true;
-            }
-            else {
-                Sign_Yesterday = false;
-            }
-            await redis.set("xiuxian:player:" + usr_qq + ":lastsign_time2", nowTime);//redis设置签到时间
-            let player = await data.getData("player", usr_qq);
-            if(!isNotNull(player.新年签到天数)){
-                console.log("8")
-                player.新年签到天数=0
-            }
-            if(player.新年签到天数==999){
-                e.reply("您已领取过新年礼包了,不能再领取了")
-                return
-            }
-             if(!Sign_Yesterday){//昨天没有签到,连续签到天数清零
-                 player.新年签到天数=0
-             }
-            player.新年签到天数 += 1;
-            data.setData("player", usr_qq, player);
-            if (player.新年签到天数 == 7) {
-                let random=Math.random()
-                let thing_name=""
-                if(random>0.5){
-                    let character=["银","花","造","福","盈"]
-                    let random2=Math.floor(Math.random()*character.length)
-                    await Add_najie_thing(usr_qq,character[random2],"道具",1)
-                    thing_name=character[random2]
-                }else{
-                    let character2=["玉兔皮","玉兔肉","玉兔腿","玉兔肝","玉兔兽核"]
-                    let random3=Math.floor(Math.random()*character2.length)
-                    await Add_najie_thing(usr_qq,character2[random3],"道具",1)
-                    thing_name=character2[random3]
-                }
-                await Add_灵石(usr_qq,200000)
-                await Add_najie_thing(usr_qq, "秘境之匙", "道具", 3)
-                await Add_najie_thing(usr_qq,"相遇之缘","道具",1)
-                player.新年签到天数 = 999;
-                e.reply("您已连续签到七天,成功领取新春福利礼包(道具["+thing_name+"],灵石x20w,秘境之匙x3,相遇之缘x1)")
-                return
-            }
-
-            //给奖励
-            let gift_xiuwei = player.新年签到天数 * 3000;
-            await Add_najie_thing(usr_qq, "秘境之匙", "道具", this.xiuxianConfigData.Sign.ticket);
-            await Add_血气(usr_qq, gift_xiuwei);
-            let msg = [
-                segment.at(usr_qq),
-                `新年签到成功,已经连续签到${player.新年签到天数}天了，获得了${gift_xiuwei}血气,秘境之匙x${this.xiuxianConfigData.Sign.ticket}`
-            ]
-            e.reply(msg);
+    async dati(e) {
+        if (!e.isMaster) {
             return;
         }
-        //换肤
-        async cundan_pifu (e){
-            if (!e.isGroup) {
-                return;
+        let action = await redis.get("xiuxian:player:" + 1 + ":dati");
+        action = await JSON.parse(action);
+        action = 1;
+        await redis.set("xiuxian:player:" + 1 + ":dati", JSON.stringify(action));
+        let File = fs.readdirSync(__PATH.player_path);
+        File = File.filter(file => file.endsWith(".json"));
+        let File_length = File.length;
+        for (var k = 0; k < File_length; k++) {
+            let this_qq = File[k].replace(".json", '');
+            this_qq = parseInt(this_qq);
+            let players = await Read_player(this_qq);
+            players.灯谜 = 0;
+            await Write_player(this_qq, players);
+        }
+        return;
+    }
+    async Add_lhd(e) {
+        if (!e.isMaster) {
+            e.reply('只允许开发人员使用');
+            return;
+        }
+        let a = await anti_cheating(e)
+        e.reply("返回" + a)
+    }
+    //新年签到
+    async daily_gift2(e) {
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        //有无账号
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        let now = new Date();
+        let nowTime = now.getTime(); //获取当前日期的时间戳
+        let Yesterday = await shijianc(nowTime - 24 * 60 * 60 * 1000);//获得昨天日期
+        let Today = await shijianc(nowTime);
+        let lastsign_time = await getLastsign2(usr_qq);//获得上次签到日期
+        if (Today.Y == lastsign_time.Y && Today.M == lastsign_time.M && Today.D == lastsign_time.D) {
+            e.reply(`今日已经签到过了`);
+            return;
+        }
+        let Sign_Yesterday;        //昨日日是否签到
+        if (Yesterday.Y == lastsign_time.Y && Yesterday.M == lastsign_time.M && Yesterday.D == lastsign_time.D) {
+            Sign_Yesterday = true;
+        }
+        else {
+            Sign_Yesterday = false;
+        }
+        await redis.set("xiuxian:player:" + usr_qq + ":lastsign_time2", nowTime);//redis设置签到时间
+        let player = await data.getData("player", usr_qq);
+        if (!isNotNull(player.新年签到天数)) {
+            console.log("8")
+            player.新年签到天数 = 0
+        }
+        if (player.新年签到天数 == 999) {
+            e.reply("您已领取过新年礼包了,不能再领取了")
+            return
+        }
+        if (!Sign_Yesterday) {//昨天没有签到,连续签到天数清零
+            player.新年签到天数 = 0
+        }
+        player.新年签到天数 += 1;
+        data.setData("player", usr_qq, player);
+        if (player.新年签到天数 == 7) {
+            let random = Math.random()
+            let thing_name = ""
+            if (random > 0.5) {
+                let character = ["银", "花", "造", "福", "盈"]
+                let random2 = Math.floor(Math.random() * character.length)
+                await Add_najie_thing(usr_qq, character[random2], "道具", 1)
+                thing_name = character[random2]
+            } else {
+                let character2 = ["玉兔皮", "玉兔肉", "玉兔腿", "玉兔肝", "玉兔兽核"]
+                let random3 = Math.floor(Math.random() * character2.length)
+                await Add_najie_thing(usr_qq, character2[random3], "道具", 1)
+                thing_name = character2[random3]
             }
-            let usr_qq=e.user_id;
-            var didian = e.msg.replace('#自选存档皮肤', '');
-            //命令判断
-            let code = didian.split("\*");
-            //数量判断
-            didian = code[0];
-            let type=code[1]
-            let x = await exist_najie_thing(usr_qq, "虚无幻影", "道具")
+            await Add_灵石(usr_qq, 200000)
+            await Add_najie_thing(usr_qq, "秘境之匙", "道具", 3)
+            await Add_najie_thing(usr_qq, "相遇之缘", "道具", 1)
+            player.新年签到天数 = 999;
+            e.reply("您已连续签到七天,成功领取新春福利礼包(道具[" + thing_name + "],灵石x20w,秘境之匙x3,相遇之缘x1)")
+            return
+        }
+
+        //给奖励
+        let gift_xiuwei = player.新年签到天数 * 3000;
+        await Add_najie_thing(usr_qq, "秘境之匙", "道具", this.xiuxianConfigData.Sign.ticket);
+        await Add_血气(usr_qq, gift_xiuwei);
+        let msg = [
+            segment.at(usr_qq),
+            `新年签到成功,已经连续签到${player.新年签到天数}天了，获得了${gift_xiuwei}血气,秘境之匙x${this.xiuxianConfigData.Sign.ticket}`
+        ]
+        e.reply(msg);
+        return;
+    }
+    //换肤
+    async cundan_pifu(e) {
+        if (!e.isGroup) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        var didian = e.msg.replace('#自选存档皮肤', '');
+        //命令判断
+        let code = didian.split("\*");
+        //数量判断
+        didian = code[0];
+        let type = code[1]
+        let x = await exist_najie_thing(usr_qq, "虚无幻影", "道具")
+        if (!x) {
+            e.reply("你没有【虚无幻影】")
+            return
+        }
+        if (!isNotNull(type)) {
+            e.reply("未输入类型")
+        }
+        didian = didian.trim();
+        let photo = 999;
+        let File = fs.readdirSync(__PATH.player_pifu_path);
+        File = File.filter(file => file.endsWith(".jpg"));
+        let File_length1 = File.length;
+        for (var k = 0; k < File_length1; k++) {
+            if (didian == File[k].replace(".jpg", '')) {
+                photo = didian;
+                break;
+            }
+
+        }
+        File = fs.readdirSync(__PATH.equipment_pifu_path);
+        File = File.filter(file => file.endsWith(".jpg"));
+        let File_length2 = File.length;
+        for (var k = 0; k < File_length2; k++) {
+            if (didian == File[k].replace(".jpg", '')) {
+                photo = didian;
+                break;
+            }
+
+        }
+        if (photo == 999) {
+            if (type == "练气") {
+                e.reply("该图片id不存在,范围[0-" + (File_length1) + "]")
+                return
+            }
+            if (type == "装备") {
+                e.reply("该图片id不存在,范围[0-" + (File_length2) + "]")
+                return
+            }
+            e.reply("你输入的类型不正确,例#自选存档皮肤2*练气(或装备)")
+            return;
+        }
+        else {
+            let kamian = ""
+            if (type == "练气") {
+                kamian = data.daoju_list.find(item => item.id == photo && item.type == "练气幻影卡面");
+            }
+            if (type == "装备") {
+                kamian = data.daoju_list.find(item => item.id == photo && item.type == "装备幻影卡面");
+            }
+            let player = await Read_player(usr_qq)
+            player.练气皮肤 = kamian.id
+            await Write_player(usr_qq, player)
+            await Add_najie_thing(usr_qq, kamian.name, "道具", 1)
+            await Add_najie_thing(usr_qq, "虚无幻影", "道具", -1)
+            e.reply("兑换" + kamian.name + "成功")
+        }
+        return;
+    }
+    async skten(e) {
+        if (!e.isGroup) {
+            return;
+        }
+        //固定写法
+        let usr_qq = e.user_id;
+        //判断是否为匿名创建存档
+        if (usr_qq == 80000000) {
+            return;
+        }
+        //有无存档
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        let thing = e.msg.replace("#", '');
+        thing = thing.replace("十连抽", '');
+        if (thing == "新年常驻") {
+            let x = await exist_najie_thing(usr_qq, "相遇之缘", "道具")
             if (!x) {
-                e.reply("你没有【虚无幻影】")
+                e.reply("你没有【相遇之缘】")
                 return
             }
-            if(!isNotNull(type)){
-                e.reply("未输入类型")
+            if (x < 10) {
+                e.reply("你没有足够的【相遇之缘】")
+                return
             }
-            didian = didian.trim();
-            let photo=999;
-            let File = fs.readdirSync(__PATH.player_pifu_path);
-            File = File.filter(file => file.endsWith(".jpg"));
-            let File_length1 = File.length;
-            for (var k = 0; k < File_length1; k++) {
-                if (didian==File[k].replace(".jpg", ''))
-                {
-                    photo=didian;
-                    break;
-                }
-    
+            e.reply("十道金光从天而降")
+            let msg = []
+            let all = []
+            await sleep(5000)
+            for (var i = 0; 10 > i; i++) {
+                let tianluoRandom = Math.floor(Math.random() * (data.changzhu.length));
+
+                msg.push("一道金光掉落在地上，走近一看是【" + data.changzhu[tianluoRandom].name + "】")
+                await Add_najie_thing(usr_qq, data.changzhu[tianluoRandom].name, data.changzhu[tianluoRandom].class, 1)
+                all.push("【" + data.changzhu[tianluoRandom].name + "】")
             }
-            File = fs.readdirSync(__PATH.equipment_pifu_path);
-            File = File.filter(file => file.endsWith(".jpg"));
-            let File_length2 = File.length;
-            for (var k = 0; k < File_length2; k++) {
-                if (didian==File[k].replace(".jpg", ''))
-                {
-                    photo=didian;
-                    break;
-                }
-    
+            await Add_najie_thing(usr_qq, "相遇之缘", "道具", -10)
+            await ForwardMsg(e, msg)
+            e.reply("恭喜获得\n" + all)
+        }
+        if (thing == "新年限定up") {
+            let x = await exist_najie_thing(usr_qq, "纠缠之缘", "道具")
+            if (!x) {
+                e.reply("你没有【纠缠之缘】")
+                return
             }
-            if (photo==999)
-            {
-                if(type=="练气"){
-                    e.reply("该图片id不存在,范围[0-"+(File_length1)+"]")
-                    return
-                }
-                if(type=="装备"){
-                    e.reply("该图片id不存在,范围[0-"+(File_length2)+"]")
-                    return
-                }
-                e.reply("你输入的类型不正确,例#自选存档皮肤2*练气(或装备)")
-                return;
+            if (x < 10) {
+                e.reply("你没有足够的【纠缠之缘】")
+                return
             }
-            else
-            {
-                let kamian=""
-                if(type=="练气"){
-                    kamian = data.daoju_list.find(item => item.id == photo && item.type=="练气幻影卡面");
-                }
-                if(type=="装备"){
-                    kamian = data.daoju_list.find(item => item.id == photo && item.type=="装备幻影卡面");
-                }
-                let player=await Read_player(usr_qq)
-                player.练气皮肤=kamian.id
-                await Write_player(usr_qq,player)
-                await Add_najie_thing(usr_qq,kamian.name,"道具",1)
-                await Add_najie_thing(usr_qq,"虚无幻影","道具",-1)
-                e.reply("兑换"+kamian.name+"成功")
+            e.reply("十道金光从天而降")
+            let msg = []
+            let all = []
+            await sleep(5000)
+            for (var i = 0; 10 > i; i++) {
+                let tianluoRandom = Math.floor(Math.random() * (data.xianding.length));
+
+                msg.push("一道金光掉落在地上，走近一看是【" + data.xianding[tianluoRandom].name + "】")
+                await Add_najie_thing(usr_qq, data.xianding[tianluoRandom].name, data.xianding[tianluoRandom].class, 1)
+                all.push("【" + data.xianding[tianluoRandom].name + "】")
             }
+            await Add_najie_thing(usr_qq, "纠缠之缘", "道具", -10)
+            await ForwardMsg(e, msg)
+            e.reply("恭喜获得\n" + all)
+        }
+    }
+
+    async sk(e) {
+        if (!e.isGroup) {
             return;
         }
-        async skten(e) {
-            if (!e.isGroup) {
-                return;
-            }
-            //固定写法
-            let usr_qq = e.user_id;
-            //判断是否为匿名创建存档
-            if (usr_qq == 80000000) {
-                return;
-            }
-            //有无存档
-            let ifexistplay = await existplayer(usr_qq);
-            if (!ifexistplay) {
-                return;
-            }
-            let thing = e.msg.replace("#", '');
-            thing = thing.replace("十连抽", '');
-            if (thing == "新年常驻") {
-                let x = await exist_najie_thing(usr_qq, "相遇之缘", "道具")
-                if (!x) {
-                    e.reply("你没有【相遇之缘】")
-                    return
-                }
-                if (x < 10) {
-                    e.reply("你没有足够的【相遇之缘】")
-                    return
-                }
-                e.reply("十道金光从天而降")
-                let msg = []
-                let all = []
-                await sleep(5000)
-                for (var i = 0; 10 > i; i++) {
-                    let tianluoRandom = Math.floor(Math.random() * (data.changzhu.length));
-
-                    msg.push("一道金光掉落在地上，走近一看是【" +data.changzhu[tianluoRandom].name+"】")
-                    await Add_najie_thing(usr_qq, data.changzhu[tianluoRandom].name,data.changzhu[tianluoRandom].class, 1)
-                    all.push("【" + data.changzhu[tianluoRandom].name + "】")
-                }
-                await Add_najie_thing(usr_qq, "相遇之缘", "道具", -10)
-                await ForwardMsg(e, msg)
-                e.reply("恭喜获得\n" + all)
-            }
-            if (thing == "新年限定up") {
-                let x = await exist_najie_thing(usr_qq, "纠缠之缘", "道具")
-                if (!x) {
-                    e.reply("你没有【纠缠之缘】")
-                    return
-                }
-                if (x < 10) {
-                    e.reply("你没有足够的【纠缠之缘】")
-                    return
-                }
-                e.reply("十道金光从天而降")
-                let msg = []
-                let all = []
-                await sleep(5000)
-                for (var i = 0; 10 > i; i++) {
-                    let tianluoRandom = Math.floor(Math.random() * (data.xianding.length));
-
-                    msg.push("一道金光掉落在地上，走近一看是【" +data.xianding[tianluoRandom].name+"】")
-                    await Add_najie_thing(usr_qq, data.xianding[tianluoRandom].name,data.xianding[tianluoRandom].class, 1)
-                    all.push("【" + data.xianding[tianluoRandom].name + "】")
-                }
-                await Add_najie_thing(usr_qq, "纠缠之缘", "道具", -10)
-                await ForwardMsg(e, msg)
-                e.reply("恭喜获得\n" + all)
-            }
+        //固定写法
+        let usr_qq = e.user_id;
+        //判断是否为匿名创建存档
+        if (usr_qq == 80000000) {
+            return;
         }
-    
-        async sk(e) {
-            if (!e.isGroup) {
-                return;
-            }
-            //固定写法
-            let usr_qq = e.user_id;
-            //判断是否为匿名创建存档
-            if (usr_qq == 80000000) {
-                return;
-            }
-            //有无存档
-            let ifexistplay = await existplayer(usr_qq);
-            if (!ifexistplay) {
-                return;
-            }
-            let thing = e.msg.replace("#", '');
-            thing = thing.replace("单抽", '');
-            if (thing == "新年常驻") {
-                let x = await exist_najie_thing(usr_qq, "相遇之缘", "道具")
-                if (!x) {
-                    e.reply("你没有【相遇之缘】")
-                    return
-                }
-                e.reply("一道金光从天而降")
-                let tianluoRandom = Math.floor(Math.random() * (data.changzhu.length));
-                await Add_najie_thing(usr_qq, data.changzhu[tianluoRandom].name,data.changzhu[tianluoRandom].class, 1)
-                await Add_najie_thing(usr_qq, "相遇之缘", "道具", -1)
-                await sleep(5000)
-                e.reply("一道金光掉落在地上，走近一看是【" +data.changzhu[tianluoRandom].name+"】")
-            }
-            if (thing == "新年限定up") {
-                let x = await exist_najie_thing(usr_qq, "纠缠之缘", "道具")
-                if (!x) {
-                    e.reply("你没有【纠缠之缘】")
-                    return
-                }
-                e.reply("一道金光从天而降")
-                let tianluoRandom = Math.floor(Math.random() * (data.xianding.length));
-                await Add_najie_thing(usr_qq, data.xianding[tianluoRandom].name,data.xianding[tianluoRandom].class, 1)
-                await Add_najie_thing(usr_qq, "纠缠之缘", "道具", -1)
-                await sleep(5000)
-                e.reply("一道金光掉落在地上，走近一看是【" +data.xianding[tianluoRandom].name+"】")
-            }
+        //有无存档
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
         }
-    async Set_question(e){
+        let thing = e.msg.replace("#", '');
+        thing = thing.replace("单抽", '');
+        if (thing == "新年常驻") {
+            let x = await exist_najie_thing(usr_qq, "相遇之缘", "道具")
+            if (!x) {
+                e.reply("你没有【相遇之缘】")
+                return
+            }
+            e.reply("一道金光从天而降")
+            let tianluoRandom = Math.floor(Math.random() * (data.changzhu.length));
+            await Add_najie_thing(usr_qq, data.changzhu[tianluoRandom].name, data.changzhu[tianluoRandom].class, 1)
+            await Add_najie_thing(usr_qq, "相遇之缘", "道具", -1)
+            await sleep(5000)
+            e.reply("一道金光掉落在地上，走近一看是【" + data.changzhu[tianluoRandom].name + "】")
+        }
+        if (thing == "新年限定up") {
+            let x = await exist_najie_thing(usr_qq, "纠缠之缘", "道具")
+            if (!x) {
+                e.reply("你没有【纠缠之缘】")
+                return
+            }
+            e.reply("一道金光从天而降")
+            let tianluoRandom = Math.floor(Math.random() * (data.xianding.length));
+            await Add_najie_thing(usr_qq, data.xianding[tianluoRandom].name, data.xianding[tianluoRandom].class, 1)
+            await Add_najie_thing(usr_qq, "纠缠之缘", "道具", -1)
+            await sleep(5000)
+            e.reply("一道金光掉落在地上，走近一看是【" + data.xianding[tianluoRandom].name + "】")
+        }
+    }
+    async Set_question(e) {
 
         let usr_qq = e.user_id;
         //有无存档
@@ -371,66 +390,66 @@ export class GuessLanternRiddles extends plugin {
             return;
         }
         allaction = false;
-        let player=await Read_player(usr_qq)
-        let jiansuo=await anti_cheating(e)
-        if(!jiansuo){
+        let player = await Read_player(usr_qq)
+        let jiansuo = await anti_cheating(e)
+        if (!jiansuo) {
             e.reply("您刚降临到这方世界，还与此次活动的重要NPC未曾有过面缘")
             return
         }
-        if(!isNotNull(player.灯谜)){
-            player.灯谜=0
-            await Write_player(usr_qq,player)
+        if (!isNotNull(player.灯谜)) {
+            player.灯谜 = 0
+            await Write_player(usr_qq, player)
         }
-        if(player.灯谜>=5){
+        if (player.灯谜 >= 5) {
             e.reply("灯谜要被猜完了啦，不能再猜了")
             return
         }
-         var Time = 2;
-   let now_Time = new Date().getTime(); //获取当前时间戳
-   let shuangxiuTimeout = parseInt(60000 * Time);
-   let last_time = await redis.get("xiuxian:player:" + usr_qq + "caimicd");//获得上次的时间戳,
-   last_time = parseInt(last_time);
-   if (now_Time < last_time + shuangxiuTimeout) {
-       let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
-       let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
-       e.reply("正在CD中，" + `剩余cd:  ${Couple_m}分 ${Couple_s}秒`);
-       return;
-   }
-        let random=Math.trunc(Math.random()*data.Lantern_riddles.length)
+        var Time = 2;
+        let now_Time = new Date().getTime(); //获取当前时间戳
+        let shuangxiuTimeout = parseInt(60000 * Time);
+        let last_time = await redis.get("xiuxian:player:" + usr_qq + "caimicd");//获得上次的时间戳,
+        last_time = parseInt(last_time);
+        if (now_Time < last_time + shuangxiuTimeout) {
+            let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
+            let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
+            e.reply("正在CD中，" + `剩余cd:  ${Couple_m}分 ${Couple_s}秒`);
+            return;
+        }
+        let random = Math.trunc(Math.random() * data.Lantern_riddles.length)
         e.reply("听好啦！本堂主要出题了！")
         await sleep(3000)
-        e.reply("题目是:"+data.Lantern_riddles[random].灯谜)
+        e.reply("题目是:" + data.Lantern_riddles[random].灯谜)
         await redis.set("xiuxian:player:" + usr_qq + ":GuessLanternRiddles", random)
         await redis.set("xiuxian:player:" + usr_qq + "caimicd", now_Time);
         /** 设置上下文 */
         this.setContext('answer');
-        
+
         /** 回复 */
         await e.reply('请在120秒内作答哦,超时则啥都没有哦(可以私聊给我答案哦)', false, { at: true });
         return;
     }
-    async answer(e){
+    async answer(e) {
         let MITI = await redis.get("xiuxian:player:" + e.user_id + ":GuessLanternRiddles");
         if (this.e.msg == data.Lantern_riddles[MITI].谜底) {
-            let character=["银","花","造","盈"]
+            let character = ["银", "花", "造", "盈"]
 
-            let random=Math.trunc(Math.random()*character.length)
-            let random2=Math.random()
-            if(random2>0.95){
-                await Add_najie_thing(e.user_id,"福","道具",1)
+            let random = Math.trunc(Math.random() * character.length)
+            let random2 = Math.random()
+            if (random2 > 0.95) {
+                await Add_najie_thing(e.user_id, "福", "道具", 1)
                 e.reply(`哎呀呀,居然猜对了,你是本店的幸运客户！这张[福]字符就赠与你啦`);
-            }else{
-                await Add_najie_thing(e.user_id,character[random],"道具",1)
+            } else {
+                await Add_najie_thing(e.user_id, character[random], "道具", 1)
                 e.reply(`哎呀呀,居然猜对了,这张[${character[random]}]字符就赠与你啦`);
             }
         }
         else {
             e.reply(`很可惜呢,没有猜对呢,本堂主就送你一株霓裳花作为安慰奖吧`);
-            await Add_najie_thing(e.user_id,"霓裳花","道具",1)
+            await Add_najie_thing(e.user_id, "霓裳花", "道具", 1)
         }
-        let player=await Read_player(e.user_id)
-        player.灯谜+=1
-        await Write_player(e.user_id,player)
+        let player = await Read_player(e.user_id)
+        player.灯谜 += 1
+        await Write_player(e.user_id, player)
         /** 结束上下文 */
         this.finish('answer');
     }
@@ -438,7 +457,7 @@ export class GuessLanternRiddles extends plugin {
 
 
 
-    async A(e){
+    async A(e) {
         //不开放私聊功能
         if (!e.isGroup) {
             return;
@@ -457,8 +476,8 @@ export class GuessLanternRiddles extends plugin {
             return;
         }
         allaction = false;
-        let jiansuo=await anti_cheating(e)
-        if(!jiansuo){
+        let jiansuo = await anti_cheating(e)
+        if (!jiansuo) {
             e.reply("您刚降临到这方世界，还与此次活动的重要NPC未曾有过面缘")
             return
         }
@@ -487,13 +506,13 @@ export class GuessLanternRiddles extends plugin {
             e.reply(`你目前只有【${thing_name}】*${thing_quantity},数量不够`);
             return;
         }
-        let number=data.daoju_list.find(item => item.name == thing_name).number*quantity
-        await Add_najie_thing(usr_qq,"相遇之缘","道具",number)
-        await Add_najie_thing(usr_qq,thing_name,"道具",-1)
-        e.reply("巴巴托斯:居然送我这么好的酒哇,我也无以为报,这样吧,我把我在天空岛捡到的石头送给你好了(获得相遇之缘"+number+"个)")
+        let number = data.daoju_list.find(item => item.name == thing_name).number * quantity
+        await Add_najie_thing(usr_qq, "相遇之缘", "道具", number)
+        await Add_najie_thing(usr_qq, thing_name, "道具", -1)
+        e.reply("巴巴托斯:居然送我这么好的酒哇,我也无以为报,这样吧,我把我在天空岛捡到的石头送给你好了(获得相遇之缘" + number + "个)")
     }
 
-    async B(e){
+    async B(e) {
         //不开放私聊功能
         if (!e.isGroup) {
             return;
@@ -528,11 +547,11 @@ export class GuessLanternRiddles extends plugin {
             quantity = parseInt(code[1]);
         }
         //调取配方
-        let peifang=data.Niangjiu.find(item => item.name == thing_name)
-        if(!peifang){
-            e.reply("不存在["+thing_name+"]的配方")
+        let peifang = data.Niangjiu.find(item => item.name == thing_name)
+        if (!peifang) {
+            e.reply("不存在[" + thing_name + "]的配方")
         }
-        for(var i=0;i<peifang.配方.length;i++){
+        for (var i = 0; i < peifang.配方.length; i++) {
             let thing_quantity = await exist_najie_thing(usr_qq, peifang.配方[i].name, "道具");
             if (!thing_quantity) {//没有
                 e.reply(`你没有【${thing_name}】这样的材料`);
@@ -543,16 +562,16 @@ export class GuessLanternRiddles extends plugin {
                 return;
             }
         }
-        let random=Math.random()
-        let jishu=0
-        for(var z=0;z<quantity;z++){
-            if(random>peifang.成功率){
-                quantity-=1
-                jishu+=1
+        let random = Math.random()
+        let jishu = 0
+        for (var z = 0; z < quantity; z++) {
+            if (random > peifang.成功率) {
+                quantity -= 1
+                jishu += 1
             }
         }
-        await Add_najie_thing(usr_qq,thing_name,"道具",quantity)
-        e.reply("经过阵法师的时间加速能力,材料很快便成了佳酿,酿成功了"+quantity+"次,失败了"+jishu+"次")
+        await Add_najie_thing(usr_qq, thing_name, "道具", quantity)
+        e.reply("经过阵法师的时间加速能力,材料很快便成了佳酿,酿成功了" + quantity + "次,失败了" + jishu + "次")
     }
 
 
@@ -565,7 +584,7 @@ export class GuessLanternRiddles extends plugin {
         return;
     }
 
-    async D(e){
+    async D(e) {
         //不开放私聊功能
         if (!e.isGroup) {
             return;
@@ -584,16 +603,16 @@ export class GuessLanternRiddles extends plugin {
             return;
         }
         allaction = false;
-        let peifang=["银","花","造","福","盈"]
-        for(var i=0;i<peifang.length;i++){
+        let peifang = ["银", "花", "造", "福", "盈"]
+        for (var i = 0; i < peifang.length; i++) {
             let thing_quantity = await exist_najie_thing(usr_qq, peifang[i], "道具");
             if (!thing_quantity) {//没有
                 e.reply(`你没有【${peifang[i]}】字符,召唤失败`);
                 return;
             }
         }
-        for(var i=0;i<peifang.length;i++){
-            await Add_najie_thing(usr_qq,peifang[i],"道具",-1)
+        for (var i = 0; i < peifang.length; i++) {
+            await Add_najie_thing(usr_qq, peifang[i], "道具", -1)
         }
 
         //刷新伐难
@@ -603,7 +622,7 @@ export class GuessLanternRiddles extends plugin {
     }
 
 
-        async E(e){
+    async E(e) {
         //不开放私聊功能
         if (!e.isGroup) {
             return;
@@ -622,19 +641,19 @@ export class GuessLanternRiddles extends plugin {
             return;
         }
         allaction = false;
-        let peifang=["银","花","造","福","盈"]
-        for(var i=0;i<peifang.length;i++){
+        let peifang = ["银", "花", "造", "福", "盈"]
+        for (var i = 0; i < peifang.length; i++) {
             let thing_quantity = await exist_najie_thing(usr_qq, peifang[i], "道具");
             if (!thing_quantity) {//没有
                 e.reply(`堂主:你缺少【${peifang[i]}】字符,不能兑换哦`);
                 return;
             }
         }
-        for(var i=0;i<peifang.length;i++){
-            await Add_najie_thing(usr_qq,peifang[i],"道具",-1)
+        for (var i = 0; i < peifang.length; i++) {
+            await Add_najie_thing(usr_qq, peifang[i], "道具", -1)
         }
 
-        await Add_najie_thing(usr_qq,"纠缠之缘","道具",5)
+        await Add_najie_thing(usr_qq, "纠缠之缘", "道具", 5)
         e.reply("恭喜集齐五符！这五颗粉色的球球就是你的奖励啦！")
 
     }
@@ -645,7 +664,7 @@ export class GuessLanternRiddles extends plugin {
 /**
  * 状态
  */
- export async function Go(e) {
+export async function Go(e) {
     let usr_qq = e.user_id;
     //有无存档
     let ifexistplay = await existplayer(usr_qq);
@@ -709,20 +728,20 @@ async function InitWorldBoss() {
     let X = AverageDamage * 0.01;
     Bot.logger.mark(`[伐难] 化神玩家总数：${player_quantity}`);
     Bot.logger.mark(`[伐难] 生成基数:${X}`);
-    let Health =  Math.trunc(X * 280 * player_quantity*2);
-    let Attack = Math.trunc(X*200);
-    let Defence = Math.trunc(X*190);
-    let yuansu=["仙之心·火","仙之心·水","仙之心·雷","仙之心·冰","仙之心·木"];
+    let Health = Math.trunc(X * 280 * player_quantity * 2);
+    let Attack = Math.trunc(X * 200);
+    let Defence = Math.trunc(X * 190);
+    let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·冰", "仙之心·木"];
     let index = Math.trunc(Math.random() * yuansu.length);
     let linggen = yuansu[index];
     let WorldBossStatus = {
-        "名号":"伐难",
-        "当前血量": Health*10,
-        "血量上限": Health*10,
+        "名号": "伐难",
+        "当前血量": Health * 10,
+        "血量上限": Health * 10,
         "isAngry": 0,
         "isWeak": 0,
-        "攻击": Attack*10,
-        "防御": Defence*10,
+        "攻击": Attack * 10,
+        "防御": Defence * 10,
         "灵根": {
             "name": linggen,
         },
@@ -745,7 +764,7 @@ async function GetAverageDamage() {
         this_qq = parseInt(this_qq);
         let player = await data.getData("player", this_qq);
         let level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-        if (level_id >0) {
+        if (level_id > 0) {
             temp[TotalPlayer] = parseInt(player.攻击);
             Bot.logger.mark(`[伐难] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
             TotalPlayer++;
