@@ -388,7 +388,7 @@ export class GuessLanternRiddles extends plugin {
          var Time = 2;
    let now_Time = new Date().getTime(); //获取当前时间戳
    let shuangxiuTimeout = parseInt(60000 * Time);
-   let last_time = await redis.get("xiuxian:player:" + usr_qq + "CD");//获得上次的时间戳,
+   let last_time = await redis.get("xiuxian:player:" + usr_qq + "caimicd");//获得上次的时间戳,
    last_time = parseInt(last_time);
    if (now_Time < last_time + shuangxiuTimeout) {
        let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
@@ -401,9 +401,10 @@ export class GuessLanternRiddles extends plugin {
         await sleep(3000)
         e.reply("题目是:"+data.Lantern_riddles[random].灯谜)
         await redis.set("xiuxian:player:" + usr_qq + ":GuessLanternRiddles", random)
+        await redis.set("xiuxian:player:" + usr_qq + "caimicd", now_Time);
         /** 设置上下文 */
         this.setContext('answer');
-         await redis.set("xiuxian:player:" + usr_qq + "CD", now_Time);
+        
         /** 回复 */
         await e.reply('请在120秒内作答哦,超时则啥都没有哦(可以私聊给我答案哦)', false, { at: true });
         return;
