@@ -2130,7 +2130,7 @@ export class UserHome extends plugin {
                     if (daomu > 2 && daomu < 4) {
                      
                         await Add_修为(usr_qq, 800);
-                        await Add_HP(usr_qq, si);
+                        await Add_HP(usr_qq, -si);
                         await Add_najie_thing(usr_qq, "石铲", "道具", -1);
                         e.reply(["你随便找了个地方就寻宝，未曾想找到了一群僵尸，你只击败了一部分就落荒而逃,只获得了800修为"])
                         return
@@ -2304,7 +2304,7 @@ export class UserHome extends plugin {
                 } else {
                     
                     await Add_修为(usr_qq, 800);
-                    await Add_HP(usr_qq, si);
+                    await Add_HP(usr_qq, -si);
                     cishu = cishu - 1;
                     e.reply("你在挖掘的时候意外发现了一个人在挑衅你，你当即就不能忍，结果战败了，血量降低" + si + "只获得了800修为")
                     return
