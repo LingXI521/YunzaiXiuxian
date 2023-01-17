@@ -4,6 +4,9 @@
       title: '#答题刷新开'
       desc: '开启后每天自动刷新'
     - icon: help-icon_13
+      title: '#小号检测关'
+      desc: '关闭后所有人都能参与活动'
+    - icon: help-icon_13
       title: '#出题吧'
       desc: '猜灯谜'
     - icon: help-icon_11
