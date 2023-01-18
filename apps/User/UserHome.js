@@ -261,7 +261,7 @@ export class UserHome extends plugin {
             let all = []
             await sleep(5000)
             for (var i = 0; 10 > i; i++) {
-                let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 20));
+                let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 10));
                 tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
                 msg.push("一道金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
                 await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
