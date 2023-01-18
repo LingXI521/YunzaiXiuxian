@@ -1366,6 +1366,7 @@ export async function get_najie_img(e) {
         najie_gongfa: najie.功法,
         najie_caoyao: najie.草药,
         najie_cailiao: najie.材料,
+        najie_shicai:najie.食材,
         najie_hezi: najie.盒子,
         strand_hp: strand_hp,
         strand_lingshi: strand_lingshi,
