@@ -60,7 +60,7 @@ export class UserHome extends plugin {
                 reg: '^#购买((.*)|(.*)*(.*))$',
                 fnc: 'Buy_comodities'
             }, {
-                reg: '^#出售.*(\\*[\u4e00-\u9fa5])?(\\*[1-9]\d*)$',
+                reg: '^#出售.*(\\*[\u4e00-\u9fa5])?(\\*[1-9]\d*)?$',
                 fnc: 'Sell_comodities'
             }, {
                 reg: '^#哪里有(.*)$',
