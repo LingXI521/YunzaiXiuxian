@@ -2047,9 +2047,9 @@ export async function foundthing(thing_name) {
             return data.necklace_list[i];
         }
     }
-    for (let index = 0; index < data.shicai_list; index++) {
-        if (thing_name==data.shicai_list[index].name) {
-            return data.shicai_list[index];
+    for (var i = 0; i< data.shicai_list.length; i++) {
+        if (thing_name==data.shicai_list[i].name) {
+            return data.shicai_list[i];
         }  
     }
     return false
