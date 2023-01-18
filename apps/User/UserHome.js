@@ -60,7 +60,7 @@ export class UserHome extends plugin {
                 reg: '^#购买((.*)|(.*)*(.*))$',
                 fnc: 'Buy_comodities'
             }, {
-                reg: '^#出售.*(\\*[\u4e00-\u9fa5])?(\\*[1-9]\d*)?$',
+                reg: '^#出售.*$',
                 fnc: 'Sell_comodities'
             }, {
                 reg: '^#哪里有(.*)$',
@@ -2505,28 +2505,21 @@ export class UserHome extends plugin {
         let thing = e.msg.replace("#", '');
         thing = thing.replace("出售", '');
         let code = thing.split("\*");
-        //数量判断
-        let pinji = null;
-        let thing_name = null;
-        let quantity = 0;
-        if (code.length == 2) {
-            thing_name = code[0];
-            quantity = code[1].replace(/[^0-9]/ig, "");
-        }
-        else if (code.length == 3) {
-            thing_name = code[0];
-            pinji = code[1];
-            quantity = code[2].replace(/[^0-9]/ig, "");
-        }
+        let thing_name = code[0]; //物品
+        let thing_amount=code[1];//数量
+        let thing_piji; //品级
+        //判断列表中是否存在，不存在不能卖,并定位是什么物品
+        let najie = await Read_najie(usr_qq);
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
-            e.reply(`万宝楼不回收这样的东西:${thing_name}`);
+            e.reply(`这方世界没有[${thing_name}]`);
             return;
         }
-        if (quantity == NaN) {
-            e.reply("看你输的数是啥玩意！");
+        if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
+            e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         }
+        //确定数量和品级
         let pj = {
             "劣": 0,
             "普": 1,
@@ -2536,33 +2529,53 @@ export class UserHome extends plugin {
             "绝": 5,
             "顶": 6
         }
-        if (pinji != null) {
-            pj = pj[pinji];
+        pj = pj[code[1]]
+        if (pj!=undefined)
+        {
+            thing_piji=code[1];;
+            thing_amount=code[2]//数量
         }
-        //纳戒中的数量
-        let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class, pj);
-        if (!thing_quantity) {//没有
-            e.reply(`你没有【${thing_name}】这样的${thing_exist.class}`);
+        else
+        {
+            if (thing_exist.class=="装备")
+            {
+                let equ= najie.装备.find(item => item.name == thing_name);
+                for (var i = 0; i<najie.装备.length; i++) {//遍历列表有没有比那把强的
+                    if (najie.装备[i].name == thing_name && najie.装备[i].pinji < equ.pinji) {
+                        equ = najie.装备[i];
+                    }
+                }
+                pj=equ.pinji;
+                let pinji2=['劣','普','优','精','极','绝','顶']
+                thing_piji=pinji2[pj]
+            }
+        }
+        if (thing_amount < 1 || thing_amount == null || thing_amount == undefined || thing_amount == NaN) {
+            thing_amount = 1;
+        } else {
+            thing_amount = thing_amount.replace(/[^0-9]/ig, "");
+        }
+        if (thing_amount < 1 || thing_amount == null || thing_amount == undefined || thing_amount == NaN) {
+            thing_amount = 1;
+        }
+        let x=await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pj);
+        //判断戒指中是否存在
+        if (!x) {
+            //没有
+            e.reply(`你没有[${thing_name}]这样的${thing_exist.class}`);
             return;
         }
-        if (thing_quantity < quantity) {//不够
-            e.reply(`你目前只有【${thing_name}】*${thing_quantity},数量不够`);
-            return;
-        }
-        //锁定禁止出售
-        if (await Locked_najie_thing(usr_qq, thing_name, thing_exist.class, pj) == 1) {
-            e.reply(`${thing_exist.class}:${thing_name}已锁定，请解锁后再出售。`);
-            return;
-        }
-        if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
-            e.reply(`轮回功法${thing_name}禁止出售。`)
+        //判断戒指中的数量
+        if (x< thing_amount) {
+            //不够
+            e.reply(`你目前只有[${thing_name}]*${x}`);
             return;
         }
         //数量够,数量减少,灵石增加
-        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -quantity, pj);
-        let commodities_price = thing_exist.出售价 * quantity;
+        await Add_najie_thing(usr_qq, thing_name, thing_exist.class, -thing_amount, pj);
+        let commodities_price = thing_exist.出售价 * thing_amount;
         await Add_灵石(usr_qq, commodities_price);
-        e.reply(`出售成功!  获得${commodities_price}灵石,还剩余${thing_name}*${thing_quantity - quantity} `);
+        e.reply(`出售成功!  获得${commodities_price}灵石,还剩余${thing_name}*${x - thing_amount} `);
         return;
     }
 }
