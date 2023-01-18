@@ -229,100 +229,6 @@ export class UserHome extends plugin {
         return;
     }
 
-    async skten(e) {
-        if (!e.isGroup) {
-            return;
-        }
-        //固定写法
-        let usr_qq = e.user_id;
-        //判断是否为匿名创建存档
-        if (usr_qq == 80000000) {
-            return;
-        }
-        //有无存档
-        let ifexistplay = await existplayer(usr_qq);
-        if (!ifexistplay) {
-            return;
-        }
-        let thing = e.msg.replace("#", '');
-        thing = thing.replace("十连抽", '');
-        if (thing == "天地卡池") {
-            let x = await exist_najie_thing(usr_qq, "天罗地网", "道具")
-            if (!x) {
-                e.reply("你没有【天罗地网】")
-                return
-            }
-            if (x < 10) {
-                e.reply("你没有足够的【天罗地网】")
-                return
-            }
-            e.reply("十道金光从天而降")
-            let msg = []
-            let all = []
-            await sleep(5000)
-            for (var i = 0; 10 > i; i++) {
-                let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 10));
-                tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
-                msg.push("一道金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
-                await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-                all.push("【" + data.xianchon[tianluoRandom].name + "】")
-            }
-            await Add_najie_thing(usr_qq, "天罗地网", "道具", -10)
-            await ForwardMsg(e, msg)
-            e.reply("恭喜获得\n" + all)
-        }
-        if (thing == "灵界卡池") {
-            let x = await exist_najie_thing(usr_qq, "金丝仙网", "道具")
-            if (!x) {
-                e.reply("你没有【金丝仙网】")
-                return
-            }
-            if (x < 10) {
-                e.reply("你没有足够的【金丝仙网】")
-                return
-            }
-            e.reply("十道金光从天而降")
-            let msg = []
-            let all = []
-            await sleep(5000)
-            for (var i = 0; 10 > i; i++) {
-                let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 30));
-                tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
-                msg.push("一道金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
-                await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-                all.push("【" + data.xianchon[tianluoRandom].name + "】")
-            }
-            await Add_najie_thing(usr_qq, "金丝仙网", "道具", -10)
-            await ForwardMsg(e, msg)
-            e.reply("恭喜获得\n" + all)
-        }
-        if (thing == "凡界卡池") {
-            let x = await exist_najie_thing(usr_qq, "银丝仙网", "道具")
-            if (!x) {
-                e.reply("你没有【银丝仙网】")
-                return
-            }
-            if (x < 10) {
-                e.reply("你没有足够的【银丝仙网】")
-                return
-            }
-            e.reply("十道金光从天而降")
-            let msg = []
-            let all = []
-            await sleep(5000)
-            for (var i = 0; 10 > i; i++) {
-                let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 45));
-                tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
-                msg.push("一道金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
-                await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-                all.push("【" + data.xianchon[tianluoRandom].name + "】")
-            }
-            await Add_najie_thing(usr_qq, "银丝仙网", "道具", -10)
-            await ForwardMsg(e, msg)
-            e.reply("恭喜获得\n" + all)
-        }
-    }
-
     async sk(e) {
         if (!e.isGroup) {
             return;
@@ -347,15 +253,15 @@ export class UserHome extends plugin {
                 return
             }
             await Add_najie_thing(usr_qq, "天罗地网", "道具", -1)
-            let tianluoRandom = Math.floor(Math.random() * data.xianchon.length);
+            let tianluoRandom = Math.floor(Math.random() * data.changzhuchangzhuxianchon.length);
             tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
             console.log(tianluoRandom);
             e.reply("一道金光从天而降")
             await sleep(5000)
-            e.reply("金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
+            e.reply("金光掉落在地上，走近一看是【" + data.changzhuxianchon[tianluoRandom].品级 + "】" + data.changzhuxianchon[tianluoRandom].name)
             await sleep(1000)
-            await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-            e.reply("恭喜获得" + data.xianchon[tianluoRandom].name)
+            await Add_仙宠(usr_qq, data.changzhuxianchon[tianluoRandom].name, 1)
+            e.reply("恭喜获得" + data.changzhuxianchon[tianluoRandom].name)
         }
         if (thing == "灵界卡池") {
             let x = await exist_najie_thing(usr_qq, "金丝仙网", "道具")
@@ -364,15 +270,15 @@ export class UserHome extends plugin {
                 return
             }
             await Add_najie_thing(usr_qq, "金丝仙网", "道具", -1)
-            let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 10));
+            let tianluoRandom = Math.floor(Math.random() * (data.changzhuxianchon.length ));
             tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
             console.log(tianluoRandom);
             e.reply("一道金光从天而降")
             await sleep(5000)
-            e.reply("金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
+            e.reply("金光掉落在地上，走近一看是【" + data.changzhuxianchon[tianluoRandom].品级 + "】" + data.changzhuxianchon[tianluoRandom].name)
             await sleep(1000)
-            await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-            e.reply("恭喜获得" + data.xianchon[tianluoRandom].name)
+            await Add_仙宠(usr_qq, data.changzhuxianchon[tianluoRandom].name, 1)
+            e.reply("恭喜获得" + data.changzhuxianchon[tianluoRandom].name)
         }
         if (thing == "凡界卡池") {
             let x = await exist_najie_thing(usr_qq, "银丝仙网", "道具")
@@ -381,17 +287,19 @@ export class UserHome extends plugin {
                 return
             }
             await Add_najie_thing(usr_qq, "银丝仙网", "道具", -1)
-            let tianluoRandom = Math.floor(Math.random() * (data.xianchon.length - 29));
+            let tianluoRandom = Math.floor(Math.random() * (data.changzhuxianchon.length - 10));
             tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
             console.log(tianluoRandom);
             e.reply("一道金光从天而降")
             await sleep(5000)
-            e.reply("金光掉落在地上，走近一看是【" + data.xianchon[tianluoRandom].品级 + "】" + data.xianchon[tianluoRandom].name)
+            e.reply("金光掉落在地上，走近一看是【" + data.changzhuxianchon[tianluoRandom].品级 + "】" + data.changzhuxianchon[tianluoRandom].name)
             await sleep(1000)
-            await Add_仙宠(usr_qq, data.xianchon[tianluoRandom].name, 1)
-            e.reply("恭喜获得" + data.xianchon[tianluoRandom].name)
+            await Add_仙宠(usr_qq, data.changzhuxianchon[tianluoRandom].name, 1)
+            e.reply("恭喜获得" + data.changzhuxianchon[tianluoRandom].name)
         }
     }
+
+    
 
     async refining(e) {
         if (!e.isGroup) {
