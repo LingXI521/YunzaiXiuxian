@@ -379,6 +379,7 @@ export class Auction extends plugin {
     let daojus = najie.道具.filter(item => item.name == thing_name);
     let caoyaos = najie.草药.filter(item => item.name == thing_name);
     let cailiaos = najie.材料.filter(item => item.name == thing_name);
+    let shicais = najie.食材.filter(item => item.name == thing_name);
     let hezis = najie.盒子.filter(item => item.name == thing_name);
     if (equips.length > 0) {
       thing_data = equips[0];
@@ -392,7 +393,9 @@ export class Auction extends plugin {
       thing_data = caoyaos[0];
     } else if (cailiaos.length > 0) {
       thing_data = cailiaos[0];
-    } else if (hezis.length > 0) {
+    } else if (shicais.length > 0) {
+      thing_data = shicais[0];
+    }else if (hezis.length > 0) {
       thing_data = hezis[0];
     } else {
       e.reply(`你没有[${thing_name}]这样东西！`);
