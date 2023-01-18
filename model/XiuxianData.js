@@ -120,6 +120,7 @@ class XiuxianData {
         //天地
         this.tianditang = JSON.parse(fs.readFileSync(`${this.lib_path}/天地堂.json`));
         //仙宠
+        this.changzhuxianchon =JSON.parse(fs.readFileSync(`${this.lib_path}/常驻仙宠.json`));
         this.xianchon = JSON.parse(fs.readFileSync(`${this.lib_path}/仙宠列表.json`));
         this.xianchonkouliang = JSON.parse(fs.readFileSync(`${this.lib_path}/仙宠口粮列表.json`));
         //npc
