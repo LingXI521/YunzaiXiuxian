@@ -253,7 +253,7 @@ export class UserHome extends plugin {
                 return
             }
             await Add_najie_thing(usr_qq, "天罗地网", "道具", -1)
-            let tianluoRandom = Math.floor(Math.random() * data.changzhuchangzhuxianchon.length);
+            let tianluoRandom = Math.floor(Math.random() * data.changzhuxianchon.length);
             tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
             console.log(tianluoRandom);
             e.reply("一道金光从天而降")
