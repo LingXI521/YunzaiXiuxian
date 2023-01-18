@@ -276,8 +276,6 @@ export class Exchange extends plugin {
         if (thing_amount < 1 || thing_amount == null || thing_amount == undefined || thing_amount == NaN) {
             thing_amount = 1;
         }
-        
-        thing_value=thing_value.replace(/[^0-9]/ig, "");
         let x=await exist_najie_thing(usr_qq,thing_name,thing_exist.class,pj);
         //判断戒指中是否存在
         if (!x) {
