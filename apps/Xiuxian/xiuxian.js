@@ -410,6 +410,10 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
         najie.草药 = [];
         await Write_najie(usr_qq, najie);
     }
+    if (!isNotNull(najie.食材)) {
+        najie.食材 = [];
+        await Write_najie(usr_qq, najie);
+    }
     if (!isNotNull(najie.盒子)) {
         najie.盒子 = [];
         await Write_najie(usr_qq, najie);
@@ -439,6 +443,9 @@ export async function exist_najie_thing(usr_qq, thing_name, thing_class,thing_pi
     }
     if (thing_class == "材料") {
         ifexist = najie.材料.find(item => item.name == thing_name);
+    }
+    if (thing_class == "食材") {
+        ifexist = najie.食材.find(item => item.name == thing_name);
     }
     if (thing_class == "盒子") {
         ifexist = najie.盒子.find(item => item.name == thing_name);
@@ -494,6 +501,9 @@ export async function Locked_najie_thing(usr_qq, thing_name, thing_class,thing_p
     if (thing_class == "材料") {
         ifexist = najie.材料.find(item => item.name == thing_name);
     }
+    if (thing_class == "食材") {
+        ifexist = najie.食材.find(item => item.name == thing_name);
+    }
     if (thing_class == "盒子") {
         ifexist = najie.盒子.find(item => item.name == thing_name);
     }
@@ -528,6 +538,10 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
     if (!isNotNull(najie.草药)) {//判断老存档有没有草药字段
         najie.草药 = [];
     }
+    if (!isNotNull(najie.食材)) {//判断老存档有没有草药字段
+        najie.食材 = [];
+    }
+
     if (!isNotNull(najie.盒子)) {//判断老存档有没有草药字段
         najie.盒子 = [];
     }
@@ -700,6 +714,22 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
         if (najie.材料.find(item => item.name == name).数量 < 1) {
             //假如用完了,需要删掉数组中的元素,用.filter()把!=该元素的过滤出来
             najie.材料 = najie.材料.filter(item => item.name != thing_name);
+        }
+        await Write_najie(usr_qq, najie);
+        return;
+    }
+    if (thing_class == "食材") {
+        if (x > 0 && !exist) {//无中生有
+            najie.食材.push(data.shicai_list.find(item => item.name == name));
+            najie.食材.find(item => item.name == name).数量 = x;
+            najie.食材.find(item => item.name == name).islockd = 0;
+            await Write_najie(usr_qq, najie);
+            return;
+        }
+        najie.食材.find(item => item.name == name).数量 += x;
+        if (najie.食材.find(item => item.name == name).数量 < 1) {
+            //假如用完了,需要删掉数组中的元素,用.filter()把!=该元素的过滤出来
+            najie.食材 = najie.食材.filter(item => item.name != thing_name);
         }
         await Write_najie(usr_qq, najie);
         return;
