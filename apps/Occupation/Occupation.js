@@ -122,8 +122,8 @@ export class Occupation extends plugin {
             e.reply("包工头:就你这小身板还来挖矿？再去修炼几年吧")
             return
         }
-        if (now_level_id < 17 && occupation == "驯兽师") {
-            e.reply("就你这点修为做驯兽师？怕不是被兽驯")
+        if (now_level_id < 17 && occupation == "猎户") {
+            e.reply("就你这点修为做猎户？怕不是光头强砍不到树来转的？")
             return
         }
         let thing_name = occupation + "转职凭证"
