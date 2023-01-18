@@ -1357,6 +1357,232 @@ export class Occupation extends plugin {
         }
         return;
     }
+    async shoulie(e) {
+        let usr_qq = e.user_id;//用户qq
+        //有无存档
+        if (!await existplayer(usr_qq)) {
+            return;
+        }
+    
+        //不开放私聊
+        if (!e.isGroup) {
+            return;
+        }
+    
+    
+        //获取游戏状态
+        let game_action = await redis.get("xiuxian:player:" + usr_qq + ":game_action");
+        //防止继续其他娱乐行为
+        if (game_action == 0) {
+            e.reply("修仙：游戏进行中...");
+            return;
+        }
+        let player = await Read_player(usr_qq);
+        if (player.occupation != "猎户") {
+            e.reply("你的狩猎许可证呢？盗猎是吧？罚款2000灵石。")
+            await Add_灵石(usr_qq, -2000)
+            return
+        }
+    
+        //获取时间
+        let time = e.msg.replace("#狩猎", "");
+        time = time.replace("分钟", "");
+        if (parseInt(time) == parseInt(time)) {
+            time = parseInt(time);
+            var y = 30;//时间
+            var x = 24;//循环次数
+            //如果是 >=16*33 ----   >=30
+            for (var i = x; i > 0; i--) {
+                if (time >= y * i) {
+                    time = y * i;
+                    break;
+                }
+            }
+            //如果<30，修正。
+            if (time < 30) {
+                time = 30;
+            }
+        }
+        else {
+            //不设置时间默认30分钟
+            time = 30;
+        }
+    
+        //查询redis中的人物动作
+        let action = await redis.get("xiuxian:player:" + usr_qq + ":action");
+        action = JSON.parse(action);
+        if (action != null) {
+            //人物有动作查询动作结束时间
+            let action_end_time = action.end_time;
+            let now_time = new Date().getTime();
+            if (now_time <= action_end_time) {
+                let m = parseInt((action_end_time - now_time) / 1000 / 60);
+                let s = parseInt(((action_end_time - now_time) - m * 60 * 1000) / 1000);
+                e.reply("正在" + action.action + "中，剩余时间:" + m + "分" + s + "秒");
+                return;
+            }
+        }
+        let action_time = time * 60 * 1000;//持续时间，单位毫秒
+        let arr = {
+            "action": "狩猎",//动作
+            "end_time": new Date().getTime() + action_time,//结束时间
+            "time": action_time,//持续时间
+            "plant": "1",//采药-开启
+            "shoulie": "0",//采药-开启
+            "shutup": "1",//闭关状态-开启
+            "working": "1",//降妖状态-关闭
+            "Place_action": "1",//秘境状态---关闭
+            "Place_actionplus": "1",//沉迷---关闭
+            "power_up": "1",//渡劫状态--关闭
+        };
+        if (e.isGroup) {
+            arr.group_id = e.group_id
+        }
+    
+        await redis.set("xiuxian:player:" + usr_qq + ":action", JSON.stringify(arr));//redis设置动作
+        e.reply(`现在开始外出打猎${time}分钟`);
+    
+        return true;
+    }
+    async shoulie_back(e) {
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let action = await this.getPlayerAction(e.user_id);
+        let state = await this.getPlayerState(action);
+        if (state == "空闲") {
+            return;
+        }
+        if (action.action != "狩猎") {
+            return;
+        }
+    
+    
+        //结算
+        let end_time = action.end_time;
+        let start_time = action.end_time - action.time;
+        let now_time = new Date().getTime();
+        let time;
+        var y = this.xiuxianConfigData.mine.time;//固定时间
+        var x = this.xiuxianConfigData.mine.cycle;//循环次数
+    
+        if (end_time > now_time) {//属于提前结束
+            time = parseInt((new Date().getTime() - start_time) / 1000 / 60);
+            //超过就按最低的算，即为满足30分钟才结算一次
+            //如果是 >=16*33 ----   >=30
+            for (var i = x; i > 0; i--) {
+                if (time >= y * i) {
+                    time = y * i;
+                    break;
+                }
+            }
+            //如果<15，不给收益
+            if (time < y) {
+                time = 0;
+            }
+        } else {//属于结束了未结算
+            time = parseInt((action.time) / 1000 / 60);
+            //超过就按最低的算，即为满足30分钟才结算一次
+            //如果是 >=16*33 ----   >=30
+            for (var i = x; i > 0; i--) {
+                if (time >= y * i) {
+                    time = y * i;
+                    break;
+                }
+            }
+            //如果<15，不给收益
+            if (time < y) {
+                time = 0;
+            }
+        }
+    
+        if (e.isGroup) {
+            await this.shoulie_jiesuan(e.user_id, time, false, e.group_id);//提前闭关结束不会触发随机事件
+        } else {
+            await this.shoulie_jiesuan(e.user_id, time, false);//提前闭关结束不会触发随机事件
+        }
+    
+        let arr = action;
+        arr.is_jiesuan = 1;//结算状态
+        arr.shoulie = 1;//采药状态
+        arr.plant = 1;//采药状态
+        arr.shutup = 1;//闭关状态
+        arr.working = 1;//降妖状态
+        arr.power_up = 1;//渡劫状态
+        arr.Place_action = 1;//秘境
+        //结束的时间也修改为当前时间
+        arr.end_time = new Date().getTime();
+        delete arr.group_id;//结算完去除group_id
+        await redis.set("xiuxian:player:" + e.user_id + ":action", JSON.stringify(arr));
+    }
+    
+    
+    async shoulie_jiesuan(user_id, time, is_random, group_id) {
+    
+        let usr_qq = user_id;
+        let player = data.getData("player", usr_qq);
+        let now_level_id;
+    
+        if (!isNotNull(player.level_id)) {
+            return;
+        }
+        let msg = [segment.at(usr_qq)];
+        var size = this.xiuxianConfigData.mine.size;
+        let shoulie_amount1 = Math.floor((1.8 + Math.random() * 0.4) * time);
+        let shoulie_amount2 = Math.floor((1.8 + Math.random() * 0.4) * time);
+        let shoulie_amount3 = Math.floor(time / 30);
+        let shoulie_amount4 = Math.floor(time / 30);
+        let shoulie_amount5 = Math.floor(time / 30);
+        let rate = data.occupation_exp_list.find(item => item.id == player.occupation_level).rate * 10;
+        let exp = 0;
+        let ext = "";
+        if (player.occupation == "猎户") {
+            exp = time * 10;
+            time *= rate;
+            ext = `你是猎户，获得狩猎经验${exp}，额外获得猎物${Math.floor(rate * 100)}%，`;
+        }
+    
+        let end_amount = Math.floor(4 * (rate + 1) * (shoulie_amount1))//普通矿石
+        let end_amount2 = Math.floor(4 * (rate + 1) * (shoulie_amount3))//稀有
+        if (player.level_id <= 21) {
+    
+            end_amount *= player.level_id / 40
+            end_amount2 *= player.level_id / 40
+            msg.push("由于你境界不足化神,在狗熊岭遇见熊大熊二，摆脱他们花了很多时间，收入降低" + (1 - player.level_id / 40) * 50 + "%\n")
+        } else {
+            end_amount *= player.level_id / 40
+            end_amount2 *= player.level_id / 40
+        }
+    
+    
+        //shoulie_amount1 = parseInt(shoulie_amount1 * time);
+        //shoulie_amount2 = parseInt(shoulie_amount2 * time);
+        //shoulie_amount3 = parseInt(shoulie_amount3 * time);
+        //shoulie_amount4 = parseInt(shoulie_amount4 * time);
+        end_amount = Math.floor(end_amount);
+        end_amount2 = Math.floor(end_amount2);
+                        await Add_najie_thing(usr_qq, "野兔", "食材", end_amount);
+                        await Add_najie_thing(usr_qq, "野鸡", "食材", end_amount);
+                        await Add_najie_thing(usr_qq, "野猪", "食材", end_amount);
+                        await Add_najie_thing(usr_qq, "野牛", "食材", end_amount);
+                        await Add_najie_thing(usr_qq, "野羊", "食材", end_amount);
+                        await Add_职业经验(usr_qq,exp);
+                        msg.push(`\n狩猎归来，${ext}\n收获野兔×${end_amount}\n野鸡×${end_amount}\n野猪×${end_amount}\n野牛×${end_amount}\n野羊×${end_amount}\n`);
+    
+    
+    
+    
+        if (group_id) {
+            await this.pushInfo(group_id, true, msg)
+        } else {
+            await this.pushInfo(usr_qq, false, msg);
+        }
+    
+        return;
+    }
+
+
 
     /**
      * 获取缓存中的人物状态信息
