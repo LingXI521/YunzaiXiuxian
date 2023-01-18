@@ -2047,5 +2047,10 @@ export async function foundthing(thing_name) {
             return data.necklace_list[i];
         }
     }
+    for (let index = 0; index < data.shicai_list; index++) {
+        if (thing_name==data.shicai_list[index].name) {
+            return data.shicai_list[index];
+        }  
+    }
     return false
 }
