@@ -962,6 +962,9 @@ export async function synchronization(e) {
         if (!isNotNull(najie.材料)) {
             najie.材料 = [];
         }
+        if (!isNotNull(najie.食材)) {
+            najie.食材 = [];
+        }
         if (!isNotNull(najie.草药)) {
             najie.草药 = [];
         }
@@ -1141,6 +1144,12 @@ export async function synchronization(e) {
             }
             材料.数量 = Math.floor(材料.数量);
         });
+         najie.食材.forEach(食材 => {
+            if (!isNotNull(食材.islockd)) {
+                食材.islockd = 0;
+            }
+            食材.数量 = Math.floor(食材.数量);
+        });
         najie.盒子.forEach(盒子 => {
             if (!isNotNull(盒子.islockd)) {
                 盒子.islockd = 0;
@@ -1166,6 +1175,7 @@ export async function synchronization(e) {
         najie.功法 = najie.功法.filter(item => item.数量 != null || item.数量 != 0);
         najie.草药 = najie.草药.filter(item => item.数量 != null || item.数量 != 0);
         najie.材料 = najie.材料.filter(item => item.数量 != null || item.数量 != 0);
+        najie.食材 = najie.食材.filter(item => item.数量 != null || item.数量 != 0);
         najie.盒子 = najie.盒子.filter(item => item.数量 != null || item.数量 != 0);
         najie.仙宠 = najie.仙宠.filter(item => item.数量 != null || item.数量 != 0);
         najie.仙宠口粮 = najie.仙宠口粮.filter(item => item.数量 != null || item.数量 != 0);
