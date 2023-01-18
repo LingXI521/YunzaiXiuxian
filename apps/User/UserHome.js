@@ -1547,6 +1547,40 @@ export class UserHome extends plugin {
                     return
                 }
             }
+             if (thing_name == "清灵藏的新春木盒") {
+                let daomu = Math.round(Math.random() * 4)
+                if (daomu > 0) {
+                    if (daomu < 2) {
+                        await Add_najie_thing(usr_qq, "雷鸣阎狱藤", "草药", 1);
+                        await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了清灵藏的新春木盒,里面有一株雷鸣阎狱藤"])
+                        return;
+                    }
+                    if (daomu > 1 && daomu < 3) {
+                        await Add_najie_thing(usr_qq, "烈火杏娇疏", "草药", 1);
+                        await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了清灵藏的新春木盒,里面有一株烈火杏娇疏"])
+                        return;
+                    }
+                    if (daomu > 2 && daomu < 4) {
+                        await Add_najie_thing(usr_qq, "绮罗郁金香", "草药", 1);
+                        await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了清灵藏的新春木盒,里面有一株绮罗郁金香"])
+                        return;
+                    }
+                    if (daomu > 3 && daomu < 5) {
+                        await Add_najie_thing(usr_qq, "八角玄冰草", "草药", 1);
+                        await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -1);
+                        e.reply(["你打开了清灵藏的新春木盒,里面有一株八角玄冰草"])
+                        return;
+                    }
+                }
+                else {
+                    await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -1);
+                    e.reply("你打开了清灵藏的新春木盒，里面什么都没有")
+                    return
+                }
+            }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
