@@ -206,6 +206,25 @@
     </div>
 </div>
 {{/if}}
+{if najie.食材.length > 0}}
+<div class="card_box">
+    <div class="use_data">
+        <div class="user_font user_font_title">【食材】</div>
+        <div class="user_font  wupin">
+            {{each najie.食材 item}}
+            <div class="item">
+                <div class="item_title">{{item.name}}</div>
+                <div class="item_int">类别：{{item.type}}</div>
+                <div class="item_int">说明：{{item.desc}}</div>
+                <div class="item_int">数量：{{item.数量}}</div>
+                <div class="item_int">出售价：{{item.出售价}}灵石</div>
+                <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/if}}
 {{if najie.盒子.length > 0}}
 <div class="card_box">
     <div class="use_data">
