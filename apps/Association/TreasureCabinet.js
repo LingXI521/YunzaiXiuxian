@@ -653,7 +653,7 @@ export class TreasureCabinet extends plugin {
 
                 }
                 let up1 = action[i].beiyong3
-                let flag = 0.7 - up1;
+                   flag = 0.7 - up1;
                 if (player.favorability > 1000) {
                     flag = 0.1 - up1;
                 } else if (player.favorability > 500) {
