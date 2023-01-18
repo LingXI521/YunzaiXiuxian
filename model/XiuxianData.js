@@ -76,6 +76,8 @@ class XiuxianData {
         this.cailiao_list = JSON.parse(fs.readFileSync(`${this.lib_path}/材料列表.json`));
 		//加载盒子列表
         this.hezi_list = JSON.parse(fs.readFileSync(`${this.lib_path}/盒子列表.json`));
+        //加载食材列表
+        this.shicai_list = JSON.parse(fs.readFileSync(`${this.lib_path}/食材列表.json`));
 
 
         //加载地点列表
