@@ -110,6 +110,7 @@ export class UserStart extends plugin {
             "血气": 1,//练体经验
             "灵石": 1000,
             "灵根": talent,
+            "神石":0,
             "favorability": 0,
             "breakthrough": false,
             "linggen": [],
@@ -155,6 +156,7 @@ export class UserStart extends plugin {
             "功法": [],
             "草药": [],
             "材料": [],
+            "食材": [],
             "盒子": [],
             "仙宠": [],
             "仙宠口粮": [],
