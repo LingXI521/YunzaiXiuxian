@@ -1980,6 +1980,10 @@ export class UserHome extends plugin {
             }
         }
         if (func == "寻宝") {
+            if(true){
+                e.reply('寻宝正在维护中，晚点再来吧')
+                return;
+            }
             let player = await Read_player(usr_qq);
             if (player.当前血量 < 200) {
                 e.reply("你都伤成这样了,就不要出去浪了");
