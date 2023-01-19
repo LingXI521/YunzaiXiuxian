@@ -989,6 +989,9 @@ export async function synchronization(e) {
         if (!isNotNull(player.魔道值)) {
             player.魔道值 = 0;
         }
+         if (!isNotNull(player.饱食度)) {
+            player.饱食度 = 0;
+        }
         if (!isNotNull(player.linggen)) {
             player.linggen = [];
         }
