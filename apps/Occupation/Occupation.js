@@ -1526,7 +1526,7 @@ export class Occupation extends plugin {
     }
     
     
-    async shoulie_jiesuan(user_id, time, is_random, group_id) {
+     async shoulie_jiesuan(user_id, time, is_random, group_id) {
     
         let usr_qq = user_id;
         let player = data.getData("player", usr_qq);
@@ -1551,16 +1551,15 @@ export class Occupation extends plugin {
             ext = `你是猎户，获得狩猎经验${exp}，额外获得猎物${Math.floor(rate * 100)}%，`;
         }
     
-        let end_amount = Math.floor(4 * (rate + 1) * (shoulie_amount1))//普通矿石
-        let end_amount2 = Math.floor(4 * (rate + 1) * (shoulie_amount3))//稀有
+        let end_amount = Math.floor(4 * (rate + 1) * (shoulie_amount3))//稀有
         if (player.level_id <= 21) {
     
             end_amount *= player.level_id / 40
-            end_amount2 *= player.level_id / 40
+            
             msg.push("由于你境界不足化神,在狗熊岭遇见熊大熊二，摆脱他们花了很多时间，收入降低" + (1 - player.level_id / 40) * 50 + "%\n")
         } else {
             end_amount *= player.level_id / 40
-            end_amount2 *= player.level_id / 40
+           
         }
     
     
@@ -1569,7 +1568,7 @@ export class Occupation extends plugin {
         //shoulie_amount3 = parseInt(shoulie_amount3 * time);
         //shoulie_amount4 = parseInt(shoulie_amount4 * time);
         end_amount = Math.floor(end_amount);
-        end_amount2 = Math.floor(end_amount2);
+
                         await Add_najie_thing(usr_qq, "野兔", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野鸡", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野猪", "食材", end_amount);
