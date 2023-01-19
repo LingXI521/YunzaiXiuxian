@@ -878,7 +878,7 @@ export class UserHome extends plugin {
         if (func == "服用") {
             let action = await redis.get("xiuxian:player:" + 10 + ":biguang");
             action = await JSON.parse(action);
-           let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
+          let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
@@ -886,22 +886,43 @@ export class UserHome extends plugin {
             if(thing_name=="生肉"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
+                await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
             }
             if(thing_name=="熟肉"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=4*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
             }
             if(thing_name=="鱼肉"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
             }
             if(thing_name=="烤鱼"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=4*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                return;
+            }
+            if(thing_name=="苹果"){
+                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                player.饱食度+=2*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                return;
+            }
+            if(thing_name=="西瓜"){
+                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                player.饱食度+=1*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
             }
             //这里要找到丹药
