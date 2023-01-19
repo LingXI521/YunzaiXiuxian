@@ -1510,6 +1510,31 @@ export class UserHome extends plugin {
                     return
                 }
             }
+              if (thing_name == "菜刀") {
+                let 菜刀 = await exist_najie_thing(usr_qq, "菜刀", "道具")
+                let 野兔 = await exist_najie_thing(usr_qq, "野兔", "材料")
+                let 野猪 = await exist_najie_thing(usr_qq, "野猪", "材料")
+                let 野鸡 = await exist_najie_thing(usr_qq, "野鸡", "材料")
+                let 野牛 = await exist_najie_thing(usr_qq, "野牛", "材料")
+                let 野羊 = await exist_najie_thing(usr_qq, "野羊", "材料")
+                if (isNotNull(野兔+野猪+野鸡+野牛+野羊) && 野兔+野猪+野鸡+野牛+野羊 > quantity-1){
+                await Add_najie_thing(usr_qq, "生肉", "食材", 野兔+野猪*2+野鸡*野牛*2*野羊*2);
+                await Add_najie_thing(usr_qq, "皮革", "食材", 野兔+野牛*2);
+                await Add_najie_thing(usr_qq, "羽毛", "食材", 野鸡*2);
+                await Add_najie_thing(usr_qq, "羊毛", "食材", 野羊);
+                await Add_najie_thing(usr_qq, "菜刀", "道具", -1);
+                await Add_najie_thing(usr_qq, "野兔", "材料", -野兔);
+                await Add_najie_thing(usr_qq, "野猪", "材料", -野猪);
+                await Add_najie_thing(usr_qq, "野鸡", "材料", -野鸡);
+                await Add_najie_thing(usr_qq, "野牛", "材料", -野牛);
+                await Add_najie_thing(usr_qq, "野羊", "道具", -野羊);
+                e.reply(["处理完成，获得生肉"+野兔+野猪*2+野鸡*野牛*2*野羊*2+"个，\n皮革"+野兔+野牛*2+"个，\n羽毛"+野鸡*2+"个，\n羊毛"+野羊+"个"])
+                }
+                else {
+                    e.reply("你都没有猎物，咋，处理空气啊？")
+                    return
+                }
+                }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
