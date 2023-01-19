@@ -781,7 +781,7 @@ async function InitWorldBoss() {
     let X = AverageDamage * 0.01;
     Bot.logger.mark(`[天理] 化神玩家总数：${player_quantity}`);
     Bot.logger.mark(`[天理] 生成基数:${X}`);
-    let Health =  Math.trunc(X * 30 * player_quantity*2);
+    let Health =  Math.trunc(X * 280 * player_quantity*2);
     let Attack = Math.trunc(X*220);
     let Defence = Math.trunc(X*200);
     let yuansu=["仙之心·火","仙之心·水","仙之心·雷","仙之心·冰","仙之心·木"];
