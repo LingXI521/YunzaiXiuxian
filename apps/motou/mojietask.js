@@ -71,7 +71,7 @@ export class mojietask extends plugin {
                     if (now_time > end_time) {
                         var thing_name;
                         var thing_class;
-                        var x = 0.95;
+                        var x = 0.98;
                         let random1 = Math.random();
                         var y = 0.4;
                         let random2 = Math.random();
