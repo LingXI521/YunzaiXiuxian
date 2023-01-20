@@ -290,17 +290,17 @@ export class AssociationAdmin extends plugin {
 
         ass.灵石池 -= ass.宗门等级 * 300000 * xian;
         ass.宗门等级 += 1;
-        if (ass.宗门等级 == 8) {
-            let i = '';
-            let homestudy = '';
-            i = Math.floor(
-                data.homegongfa_list.filter(item => item.type == '传承').length *
-                Math.random()
-            );
-            homestudy = data.homegongfa_list.filter(item => item.type == '传承')[i];
-            ass.传承功法 = homestudy;
-            e.reply('宗门获得传承神石,石上刻写了 <' + ass.传承功法.name + '>的口诀要领');
-        }
+        // if (ass.宗门等级 == 8) {
+        //     let i = '';
+        //     let homestudy = '';
+        //     i = Math.floor(
+        //         data.homegongfa_list.filter(item => item.type == '传承').length *
+        //         Math.random()
+        //     );
+        //     homestudy = data.homegongfa_list.filter(item => item.type == '传承')[i];
+        //     ass.传承功法 = homestudy;
+        //     e.reply('宗门获得传承神石,石上刻写了 <' + ass.传承功法.name + '>的口诀要领');
+        // }
         await data.setData("player", usr_qq, player);
         await data.setAssociation(ass.宗门名称, ass);
         await player_efficiency(usr_qq);
