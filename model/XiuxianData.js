@@ -22,13 +22,13 @@ class XiuxianData {
             "Timelimit": path.join(__dirname, "/resources/data/Timelimit"),//限定
             "Level": path.join(__dirname, "/resources/data/Level"),//境界
             "association": path.join(__dirname, "/resources/data/association"),
-			"occupation":path.join(__dirname,"/resources/data/occupation"),
+            "occupation": path.join(__dirname, "/resources/data/occupation"),
         }
 
         this.lib_path = this.filePathMap.lib;
         this.Timelimit = this.filePathMap.Timelimit;
         this.Level = this.filePathMap.Level;
-		this.Occupation = this.filePathMap.occupation;
+        this.Occupation = this.filePathMap.occupation;
 
         //加载灵根列表
         this.talent_list = JSON.parse(fs.readFileSync(`${this.lib_path}/灵根列表.json`));
@@ -38,10 +38,10 @@ class XiuxianData {
         this.monster_list2 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表金丹.json`));
         this.monster_list3 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表化神.json`));
         this.monster_list4 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表合体.json`));
-        this.monster_list5 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表大乘.json`));   
+        this.monster_list5 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表大乘.json`));
         this.monster_list6 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表地仙.json`));
-        this.monster_list7 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表小千世界.json`));   
-        this.monster_list8 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表大千世界.json`)); 
+        this.monster_list7 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表小千世界.json`));
+        this.monster_list8 = JSON.parse(fs.readFileSync(`${this.lib_path}/怪物列表大千世界.json`));
         //加载商品列表
         this.commodities_list = JSON.parse(fs.readFileSync(`${this.lib_path}/商品列表.json`));
         //加载宗门藏宝阁列表
@@ -70,11 +70,13 @@ class XiuxianData {
         this.daoju_list = JSON.parse(fs.readFileSync(`${this.lib_path}/道具列表.json`));
         //加载功法列表
         this.gongfa_list = JSON.parse(fs.readFileSync(`${this.lib_path}/功法列表.json`));
+        //加载传承功法列表
+        this.homegongfa_list = JSON.parse(fs.readFileSync(`${this.lib_path}/传承功法.json`));
         //加载草药列表
         this.caoyao_list = JSON.parse(fs.readFileSync(`${this.lib_path}/草药列表.json`));
-		//加载材料列表
+        //加载材料列表
         this.cailiao_list = JSON.parse(fs.readFileSync(`${this.lib_path}/材料列表.json`));
-		//加载盒子列表
+        //加载盒子列表
         this.hezi_list = JSON.parse(fs.readFileSync(`${this.lib_path}/盒子列表.json`));
         //加载食材列表
         this.shicai_list = JSON.parse(fs.readFileSync(`${this.lib_path}/食材列表.json`));
@@ -87,9 +89,9 @@ class XiuxianData {
         //加载宗门秘境
         this.guildSecrets_list = JSON.parse(fs.readFileSync(`${this.lib_path}/宗门秘境.json`));
         //加载禁地列表
-        this.forbiddenarea_list= JSON.parse(fs.readFileSync(`${this.lib_path}/禁地列表.json`));
+        this.forbiddenarea_list = JSON.parse(fs.readFileSync(`${this.lib_path}/禁地列表.json`));
         //加载仙域列表
-        this.Fairyrealm_list= JSON.parse(fs.readFileSync(`${this.lib_path}/仙境列表.json`));
+        this.Fairyrealm_list = JSON.parse(fs.readFileSync(`${this.lib_path}/仙境列表.json`));
 
         //加载限定仙府
         this.timeplace_list = JSON.parse(fs.readFileSync(`${this.Timelimit}/限定仙府.json`));
@@ -102,15 +104,15 @@ class XiuxianData {
         //加载散兵列表
         this.sanbin = JSON.parse(fs.readFileSync(`${this.lib_path}/散兵列表.json`));
         //加载职业列表
-		this.occupation_list = JSON.parse(fs.readFileSync(`${this.Occupation}/职业列表.json`));
-		//加载职业经验列表
-		this.occupation_exp_list = JSON.parse(fs.readFileSync(`${this.Occupation}/experience.json`));
-		//加载丹方列表
-		this.danfang_list = JSON.parse(fs.readFileSync(`${this.Occupation}/炼丹配方.json`));
-		//加载图纸列表
-		this.tuzhi_list = JSON.parse(fs.readFileSync(`${this.Occupation}/装备图纸.json`));
+        this.occupation_list = JSON.parse(fs.readFileSync(`${this.Occupation}/职业列表.json`));
+        //加载职业经验列表
+        this.occupation_exp_list = JSON.parse(fs.readFileSync(`${this.Occupation}/experience.json`));
+        //加载丹方列表
+        this.danfang_list = JSON.parse(fs.readFileSync(`${this.Occupation}/炼丹配方.json`));
+        //加载图纸列表
+        this.tuzhi_list = JSON.parse(fs.readFileSync(`${this.Occupation}/装备图纸.json`));
         //加载图鉴列表
-		this.yuansuwuqi_list = JSON.parse(fs.readFileSync(`${this.lib_path}/元素武器.json`));
+        this.yuansuwuqi_list = JSON.parse(fs.readFileSync(`${this.lib_path}/元素武器.json`));
         //加载造化机缘列表
         this.wuqizaohua = JSON.parse(fs.readFileSync(`${this.lib_path}/武器造化机缘.json`));
         this.hujuzaohua = JSON.parse(fs.readFileSync(`${this.lib_path}/护具造化机缘.json`));
@@ -122,34 +124,34 @@ class XiuxianData {
         //天地
         this.tianditang = JSON.parse(fs.readFileSync(`${this.lib_path}/天地堂.json`));
         //仙宠
-        this.changzhuxianchon =JSON.parse(fs.readFileSync(`${this.lib_path}/常驻仙宠.json`));
+        this.changzhuxianchon = JSON.parse(fs.readFileSync(`${this.lib_path}/常驻仙宠.json`));
         this.xianchon = JSON.parse(fs.readFileSync(`${this.lib_path}/仙宠列表.json`));
         this.xianchonkouliang = JSON.parse(fs.readFileSync(`${this.lib_path}/仙宠口粮列表.json`));
         //npc
         this.npc_list = JSON.parse(fs.readFileSync(`${this.lib_path}/npc列表.json`));
         //
         this.shop_list = JSON.parse(fs.readFileSync(`${this.lib_path}/shop列表.json`));
-        
+
         this.qinlong = JSON.parse(fs.readFileSync(`${this.Timelimit}/青龙.json`));
         this.qilin = JSON.parse(fs.readFileSync(`${this.Timelimit}/麒麟.json`));
         this.xuanwu = JSON.parse(fs.readFileSync(`${this.Timelimit}/玄武朱雀白虎.json`));
         //魔界
         this.mojie = JSON.parse(fs.readFileSync(`${this.lib_path}/魔界列表.json`));
         //加载项链列表
-        this.necklace_list= JSON.parse(fs.readFileSync(`${this.lib_path}/项链列表.json`));
+        this.necklace_list = JSON.parse(fs.readFileSync(`${this.lib_path}/项链列表.json`));
         //兑换码
         this.duihuan = JSON.parse(fs.readFileSync(`${this.lib_path}/兑换列表.json`));
         //神界
         this.shenjie = JSON.parse(fs.readFileSync(`${this.lib_path}/神界列表.json`));
         //加载灯谜
-        this.Lantern_riddles= JSON.parse(fs.readFileSync(`${this.lib_path}/灯谜.json`));
+        this.Lantern_riddles = JSON.parse(fs.readFileSync(`${this.lib_path}/灯谜.json`));
         //加载酿酒配方
-        this.Niangjiu=JSON.parse(fs.readFileSync(`${this.lib_path}/酿酒配方.json`));
+        this.Niangjiu = JSON.parse(fs.readFileSync(`${this.lib_path}/酿酒配方.json`));
         //加载卡池
-        this.xianding=JSON.parse(fs.readFileSync(`${this.lib_path}/限定up.json`));
-        this.changzhu=JSON.parse(fs.readFileSync(`${this.lib_path}/常驻.json`));
+        this.xianding = JSON.parse(fs.readFileSync(`${this.lib_path}/限定up.json`));
+        this.changzhu = JSON.parse(fs.readFileSync(`${this.lib_path}/常驻.json`));
         //加载卡面列表
-        this.kamian=JSON.parse(fs.readFileSync(`${this.lib_path}/幻影卡面列表.json`));
+        this.kamian = JSON.parse(fs.readFileSync(`${this.lib_path}/幻影卡面列表.json`));
 
     }
 
@@ -199,7 +201,7 @@ class XiuxianData {
         data = JSON.parse(data);
         return data;
 
-        
+
     }
 
     /**
