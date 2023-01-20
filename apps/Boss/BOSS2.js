@@ -36,6 +36,10 @@ export class BOSS2 extends plugin {
                 {
                     reg: '^#开启天理$',
                     fnc: 'CreateWorldBoss2'
+                },
+                {
+                    reg: '^#开启天理$',
+                    fnc: 'DeleteWorldBoss2'
                 }
             ]
         })
@@ -48,19 +52,32 @@ export class BOSS2 extends plugin {
         }
     }
 
-
-    //天理开启指令
-    async CreateWorldBoss() {
-        await InitWorldBoss()
-        return;
+//天理开启指令
+    async CreateWorldBoss2(e) {
+        if (e.isMaster) {
+            if (!await BossIsAlive()) {
+                if (await InitWorldBoss() == 0)
+                    e.reply("天理挑战开启！");
+                return true;
+            }
+            else {
+                e.reply("天理已经存在");
+                return true;
+            }
+        }
+        else return;
     }
     //天理结束指令
-    async DeleteWorldBoss() {
+    async DeleteWorldBoss2(e) {
+        if (e.isMaster) {
             if (await BossIsAlive()) {
                 await redis.del("Xiuxian:WorldBossStatus2");
                 await redis.del("Xiuxian:PlayerRecord2");
+                e.reply("天理挑战关闭！");
             }
-            return ;
+            else e.reply("天理未开启");
+        }
+        else return;
     }
     //天理状态指令
     async LookUpWorldBossStatus(e) {
