@@ -2,15 +2,15 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import config from "../../model/Config.js"
 import data from '../../model/XiuxianData.js'
 import { segment } from "oicq"
-import { timestampToTime, shijianc,  player_efficiency } from '../Xiuxian/xiuxian.js'
+import { timestampToTime, shijianc, player_efficiency } from '../Xiuxian/xiuxian.js'
 
 
 //要DIY的话，确保这两个数组长度相等
-const 宗门人数上限 = [6, 9, 12, 15, 18, 21, 24 , 27];
+const 宗门人数上限 = [6, 9, 12, 15, 18, 21, 24, 27];
 const 副宗主人数上限 = [1, 1, 1, 1, 2, 2, 3, 3];
-const 长老人数上限 = [1, 2, 3, 4, 5, 7, 8 , 9];
-const 内门弟子上限 = [2, 3, 4, 5, 6, 8,10,12];
-const 宗门灵石池上限 = [2000000, 5000000, 8000000, 11000000, 15000000, 20000000,25000000,30000000];
+const 长老人数上限 = [1, 2, 3, 4, 5, 7, 8, 9];
+const 内门弟子上限 = [2, 3, 4, 5, 6, 8, 10, 12];
+const 宗门灵石池上限 = [2000000, 5000000, 8000000, 11000000, 15000000, 20000000, 25000000, 30000000];
 
 /**
  * 宗门
@@ -78,14 +78,14 @@ export class AssociationAdmin extends plugin {
         if (!ifexistplay) {
             return;
         }
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let player = data.getData("player", usr_qq);
 
         let now_level_id;
-        if (!isNotNull(player.level_id)){
+        if (!isNotNull(player.level_id)) {
             this.reply("请先#同步信息");
             return;
         }
@@ -94,15 +94,15 @@ export class AssociationAdmin extends plugin {
         if (now_level_id < 22) {
             e.reply("修为达到化神再来吧");
             return;
-            
+
         }
 
-        if(now_level_id >= 42 && now_level_id <45){
+        if (now_level_id >= 42 && now_level_id < 45) {
             e.reply("你的仙宗成立了！");
             await sleep(3000);
             e.reply("你未通过仙界宗门管理委员会的宗主测试！\n" +
-                    "仙界宗门管理委员会将你的宗门强制注销了！\n" +
-                    "请修炼到玄仙再来注册！");
+                "仙界宗门管理委员会将你的宗门强制注销了！\n" +
+                "请修炼到玄仙再来注册！");
             return;
         }
 
@@ -127,8 +127,8 @@ export class AssociationAdmin extends plugin {
     async Get_association_name(e) {
         let usr_qq = e.user_id;
         /** 内容 */
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let new_msg = this.e.message;
@@ -169,7 +169,7 @@ export class AssociationAdmin extends plugin {
             "time": [date, nowTime]
         }
         await data.setData("player", usr_qq, player)
-        await new_Association(association_name, usr_qq,e);
+        await new_Association(association_name, usr_qq, e);
         await setFileValue(usr_qq, -10000, "灵石")
         await this.reply('宗门创建成功');
         /** 结束上下文 */
@@ -182,8 +182,8 @@ export class AssociationAdmin extends plugin {
 
     //护宗大阵
     async huz(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -201,8 +201,8 @@ export class AssociationAdmin extends plugin {
         return;
     }
     async weihu(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -238,14 +238,14 @@ export class AssociationAdmin extends plugin {
             e.reply(`宗门灵石池只有${ass.灵石池}灵石,数量不足`);
             return;
         }
-         var xian = 5;
-        if(ass.power == 1){
+        var xian = 5;
+        if (ass.power == 1) {
             xian = 2;
         }
         ass.大阵血量 += lingshi * xian;
         ass.灵石池 -= lingshi;
         await data.setAssociation(ass.宗门名称, ass);
-       e.reply(`维护成功,宗门还有${ass.灵石池}灵石,护宗大阵增加了${lingshi * xian}血量`);
+        e.reply(`维护成功,宗门还有${ass.灵石池}灵石,护宗大阵增加了${lingshi * xian}血量`);
 
 
     }
@@ -256,8 +256,8 @@ export class AssociationAdmin extends plugin {
 
     //升级宗门
     async lvup_association(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -280,16 +280,27 @@ export class AssociationAdmin extends plugin {
             return;
         }
         let xian = 1;
-        if(ass.power  == 1){
+        if (ass.power == 1) {
             xian = 10;
         }
         if (ass.灵石池 < ass.宗门等级 * 300000 * xian) {
-            e.reply(`本宗门目前灵石池中仅有${ass.灵石池}灵石,当前宗门升级需要${ass.宗门等级 * 300000 * xian }灵石,数量不足`);
+            e.reply(`本宗门目前灵石池中仅有${ass.灵石池}灵石,当前宗门升级需要${ass.宗门等级 * 300000 * xian}灵石,数量不足`);
             return;
         }
 
         ass.灵石池 -= ass.宗门等级 * 300000 * xian;
         ass.宗门等级 += 1;
+        if (ass.宗门等级 == 8) {
+            let i = '';
+            let homestudy = '';
+            i = Math.floor(
+                data.homegongfa_list.filter(item => item.type == '传承').length *
+                Math.random()
+            );
+            homestudy = data.homegongfa_list.filter(item => item.type == '传承')[i];
+            ass.传承功法 = homestudy;
+            e.reply('宗门获得传承神石,石上刻写了 <' + ass.传承功法.name + '>的口诀要领');
+        }
         await data.setData("player", usr_qq, player);
         await data.setAssociation(ass.宗门名称, ass);
         await player_efficiency(usr_qq);
@@ -300,8 +311,8 @@ export class AssociationAdmin extends plugin {
 
     //任命职位
     async Set_appointment(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -330,11 +341,11 @@ export class AssociationAdmin extends plugin {
         if (!isinass) { e.reply("只能设置宗门内弟子的职位"); return; }
         let member = data.getData("player", member_qq);//获取这个B的存档
         let now_apmt = member.宗门.职位;//这个B现在的职位
-        if(player.宗门.职位 == "副宗主" && now_apmt == "宗主"){
+        if (player.宗门.职位 == "副宗主" && now_apmt == "宗主") {
             e.reply("你想造反吗！？");
             return;
         }
-        if(player.宗门.职位 == "副宗主" && (now_apmt == "副宗主" || now_apmt == "长老")){
+        if (player.宗门.职位 == "副宗主" && (now_apmt == "副宗主" || now_apmt == "长老")) {
             e.reply(`宗门${now_apmt}任免请上报宗主！`);
             return;
         }
@@ -345,7 +356,7 @@ export class AssociationAdmin extends plugin {
         if (appointment == now_apmt) { e.reply(`此人已经是本宗门的${appointment}`); return; }
         if (appointment == "长老") {
             full_apmt = 长老人数上限[ass.宗门等级 - 1];
-        }if (appointment == "副宗主") {
+        } if (appointment == "副宗主") {
             full_apmt = 副宗主人数上限[ass.宗门等级 - 1];
         }
         else if (appointment == "内门弟子") {
@@ -366,8 +377,8 @@ export class AssociationAdmin extends plugin {
 
     //宗门维护
     async Maintenance(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -384,7 +395,7 @@ export class AssociationAdmin extends plugin {
         let ass = await data.getAssociation(player.宗门.宗门名称);
         let now = new Date();
         let nowTime = now.getTime(); //获取当前日期的时间戳
-        var time=this.xiuxianConfigData.CD.association;
+        var time = this.xiuxianConfigData.CD.association;
         let nextmt_time = await shijianc(ass.维护时间 + 60000 * time);//获得下次宗门维护日期,7天后
         if (ass.维护时间 > nowTime - 1000 * 60 * 60 * 24 * 7) {
             e.reply(`当前无需维护,下次维护时间:${nextmt_time.Y}年${nextmt_time.M}月${nextmt_time.D}日${nextmt_time.h}时${nextmt_time.m}分${nextmt_time.s}秒`);
@@ -397,18 +408,18 @@ export class AssociationAdmin extends plugin {
         ass.灵石池 -= ass.宗门等级 * 50000;
         ass.维护时间 = nowTime;
         await data.setAssociation(ass.宗门名称, ass);//记录到宗门
-        nextmt_time = await shijianc(ass.维护时间 + 60000 *  time);
+        nextmt_time = await shijianc(ass.维护时间 + 60000 * time);
         e.reply(`宗门维护成功,下次维护时间:${nextmt_time.Y}年${nextmt_time.M}月${nextmt_time.D}日${nextmt_time.h}时${nextmt_time.m}分${nextmt_time.s}秒`);
         return;
     }
 
 
 
-    
+
     //设置最低加入境界
     async jiaru(e) {
-         //不开放私聊功能
-         if (!e.isGroup) {
+        //不开放私聊功能
+        if (!e.isGroup) {
             return;
         }
         let usr_qq = e.user_id;
@@ -428,11 +439,11 @@ export class AssociationAdmin extends plugin {
         }
         let jr_level_id = data.Level_list.find(item => item.level == jiar).level_id;
         let ass = data.getAssociation(player.宗门.宗门名称);
-        if(ass.power == 0 && jr_level_id > 41){
+        if (ass.power == 0 && jr_level_id > 41) {
             jr_level_id = 41;
             e.reply("不知哪位大能立下誓言：凡界无仙！");
         }
-        if(ass.power == 1 && jr_level_id < 42){
+        if (ass.power == 1 && jr_level_id < 42) {
             jr_level_id = 42;
             e.reply("仅仙人可加入仙宗");
         }
@@ -443,7 +454,7 @@ export class AssociationAdmin extends plugin {
         return;
     }
 
-    async Deleteusermax(e){
+    async Deleteusermax(e) {
         if (!e.isGroup) {
             return;
         }
@@ -459,7 +470,7 @@ export class AssociationAdmin extends plugin {
 
 
         let menpai = e.msg.replace("#", '');
-        
+
         menpai = menpai.replace("逐出", '');
 
         let member_qq = menpai;
@@ -478,11 +489,11 @@ export class AssociationAdmin extends plugin {
         }
         let ass = data.getAssociation(player.宗门.宗门名称);
         let bss = data.getAssociation(playerB.宗门.宗门名称);
-        if(ass.宗门名称!=bss.宗门名称){
+        if (ass.宗门名称 != bss.宗门名称) {
             return;
         }
         if (player.宗门.职位 == "宗主") {
-            if(usr_qq == member_qq){
+            if (usr_qq == member_qq) {
                 e.reply("？？？"); //踢自己？
                 return;
             }
@@ -494,13 +505,13 @@ export class AssociationAdmin extends plugin {
             await player_efficiency(member_qq);
             e.reply("已踢出！");
             return;
-        } 
+        }
         if (player.宗门.职位 == "副宗主") {
-            if(playerB.宗门.职位 == "宗主"){
+            if (playerB.宗门.职位 == "宗主") {
                 e.reply("你没权限");
                 return;
             }
-            if(playerB.宗门.职位 == "长老" || playerB.宗门.职位 == "副宗主"){
+            if (playerB.宗门.职位 == "长老" || playerB.宗门.职位 == "副宗主") {
                 e.reply(`宗门${playerB.宗门.职位}任免请上报宗主！`);
                 return;
             }
@@ -513,12 +524,12 @@ export class AssociationAdmin extends plugin {
             e.reply("已踢出！");
             return;
         }
-         if (player.宗门.职位 == "长老") {
-            if(playerB.宗门.职位 == "宗主" || playerB.宗门.职位 == "副宗主"){
+        if (player.宗门.职位 == "长老") {
+            if (playerB.宗门.职位 == "宗主" || playerB.宗门.职位 == "副宗主") {
                 e.reply("造反啦？");
                 return;
             }
-            if(playerB.宗门.职位 == "长老"){
+            if (playerB.宗门.职位 == "长老") {
                 e.reply(`宗门${playerB.宗门.职位}任免请上报宗主！`);
                 return;
             }
@@ -530,12 +541,12 @@ export class AssociationAdmin extends plugin {
             await player_efficiency(member_qq);
             e.reply("已踢出！");
             return;
-        } 
-         playerB.favorability=0;
-         await data.setData("player", member_qq, playerB);
+        }
+        playerB.favorability = 0;
+        await data.setData("player", member_qq, playerB);
     }
 
-    async Deleteuser(e){  
+    async Deleteuser(e) {
         if (!e.isGroup) {
             return;
         }
@@ -565,11 +576,11 @@ export class AssociationAdmin extends plugin {
         }
         let ass = data.getAssociation(player.宗门.宗门名称);
         let bss = data.getAssociation(playerB.宗门.宗门名称);
-        if(ass.宗门名称!=bss.宗门名称){
+        if (ass.宗门名称 != bss.宗门名称) {
             return;
         }
         if (player.宗门.职位 == "宗主") {
-            if(usr_qq == member_qq) {
+            if (usr_qq == member_qq) {
                 e.reply("？？？"); // 自己踢自己？？
                 return;
             }
@@ -581,13 +592,13 @@ export class AssociationAdmin extends plugin {
             await player_efficiency(member_qq);
             e.reply("已踢出！");
             return;
-        } 
+        }
         if (player.宗门.职位 == "副宗主") {
-            if(playerB.宗门.职位 == "宗主"){
+            if (playerB.宗门.职位 == "宗主") {
                 e.reply("造反啦？");
                 return;
             }
-            if(playerB.宗门.职位 == "长老" || playerB.宗门.职位 == "副宗主"){
+            if (playerB.宗门.职位 == "长老" || playerB.宗门.职位 == "副宗主") {
                 e.reply(`宗门${playerB.宗门.职位}任免请上报宗主！`);
                 return;
             }
@@ -600,12 +611,12 @@ export class AssociationAdmin extends plugin {
             e.reply("已踢出！");
             return;
         }
-         if (player.宗门.职位 == "长老") {
-            if(playerB.宗门.职位 == "宗主" || playerB.宗门.职位 == "副宗主"){
+        if (player.宗门.职位 == "长老") {
+            if (playerB.宗门.职位 == "宗主" || playerB.宗门.职位 == "副宗主") {
                 e.reply("造反啦？");
                 return;
             }
-            if(playerB.宗门.职位 == "长老"){
+            if (playerB.宗门.职位 == "长老") {
                 e.reply(`宗门${playerB.宗门.职位}任免请上报宗主！`);
                 return;
             }
@@ -617,8 +628,8 @@ export class AssociationAdmin extends plugin {
             await player_efficiency(member_qq);
             e.reply("已踢出！");
             return;
-        } 
-        playerB.favorability=0;
+        }
+        playerB.favorability = 0;
         await data.setData("player", member_qq, playerB);
     }
 
@@ -631,19 +642,19 @@ export class AssociationAdmin extends plugin {
  * @param name 宗门名称
  * @param holder_qq 宗主qq号
  */
-async function new_Association(name, holder_qq,e) {
+async function new_Association(name, holder_qq, e) {
     let usr_qq = e.user_id;
     let player = data.getData("player", usr_qq);
     var now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
     var x;
     let xian;
     let dj;
-    if(now_level_id>41){
+    if (now_level_id > 41) {
         x = 1;
         xian = 10;
         dj = 42;
-    }else{
-       x = 0;
+    } else {
+        x = 0;
         xian = 1;
         dj = 1;
     }
@@ -655,9 +666,9 @@ async function new_Association(name, holder_qq,e) {
         "宗门等级": 1,
         "创立时间": [date, nowTime],
         "灵石池": 0,
-        "宗门驻地":0,
-        "宗门建设等级":0,
-        "宗门神兽":0,
+        "宗门驻地": 0,
+        "宗门建设等级": 0,
+        "宗门神兽": 0,
         "宗主": holder_qq,
         "副宗主": [],
         "长老": [],
@@ -675,9 +686,9 @@ async function new_Association(name, holder_qq,e) {
             ],
         },
         "维护时间": nowTime,
-       "大阵血量": 114514 * xian,
+        "大阵血量": 114514 * xian,
         "最低加入境界": dj,
-        "power":x,
+        "power": x,
 
     }
     data.setAssociation(name, Association);
