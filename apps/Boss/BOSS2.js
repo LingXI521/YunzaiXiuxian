@@ -35,7 +35,7 @@ export class BOSS2 extends plugin {
                 },
                 {
                     reg: '^#开启天理$',
-                    fnc: 'CreateWorldBoss'
+                    fnc: 'CreateWorldBoss2'
                 }
             ]
         })
