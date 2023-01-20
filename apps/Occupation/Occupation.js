@@ -130,7 +130,7 @@ export class Occupation extends plugin {
             e.reply("包工头:就你这小身板还来挖矿？再去修炼几年吧")
             return
         }
-        if (now_level_id < 17 && occupation == "猎户") {
+        if (now_level_id < 25 && occupation == "猎户") {
             e.reply("就你这点修为做猎户？怕不是光头强砍不到树来转的？")
             return
         }
@@ -1567,7 +1567,7 @@ export class Occupation extends plugin {
         //shoulie_amount2 = parseInt(shoulie_amount2 * time);
         //shoulie_amount3 = parseInt(shoulie_amount3 * time);
         //shoulie_amount4 = parseInt(shoulie_amount4 * time);
-        end_amount = Math.floor(end_amount);
+        end_amount = Math.floor(end_amount)/500;
 
                         await Add_najie_thing(usr_qq, "野兔", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野鸡", "食材", end_amount);
