@@ -1350,12 +1350,12 @@ export class UserHome extends plugin {
             //寄术原因，写了很多多余的东西，但是能跑
            if (thing_name == "猫猫藏的新春礼盒") {
                 let math=Math.random();
-                if(math>0.9&&math<0.95){
-                    await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具",  1);
+                if(math>0.9&&math<1){
+                    await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具",  1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了一个闹钟盒")
+                    e.reply("你充满期待的打开了盒子，结果发现了一个清灵盒")
                     return;
-                }else if(math>0.95&&math<1){
+                }else if(math>0&&math<0.05){
                   await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1); 
                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                   e.reply("你充满期待的打开了盒子，结果发现了里面只有一个雪铃盒")
