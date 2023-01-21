@@ -1617,7 +1617,7 @@ export class Occupation extends plugin {
         let end_time = action.end_time;
         //当前时间>=结束时间，并且未结算 属于已经完成任务，却并没有结算的
         //当前时间<=完成时间，并且未结算 属于正在进行
-        if (!((now_time >= end_time && (action.shutup == 0 || action.working == 0 || action.plant == 0 || action.min == 0)) || (now_time <= end_time && (action.shutup == 0 || action.working == 0 || action.plant == 0 || action.mine == 0)))) {
+        if (!((now_time >= end_time && (action.shutup == 0 || action.working == 0 || action.plant == 0 || action.min == 0)) || (now_time <= end_time && (action.shutup == 0 || action.working == 0 || action.plant == 0 || action.mine == 0||action.shoulie == 0)))) {
 
             return "空闲";
         }
