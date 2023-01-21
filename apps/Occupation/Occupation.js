@@ -1567,7 +1567,7 @@ export class Occupation extends plugin {
         //shoulie_amount2 = parseInt(shoulie_amount2 * time);
         //shoulie_amount3 = parseInt(shoulie_amount3 * time);
         //shoulie_amount4 = parseInt(shoulie_amount4 * time);
-        end_amount = Math.floor(end_amount)/100;
+        end_amount = Math.floor(end_amount)/1000;
         end_amount = Math.floor(end_amount);
 
 
