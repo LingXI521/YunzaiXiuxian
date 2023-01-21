@@ -8,14 +8,14 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 
 ```
 > 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
-> 转移存档             
-将xiuxian-emulator-plugin\resources\data\xiuxian_player             
-和xiuxian-emulator-plugin\resources\data\xiuxian_najie                 
-以及xiuxian-emulator-plugin\resources\data\xiuxian_equipment             
-还有xiuxian-emulator-plugin\resources\data\association             
+> 转移存档            
+xiuxian-emulator-plugin\resources\data\xiuxian_player             
+xiuxian-emulator-plugin\resources\data\xiuxian_najie                 
+xiuxian-emulator-plugin\resources\data\xiuxian_equipment             
+xiuxian-emulator-plugin\resources\data\association             
 这四个文件保存后将原版删除并执行安装命令随后将这四个文件替换到对应文件,然后执行【#一键同步】             
-## 更新完后一定！！一定！要发【#一键同步】！！！！！！！！还有不要偷懒直接保存data文件夹
-## 魔改内容(大概，很多不记得了)
+## 更新完后一定要发【#一键同步】！！！！！！！！还有不要偷懒直接保存data文件夹
+## 魔改内容  
 > 1.新增职业系统:采药师,采矿师,炼器师,炼丹师     
 > 2.新增元素反应:灵根为仙之心·火水岩风雷冰木(草)方可使用元素力     
 > 3.新增功法技能     
@@ -61,8 +61,4 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 >xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
 >xiuxian-emulator-plugin/ resources / data          
 >可根据需求自行修改     
-
-## 特别说明
-本人是学生,平日只有中午1点到1点50，晚上9点半以后有空(点击下方图片加我),有问题优先找策划,这个魔改版开发过程中有他参与,或者找体验群一里的小多莉,此外虽然可以加寿元系统进入，但是寿元不符合我的理念，我是想将这款游戏周期提到六个月左右，寿元就大大限制了回归热情，所以不加 
-[![懒得输入](pic/photo2.jpg)](http://wpa.qq.com/msgrd?v=3&uin=3196383818&site=qq&menu=yes)
       
