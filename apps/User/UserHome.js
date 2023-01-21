@@ -2248,13 +2248,13 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
-                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 50);
+                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 100);
                                 await Add_najie_thing(usr_qq, "土豆", "食材", 100);
                                 await Add_najie_thing(usr_qq, "木铲", "道具", -1);
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
-                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 100);
-                                await Add_najie_thing(usr_qq, "土豆", "食材", 200);
+                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 150);
+                                await Add_najie_thing(usr_qq, "土豆", "食材", 150);
                                 await Add_najie_thing(usr_qq, "石铲", "道具", -1);
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
