@@ -9,12 +9,9 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 ```
 > 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
 > 转移存档            
-xiuxian-emulator-plugin\resources\data\xiuxian_player             
-xiuxian-emulator-plugin\resources\data\xiuxian_najie                 
-xiuxian-emulator-plugin\resources\data\xiuxian_equipment             
-xiuxian-emulator-plugin\resources\data\association             
-这四个文件保存后将原版删除并执行安装命令随后将这四个文件替换到对应文件,然后执行【#一键同步】             
-## 更新完后一定要发【#一键同步】！！！！！！！！还有不要偷懒直接保存data文件夹
+[![懒得输入](pic/photo4.jpg)]            
+这几个文件保存后将原版删除并执行安装命令随后将这四个文件替换到对应文件,然后执行【#一键同步】               
+## 更新完后一定要发【#一键同步】！！！还有不要偷懒直接保存data文件夹
 ## 魔改内容  
 > 1.新增职业系统:采药师,采矿师,炼器师,炼丹师     
 > 2.新增元素反应:灵根为仙之心·火水岩风雷冰木(草)方可使用元素力     
@@ -52,6 +49,7 @@ xiuxian-emulator-plugin\resources\data\association
 > 啵唧(1702701528):提供许多武器，秘境，特殊道具     
 > xh(917951214):职业功能   
 > 零(3106256704):修复bug,维护功能   
+> 画手(1589978621):维护和处理bug  
 
 ## 免责声明       
 1. 功能仅限内部交流与小范围使用       
