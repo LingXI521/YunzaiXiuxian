@@ -515,7 +515,7 @@ export class GuessLanternRiddles extends plugin {
         }
         let number = data.daoju_list.find(item => item.name == thing_name).number * quantity
         await Add_najie_thing(usr_qq, "相遇之缘", "道具", number)
-        await Add_najie_thing(usr_qq, thing_name, "道具", -1)
+        await Add_najie_thing(usr_qq, thing_name, "道具", -quantity)
         e.reply("巴巴托斯:居然送我这么好的酒哇,我也无以为报,这样吧,我把我在天空岛捡到的石头送给你好了(获得相遇之缘" + number + "个)")
     }
 
