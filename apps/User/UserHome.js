@@ -924,6 +924,27 @@ export class UserHome extends plugin {
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+            } 
+            if(thing_name=="土豆"){
+                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                player.饱食度+=1*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                return;
+            }
+             if(thing_name=="烤土豆"){
+                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                player.饱食度+=3*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                return;
+            }
+             if(thing_name=="胡萝卜"){
+                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
+                player.饱食度+=2*quantity;
+                await Write_player(usr_qq, player);
+                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                return;
             }
             if(thing_name=="面包"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
