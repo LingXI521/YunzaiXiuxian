@@ -2672,12 +2672,12 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number1)&&isNotNull(number1)&&number1>3*quantity-1 && number2 > 2 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "木棍", "材料", -2* quantity);
                     await Add_najie_thing(usr_qq, "钻石", "材料", -3* quantity);
-                    await Add_najie_thing(usr_qq, "金镐", "道具",  quantity);
-                    e.reply(["合成成功，获得金镐" + quantity + "个"])
+                    await Add_najie_thing(usr_qq, "钻石镐", "道具",  quantity);
+                    e.reply(["合成成功，获得钻石镐" + quantity + "个"])
                     return
                 }
                 else {
-                    e.reply("你没有足够的金锭和木棍")
+                    e.reply("你没有足够的钻石和木棍")
                     return
                 }
             }
