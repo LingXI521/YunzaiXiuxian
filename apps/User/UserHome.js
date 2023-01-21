@@ -1358,11 +1358,13 @@ export class UserHome extends plugin {
                 }else if(math>0.95&&math<1){
                   await Add_najie_thing(usr_qq, "雪铃零藏的新春木盒", "道具", 1); 
                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                  e.reply("你充满期待的打开了盒子，结果发现了里面只有一个雪铃盒盒")
+                  e.reply("你充满期待的打开了盒子，结果发现了里面只有一个雪铃盒")
+                  return;
              }else{
-                await Add_najie_thing(usr_qq, "烤鱼", "食材", 2); 
+                await Add_najie_thing(usr_qq, "面包", "食材", 5); 
                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                  e.reply("你充满期待的打开了盒子，结果发现了里面有2条烤鱼")
+                  e.reply("你充满期待的打开了盒子，结果发现了里面有5个面包")
+                  return;
              }
             }
              if (thing_name == "寻宝工具盒") {
