@@ -2547,7 +2547,7 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "木板", "材料", 4 * quantity);
                     await Add_najie_thing(usr_qq, "原木", "材料", - 1* quantity);
-                    e.reply(["合成成功，获得木板" + quantity + "个"])
+                    e.reply(["合成成功，获得木板" + 4*quantity + "个"])
                     return
                 }
                 else {
@@ -2560,7 +2560,7 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number) && number > 2 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "木棍", "材料", 4 * quantity);
                     await Add_najie_thing(usr_qq, "木板", "材料", - 2* quantity);
-                    e.reply(["合成成功，获得木棍" + quantity + "个"])
+                    e.reply(["合成成功，获得木棍" +4* quantity + "个"])
                     return
                 }
                 else {
