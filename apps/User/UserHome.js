@@ -795,7 +795,7 @@ export class UserHome extends plugin {
         let player = await Read_player(usr_qq);
         let najie = await Read_najie(usr_qq);
         //检索方法
-        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|烧制|处理/);
+        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|烤制|处理/);
         let func = reg.exec(e.msg);
         let msg = e.msg.replace(reg, '');
         msg = msg.replace("#", '');
@@ -1498,32 +1498,7 @@ export class UserHome extends plugin {
                     return
                 }
             }
-            if (thing_name == "菜刀") {
-                let 菜刀 = await exist_najie_thing(usr_qq, "菜刀", "道具")
-                let 野兔 = await exist_najie_thing(usr_qq, "野兔", "食材")
-                let 野猪 = await exist_najie_thing(usr_qq, "野猪", "食材")
-                let 野鸡 = await exist_najie_thing(usr_qq, "野鸡", "食材")
-                let 野牛 = await exist_najie_thing(usr_qq, "野牛", "食材")
-                let 野羊 = await exist_najie_thing(usr_qq, "野羊", "食材")
-                if (isNotNull(野兔 + 野猪 + 野鸡 + 野牛 + 野羊) && 野兔 + 野猪 + 野鸡 + 野牛 + 野羊 > quantity - 1) {
-                    await Add_najie_thing(usr_qq, "生肉", "食材", 野兔 + 野猪 * 2 + 野鸡 * 野牛 * 2 * 野羊 * 2);
-                    await Add_najie_thing(usr_qq, "皮革", "食材", 野兔 + 野牛 * 2);
-                    await Add_najie_thing(usr_qq, "羽毛", "食材", 野鸡 * 2);
-                    await Add_najie_thing(usr_qq, "羊毛", "食材", 野羊);
-                    await Add_najie_thing(usr_qq, "菜刀", "道具", -1);
-                    await Add_najie_thing(usr_qq, "野兔", "食材", -野兔);
-                    await Add_najie_thing(usr_qq, "野猪", "食材", -野猪);
-                    await Add_najie_thing(usr_qq, "野鸡", "食材", -野鸡);
-                    await Add_najie_thing(usr_qq, "野牛", "食材", -野牛);
-                    await Add_najie_thing(usr_qq, "野羊", "食材", -野羊);
-                    e.reply(["处理完成，获得生肉" + 野兔 + 野猪 * 2 + 野鸡 * 野牛 * 2 * 野羊 * 2 + "个，\n皮革" + 野兔 + 野牛 * 2 + "个，\n羽毛" + 野鸡 * 2 + "个，\n羊毛" + 野羊 + "个"])
-                    return;
-                }
-                else {
-                    e.reply("你都没有猎物，咋，处理空气啊？")
-                    return
-                }
-            }
+            
                 if (thing_name == "煤炭") {
                 let number= await exist_najie_thing(usr_qq,"熔炉","道具");
                 if (isNotNull(number) && number >  quantity - 1){
@@ -2536,11 +2511,13 @@ if (thing_name == "羊毛") {
                             return;
                         }
             }
+         }
            
-        if (func == "合成") {
+   if (func == "合成") {
             
+           
             if (thing_name == "仙子邀约") {
-                let number = await exist_najie_thing(usr_qq, "钻石矿", "道具")
+                let number = await exist_najie_thing(usr_qq, "钻石", "道具")
                 if (isNotNull(number) && number > 5 * quantity - 1) {
                     await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1 * quantity);
                     await Add_najie_thing(usr_qq, "钻石", "道具", -5 * quantity);
@@ -2769,6 +2746,7 @@ if (thing_name == "羊毛") {
                     return
                 }
             }
+        
              if (thing_name == "未点燃的火把") {
                 let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
                 let number2 = await exist_najie_thing(usr_qq, "煤炭", "材料")
@@ -2785,6 +2763,7 @@ if (thing_name == "羊毛") {
                 }
             }
         }
+
            if (func == "烧制") {
             if (thing_name == "烤土豆") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
@@ -2859,8 +2838,9 @@ if (thing_name == "羊毛") {
             }
             }
         }
+        
     
-       if(func=="处理"){
+    if(func=="处理"){
         let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的食材`);
@@ -2928,7 +2908,6 @@ if(thing_name == "野羊"){
     }
         return;
 }
-    }
          
 
     async yesxigen(e) {
