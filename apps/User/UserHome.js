@@ -2152,7 +2152,7 @@ if (thing_name == "羊毛") {
                         }      
             }
             if(thing_name == "低语森林"){
-                if(player.饱食度<150){
+                if(player.饱食度<500){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
@@ -2191,7 +2191,7 @@ if (thing_name == "羊毛") {
                         }   
             }
             if(thing_name == "水天丛林"){
-                if(player.饱食度<300){
+                if(player.饱食度<1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
@@ -2341,7 +2341,7 @@ if (thing_name == "羊毛") {
                         }
             }
             if(thing_name == "降诸魔山"){  
-                if(player.饱食度< 1500){
+                if(player.饱食度< 2000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
@@ -2408,7 +2408,7 @@ if (thing_name == "羊毛") {
                         }  
             }
             if(thing_name == "星荧洞窟"){
-                if(player.饱食度<2000){
+                if(player.饱食度<3000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
@@ -2461,7 +2461,7 @@ if (thing_name == "羊毛") {
                         }
             }
             if(thing_name == "层岩巨渊"){  
-                if(player.饱食度<=2500){
+                if(player.饱食度<=5000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
