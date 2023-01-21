@@ -574,7 +574,7 @@ export class GuessLanternRiddles extends plugin {
                 usr_qq,
                 peifang.配方[i].name,
                 '道具',
-                -quantity
+                -peifang.配方[i].数量
             );
         }
         let random = Math.random()
