@@ -50,13 +50,14 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 > xh(917951214):职业功能   
 > 零(3106256704):修复bug,维护功能   
 > 画手(1589978621):维护和处理bug  
-
-## 免责声明       
-1. 功能仅限内部交流与小范围使用       
-2. 请勿用于任何以盈利为目的的场景       
+     
 
 ## 配置与存档   
 >xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
 >xiuxian-emulator-plugin/ resources / data          
 >可根据需求自行修改     
+
+## 免责声明       
+1. 功能仅限内部交流与小范围使用       
+2. 请勿用于任何以盈利为目的的场景  
       
