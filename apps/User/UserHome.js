@@ -1492,12 +1492,73 @@ export class UserHome extends plugin {
                     await Add_najie_thing(usr_qq, "野牛", "食材", -野牛);
                     await Add_najie_thing(usr_qq, "野羊", "食材", -野羊);
                     e.reply(["处理完成，获得生肉" + 野兔 + 野猪 * 2 + 野鸡 * 野牛 * 2 * 野羊 * 2 + "个，\n皮革" + 野兔 + 野牛 * 2 + "个，\n羽毛" + 野鸡 * 2 + "个，\n羊毛" + 野羊 + "个"])
+                    return;
                 }
                 else {
                     e.reply("你都没有猎物，咋，处理空气啊？")
                     return
                 }
             }
+                if (thing_name == "煤炭") {
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number >  quantity - 1){
+                    await Add_najie_thing(usr_qq, "煤炭", "材料", -quantity);
+                    player.热量+=9*quantity
+                    await Write_player(usr_qq, player);
+                    e.reply('添加成功,火烧的更旺了')
+
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
+        if (thing_name == "原木") {
+            let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+            if (isNotNull(number) && number >  quantity - 1){
+                await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
+                player.热量+=2*quantity
+                await Write_player(usr_qq, player);
+                e.reply('添加成功,火烧的更旺了')
+
+        }else{
+            e.reply('你没有熔炉放个屁的燃料！')
+        }
+    }
+    if (thing_name == "木板") {
+        let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+        if (isNotNull(number) && number >  quantity - 1){
+            await Add_najie_thing(usr_qq, "木板", "材料", -quantity);
+            player.热量+=2*quantity
+            await Write_player(usr_qq, player);
+            e.reply('添加成功,火烧的更旺了')
+
+    }else{
+        e.reply('你没有熔炉放个屁的燃料！')
+    }
+}
+if (thing_name == "木棍") {
+    let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+    if (isNotNull(number) && number >  quantity - 1){
+        await Add_najie_thing(usr_qq, "木棍", "材料", -quantity);
+        player.热量+=1*quantity
+        await Write_player(usr_qq, player);
+        e.reply('添加成功,火烧的更旺了')
+
+}else{
+    e.reply('你没有熔炉放个屁的燃料！')
+}
+}
+if (thing_name == "羊毛") {
+    let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+    if (isNotNull(number) && number >  quantity - 1){
+        await Add_najie_thing(usr_qq, "羊毛", "材料", -quantity);
+        player.热量+=3*quantity
+        await Write_player(usr_qq, player);
+        e.reply('添加成功,火烧的更旺了')
+
+}else{
+    e.reply('你没有熔炉放个屁的燃料！')
+}
+}
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
@@ -2003,7 +2064,7 @@ export class UserHome extends plugin {
             allaction = false;
             var Time = 10;
             let now_Time = new Date().getTime(); //获取当前时间戳
-            let shuangxiuTimeout = parseInt(20000 * Time);
+            let shuangxiuTimeout = parseInt(60000 * Time);
             let last_time = await redis.get("xiuxian:player:" + usr_qq + "xunbaocd");//获得上次的时间戳,
             last_time = parseInt(last_time);
             if (now_Time < last_time + shuangxiuTimeout) {
@@ -2698,11 +2759,12 @@ export class UserHome extends plugin {
                     return
                 }
             }
-            if (func == "烧制") {
+           if (func == "烧制") {
             if (thing_name == "烤土豆") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "土豆", "食材")
                 if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
+                    if(player.热量>quantity){
                     if (isNotNull(number) && number > 1 * quantity-1 ) {
                         await Add_najie_thing(usr_qq, "土豆", "食材", -1* quantity);
                         await Add_najie_thing(usr_qq, "烤土豆", "食材",  quantity);
@@ -2715,6 +2777,10 @@ export class UserHome extends plugin {
                         return
                     }
                 }else{
+                       e.reply('燃料不足')
+                       return;
+                }
+                }else{
                     e.reply('你没有熔炉,烤个毛啊')
                 }
             }
@@ -2722,10 +2788,11 @@ export class UserHome extends plugin {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "生肉", "食材")
                 if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
+                    if(player.热量>quantity){
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "生肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤肉", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    await Add_najie_thing(usr_qq, "熔炉", "食材",  -1);
                     e.reply(["烧制成功，获得烤肉" + quantity + "个"])
                     return
                 }
@@ -2734,6 +2801,10 @@ export class UserHome extends plugin {
                     return
                 }
             }else{
+                e.reply('燃料不足')
+                return;
+         }
+            }else{
                 e.reply('你没有熔炉,烤个毛啊')
             }
             }
@@ -2741,10 +2812,11 @@ export class UserHome extends plugin {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "鱼肉", "食材")
                 if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
+                    if(player.热量>quantity){
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "鱼肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤鱼", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    await Add_najie_thing(usr_qq, "熔炉", "食材",  -1);
                     e.reply(["烧制成功，获得烤鱼" + quantity + "个"])
                     return
                 }
@@ -2753,52 +2825,18 @@ export class UserHome extends plugin {
                     return
                 }
             }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-            if (thing_name == "铁锭") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "铁矿", "材料")
-                if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
-                if (isNotNull(number) && number > 1 * quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "铁锭", "材料", -1* quantity);
-                    await Add_najie_thing(usr_qq, "铁矿", "材料",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    e.reply(["烧制成功，获得铁锭" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的铁矿")
-                    return
-                }
-            }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-             if (thing_name == "金锭") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "金矿", "材料")
-                if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
-                if (isNotNull(number) && number > 1 * quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "金锭", "材料", -1* quantity);
-                    await Add_najie_thing(usr_qq, "金矿", "材料",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    e.reply(["烧制成功，获得金锭" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的金矿")
-                    return
-                }
+                e.reply('燃料不足')
+                return;
+         }
             }else{
                 e.reply('你没有熔炉,烤个毛啊')
             }
             }
         }
-        }
-
-        return;
     }
+        return;
+    
+         }
     }
 
     async yesxigen(e) {
