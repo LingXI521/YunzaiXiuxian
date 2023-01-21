@@ -2119,12 +2119,12 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
-                                await Add_najie_thing(usr_qq, "原石", "材料", 3*mugao);
-                                await Add_najie_thing(usr_qq, "木镐", "道具", -1*mugao);
+                                await Add_najie_thing(usr_qq, "原石", "材料", 3);
+                                await Add_najie_thing(usr_qq, "木镐", "道具", -1);
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
-                                await Add_najie_thing(usr_qq, "原石", "材料", 5*mugao);
-                                await Add_najie_thing(usr_qq, "石镐", "道具", -1*mugao);
+                                await Add_najie_thing(usr_qq, "原石", "材料", 9);
+                                await Add_najie_thing(usr_qq, "石镐", "道具", -1);
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "天横山", "道具", -1);
                             await Add_灵石(usr_qq,150000)
@@ -2168,24 +2168,24 @@ if (thing_name == "羊毛") {
                             player.饱食度-=150;
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
-                            await Add_najie_thing(usr_qq, "原木", "材料", 5*futou);      
-                            await Add_najie_thing(usr_qq, "斧头", "道具", -1*futou);
+                            await Add_najie_thing(usr_qq, "原木", "材料", 5);      
+                            await Add_najie_thing(usr_qq, "斧头", "道具", -1);
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
                             if(math>0.9&&math<0.95){
                                 await Add_najie_thing(usr_qq, "水天从林", "道具", 1);
-                                e.reply('你在低语森林捡到了10w灵石和原木*'+[3*futou]+'和一个水天从林地图')
+                                e.reply('你在低语森林捡到了10w灵石和原木5个和一个水天从林地图')
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32);
-                                e.reply('你在低语森林捡到了10w灵石和原木*'+[3*futou]+'和32个苹果')
+                                e.reply('你在低语森林捡到了10w灵石和原木5个和32个苹果')
                             }else if(math>0.95&&math<1){
                                 await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具",1);
-                                e.reply('你在低语森林捡到了10w灵石和原木*'+[3*futou]+'和一个猫猫藏的新春礼盒')
+                                e.reply('你在低语森林捡到了10w灵石和原木5个和一个猫猫藏的新春礼盒')
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "树苗", "食材",1);
-                                e.reply('你在低语森林捡到了10w灵石和原木*'+[3*futou]+'和一个树苗')
+                                e.reply('你在低语森林捡到了10w灵石和原木5个和一个树苗')
                             }else{
-                                e.reply('你在低语森林捡到了10w灵石和原木*'+[3*futou])
+                                e.reply('你在低语森林捡到了10w灵石和原木5个')
                             }
                         }else{
                             e.reply('你想起来你没有斧头,于是又回家了')
@@ -2248,14 +2248,14 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
-                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 50*muchan);
-                                await Add_najie_thing(usr_qq, "土豆", "食材", 100*muchan);
-                                await Add_najie_thing(usr_qq, "木铲", "道具", -1*muchan);
+                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 50);
+                                await Add_najie_thing(usr_qq, "土豆", "食材", 100);
+                                await Add_najie_thing(usr_qq, "木铲", "道具", -1);
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
-                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 100*shichan);
-                                await Add_najie_thing(usr_qq, "土豆", "食材", 200*shichan);
-                                await Add_najie_thing(usr_qq, "石铲", "道具", -1*shichan);
+                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 100);
+                                await Add_najie_thing(usr_qq, "土豆", "食材", 200);
+                                await Add_najie_thing(usr_qq, "石铲", "道具", -1);
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
                             if(math>0.90&&math<0.95){
