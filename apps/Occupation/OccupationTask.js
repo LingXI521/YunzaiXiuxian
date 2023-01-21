@@ -298,8 +298,8 @@ export class OccupationTask extends plugin {
                         //shoulie_amount3 = parseInt(shoulie_amount3 * time);
                         //shoulie_amount4 = parseInt(shoulie_amount4 * time);
                         let usr_qq=player.id
+                        end_amount = Math.floor(end_amount)/50;
                         end_amount = Math.floor(end_amount);
-                        end_amount2 = Math.floor(end_amount2);
                         await Add_najie_thing(usr_qq, "野兔", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野鸡", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野猪", "食材", end_amount);
