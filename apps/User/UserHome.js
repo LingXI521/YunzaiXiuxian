@@ -2785,9 +2785,254 @@ if (thing_name == "羊毛") {
                     return
                 }
             }
+        if (thing_name == "木剑") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
+                let number2 = await exist_najie_thing(usr_qq, "木板", "材料")
+                if (isNotNull(number1) &&isNotNull(number2) && number1 > 8* quantity-1&&number2 > 8* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -8* quantity);
+                    await Add_najie_thing(usr_qq, "木板", "材料",  -8*quantity);
+                    await Add_najie_thing(usr_qq, "木剑", "装备",  1*quantity);
+                    e.reply(["合成成功，获得木剑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的木棍和木板")
+                    return
+                }
+            }
+            if (thing_name == "皮革甲") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "皮革", "食材")
+                if (isNotNull(number1)  && number1 > 100 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "皮革", "食材",  -100*quantity);
+                    await Add_najie_thing(usr_qq, "皮革甲", "装备",  1*quantity);
+                    e.reply(["合成成功，获得皮革甲" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的皮革")
+                    return
+                }
+            }
+            if (thing_name == "皮革头盔") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "皮革", "食材")
+                if (isNotNull(number1)  && number1 > 100 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "皮革", "食材",  -100*quantity);
+                    await Add_najie_thing(usr_qq, "皮革头盔", "装备",  1*quantity);
+                    e.reply(["合成成功，获得皮革头盔" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的皮革")
+                    return
+                }
+            }
+            if (thing_name == "皮革靴子") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "皮革", "食材")
+                if (isNotNull(number1)  && number1 > 200 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "皮革", "食材",  -200*quantity);
+                    await Add_najie_thing(usr_qq, "皮革靴子", "装备",  1*quantity);
+                    e.reply(["合成成功，获得皮革靴子" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的皮革")
+                    return
+                }
+            }
+            if (thing_name == "石剑") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "原石", "材料")
+                if (isNotNull(number1)  && number1 > 8 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "原石", "材料",  -8*quantity);
+                    await Add_najie_thing(usr_qq, "石剑", "装备",  1*quantity);
+                    e.reply(["合成成功，获得石剑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的原石")
+                    return
+                }
+            }
+            if (thing_name == "铁剑") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
+                let number2 = await exist_najie_thing(usr_qq, "铁锭", "材料")
+                if (isNotNull(number1) &&isNotNull(number2) && number1 > 1* quantity-1&&number2 > 3* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -1* quantity);
+                    await Add_najie_thing(usr_qq, "铁锭", "材料",  -3*quantity);
+                    await Add_najie_thing(usr_qq, "铁剑", "装备",  1*quantity);
+                    e.reply(["合成成功，获得铁剑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的木棍和铁锭")
+                    return
+                }
+            }
+            if (thing_name == "金剑") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
+                let number2 = await exist_najie_thing(usr_qq, "金锭", "材料")
+                if (isNotNull(number1) &&isNotNull(number2) && number1 > 1* quantity-1&&number2 > 20* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -1* quantity);
+                    await Add_najie_thing(usr_qq, "金锭", "材料",  -20*quantity);
+                    await Add_najie_thing(usr_qq, "金剑", "装备",  1*quantity);
+                    e.reply(["合成成功，获得金剑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的木棍和金锭")
+                    return
+                }
+            }
+            if (thing_name == "钻石剑") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
+                let number2 = await exist_najie_thing(usr_qq, "钻石", "材料")
+                if (isNotNull(number1) &&isNotNull(number2) && number1 > 1* quantity-1&&number2 > 16* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -1* quantity);
+                    await Add_najie_thing(usr_qq, "钻石", "材料",  -16*quantity);
+                    await Add_najie_thing(usr_qq, "钻石剑", "装备",  1*quantity);
+                    e.reply(["合成成功，获得钻石剑" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的木棍和钻石")
+                    return
+                }
+            }
+            if (thing_name == "铁头盔") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "铁锭", "材料")
+                if (isNotNull(number1)  && number1 > 5 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "铁锭", "材料",  -5*quantity);
+                    await Add_najie_thing(usr_qq, "铁头盔", "装备",  1*quantity);
+                    e.reply(["合成成功，获得铁头盔" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的铁锭")
+                    return
+                }
+            }
+            if (thing_name == "铁甲") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "铁锭", "材料")
+                if (isNotNull(number1)  && number1 > 8 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "铁锭", "材料",  -8*quantity);
+                    await Add_najie_thing(usr_qq, "铁甲", "装备",  1*quantity);
+                    e.reply(["合成成功，获得铁甲" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的铁锭")
+                    return
+                }
+            }
+            if (thing_name == "铁靴子") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "铁锭", "材料")
+                if (isNotNull(number1)  && number1 > 4 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "铁锭", "材料",  -4*quantity);
+                    await Add_najie_thing(usr_qq, "铁靴子", "装备",  1*quantity);
+                    e.reply(["合成成功，获得铁靴子" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的铁锭")
+                    return
+                }
+            }
+            if (thing_name == "金头盔") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "金锭", "材料")
+                if (isNotNull(number1)  && number1 > 20 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "金锭", "材料",  -20*quantity);
+                    await Add_najie_thing(usr_qq, "金靴子", "装备",  1*quantity);
+                    e.reply(["合成成功，获得金头盔" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的金锭")
+                    return
+                }
+            }
+            if (thing_name == "金甲") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "金锭", "材料")
+                if (isNotNull(number1)  && number1 > 20 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "金锭", "材料",  -20*quantity);
+                    await Add_najie_thing(usr_qq, "金甲", "装备",  1*quantity);
+                    e.reply(["合成成功，获得金甲" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的金锭")
+                    return
+                }
+            }
+            if (thing_name == "金靴子") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "金锭", "材料")
+                if (isNotNull(number1)  && number1 > 20 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "金锭", "材料",  -20*quantity);
+                    await Add_najie_thing(usr_qq, "金靴子", "装备",  1*quantity);
+                    e.reply(["合成成功，获得金靴子" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的金锭")
+                    return
+                }
+            }
+            if (thing_name == "钻石头盔") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "钻石", "材料")
+                if (isNotNull(number1)  && number1 > 16 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "钻石", "材料",  -16*quantity);
+                    await Add_najie_thing(usr_qq, "钻石头盔", "装备",  1*quantity);
+                    e.reply(["合成成功，获得钻石头盔" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的钻石")
+                    return
+                }
+            }
+            if (thing_name == "钻石甲") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "钻石", "材料")
+                if (isNotNull(number1)  && number1 > 16 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "钻石", "材料",  -16*quantity);
+                    await Add_najie_thing(usr_qq, "钻石甲", "装备",  1*quantity);
+                    e.reply(["合成成功，获得钻石甲" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的钻石")
+                    return
+                }
+            }
+            if (thing_name == "钻石靴子") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "钻石", "材料")
+                if (isNotNull(number1)  && number1 > 16 * quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "钻石", "材料",  -16*quantity);
+                    await Add_najie_thing(usr_qq, "钻石靴子", "装备",  1*quantity);
+                    e.reply(["合成成功，获得钻石靴子" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的钻石")
+                    return
+                }
+            }
         }
-
-           if (func == "烧制") {
+if (func == "烧制") {
             if (thing_name == "烤土豆") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "土豆", "食材")
@@ -2797,6 +3042,8 @@ if (thing_name == "羊毛") {
                         await Add_najie_thing(usr_qq, "土豆", "食材", -1* quantity);
                         await Add_najie_thing(usr_qq, "烤土豆", "食材",  quantity);
                         await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                        player.热量=0;
+                    await Write_player(usr_qq, player);
                         e.reply(["烧制成功，获得烤土豆" + quantity + "个"])
                         return
                     }
@@ -2821,6 +3068,8 @@ if (thing_name == "羊毛") {
                     await Add_najie_thing(usr_qq, "生肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤肉", "食材",  quantity);
                     await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    player.热量=0;
+                    await Write_player(usr_qq, player);
                     e.reply(["烧制成功，获得烤肉" + quantity + "个"])
                     return
                 }
@@ -2845,6 +3094,8 @@ if (thing_name == "羊毛") {
                     await Add_najie_thing(usr_qq, "鱼肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤鱼", "食材",  quantity);
                     await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    player.热量=0;
+                    await Write_player(usr_qq, player);
                     e.reply(["烧制成功，获得烤鱼" + quantity + "个"])
                     return
                 }
@@ -2860,10 +3111,60 @@ if (thing_name == "羊毛") {
                 e.reply('你没有熔炉,烤个毛啊')
             }
             }
+            if (thing_name == "铁锭") {
+                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
+                let number = await exist_najie_thing(usr_qq, "铁矿", "材料")
+                if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
+                    if(player.热量>2*quantity){
+                if (isNotNull(number) && number > 2* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "铁矿", "材料", -1* quantity);
+                    await Add_najie_thing(usr_qq, "铁锭", "材料",  quantity);
+                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    player.热量=0;
+                    await Write_player(usr_qq, player);
+                    e.reply(["烧制成功，获得铁锭" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的铁锭")
+                    return
+                }
+            }else{
+                e.reply('燃料不足')
+                return;
+         }
+            }else{
+                e.reply('你没有熔炉,烤个毛啊')
+            }
+            }
+            if (thing_name == "金锭") {
+                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
+                let number = await exist_najie_thing(usr_qq, "金矿", "材料")
+                if(isNotNull(ronglu) && ronglu > 1 * quantity-1){
+                    if(player.热量>2*quantity){
+                if (isNotNull(number) && number > 2* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "金矿", "材料", -1* quantity);
+                    await Add_najie_thing(usr_qq, "金锭", "材料",  quantity);
+                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
+                    player.热量=0;
+                    await Write_player(usr_qq, player);
+                    e.reply(["烧制成功，获得金锭" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的金锭")
+                    return
+                }
+            }else{
+                e.reply('燃料不足')
+                return;
+         }
+            }else{
+                e.reply('你没有熔炉,烤个毛啊')
+            }
+            }
         }
-        
-    
-    if(func=="处理"){
+                    if(func=="处理"){
         let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的食材`);
@@ -2885,8 +3186,9 @@ if (thing_name == "羊毛") {
             if(isNotNull(caidao) && caidao > 1 * quantity-1){
                 await Add_najie_thing(usr_qq, "野兔", "食材", -1* quantity);
                 await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
+                await Add_najie_thing(usr_qq, "皮革", "食材",  quantity);
                 await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-                   e.reply('你处理了野兔,获得生肉*'+quantity)
+                   e.reply('你处理了野兔,获得生肉*'+quantity+',皮革*'+quantity)
         }else{
             e.reply('你没菜刀,处理个毛啊')
         }
@@ -2907,8 +3209,9 @@ if(thing_name == "野牛"){
     if(isNotNull(caidao) && caidao > 1 * quantity-1){
         await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
         await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
+        await Add_najie_thing(usr_qq, "皮革", "食材",  2*quantity);
         await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-           e.reply('你处理了野牛,获得生肉*'+2*quantity)
+           e.reply('你处理了野牛,获得生肉*'+2*quantity+',皮革*'+2*quantity)
            return;
              }else{
     e.reply('你没菜刀,处理个毛啊')
@@ -2920,8 +3223,9 @@ if(thing_name == "野羊"){
     if(isNotNull(caidao) && caidao > 1 * quantity-1){
         await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
         await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
+        await Add_najie_thing(usr_qq, "羊毛", "食材",  quantity);
         await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-           e.reply('你处理了野羊,获得生肉*'+2*quantity)
+           e.reply('你处理了野羊,获得生肉*'+2*quantity+',羊毛*'+quantity)
            return;
      }else{
     e.reply('你没菜刀,处理个毛啊')
@@ -2931,6 +3235,7 @@ if(thing_name == "野羊"){
     }
         return;
 }
+    
          
 
     async yesxigen(e) {
