@@ -3164,7 +3164,7 @@ if (func == "烧制") {
             }
             }
         }
-                    if(func=="处理"){
+                 if(func=="处理"){
         let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
             if (!x) {
                 e.reply(`你没有【${thing_name}】这样的食材`);
@@ -3172,7 +3172,7 @@ if (func == "烧制") {
             }
             if(thing_name == "野鸡"){
                 let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-                if(isNotNull(caidao) && caidao > 1 * quantity-1){
+                if(isNotNull(caidao) && caidao > 0){
                     await Add_najie_thing(usr_qq, "野鸡", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
                     await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
@@ -3183,7 +3183,7 @@ if (func == "烧制") {
         }
         if(thing_name == "野兔"){
             let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-            if(isNotNull(caidao) && caidao > 1 * quantity-1){
+            if(isNotNull(caidao) && caidao >0){
                 await Add_najie_thing(usr_qq, "野兔", "食材", -1* quantity);
                 await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
                 await Add_najie_thing(usr_qq, "皮革", "食材",  quantity);
@@ -3195,7 +3195,7 @@ if (func == "烧制") {
     }
     if(thing_name == "野猪"){
         let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-        if(isNotNull(caidao) && caidao > 1 * quantity-1){
+        if(isNotNull(caidao) && caidao > 0){
             await Add_najie_thing(usr_qq, "野猪", "食材", -1* quantity);
             await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
             await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
@@ -3206,7 +3206,7 @@ if (func == "烧制") {
       }
 if(thing_name == "野牛"){
     let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-    if(isNotNull(caidao) && caidao > 1 * quantity-1){
+    if(isNotNull(caidao) && caidao > 0){
         await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
         await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
         await Add_najie_thing(usr_qq, "皮革", "食材",  2*quantity);
@@ -3220,7 +3220,7 @@ if(thing_name == "野牛"){
           }
 if(thing_name == "野羊"){
     let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-    if(isNotNull(caidao) && caidao > 1 * quantity-1){
+    if(isNotNull(caidao) && caidao > 0){
         await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
         await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
         await Add_najie_thing(usr_qq, "羊毛", "食材",  quantity);
