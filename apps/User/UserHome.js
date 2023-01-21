@@ -2188,8 +2188,10 @@ if (thing_name == "羊毛") {
                                 e.reply('你在低语森林捡到了10w灵石和原木5个')
                             }
                         }else{
-                            e.reply('你想起来你没有斧头,于是又回家了')
-                            return;
+                           await Add_najie_thing(usr_qq, "原木", "材料", 1);      
+                            await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
+                            await Add_灵石(usr_qq,100000)
+                              e.reply('你因为没带斧头,所以只捡到了10w灵石和1个原木')
                         }   
             }
             if(thing_name == "水天丛林"){
