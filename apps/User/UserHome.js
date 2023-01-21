@@ -2145,7 +2145,7 @@ if (thing_name == "羊毛") {
                             player.饱食度-=150;
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
-                            await Add_najie_thing(usr_qq, "原木", "材料", 3*futou);      
+                            await Add_najie_thing(usr_qq, "原木", "材料", 5*futou);      
                             await Add_najie_thing(usr_qq, "斧头", "道具", -1*futou);
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
@@ -2184,7 +2184,7 @@ if (thing_name == "羊毛") {
                             player.饱食度-=300;
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
-                            await Add_najie_thing(usr_qq, "原木", "材料", 6*futou);      
+                            await Add_najie_thing(usr_qq, "原木", "材料", 10*futou);      
                             await Add_najie_thing(usr_qq, "斧头", "道具", -1*futou);
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
                             await Add_灵石(usr_qq,200000)
