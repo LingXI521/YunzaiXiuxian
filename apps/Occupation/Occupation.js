@@ -1567,7 +1567,9 @@ export class Occupation extends plugin {
         //shoulie_amount2 = parseInt(shoulie_amount2 * time);
         //shoulie_amount3 = parseInt(shoulie_amount3 * time);
         //shoulie_amount4 = parseInt(shoulie_amount4 * time);
-        end_amount = Math.floor(end_amount)/500;
+        end_amount = Math.floor(end_amount)/100;
+        end_amount = Math.floor(end_amount);
+
 
                         await Add_najie_thing(usr_qq, "野兔", "食材", end_amount);
                         await Add_najie_thing(usr_qq, "野鸡", "食材", end_amount);
