@@ -1352,9 +1352,9 @@ export class UserHome extends plugin {
                     e.reply("你充满期待的打开了盒子，结果发现了一个猫猫藏的新春礼盒")
                     return;
                 }else if(math>0.95&&math<1){
-                    await Add_najie_thing(usr_qq, "猎户转职凭证", "道具",1);
+                    await Add_najie_thing(usr_qq, "斧头", "道具",1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了一个猎户转职凭证")
+                    e.reply("你充满期待的打开了盒子，结果发现了一个斧头")
                     return;
                 }else{
                         await Add_najie_thing(usr_qq, "恒那兰那", "道具", 1);
@@ -2794,7 +2794,7 @@ if (thing_name == "羊毛") {
                     if (isNotNull(number) && number > 1 * quantity-1 ) {
                         await Add_najie_thing(usr_qq, "土豆", "食材", -1* quantity);
                         await Add_najie_thing(usr_qq, "烤土豆", "食材",  quantity);
-                        await Add_najie_thing(usr_qq, "熔炉", "食材",  -1);
+                        await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
                         e.reply(["烧制成功，获得烤土豆" + quantity + "个"])
                         return
                     }
@@ -2818,7 +2818,7 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "生肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤肉", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "食材",  -1);
+                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
                     e.reply(["烧制成功，获得烤肉" + quantity + "个"])
                     return
                 }
@@ -2842,7 +2842,7 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "鱼肉", "食材", -1* quantity);
                     await Add_najie_thing(usr_qq, "烤鱼", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "食材",  -1);
+                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
                     e.reply(["烧制成功，获得烤鱼" + quantity + "个"])
                     return
                 }
