@@ -2784,6 +2784,7 @@ if (thing_name == "羊毛") {
                     return
                 }
             }
+        }
            if (func == "烧制") {
             if (thing_name == "烤土豆") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
@@ -2858,11 +2859,77 @@ if (thing_name == "羊毛") {
             }
             }
         }
+    
+       if(func=="处理"){
+        let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
+            if (!x) {
+                e.reply(`你没有【${thing_name}】这样的食材`);
+                return;
+            }
+            if(thing_name == "野鸡"){
+                let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
+                if(isNotNull(caidao) && caidao > 1 * quantity-1){
+                    await Add_najie_thing(usr_qq, "野鸡", "食材", -1* quantity);
+                    await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
+                    await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
+                       e.reply('你处理了野鸡,获得生肉*'+quantity)
+            }else{
+                e.reply('你没菜刀,处理个毛啊')
+            }
+        }
+        if(thing_name == "野兔"){
+            let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
+            if(isNotNull(caidao) && caidao > 1 * quantity-1){
+                await Add_najie_thing(usr_qq, "野兔", "食材", -1* quantity);
+                await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
+                await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
+                   e.reply('你处理了野兔,获得生肉*'+quantity)
+        }else{
+            e.reply('你没菜刀,处理个毛啊')
+        }
+    }
+    if(thing_name == "野猪"){
+        let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
+        if(isNotNull(caidao) && caidao > 1 * quantity-1){
+            await Add_najie_thing(usr_qq, "野猪", "食材", -1* quantity);
+            await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
+            await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
+               e.reply('你处理了野猪,获得生肉*'+2*quantity)
+    }else{
+        e.reply('你没菜刀,处理个毛啊')
+    }
+      }
+if(thing_name == "野牛"){
+    let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
+    if(isNotNull(caidao) && caidao > 1 * quantity-1){
+        await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
+        await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
+        await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
+           e.reply('你处理了野牛,获得生肉*'+2*quantity)
+           return;
+             }else{
+    e.reply('你没菜刀,处理个毛啊')
+    return;
+              }
+          }
+if(thing_name == "野羊"){
+    let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
+    if(isNotNull(caidao) && caidao > 1 * quantity-1){
+        await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
+        await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
+        await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
+           e.reply('你处理了野羊,获得生肉*'+2*quantity)
+           return;
+     }else{
+    e.reply('你没菜刀,处理个毛啊')
+    return;
+    }
+    }
     }
         return;
-    
-         }
+}
     }
+         
 
     async yesxigen(e) {
         //不开放私聊功能
