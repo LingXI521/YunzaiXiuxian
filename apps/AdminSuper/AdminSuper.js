@@ -1028,6 +1028,9 @@ export async function synchronization(e) {
         if (!isNotNull(najie.仙宠)) {
             najie.仙宠 = [];
         }
+         if (!isNotNull(player.热能)) {
+            player.热能 = 0;
+        }
         if (!isNotNull(najie.仙宠口粮)) {
             najie.仙宠口粮 = [];
         }
