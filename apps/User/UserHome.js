@@ -1328,7 +1328,7 @@ export class UserHome extends plugin {
             
             //寄术原因，写了很多多余的东西，但是能跑
            if (thing_name == "猫猫藏的新春礼盒") {
-                let math=math.random();
+                let math=Math.random();
                 if(math>0.9&&math<0.95){
                     await Add_najie_thing(usr_qq, "闹钟藏的新春铁盒", "道具",  1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
@@ -1345,7 +1345,7 @@ export class UserHome extends plugin {
              }
             }
              if (thing_name == "寻宝工具盒") {
-                let math=math.random();
+                let math=Math.random();
                 if(math>0.5&&math<0.95){
                     await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具",1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
