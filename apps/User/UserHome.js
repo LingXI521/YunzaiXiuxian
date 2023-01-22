@@ -2142,7 +2142,7 @@ if (thing_name == "羊毛") {
                 return;
             }
             allaction = false;
-            var Time = 5;
+            var Time = 7;
             let now_Time = new Date().getTime(); //获取当前时间戳
             let shuangxiuTimeout = parseInt(60000 * Time);
             let last_time = await redis.get("xiuxian:player:" + usr_qq + "xunbaocd");//获得上次的时间戳,
