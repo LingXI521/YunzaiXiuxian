@@ -2403,20 +2403,20 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "斧头", "道具", -1*futou);
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
                             await Add_灵石(usr_qq,200000)
-                            if(math>0.9&&math<0.95){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具", 1);
-                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[6*futou]+'和一个深渊地图')
+                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[10*futou]+'和一个深渊地图')
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128);
-                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[6*futou]+'和128个西瓜')
-                            }else if(math>0.95&&math<0.1){
-                                await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具",1);
-                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[6*futou]+'和一个猫猫藏的新春礼盒')
+                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[10*futou]+'和128个西瓜')
                             }else if(math>0.7&&math<0.8){
-                                await Add_najie_thing(usr_qq, "树苗", "食材",1);
-                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[6*futou]+'和一个树苗')
+                                await Add_najie_thing(usr_qq, "泥土", "材料",25);
+                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[10*futou]+'和25个泥土')
+                            }else if(math>0.7&&math<0.8){
+                                await Add_najie_thing(usr_qq, "树苗", "食材",3);
+                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[10*futou]+'和3个树苗')
                             }else{
-                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[6*futou])
+                                e.reply('你在水天丛林捡到了20w灵石和原木*'+[10*futou])
                             }
                         }else{
                             e.reply('你想起来你没有斧头,于是又回家了')
@@ -2450,19 +2450,19 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "石铲", "道具", -1);
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
-                            if(math>0.90&&math<0.95){
-                                await Add_najie_thing(usr_qq, "铁矿", "材料", 2);
+                            if(math>0.90&&math<1){
+                                await Add_najie_thing(usr_qq, "铁矿", "材料",2);
                                 e.reply('你在恒那兰那捡到了一些胡萝卜和土豆,在猪人箱子里找到铁矿2个')
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5);
                                 e.reply('你在恒那兰那捡到了一些胡萝卜和土豆在猪人箱子里找到煤炭2个')
                                 return;
-                            }else if(math>0.75&&math<0.8){
+                            }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1);
                                 e.reply('你在恒那兰那捡到了一些胡萝卜和土豆,路上看到一个轻策庄地图，顺手捡走了')
                                 return;
-                            }else if(math>0.95&&math<1){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "熔炉", "道具",1);
                                 e.reply('你在恒那兰那捡到了一些胡萝卜和土豆,路上看到一个熔炉，顺手偷走了')
                                 return;
@@ -2505,23 +2505,23 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "钻石铲", "道具", -1*zuanshichan);
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "轻策庄", "道具", -1);
-                            if(math>0.90&&math<0.95){
+                            if(math>0.90&&math<1){
                                 await Add_najie_thing(usr_qq, "钻石", "材料", 1);
                                 e.reply('你在轻策庄捡到了小麦*'+[300*muchan+200*shichan+500*zuanshichan]+'和钻石1个')
                                 return;
-                            }else if(math>0.85&&math<0.9){
+                            }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "铁矿", "材料",5);
                                 e.reply('你在轻策庄捡到了小麦*'+[300*muchan+200*shichan+500*zuanshichan]+'和铁矿5个')
                                 return;
-                            }else if(math>0.8&&math<0.85){
+                            }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "金矿", "材料",3);
                                 e.reply('你在轻策庄捡到了小麦*'+[300*muchan+200*shichan+500*zuanshichan]+'和金矿3个')
                                 return;
-                            }else if(math>0.75&&math<0.8){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "黑曜石", "材料",3);
                                 e.reply('你在轻策庄捡到了小麦*'+[300*muchan+200*shichan+500*zuanshichan]+'和黑曜石3个')
                                 return;
-                            }else if(math>0.95&&math<1){
+                            }else if(math>0.5&&math<0.6){
                                 await Add_najie_thing(usr_qq, "熔炉", "道具",1);
                                 e.reply('你在轻策庄捡到了小麦*'+[150*muchan+60*shichan+300*zuanshichan]+'和熔炉1个')
                                 return;
@@ -2565,23 +2565,23 @@ if (thing_name == "羊毛") {
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "降诸魔山", "道具", -1);
                             await Add_灵石(usr_qq,150000)
-                            if(math>0.9&&math<0.95){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "星荧洞窟", "道具", 1);
                                 e.reply('你在降诸魔山捡到了15w灵石和挖到一些矿物'+'和一个星荧洞窟地图')
                                 return;
-                            }else if(math>0.95&&math<1){
+                            }else if(math>0.8&&math<0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 32);
                                 e.reply('你在降诸魔山捡到了15w灵石和挖到一些矿物'+
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余'+player.当前血量+'捡到腐肉32个')
                                 return;
-                            }else if(math>0.85&&math<0.9){
+                            }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 5);
                                 e.reply('你在降诸魔山捡到了15w灵石和挖到一些矿物'+
                                 '在探索途中遇到一些骷髅,你击败了他们,剩余'+player.当前血量+'捡到骨头5个')
                                 return;
-                            }else if(math>0.8&&math<0.85){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_HP(usr_qq,-kouxue*4)
                                 await Add_najie_thing(usr_qq, "原石", "材料", -5*mugao);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", -2*mugao);
@@ -2622,23 +2622,23 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "金矿", "材料", 3*mugao);
                             await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
                             await Add_灵石(usr_qq,200000)
-                            if(math>0.9&&math<0.95){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1);
                                 e.reply('你在降诸魔山捡到了20w灵石和挖到一些矿物,归途中打开了一个宝箱,获得了一个层岩巨渊地图')
-                            }else if(math>0.85&&math<0.9){
+                            }else if(math>0.8&&math<0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 64);
                                 e.reply('你在降诸魔山捡到了20w灵石和和挖到一些矿物'+
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余'+player.当前血量+'捡到腐肉64个')
-                            }else if(math>0.95&&math<0.1){
+                            }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 10);
                                 e.reply('你在降诸魔山捡到了20w灵石和挖到一些矿物'+
                                 '在探索途中遇到一些骷髅,你击败了他们,剩余'+player.当前血量+'捡到骨头10个')
-                            }else if(math>0.7&&math<0.8){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "红石", "材料",9);
                                 e.reply('你在降诸魔山捡到了20w灵石和挖到一些矿物')
-                            }else if(math>0.7&&math<0.8){
+                            }else if(math>0.5&&math<0.6){
                                 await Add_najie_thing(usr_qq, "原石", "材料", -15*mugao);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", -8*mugao);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", -5*mugao);
@@ -2695,24 +2695,24 @@ if (thing_name == "羊毛") {
                             }else{zuanshichan=0;}
                             await Add_灵石(usr_qq,200000)
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
-                           if(math>0.85&&math<0.9){
+                           if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具",1);
                                 e.reply('你在层岩巨渊挖到了一些矿物,找到了一个深渊地图,捡到了20w灵石')
                                 return;
-                            }else if(math>0.85&&math<0.9){
+                            }else if(math>0.8&&math<0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 128);
                                 e.reply('你在层岩巨渊捡到了20w灵石和和挖到一些矿物'+
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余'+player.当前血量+'捡到腐肉128个')
-                            }else if(math>0.95&&math<0.1){
+                            }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 20);
                                 e.reply('你在层岩巨渊捡到了20w灵石和挖到一些矿物'+
                                 '在探索途中遇到一些骷髅,你击败了他们,剩余'+player.当前血量+'捡到骨头20个')
-                            }else if(math>0.7&&math<0.8){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "红石", "材料",9);
                                 e.reply('你在层岩巨渊捡到了20w灵石和挖到一些矿物')
-                            }else if(math>0.8&&math<0.85) {
+                            }else if(math>0.5&&math<0.6) {
                                 await Add_HP(usr_qq,-kouxue*2)
                                 await Add_najie_thing(usr_qq, "线", "材料",9);
                                 e.reply('你在层岩巨渊捡到了20w灵石和挖到一些矿物,发现了一处人工矿洞,击杀了大量有毒的蜘蛛'+
