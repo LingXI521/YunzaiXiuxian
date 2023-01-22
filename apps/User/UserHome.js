@@ -883,81 +883,139 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
-            if(x<quantity){
-                e.reply(`你没有这么多的${thing_name}`);
-                return;
-            }
              if(thing_name=="生肉"){
+                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="熟肉"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=4*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="鱼肉"){
+                   let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="烤鱼"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=4*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="苹果"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="西瓜"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=1*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             } 
             if(thing_name=="土豆"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=1*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
              if(thing_name=="烤土豆"){
+                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=3*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
              if(thing_name=="胡萝卜"){
+               let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="面包"){
+               let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=3*quantity;
                 await Write_player(usr_qq, player);
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             if(thing_name=="腐肉"){
+                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
+                 if(shicai>=quantity){
                 if(player.当前血量>0){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
@@ -969,6 +1027,10 @@ export class UserHome extends plugin {
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度+'你还剩下血量'+player.当前血量)
                 }
                 return;
+                 }else{
+                     e.reply("你没有那么多的"+thing_name)
+                     return;
+                 }
             }
             //这里要找到丹药
             let this_danyao;
