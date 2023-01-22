@@ -3223,7 +3223,7 @@ if(thing_name == "野牛"){
 if(thing_name == "野羊"){
     let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
     if(isNotNull(caidao) && caidao > 0){
-        await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
+        await Add_najie_thing(usr_qq, "野羊", "食材", -1* quantity);
         await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
         await Add_najie_thing(usr_qq, "羊毛", "食材",  quantity);
         await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
