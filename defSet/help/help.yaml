@@ -150,10 +150,13 @@
       desc: '#竞价50#星阁出价50'
     - icon: help-icon_52
       title: '#开启星阁体系'
-      desc: '开启星阁(每周一次自动刷新)'
+      desc: '开启星阁推送(每天一次自动刷新)'
+    - icon: help-icon_52
+      title: '#取消星阁体系'
+      desc: '取消星阁在该群推送'
     - icon: help-icon_52
       title: '#关闭星阁体系'
-      desc: '关闭星阁(每周一次自动刷新)'
+      desc: '关闭所有群的星阁推送(每天一次自动刷新)'
 - group: 礼尚往来
   list:
     - icon: help-icon_10
