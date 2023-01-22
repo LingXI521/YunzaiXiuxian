@@ -75,6 +75,10 @@ export class AdminSuper extends plugin {
           fnc: 'xiuweiFuli',
         },
         {
+          reg: '^#扣修为.*$',
+          fnc: 'xiuweiDeduction',
+        },
+        {
           reg: '^#测试$',
           fnc: 'cesi',
         },
@@ -360,6 +364,49 @@ export class AdminSuper extends plugin {
     let player = await data.getData('player', this_qq);
     await Add_修为(this_qq, xiuweibuchang);
     e.reply(`【全服公告】 ${player.名号} 获得${xiuweibuchang}修为的补偿`);
+    return;
+  }
+
+  // #扣修为
+  async xiuweiDeduction(e) {
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    if (!e.isMaster) {
+      return;
+    }
+    //获取发送修为数量
+    const xiuweibuchang = e.msg.replace('#扣修为', '');
+    const pattern = new RegExp('[0-9]+');
+    if (!pattern.test(xiuweibuchang)) {
+      e.reply(`错误福利`);
+      return;
+    }
+    //校验输入修为数
+    if (
+      parseInt(xiuweibuchang) == parseInt(xiuweibuchang) &&
+      parseInt(xiuweibuchang) > 0
+    ) {
+      xiuweibuchang = parseInt(xiuweibuchang);
+    } else {
+      xiuweibuchang = 100; //没有输入正确数字或不是正数
+    }
+    let isat = e.message.some(item => item.type === 'at');
+    if (!isat) {
+      return;
+    }
+    let atItem = e.message.filter(item => item.type === 'at');
+    let this_qq = atItem[0].qq;
+    //有无存档
+    let ifexistplay = await existplayer(this_qq);
+    if (!ifexistplay) {
+      e.reply(`此人尚未踏入仙途`);
+      return;
+    }
+    let player = await data.getData('player', this_qq);
+    await Add_修为(this_qq, -xiuweibuchang);
+    e.reply(`${player.名号}被扣除${xiuweibuchang}修为`);
     return;
   }
 

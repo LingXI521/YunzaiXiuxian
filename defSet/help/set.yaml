@@ -1,84 +1,96 @@
 - group: 灵石设置
   list:
     - icon: help-icon_8
-      title: "#发福利999"
-      desc: "全服发放灵石"  
+      title: '#发福利999'
+      desc: '全服发放灵石'
     - icon: help-icon_8
-      title: "#发补偿/修为999@群友"
-      desc: "单独发送灵石"  
+      title: '#发补偿/修为补偿999@群友'
+      desc: '单独发送灵石'
     - icon: help-icon_8
-      title: "#发+物品类型+物品名称*数量@群友"
-      desc: "@DD斩首 #发装备护摩之杖*114514"  
+      title: '#发+物品类型+物品名称*数量@群友'
+      desc: '@DD斩首 #发装备护摩之杖*114514'
 
     - icon: help-icon_8
-      title: "#扣除99999@群友"
-      desc: "强行扣指定灵石"
+      title: '#扣除99999@群友'
+      desc: '强行扣指定灵石'
+    - icon: help-icon_8
+      title: '#扣修为99999@群友'
+      desc: '强行扣指定修为'
+
+- group: 备份 by SC
+  list:
+    - icon: help-icon_8
+      title: '#备份存档'
+      desc: '简单的备份存档'
+    - icon: help-icon_8
+      title: '#存档列表'
+      desc: '查看所有已备份的存档时间和序号'
+    - icon: help-icon_8
+      title: '#读取存档+序号（如#读取存档3）'
+      desc: '按序号读取已备份的存档（会先自动备份）'
 
 - group: 怪物状态
   list:
     - icon: help-icon_8
-      title: "#放出怪物"
-      desc: "手动开启"  
+      title: '#放出怪物'
+      desc: '手动开启'
     - icon: help-icon_8
-      title: "#关上怪物"
-      desc: "手动关闭"  
+      title: '#关上怪物'
+      desc: '手动关闭'
     - icon: help-icon_8
-      title: "#开启天理"
-      desc: "手动开启"  
+      title: '#开启天理'
+      desc: '手动开启'
     - icon: help-icon_8
-      title: "#开启散兵"
-      desc: "手动开启"  
+      title: '#开启散兵'
+      desc: '手动开启'
 
 - group: 行为状态
   list:
     - icon: help-icon_9
-      title: "#解封@群友"
-      desc: "解除秘境/打工/闭关等状态"
+      title: '#解封@群友'
+      desc: '解除秘境/打工/闭关等状态'
     - icon: help-icon_9
-      title: "#解除所有"
-      desc: "解除全体时间动作状态"
+      title: '#解除所有'
+      desc: '解除全体时间动作状态'
     - icon: help-icon_9
-      title: "#打入凡间@群友"
-      desc: "关闭群友仙门，永不得返"
+      title: '#打入凡间@群友'
+      desc: '关闭群友仙门，永不得返'
     - icon: help-icon_9
-      title: "#检查存档"
-      desc: "返回错误存档的qq"
+      title: '#检查存档'
+      desc: '返回错误存档的qq'
 
 - group: 修仙管理
   list:
     - icon: help-icon_9
-      title: "#修仙设置"
-      desc: "查看修仙配置"
+      title: '#修仙设置'
+      desc: '查看修仙配置'
     - icon: help-icon_9
-      title: "#一键同步"
-      desc: "同步所有"
+      title: '#一键同步'
+      desc: '同步所有'
     - icon: help-icon_9
-      title: "#冒险家协会同步"
-      desc: "同步所有冒险家协会物品"
+      title: '#冒险家协会同步'
+      desc: '同步所有冒险家协会物品'
     - icon: help-icon_9
-      title: "#清除冲水堂"
-      desc: "全部回收物品"
+      title: '#清除冲水堂'
+      desc: '全部回收物品'
     - icon: help-icon_9
-      title: "#清除+编号"
-      desc: "清除特定物品"
+      title: '#清除+编号'
+      desc: '清除特定物品'
     - icon: help-icon_9
-      title: "#清空委托"
-      desc: "手动清理"
+      title: '#清空委托'
+      desc: '手动清理'
     - icon: help-icon_9
-      title: "#清空积分"
-      desc: "清除天地榜玩家积分"
+      title: '#清空积分'
+      desc: '清除天地榜玩家积分'
     - icon: help-icon_9
-      title: "#修仙世界"
-      desc: "修仙分析统计"
+      title: '#修仙世界'
+      desc: '修仙分析统计'
     - icon: help-icon_9
-      title: "#查询可疑名单"
-      desc: "次日刷新数据，结果仅提供参考"
+      title: '#查询可疑名单'
+      desc: '次日刷新数据，结果仅提供参考'
     - icon: help-icon_14
-      title: "#修仙更新"
-      desc: "更新修仙模拟器插件"
+      title: '#修仙更新'
+      desc: '更新修仙模拟器插件'
     - icon: help-icon_14
-      title: "#修仙强制更新"
-      desc: "推荐使用强制更新"
-
-
-      
+      title: '#修仙强制更新'
+      desc: '推荐使用强制更新'
