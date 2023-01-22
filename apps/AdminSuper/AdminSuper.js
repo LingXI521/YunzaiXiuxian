@@ -16,6 +16,8 @@ import {
   TEXT_battle,
   Read_updata_log,
   Add_HP,
+  Add_najie_thing,
+  exist_najie_thing,
 } from '../Xiuxian/xiuxian.js';
 import { Read_Exchange, Write_Exchange } from '../Exchange/Exchange.js';
 import { Read_player, __PATH } from '../Xiuxian/xiuxian.js';
@@ -106,10 +108,15 @@ export class AdminSuper extends plugin {
           reg: '^#自降境界至.*$',
           fnc: 'off_level',
         },
+        {
+          reg: '#将米娜桑的纳戒里叫.*的的的(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材)(抹除|替换为叫.*之之之(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材))$',
+          fnc: 'replaceThing',
+        },
       ],
     });
     this.xiuxianConfigData = config.getConfig('xiuxian', 'xiuxian');
   }
+
   async off_xiuwei(e) {
     //不开放私聊功能
     if (!e.isGroup) {
@@ -1044,6 +1051,73 @@ export class AdminSuper extends plugin {
     await Write_player(usr_qq, player);
     return;
   }
+
+  async replaceThing(e) {
+    //主人判断
+    if (!e.isMaster) return;
+    const msg1 = e.msg.replace('#将米娜桑的纳戒里叫', '');
+    const [thingName, msg2] = msg1.split('的的的');
+
+    // #将米娜桑的纳戒里叫.*的的的(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材)(抹除|替换为叫.*之之之(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材))$
+    if (e.msg.endsWith('抹除')) {
+      const thingType = msg2.replace(/抹除$/, '');
+      if (!thingName || !thingType)
+        return e.reply(
+          '格式错误，正确格式范例：#将米娜桑的纳戒里叫1w的的的道具替换为叫1k之之之道具'
+        );
+      await clearNajieThing(thingType, thingName);
+      return e.reply('全部抹除完成');
+    }
+
+    // 替换为
+    const N = 1; // 倍数
+    const [thingType, msg3] = msg2.split('替换为叫');
+    const [newThingName, newThingType] = msg3.split('之之之');
+    const objArr = await clearNajieThing(thingType, thingName);
+    objArr.map(uid_tnum => {
+      const usrId = Object.entries(uid_tnum)[0][0];
+      Add_najie_thing(usrId, newThingName, newThingType, uid_tnum.usrId * N);
+    });
+    return e.reply('全部替换完成');
+  }
+}
+
+async function clearNajieThing(thingType, thingName) {
+  if (!thingType || !thingName) return [];
+
+  const path = './plugins/xiuxian-emulator-plugin/resources/data/xiuxian_najie';
+  return fs
+    .readdirSync(path)
+    .filter(file => file.endsWith('.json'))
+    .map(file => {
+      const usrId = file.replace('.json', '');
+      const najie = fs.readFileSync(`${path}/${file}`);
+      const thingInNajie = JSON.parse(najie)[thingType]?.find(
+        thing => thing.name == thingName
+      );
+      if (!thingInNajie) return false;
+
+      let thingNumber = thingInNajie.number;
+      Add_najie_thing(usrId, thingName, thingType, -thingNumber);
+
+      if (thingType == '装备') {
+        ['劣', '普', '优', '精', '绝', '顶'].map(async pinji => {
+          const thingNum = await exist_najie_thing(
+            usrId,
+            thingName,
+            thingType,
+            pinji
+          );
+          if (thingNum) {
+            Add_najie_thing(usrId, thingName, thingType, -thingNum, pinji);
+            thingNumber += thingNum;
+          }
+        });
+      }
+
+      return { [usrId]: thingNumber };
+    })
+    .filter(usrObj => usrObj);
 }
 
 export async function synchronization(e) {
@@ -1388,5 +1462,23 @@ export async function synchronization(e) {
     await Write_equipment(usr_qq, equipment);
   }
   e.reply('存档同步结束');
+
+  // NOTE: 魔术师同步，开发者专用，要使用请删除注释
+  const thingType = ''; // 填写欲抹除物品类型
+  const thingName = ''; // 填写欲抹除物品名称
+
+  const objArr = await clearNajieThing(thingType, thingName);
+  e.reply('物品自动抹除结束');
+
+  const newThingType = '';
+  const newThingName = ''; // 填写新物品
+  const N = 1; // 填写
+
+  objArr.map(uid_tnum => {
+    const usrId = Object.entries(uid_tnum)[0][0];
+    Add_najie_thing(usrId, newThingName, newThingType, uid_tnum.usrId * N);
+  });
+  e.reply('物品自动替换结束');
+
   return;
 }
