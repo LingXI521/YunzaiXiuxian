@@ -2218,18 +2218,18 @@ if (thing_name == "羊毛") {
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "降诸魔山", "道具", 1*n);
-                                e.reply(`你在天横山捡到了15w灵石和原石${3*n+9*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在天横山捡到了15w灵石和原石${3*mugao*n+9*shigao*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
-                                e.reply(`你在天横山捡到了15w灵石和原石${3*n+9*n}以及煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在天横山捡到了15w灵石和原石${3*mugao*n+9*shigao*n}以及煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",10*n);
-                                e.reply(`你在天横山捡到了15w灵石和原石${3*n+9*n}以及泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在天横山捡到了15w灵石和原石${3*mugao*n+9*shigao*n}以及泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在天横山捡到了15w灵石和原石${3*n+9*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在天横山捡到了15w灵石和原石${3*mugao*n+9*shigao*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2567,19 +2567,19 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
                             if(math>0.90&&math<1){
                                 await Add_najie_thing(usr_qq, "铁矿", "材料",2*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个,在猪人箱子里找到铁矿${2*n}个`)
+                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到铁矿${2*n}个`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个,在猪人箱子里找到煤炭${5*n}个`)
+                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个,在猪人箱子里找到轻策庄地图${1*n}个`)
+                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个`)
                                 return;
                             }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "熔炉", "道具",1*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个,在猪人箱子里找到熔炉${1*n}个`)
+                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到熔炉${1*n}个`)
                                 return;
                             }else{
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个`)
