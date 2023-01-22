@@ -3244,7 +3244,7 @@ if (thing_name == "羊毛") {
                 if (isNotNull(number1) &&isNotNull(number2) && number1 > 3* quantity-1&&number2 > 3* quantity-1 ) {
                     await Add_najie_thing(usr_qq, "木棍", "材料", -3* quantity);
                     await Add_najie_thing(usr_qq, "线", "材料",  -3*quantity);
-                    await Add_najie_thing(usr_qq, "钓鱼竿", "装备",  1*quantity);
+                    await Add_najie_thing(usr_qq, "钓鱼竿", "道具",  1*quantity);
                     e.reply(["合成成功，获得钓鱼竿" + quantity + "个"])
                     return
                 }
