@@ -79,6 +79,14 @@ export class AdminSuper extends plugin {
           fnc: 'xiuweiDeduction',
         },
         {
+          reg: '^#发血气补偿.*$',
+          fnc: 'xueqiFuli',
+        },
+        {
+          reg: '^#扣血气.*$',
+          fnc: 'xueqiDeduction',
+        },
+        {
           reg: '^#测试$',
           fnc: 'cesi',
         },
@@ -407,6 +415,95 @@ export class AdminSuper extends plugin {
     let player = await data.getData('player', this_qq);
     await Add_修为(this_qq, -xiuweibuchang);
     e.reply(`${player.名号}被扣除${xiuweibuchang}修为`);
+    return;
+  }
+
+  // 血气补偿
+  async xueqiFuli(e) {
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    if (!e.isMaster) {
+      return;
+    }
+    //获取发送修为数量
+    let xueqibuchang = e.msg.replace('#', '');
+    xueqibuchang = xueqibuchang.replace('发', '');
+    xueqibuchang = xueqibuchang.replace('血气补偿', '');
+    const pattern = new RegExp('[0-9]+');
+    const str = xueqibuchang;
+    if (!pattern.test(str)) {
+      e.reply(`错误福利`);
+      return;
+    }
+    //校验输入修为数
+    if (
+      parseInt(xueqibuchang) == parseInt(xueqibuchang) &&
+      parseInt(xueqibuchang) > 0
+    ) {
+      xueqibuchang = parseInt(xueqibuchang);
+    } else {
+      xueqibuchang = 100; //没有输入正确数字或不是正数
+    }
+    let isat = e.message.some(item => item.type === 'at');
+    if (!isat) {
+      return;
+    }
+    let atItem = e.message.filter(item => item.type === 'at');
+    let this_qq = atItem[0].qq;
+    //有无存档
+    let ifexistplay = await existplayer(this_qq);
+    if (!ifexistplay) {
+      e.reply(`此人尚未踏入仙途`);
+      return;
+    }
+    let player = await data.getData('player', this_qq);
+    await Add_血气(this_qq, xueqibuchang);
+    e.reply(`【全服公告】 ${player.名号} 获得${xueqibuchang}血气的补偿`);
+    return;
+  }
+
+  // #扣血气
+  async xueqiDeduction(e) {
+    //不开放私聊功能
+    if (!e.isGroup) {
+      return;
+    }
+    if (!e.isMaster) {
+      return;
+    }
+    //获取发送修为数量
+    const xueqibuchang = e.msg.replace('#扣血气', '');
+    const pattern = new RegExp('[0-9]+');
+    if (!pattern.test(xueqibuchang)) {
+      e.reply(`错误福利`);
+      return;
+    }
+    //校验输入修为数
+    if (
+      parseInt(xueqibuchang) == parseInt(xueqibuchang) &&
+      parseInt(xueqibuchang) > 0
+    ) {
+      xueqibuchang = parseInt(xueqibuchang);
+    } else {
+      xueqibuchang = 100; //没有输入正确数字或不是正数
+    }
+    let isat = e.message.some(item => item.type === 'at');
+    if (!isat) {
+      return;
+    }
+    let atItem = e.message.filter(item => item.type === 'at');
+    let this_qq = atItem[0].qq;
+    //有无存档
+    let ifexistplay = await existplayer(this_qq);
+    if (!ifexistplay) {
+      e.reply(`此人尚未踏入仙途`);
+      return;
+    }
+    let player = await data.getData('player', this_qq);
+    await Add_血气(this_qq, -xueqibuchang);
+    e.reply(`${player.名号}被扣除${xueqibuchang}修为`);
     return;
   }
 
