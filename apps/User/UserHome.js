@@ -883,6 +883,10 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
+            if(x<quantity){
+                e.reply(`你没有这么多的${thing_name}`);
+                return;
+            }
              if(thing_name=="生肉"){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 player.饱食度+=2*quantity;
