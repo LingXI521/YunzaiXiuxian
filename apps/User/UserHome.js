@@ -3042,16 +3042,22 @@ if (thing_name == "羊毛") {
             }
             if (thing_name == "斧头") {
                 let number1 = await exist_najie_thing(usr_qq, "木板", "材料")
+                let number3 = await exist_najie_thing(usr_qq, "原石", "材料")
                 let number2 = await exist_najie_thing(usr_qq, "木棍", "材料")
-                if (isNotNull(number1)&&isNotNull(number1)&&number1>3*quantity-1 && number2 > 2 * quantity-1 ) {
+                if (isNotNull(number1)&&isNotNull(number2)&&number1>3*quantity-1 && number2 > 2 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "木棍", "材料", -2* quantity);
                     await Add_najie_thing(usr_qq, "木板", "材料", -3* quantity);
                     await Add_najie_thing(usr_qq, "斧头", "道具",  quantity);
                     e.reply(["合成成功，获得斧头" + quantity + "个"])
                     return
-                }
-                else {
-                    e.reply("你没有足够的木板和木棍")
+                }else if(isNotNull(number3)&&isNotNull(number2)&&number3>3*quantity-1 && number2 > 2 * quantity-1){
+                       await Add_najie_thing(usr_qq, "木棍", "材料", -2* quantity);
+                    await Add_najie_thing(usr_qq, "原石", "材料", -3* quantity);
+                    await Add_najie_thing(usr_qq, "斧头", "道具",  quantity);
+                    e.reply(["合成成功，获得斧头" + quantity + "个"])
+                    return
+                }else {
+                    e.reply("你没有足够的材料")
                     return
                 }
             }
