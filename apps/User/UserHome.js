@@ -2185,7 +2185,7 @@ if (thing_name == "羊毛") {
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "天横山", "道具", -1);
                             await Add_灵石(usr_qq,150000)
-                            if(math>0.9&&math<0.95){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "降诸魔山", "道具", 1);
                                 e.reply('你在天横山捡到了15w灵石和一些原石以及一个降诸魔山地图')
                                 return;
@@ -2193,11 +2193,11 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5);
                                 e.reply('你在天横山捡到了15w灵石和一些原石以及5个煤炭')
                                 return;
-                            }else if(math>0.75&&math<0.8){
-                                await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具",1);
-                                e.reply('你在天横山捡到了15w灵石和一些原石以及一个清灵藏的新春木盒')
+                            }else if(math>0.7&&math<0.8){
+                                await Add_najie_thing(usr_qq, "泥土", "材料",10);
+                                e.reply('你在天横山捡到了15w灵石和一些原石以及10个泥土')
                                 return;
-                            }else if(math>0.95&&math<1){
+                            }else if(math>0.6&&math<0.7){
                                 await Add_灵石(usr_qq,100000)
                                 e.reply('你在天横山捡到了25w灵石和一些原石')
                                 return;
@@ -2362,16 +2362,16 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "斧头", "道具", -1);
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
-                            if(math>0.9&&math<0.95){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "水天从林", "道具", 1);
                                 e.reply('你在低语森林捡到了10w灵石和原木5个和一个水天从林地图')
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32);
                                 e.reply('你在低语森林捡到了10w灵石和原木5个和32个苹果')
-                            }else if(math>0.95&&math<1){
-                                await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具",1);
-                                e.reply('你在低语森林捡到了10w灵石和原木5个和一个猫猫藏的新春礼盒')
                             }else if(math>0.7&&math<0.8){
+                                await Add_najie_thing(usr_qq, "泥土", "材料",10);
+                                e.reply('你在低语森林捡到了10w灵石和原木5个和10个泥土')
+                            }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "树苗", "食材",1);
                                 e.reply('你在低语森林捡到了10w灵石和原木5个和一个树苗')
                             }else{
