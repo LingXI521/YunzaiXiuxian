@@ -2246,7 +2246,7 @@ if (thing_name == "羊毛") {
                   await data.setData('player', player_id, player);
                 }
                 let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2316,7 +2316,7 @@ if (thing_name == "羊毛") {
                   await data.setData('player', player_id, player);
                 }
                 let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2350,7 +2350,7 @@ if (thing_name == "羊毛") {
                 }
                 let math=Math.random();
                 let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2391,7 +2391,7 @@ if (thing_name == "羊毛") {
                 }
                 let math=Math.random();
                 let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2431,7 +2431,7 @@ if (thing_name == "羊毛") {
                 let math=Math.random();
                 let muchan=await exist_najie_thing(usr_qq, "木铲", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "石铲", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2484,7 +2484,7 @@ if (thing_name == "羊毛") {
                 let muchan=await exist_najie_thing(usr_qq, "铁铲", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金铲", "道具")
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石铲", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2543,7 +2543,7 @@ if (thing_name == "羊毛") {
                 let kouxue=parseInt(player.血量上限*0.25)
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shigao=await exist_najie_thing(usr_qq, "石镐", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2608,7 +2608,7 @@ if (thing_name == "羊毛") {
                 }
                 let math=Math.random();
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
@@ -2663,7 +2663,7 @@ if (thing_name == "羊毛") {
                 let muchan=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
-                if (quantity > 2) {
+                if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
