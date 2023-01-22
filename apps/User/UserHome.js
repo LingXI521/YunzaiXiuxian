@@ -3227,7 +3227,7 @@ if (thing_name == "羊毛") {
                 let math=Math.random();
                 let number1 = await exist_najie_thing(usr_qq, "羊毛", "食材")
                 if (isNotNull(number1)  && number1 >  quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "羊毛", "材料",  -quantity);
+                    await Add_najie_thing(usr_qq, "羊毛", "食材",  -quantity);
                     await Add_najie_thing(usr_qq, "线", "材料",  quantity);
                     e.reply(["合成成功，获得线" +quantity + "个"])
                     return
