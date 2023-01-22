@@ -1551,7 +1551,7 @@ export class Occupation extends plugin {
             ext = `你是猎户，获得狩猎经验${exp}，额外获得猎物${Math.floor(rate * 100)}%，`;
         }
     
-        let end_amount = Math.floor(4 * (rate + 1) * (shoulie_amount3))//稀有
+        let end_amount = Math.floor(4 * (rate + 1) * (shoulie_amount1))//稀有
         if (player.level_id <= 21) {
     
             end_amount *= player.level_id / 40
