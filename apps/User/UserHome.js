@@ -1367,14 +1367,14 @@ export class UserHome extends plugin {
                   return;
              }
             }
-             if (thing_name == "寻宝工具盒") {
+              if (thing_name == "寻宝工具盒") {
                 let math=Math.random();
-                if(math>0.5&&math<0.95){
+                if(math>0.5&&math<0.9){
                     await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具",1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     e.reply("你充满期待的打开了盒子，结果发现了一个猫猫藏的新春礼盒")
                     return;
-                }else if(math>0.95&&math<1){
+                }else if(math>0.9&&math<1){
                     await Add_najie_thing(usr_qq, "斧头", "道具",1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     e.reply("你充满期待的打开了盒子，结果发现了一个斧头")
@@ -1520,6 +1520,63 @@ export class UserHome extends plugin {
                     e.reply("你打开了清灵藏的新春木盒，里面什么都没有")
                     return
                 }
+            }
+            if (thing_name == "钓鱼掉上来的奇怪盒子") {
+                let daomu = Math.random();
+                    if (daomu=0.01) {
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子,里面什么都没有"])
+                        return
+                    }
+                    if (daomu >0.01 && daomu <= 0.2) {
+                        await Add_najie_thing(usr_qq, "经验球", "丹药",10 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一些经验瓶"])
+                        return
+                    }
+                    if (daomu > 0.2 && daomu <= 0.3) {
+                        await Add_najie_thing(usr_qq, "经验瓶", "丹药",20 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有20个经验瓶"])
+                        return
+                    }
+                    if (daomu > 0.3 && daomu <= 0.4) {
+                        await Add_najie_thing(usr_qq, "经验瓶", "丹药",30 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有30个经验瓶"])
+                        return
+                    }
+                    if (daomu > 0.4 && daomu <= 0.5) {
+                        await Add_najie_thing(usr_qq, "血气瓶", "丹药",16);
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有16个血气瓶"])
+                        return
+                    }
+                    if (daomu > 0.5 && daomu <= 0.6) {
+                        await Add_najie_thing(usr_qq, "血气瓶", "丹药",8 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有8个血气瓶"])
+                        return
+                    }
+                    if (daomu > 0.6 && daomu <= 0.75) {
+                        await Add_najie_thing(usr_qq, "血气瓶", "丹药",4 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有4个血气瓶"])
+                        return
+                    }
+                    if (daomu > 0.75 && daomu <= 0.9) {
+                        await Add_najie_thing(usr_qq, "经验瓶", "丹药",3 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有3个经验瓶"])
+                        return
+                    }if (daomu > 0.9 && daomu <= 1) {
+                        await Add_najie_thing(usr_qq, "经验瓶", "丹药",4 );
+                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有4个经验瓶"])
+                        return
+                    }
+                
+                
             }
             
                 if (thing_name == "煤炭") {
@@ -2152,6 +2209,139 @@ if (thing_name == "羊毛") {
                             e.reply('你想起来你没有镐子,于是又回家了')
                             return;
                         }      
+            }
+            if(thing_name == "天臂池"){
+                if(player.饱食度<1000){
+                    e.reply('你快饿死了,还是先吃点东西吧');
+                    return;
+                }
+                let math=Math.random();
+                let n=1;
+               let now_level_id=player.level_id;
+               let now_physique_id=player.Physique_id;
+              let t1 = 2 + Math.random();
+                let t2 = 2 + Math.random();
+                 let last_msg='';
+              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
+               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
+                
+                 if (math < player.幸运) {
+                  if (math < player.addluckyNo) {
+                    last_msg += '福源丹生效，所以在';
+                  } else if (player.仙宠.type == '幸运') {
+                    last_msg += '仙宠使你在探索中欧气满满，所以在';
+                  }
+                  n *= 2;
+                  last_msg += '本次探索中获得赐福加成\n';
+                }
+                if (player.islucky > 0) {
+                  player.islucky--;
+                  if (player.islucky != 0) {
+                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
+                  } else {
+                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
+                    player.幸运 -= player.addluckyNo;
+                    player.addluckyNo = 0;
+                  }
+                  await data.setData('player', player_id, player);
+                }
+                let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
+                if (quantity > 2) {
+                    e.reply("地图一次只能使用一个")
+                    return;
+                }
+                        if(futou>0){
+                            player.饱食度-=1000;
+                            await Write_player(usr_qq, player);
+                            await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
+                            await Add_najie_thing(usr_qq, "鱼肉", "食材", 100);      
+                            await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
+                            await Add_najie_thing(usr_qq, "天臂池", "道具", -1);
+                            await Add_血气(usr_qq,xiuwei)
+                            await Add_修为(usr_qq,xueqi)
+                            if(math>0.7&&math<=1){
+                                await Add_najie_thing(usr_qq, "经验瓶", "丹药", n);
+                                e.reply('你运气真好，在天臂池钓到经验瓶'+n+'个,获得了修为'+xiuwei+'血气'+xueqi)
+                            }else if(math>0.3&&math<=0.7){
+                                await Add_najie_thing(usr_qq, "经验球", "丹药",1);
+                                e.reply('你在天臂池钓到经验球'+n+'个,获得了修为'+xiuwei+'血气'+xueqi)
+                            }else if(math>0.01&&math<=0.3){
+                                await Add_najie_thing(usr_qq, "血气瓶", "丹药",n);
+                                e.reply('你在天臂池钓到血气瓶'+n+'个,获得了修为'+xiuwei+'血气'+xueqi)
+                            }else if(math=0.01){
+                               
+                                e.reply('你在天臂池只钓到几条鱼,获得了修为'+xiuwei+'血气'+xueqi)
+                            }
+                        }else{
+                              e.reply('你发现你没带钓鱼竿，所以回家了')
+                        }   
+            }
+            if(thing_name == "星落湖"){
+                if(player.饱食度<1000){
+                    e.reply('你快饿死了,还是先吃点东西吧');
+                    return;
+                }
+                let math=Math.random();
+                let n=1;
+               let now_level_id=player.level_id;
+               let now_physique_id=player.Physique_id;
+               if(now_level_id<41){
+                e.reply("你是仙人吗就去星落湖");
+                 return;
+           }
+              let t1 = 2 + Math.random();
+                let t2 = 2 + Math.random();
+                 let last_msg='';
+              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
+               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
+                
+                 if (math < player.幸运) {
+                  if (math < player.addluckyNo) {
+                    last_msg += '福源丹生效，所以在';
+                  } else if (player.仙宠.type == '幸运') {
+                    last_msg += '仙宠使你在探索中欧气满满，所以在';
+                  }
+                  n *= 2;
+                  last_msg += '本次探索中获得赐福加成\n';
+                }
+                if (player.islucky > 0) {
+                  player.islucky--;
+                  if (player.islucky != 0) {
+                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
+                  } else {
+                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
+                    player.幸运 -= player.addluckyNo;
+                    player.addluckyNo = 0;
+                  }
+                  await data.setData('player', player_id, player);
+                }
+                let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
+                if (quantity > 2) {
+                    e.reply("地图一次只能使用一个")
+                    return;
+                }
+                        if(futou>0){
+                            player.饱食度-=1000;
+                            await Write_player(usr_qq, player);
+                            await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
+                            await Add_najie_thing(usr_qq, "鱼肉", "食材", 100);      
+                            await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
+                            await Add_najie_thing(usr_qq, "星落湖", "道具", -1);
+                            await Add_血气(usr_qq,xiuwei)
+                            await Add_修为(usr_qq,xueqi)
+                            if(math>0&&math<=0.1){
+                                await Add_najie_thing(usr_qq, "烤鱼", "食材", 100);   
+                                e.reply('你钓鱼时遇到了可莉,与她一起炸鱼,得到烤鱼100个生鱼100个')
+                            }else if(math>0.95&&math<=1){
+                                await Add_najie_thing(usr_qq, "钓鱼钓上来的奇怪盒子", "道具", n*2); 
+                                e.reply('你运气太好了,钓上来了钓鱼钓上来的奇怪盒子'+2*n+'个,还有一些烤鱼')
+                            }else{
+                                await Add_najie_thing(usr_qq, "钓鱼钓上来的奇怪盒子", "道具", n); 
+                                e.reply('你钓到了一些鱼钓鱼钓上来的奇怪盒子'+n+'个')
+                            }
+                        }else{
+                              e.reply('你发现你没带钓鱼竿，所以回家了')
+                        }   
             }
             if(thing_name == "低语森林"){
                 if(player.饱食度<500){
