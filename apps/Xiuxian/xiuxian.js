@@ -763,7 +763,6 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
             await Write_najie(usr_qq, najie);
             return;
         }
-        console.log(x)
         najie.仙宠.find(item => item.name == name).数量 += x;
         if (najie.仙宠.find(item => item.name == name).数量 < 1) {
             //假如用完了,需要删掉数组中的元素,用.filter()把!=该元素的过滤出来
@@ -777,7 +776,6 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
             najie.仙宠口粮.push(data.xianchonkouliang.find(item => item.name == name));
             najie.仙宠口粮.find(item => item.name == name).数量 = x;
             najie.仙宠口粮.find(item => item.name == name).islockd = 0;
-            //console.log(exist);
             await Write_najie(usr_qq, najie);
             return;
         }
@@ -1432,8 +1430,6 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     //项链加成
     let element = A_lin
     element = element.replace("仙之心·", '');
-    console.log("神之心:" + element)
-    console.log("项链:" + equipment.项链.属性)
     if (equipment.项链.属性 == element) {
         let ran = Math.random()
         let panduan = A_player.幸运 > ran
@@ -1844,7 +1840,7 @@ export async function dataverification(e) {
 /**
  * 判断对象是否不为undefined且不为null
  * @param obj 对象
- * @returns obj==null/undefined,return false,other return true
+ * @returns 
  */
 export function isNotNull(obj) {
     if (obj == undefined || obj == null)
