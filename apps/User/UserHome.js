@@ -2440,8 +2440,8 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
-                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 200);
-                                await Add_najie_thing(usr_qq, "土豆", "食材", 200);
+                                await Add_najie_thing(usr_qq, "胡萝卜", "食材", 150);
+                                await Add_najie_thing(usr_qq, "土豆", "食材", 150);
                                 await Add_najie_thing(usr_qq, "木铲", "道具", -1);
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
@@ -3220,6 +3220,36 @@ if (thing_name == "羊毛") {
                 }
                 else {
                     e.reply("你没有足够的钻石")
+                    return
+                }
+            }
+            if (thing_name == "线") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "羊毛", "食材")
+                if (isNotNull(number1)  && number1 >  quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "羊毛", "材料",  -quantity);
+                    await Add_najie_thing(usr_qq, "线", "装备",  quantity);
+                    e.reply(["合成成功，获得线" +quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的羊毛")
+                    return
+                }
+            }
+            if (thing_name == "钓鱼竿") {
+                let math=Math.random();
+                let number1 = await exist_najie_thing(usr_qq, "木棍", "材料")
+                let number2 = await exist_najie_thing(usr_qq, "线", "材料")
+                if (isNotNull(number1) &&isNotNull(number2) && number1 > 3* quantity-1&&number2 > 3* quantity-1 ) {
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -3* quantity);
+                    await Add_najie_thing(usr_qq, "钻石", "材料",  -3*quantity);
+                    await Add_najie_thing(usr_qq, "钓鱼竿", "装备",  1*quantity);
+                    e.reply(["合成成功，获得钓鱼竿" + quantity + "个"])
+                    return
+                }
+                else {
+                    e.reply("你没有足够的木棍和线")
                     return
                 }
             }
