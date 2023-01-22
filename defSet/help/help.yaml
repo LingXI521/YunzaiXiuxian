@@ -1,230 +1,227 @@
 - group: 初来乍到
   list:
     - icon: help-icon_2
-      title: "#踏入仙途 #再入仙途 #轮回"
-      desc: "创建存档，转世重生"
+      title: '#踏入仙途 #再入仙途 #轮回'
+      desc: '创建存档，转世重生'
     - icon: help-icon_2
-      title: "#设置性别男/女"
-      desc: "设置性别"
+      title: '#设置性别男/女'
+      desc: '设置性别'
     - icon: help-icon_3
-      title: "#改名张三 #设置道宣"
-      desc: "修改道号，个性签名"
+      title: '#改名张三 #设置道宣'
+      desc: '修改道号，个性签名'
     - icon: help-icon_1
-      title: "#我的纳戒 #升级纳戒"
-      desc: "物品查询,容量提升"
+      title: '#我的纳戒 #升级纳戒'
+      desc: '物品查询,容量提升'
     - icon: help-icon_7
-      title: "#我的装备"
-      desc: "查看身上的装备"
+      title: '#我的装备'
+      desc: '查看身上的装备'
     - icon: help-icon_7
-      title: "#我的饰品"
-      desc: "查看身上的饰品"
+      title: '#我的饰品'
+      desc: '查看身上的饰品'
     - icon: help-icon_4
-      title: "#修仙签到"
-      desc: "修仙每日签到"
+      title: '#修仙签到'
+      desc: '修仙每日签到'
     - icon: help-icon_8
-      title: "#存灵石123 #取灵石全部"
-      desc: "将灵石安全保存到纳戒"
+      title: '#存灵石123 #取灵石全部'
+      desc: '将灵石安全保存到纳戒'
     - icon: help-icon_8
-      title: "#交税999"
-      desc: "主动交税"
+      title: '#交税999 #自降修为999 #自降境界至练气中期'
+      desc: '主动改过自新'
     - icon: help-icon_13
-      title: "#练气境界"
-      desc: "查看所有境界"
+      title: '#练气境界'
+      desc: '查看所有境界'
     - icon: help-icon_13
-      title: "#炼体境界"
-      desc: "查看所有境界"
-    
+      title: '#炼体境界'
+      desc: '查看所有境界'
+
 - group: 修行之路
   list:
     - icon: help-icon_13
-      title: "#修仙状态"
-      desc: "查看自己的时间动作"
+      title: '#修仙状态'
+      desc: '查看自己的时间动作'
     - icon: help-icon_13
-      title: "#闭关N分钟 #出关"
-      desc: "进行N分钟的闭关,获取修为"
+      title: '#闭关N分钟 #出关'
+      desc: '进行N分钟的闭关,获取修为'
     - icon: help-icon_13
-      title: "#降妖N分钟 #降妖归来"
-      desc: "进行N分钟,获取灵石"
+      title: '#降妖N分钟 #降妖归来'
+      desc: '进行N分钟,获取灵石'
     - icon: help-icon_13
-      title: "#哪里有xxx"
-      desc: "查询物品获得渠道"
+      title: '#哪里有xxx'
+      desc: '查询物品获得渠道'
     - icon: help-icon_13
-      title: "#锁定口粮八素"
-      desc: "支持所有物品"
+      title: '#锁定口粮八素'
+      desc: '支持所有物品'
     - icon: help-icon_13
-      title: "#解锁装备轮回钟*优"
-      desc: "支持所有物品"
+      title: '#解锁装备轮回钟*优'
+      desc: '支持所有物品'
     - icon: help-icon_13
-      title: "#活动兑换+兑换码"
-      desc: "兑换奖励"
-
+      title: '#活动兑换+兑换码'
+      desc: '兑换奖励'
 
 - group: 逆天改命
   list:
     - icon: help-icon_15
-      title: "#我的练气"
-      desc: "练气信息"
+      title: '#我的练气'
+      desc: '练气信息'
     - icon: help-icon_17
-      title: "#我的炼体"
-      desc: "炼体信息"
+      title: '#我的炼体'
+      desc: '炼体信息'
     - icon: help-icon_38
-      title: "#突破 #幸运突破"
-      desc: "打破浩劫-幸运草增加成功率"
+      title: '#突破 #幸运突破'
+      desc: '打破浩劫-幸运草增加成功率'
     - icon: help-icon_38
-      title: "#破体 #幸运破体"
-      desc: "提高体境-幸运草增加成功率"
+      title: '#破体 #幸运破体'
+      desc: '提高体境-幸运草增加成功率'
     - icon: help-icon_44
-      title: "#渡劫"
-      desc: "渡劫期经历的劫难"
+      title: '#渡劫'
+      desc: '渡劫期经历的劫难'
     - icon: help-icon_44
-      title: "#羽化登仙"
-      desc: "渡劫后前往仙界"
+      title: '#羽化登仙'
+      desc: '渡劫后前往仙界'
 
 - group: 世界副本
   list:
     - icon: help-icon_16
-      title: "#散兵/天理状态"
-      desc: "仙界/人界BOSS"
+      title: '#散兵/天理状态'
+      desc: '仙界/人界BOSS'
     - icon: help-icon_31
-      title: "#讨伐散兵/天理"
-      desc: "干就完了"
+      title: '#讨伐散兵/天理'
+      desc: '干就完了'
     - icon: help-icon_60
-      title: "#天理/散兵贡献榜"
-      desc: "伤害排行榜"
+      title: '#天理/散兵贡献榜'
+      desc: '伤害排行榜'
     - icon: help-icon_35
-      title: "#怪物状态"
-      desc: "显示BOSS的属性和状态"
+      title: '#怪物状态'
+      desc: '显示BOSS的属性和状态'
 - group: 天地战场
   list:
     - icon: help-icon_54
-      title: "#报名比赛"
-      desc: "参加纷争"
+      title: '#报名比赛'
+      desc: '参加纷争'
     - icon: help-icon_44
-      title: "#更新属性"
-      desc: "刷新自身属性"
+      title: '#更新属性'
+      desc: '刷新自身属性'
     - icon: help-icon_55
-      title: "#天地榜"
-      desc: "排行榜"
+      title: '#天地榜'
+      desc: '排行榜'
     - icon: help-icon_42
-      title: "#比试"
-      desc: "一日三次机会"
+      title: '#比试'
+      desc: '一日三次机会'
     - icon: help-icon_53
-      title: "#天地堂"
-      desc: "兑换成果"
+      title: '#天地堂'
+      desc: '兑换成果'
     - icon: help-icon_50
-      title: "#积分兑换+物品"
-      desc: "#积分兑换[无主的神之心]"
+      title: '#积分兑换+物品'
+      desc: '#积分兑换[无主的神之心]'
     - icon: help-icon_58
-      title: "#清空积分"
-      desc: "清除自身积分"
+      title: '#清空积分'
+      desc: '清除自身积分'
 - group: 交易往来
   list:
     - icon: help-icon_5
-      title: "#柠檬堂"
-      desc: "商店"
+      title: '#柠檬堂'
+      desc: '商店'
     - icon: help-icon_5
-      title: "#万宝楼"
-      desc: "收废品(黑店)"
+      title: '#万宝楼'
+      desc: '收废品(黑店)'
     - icon: help-icon_5
-      title: "#冲水堂"
-      desc: "交易系统"
+      title: '#冲水堂'
+      desc: '交易系统'
     - icon: help-icon_55
-      title: "#冒险家协会"
-      desc: "查看委托"
+      title: '#冒险家协会'
+      desc: '查看委托'
     - icon: help-icon_55
-      title: "#发布委托+物品*数量*委托金*品级(如果为装备)"
-      desc: "发布委托"  
+      title: '#发布委托+物品*数量*委托金*品级(如果为装备)'
+      desc: '发布委托'
     - icon: help-icon_55
-      title: "#接受委托+委托ID"
-      desc: "接受委托"  
+      title: '#接受委托+委托ID'
+      desc: '接受委托'
     - icon: help-icon_55
-      title: "#取消委托+委托Id"
-      desc: "取消委托"  
+      title: '#取消委托+委托Id'
+      desc: '取消委托'
     - icon: help-icon_52
-      title: "#查看当前拍卖/#星阁拍卖行"
-      desc: "看看现在在拍卖什么"
+      title: '#查看当前拍卖/#星阁拍卖行'
+      desc: '看看现在在拍卖什么'
     - icon: help-icon_52
-      title: "#拍卖+物品*价格*数量"
-      desc: "例:#拍卖咸鱼宝剑*1000*10"
+      title: '#拍卖+物品*价格*数量'
+      desc: '例:#拍卖咸鱼宝剑*1000*10'
     - icon: help-icon_52
-      title: "#竞价/#星阁出价+价格"
-      desc: "#竞价50#星阁出价50"
+      title: '#竞价/#星阁出价+价格'
+      desc: '#竞价50#星阁出价50'
     - icon: help-icon_52
-      title: "#开启星阁体系"
-      desc: "开启星阁(每周一次自动刷新)"
+      title: '#开启星阁体系'
+      desc: '开启星阁(每周一次自动刷新)'
     - icon: help-icon_52
-      title: "#关闭星阁体系"
-      desc: "关闭星阁(每周一次自动刷新)"
+      title: '#关闭星阁体系'
+      desc: '关闭星阁(每周一次自动刷新)'
 - group: 礼尚往来
   list:
     - icon: help-icon_10
-      title: "@群友赠送灵石*1000"
-      desc: "@群友孝敬前辈/@群友资助后辈"
+      title: '@群友赠送灵石*1000'
+      desc: '@群友孝敬前辈/@群友资助后辈'
     - icon: help-icon_10
-      title: "@群友赠送咸鱼宝剑(*普)*N"
-      desc: ""
+      title: '@群友赠送咸鱼宝剑(*普)*N'
+      desc: ''
     - icon: help-icon_10
-      title: "#发红包10000*5"
-      desc: "灵石需要万的倍数"
+      title: '#发红包10000*5'
+      desc: '灵石需要万的倍数'
     - icon: help-icon_10
-      title: "#抢红包@对方"
-      desc: "艾特发红包的仔"
+      title: '#抢红包@对方'
+      desc: '艾特发红包的仔'
 
 - group: 气运之子(0.01%概率掉落神之心)
-  list:    
+  list:
     - icon: help-icon_11
-      title: "#探索仙府"
-      desc: ""
+      title: '#探索仙府'
+      desc: ''
     - icon: help-icon_11
-      title: "#秘境"
-      desc: "出门探险"
+      title: '#秘境'
+      desc: '出门探险'
     - icon: help-icon_11
-      title: "#降临秘境+地点名"
-      desc: "获得修为与稀有物品"
+      title: '#降临秘境+地点名'
+      desc: '获得修为与稀有物品'
     - icon: help-icon_11
-      title: "#禁地"
-      desc: "仙界陨落之地"
+      title: '#禁地'
+      desc: '仙界陨落之地'
     - icon: help-icon_11
-      title: "#前往禁地+禁地名"
-      desc: "扣除灵石和修为"
+      title: '#前往禁地+禁地名'
+      desc: '扣除灵石和修为'
     - icon: help-icon_11
-      title: "#沉迷xx地点名*n"
-      desc: "xx为秘境、禁地、仙境和宗门秘境"
+      title: '#沉迷xx地点名*n'
+      desc: 'xx为秘境、禁地、仙境和宗门秘境'
     - icon: help-icon_11
-      title: "#逃离"
-      desc: "支持放弃状态"
+      title: '#逃离'
+      desc: '支持放弃状态'
     - icon: help-icon_43
-      title: "#抽/十连抽+天地卡池/灵界卡池/凡界卡池"
-      desc: "抽取仙宠"
+      title: '#抽/十连抽+天地卡池/灵界卡池/凡界卡池'
+      desc: '抽取仙宠'
     - icon: help-icon_43
-      title: "#供奉奇怪的石头"
-      desc: "可能有什么用吧"
+      title: '#供奉奇怪的石头'
+      desc: '可能有什么用吧'
 
 - group: 仙人之资(仅限仙人)
-  list:    
+  list:
     - icon: help-icon_11
-      title: "#仙境"
-      desc: "查看仙人镇守之地"
+      title: '#仙境'
+      desc: '查看仙人镇守之地'
     - icon: help-icon_11
-      title: "#镇守仙境+地点名"
-      desc: "获得修为与稀有物品"
-
+      title: '#镇守仙境+地点名'
+      desc: '获得修为与稀有物品'
 
 - group: 帮助扩展
   list:
     - icon: help-icon_44
-      title: "#宗门管理"
-      desc: "查看宗门指令"
+      title: '#宗门管理'
+      desc: '查看宗门指令'
     - icon: help-icon_16
-      title: "#修仙扩展"
-      desc: "查看更多功能"
+      title: '#修仙扩展'
+      desc: '查看更多功能'
     - icon: help-icon_48
-      title: "#修仙管理"
-      desc: "查看管理员功能"
+      title: '#修仙管理'
+      desc: '查看管理员功能'
     - icon: help-icon_14
-      title: "#修仙版本"
-      desc: "查看版本动态"
+      title: '#修仙版本'
+      desc: '查看版本动态'
     - icon: help-icon_14
-      title: "#查看日志"
-      desc: "查看更新日志"
-
+      title: '#查看日志'
+      desc: '查看更新日志'
