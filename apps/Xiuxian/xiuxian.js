@@ -257,7 +257,12 @@ export async function Add_HP(usr_qq, blood = 0) {
     await Write_player(usr_qq, player);
     return;
 }
-
+/**
+ * 
+ * @param {*} usr_qq 用户qq
+ * @param {*} exp 经验值
+ * @returns 
+ */
 export async function Add_职业经验(usr_qq, exp = 0) {
     let player = await Read_player(usr_qq);
     if (exp == 0) {
