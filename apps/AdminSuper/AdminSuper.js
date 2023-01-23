@@ -77,15 +77,15 @@ export class AdminSuper extends plugin {
           fnc: 'xiuweiFuli',
         },
         {
-          reg: '^#扣修为.*$',
+          reg: '^#扣修为(.*)$',
           fnc: 'xiuweiDeduction',
         },
         {
-          reg: '^#发血气补偿.*$',
+          reg: '^#发血气补偿(.*)$',
           fnc: 'xueqiFuli',
         },
         {
-          reg: '^#扣血气.*$',
+          reg: '^#扣血气(.*)$',
           fnc: 'xueqiDeduction',
         },
         {
@@ -105,7 +105,7 @@ export class AdminSuper extends plugin {
           fnc: 'off_xiuwei',
         },
         {
-          reg: '^#自降境界至.*$',
+          reg: '^#自降境界至(.*)$',
           fnc: 'off_level',
         },
         {
