@@ -564,7 +564,7 @@ export class GuessLanternRiddles extends plugin {
                 e.reply(`你没有【${thing_name}】这样的材料`);
                 return;
             }
-            if (thing_quantity < quantity) {//不够
+            if (thing_quantity < peifang.配方[i].数量) {//不够
                 e.reply(`你目前只有【${peifang.配方[i].name}】*${thing_quantity},数量不够`);
                 return;
             }
