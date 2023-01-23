@@ -3604,7 +3604,7 @@ if (func == "烧制") {
                     if(player.热量>quantity){
                 if (isNotNull(number) && number > 1 * quantity-1 ) {
                     await Add_najie_thing(usr_qq, "生肉", "食材", -1* quantity);
-                    await Add_najie_thing(usr_qq, "烤肉", "食材",  quantity);
+                    await Add_najie_thing(usr_qq, "熟肉", "食材",  quantity);
                     await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
                     player.热量=0;
                     await Write_player(usr_qq, player);
