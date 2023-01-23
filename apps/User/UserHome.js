@@ -2224,6 +2224,18 @@ if (thing_name == "羊毛") {
                 e.reply(`你没有【${thing_name}】这样的地图`);
                 return;
             }
+            let random=Math.random();
+            let newrandom=0.995
+            if (random > newrandom) {
+                let length = data.xianchonkouliang.length;
+                let index = Math.trunc(Math.random() * length);
+                let kouliang = data.xianchonkouliang[index];
+                last_msg +=
+                  '\n七彩流光的神奇仙谷[' +
+                  kouliang.name +
+                  ']深埋在土壤中，是仙兽们的最爱。';
+                await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
+              }
             
             if(thing_name == "天横山"){  
                 if(player.饱食度< 1000){
