@@ -4,8 +4,7 @@
         "class":"材料",
         "materials":[
             {"name":"铁矿","class":"材料","amount":2},
-            {"name":"煤炭","class":"材料","amount":1},
-            {"name":"熔炉","class":"道具","amount":1}
+            {"name":"煤炭","class":"材料","amount":1}
         ]
     },
     {
