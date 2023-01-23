@@ -3123,19 +3123,13 @@ if (thing_name == "羊毛") {
                     e.reply(`纳戒中拥有${material.name}${x}份，合成需要${material.amount*quantity}份`);
                     return;
                 }
-            }
-                 let amount;
-                 
+            }                
             //纳戒中减去对应物品
             for (let i = 0; i < wupin.materials.length; i++) {
-                
                 const material = wupin.materials[i];
                 await Add_najie_thing(usr_qq,material.name,material.class,-material.amount*quantity)
-
             }
             await Add_najie_thing(usr_qq,wupin.name,wupin.class,wupin.amount*quantity);
-           
-            
             e.reply(`合成成功，获得${wupin.name}${wupin.amount*quantity}个`);
             return;
         }
