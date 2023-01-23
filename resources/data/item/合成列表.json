@@ -1,0 +1,35 @@
+[
+    {
+        "name":"生铁",
+        "class":"材料",
+        "materials":[
+            {"name":"铁矿","class":"材料","amount":2},
+            {"name":"煤炭","class":"材料","amount":1},
+            {"name":"熔炉","class":"材料","amount":1}
+        ]
+    },
+    {
+        "name":"生铁剑",
+        "class":"装备",
+        "materials":[
+            {"name":"生铁","class":"材料","amount":8},
+            {"name":"木棍","class":"材料","amount":8}
+        ]
+    },
+    {
+        "name":"生铁甲",
+        "class":"装备",
+        "materials":[
+            {"name":"生铁","class":"材料","amount":8},
+            {"name":"木棍","class":"材料","amount":8}
+        ]
+    },
+    {
+        "name":"生铁头盔",
+        "class":"装备",
+        "materials":[
+            {"name":"生铁","class":"材料","amount":8},
+            {"name":"木棍","class":"材料","amount":8}
+        ]
+    }
+]

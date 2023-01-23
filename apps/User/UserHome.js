@@ -14,6 +14,7 @@ import {
     get_random_talent,
     Write_player,
     sleep,
+    isNotNull,
     ForwardMsg,
     Reduse_player_学习功法, Locked_najie_thing
 } from '../Xiuxian/xiuxian.js'
@@ -3106,9 +3107,7 @@ if (thing_name == "羊毛") {
             }
          }
            
-   if (func == "合成") {
-            
-           
+    if (func == "合成") {
             if (thing_name == "仙子邀约") {
                 let number = await exist_najie_thing(usr_qq, "钻石", "道具")
                 if (isNotNull(number) && number > 5 * quantity - 1) {
@@ -3122,6 +3121,7 @@ if (thing_name == "羊毛") {
                     return
                 }
             }
+            /*
             if(thing_name=="生铁"){
                 let number1=await exist_najie_thing(usr_qq,"铁矿","材料");
                 let number2=await exist_najie_thing(usr_qq,"煤炭","材料");
@@ -3197,6 +3197,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
             }
+            */
             if (thing_name == "熔炉") {
                 let number = await exist_najie_thing(usr_qq, "原石", "材料")
                 if (isNotNull(number) && number > 8 * quantity-1 ) {
@@ -3656,6 +3657,30 @@ if (thing_name == "羊毛") {
                     return
                 }
             }
+            let wupin=data.hecheng_list.find(item=>item.name==thing_name);
+            if (!isNotNull(wupin)) {
+                e.reply(`物品暂时未添加，请持续关注`);
+                return;
+            }
+            //看物品是否够
+            for (let i = 0; i < wupin.materials.length; i++) {
+                const material = wupin.materials[i];
+                let x = await exist_najie_thing(usr_qq, material.name, material.class);
+                if(x==false){
+                    x=0;
+                }
+                if(x < material.amount*quantity){
+                    e.reply(`纳戒中拥有${material.name}${x}份，合成需要${material.amount*quantity}份`);
+                    return;
+                }
+            }
+            //纳戒中减去对应物品
+            for (let i = 0; i < wupin.materials.length; i++) {
+                const material = wupin.materials[i];
+                await Add_najie_thing(usr_qq,material.name,material.class,-material.amount*quantity);
+            }
+            await Add_najie_thing(usr_qq,wupin.name,wupin.class,quantity);
+            e.reply(`合成成功，获得${wupin.name}${quantity}个`);
         }
 if (func == "烧制") {
             if (thing_name == "烤土豆") {
