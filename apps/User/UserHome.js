@@ -3597,7 +3597,7 @@ if (func == "烧制") {
                     e.reply('你没有熔炉,烤个毛啊')
                 }
             }
-            if (thing_name == "烤肉") {
+            if (thing_name == "熟肉") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "生肉", "食材")
                 if(isNotNull(ronglu) && ronglu >0){
