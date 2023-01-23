@@ -81,7 +81,7 @@ class XiuxianData {
         //加载食材列表
         this.shicai_list = JSON.parse(fs.readFileSync(`${this.lib_path}/食材列表.json`));
         //加载mc合成列表
-        this.hecheng_list=JSON.parse(fs.readFileSync(`${this.lib_path}/合成列表`));
+        this.hecheng_list=JSON.parse(fs.readFileSync(`${this.lib_path}/合成列表.json`));
 
 
         //加载地点列表
