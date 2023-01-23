@@ -2,38 +2,41 @@
     {
         "name":"生铁",
         "class":"材料",
+        "amount":1,
         "materials":[
-            {"name":"铁矿","class":"材料","amount":2},
+            {"name":"铁锭","class":"材料","amount":2,"amount":1},
             {"name":"煤炭","class":"材料","amount":1}
         ]
     },
     {
         "name":"生铁剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"生铁","class":"材料","amount":8},
-            {"name":"木棍","class":"材料","amount":8}
+            {"name":"木棍","class":"材料","amount":1}
         ]
     },
     {
         "name":"生铁甲",
         "class":"装备",
+        "amount":1,
         "materials":[
-            {"name":"生铁","class":"材料","amount":8},
-            {"name":"木棍","class":"材料","amount":8}
+            {"name":"生铁","class":"材料","amount":8}
         ]
     },
     {
         "name":"生铁头盔",
         "class":"装备",
+        "amount":1,
         "materials":[
-            {"name":"生铁","class":"材料","amount":8},
-            {"name":"木棍","class":"材料","amount":8}
+            {"name":"生铁","class":"材料","amount":8}
         ]
     },
     {
         "name":"仙子邀约",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"钻石","class":"道具","amount":5}
         ]
@@ -41,6 +44,7 @@
     {
         "name":"熔炉",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"原石","class":"材料","amount":8}
         ]
@@ -48,29 +52,41 @@
     {
         "name":"木板",
         "class":"材料",
+        "amount":4,
         "materials":[
-            {"name":"原木","class":"材料","amount":4}
+            {"name":"原木","class":"材料","amount":1}
         ]
     },
     {
         "name":"木棍",
         "class":"材料",
+        "amount":4,
         "materials":[
-            {"name":"木板","class":"材料","amount":4}
+            {"name":"木板","class":"材料","amount":2}
         ]
     },
     {
-        "name":"斧头",
+        "name":"木斧",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木板","class":"材料","amount":3},
+            {"name":"木棍","class":"材料","amount":2}
+        ]
+    },
+    {
+        "name":"石斧",
+        "class":"道具",
+        "amount":1,
+        "materials":[
             {"name":"原石","class":"材料","amount":3},
-            {"name":"木棍","class":"材料","amount":3}
+            {"name":"木棍","class":"材料","amount":2}
         ]
     },
     {
         "name":"木镐",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"木板","class":"材料","amount":3}
@@ -79,6 +95,7 @@
     {
         "name":"石镐",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"原石","class":"材料","amount":3}
@@ -87,6 +104,7 @@
     {
         "name":"铁镐",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"铁锭","class":"材料","amount":3}
@@ -95,6 +113,7 @@
     {
         "name":"金镐",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"金锭","class":"材料","amount":3}
@@ -103,6 +122,7 @@
     {
         "name":"钻石镐",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"钻石","class":"材料","amount":3}
@@ -111,6 +131,7 @@
     {
         "name":"木铲",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"木板","class":"材料","amount":1}
@@ -119,6 +140,7 @@
     {
         "name":"石铲",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"原石","class":"材料","amount":1}
@@ -127,6 +149,7 @@
     {
         "name":"铁铲",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"铁锭","class":"材料","amount":1}
@@ -135,6 +158,7 @@
     {
         "name":"金铲",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"金锭","class":"材料","amount":1}
@@ -143,6 +167,7 @@
     {
         "name":"钻石铲",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":2},
             {"name":"钻石","class":"材料","amount":1}
@@ -151,6 +176,7 @@
     {
         "name":"面包",
         "class":"食材",
+        "amount":1,
         "materials":[
             {"name":"小麦","class":"食材","amount":3}
         ]
@@ -158,6 +184,7 @@
     {
         "name":"未点燃的火把",
         "class":"道具",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"煤炭","class":"材料","amount":1}
@@ -166,6 +193,7 @@
     {
         "name":"木剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"木板","class":"材料","amount":3}
@@ -174,6 +202,7 @@
     {
         "name":"石剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"原石","class":"材料","amount":3}
@@ -182,6 +211,7 @@
     {
         "name":"铁剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"铁锭","class":"材料","amount":3}
@@ -190,6 +220,7 @@
     {
         "name":"金剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"金锭","class":"材料","amount":20}
@@ -198,6 +229,7 @@
     {
         "name":"钻石剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"钻石","class":"材料","amount":20}
@@ -206,6 +238,7 @@
     {
         "name":"铁头盔",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":5}
         ]
@@ -213,6 +246,7 @@
     {
         "name":"铁甲",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":8}
         ]
@@ -220,6 +254,7 @@
     {
         "name":"金头盔",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":20}
         ]
@@ -227,6 +262,7 @@
     {
         "name":"金甲",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":20}
         ]
@@ -234,6 +270,7 @@
     {
         "name":"钻石头盔",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":16}
         ]
@@ -241,6 +278,7 @@
     {
         "name":"钻石甲",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"铁锭","class":"材料","amount":16}
         ]
@@ -248,6 +286,7 @@
     {
         "name":"铁剑",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"铁锭","class":"材料","amount":3}
@@ -256,6 +295,7 @@
     {
         "name":"皮革甲",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"皮革","class":"食材","amount":8}
         ]
@@ -263,6 +303,7 @@
     {
         "name":"皮革头盔",
         "class":"装备",
+        "amount":1,
         "materials":[
             {"name":"皮革","class":"食材","amount":8}
         ]
@@ -270,6 +311,7 @@
     {
         "name":"线",
         "class":"材料",
+        "amount":1,
         "materials":[
             {"name":"羊毛","class":"食材","amount":1}
         ]
@@ -277,9 +319,10 @@
     {
         "name":"钓鱼竿",
         "class":"道具",
+        "amount":1,
         "materials":[
-            {"name":"木棍","class":"材料","amount":3},
-            {"name":"线","class":"材料","amount":3}
+            {"name":"木棍","class":"材料","amount":2},
+            {"name":"线","class":"材料","amount":10}
         ]
     }
 ]
