@@ -3106,15 +3106,15 @@ if (thing_name == "羊毛") {
             }
          }
            
-    if (func == "合成"){
+     if (func == "合成"){
             let wupin=data.hecheng_list.find(item=>item.name==thing_name);
             if (!isNotNull(wupin)) {
                 e.reply(`物品暂时未添加，请持续关注`);
                 return;
             }
             //看物品是否够
-            for (let i = 0; i < wupin.materials.length; i++) {
-                const material = wupin.materials[i];
+            for (let i = 0; i < wupin.material.length; i++) {
+                const material = wupin.material[i];
                 let x = await exist_najie_thing(usr_qq, material.name, material.class);
                 if(x==false){
                     x=0;
@@ -3124,13 +3124,19 @@ if (thing_name == "羊毛") {
                     return;
                 }
             }
+                 let amount;
+                 
             //纳戒中减去对应物品
             for (let i = 0; i < wupin.materials.length; i++) {
+                
                 const material = wupin.materials[i];
-                await Add_najie_thing(usr_qq,material.name,material.class,-material.amount*quantity);
+                await Add_najie_thing(usr_qq,material.name,material.class,-material.amount*quantity)
+
             }
-            await Add_najie_thing(usr_qq,wupin.name,wupin.class,quantity);
-            e.reply(`合成成功，获得${wupin.name}${quantity}个`);
+            await Add_najie_thing(usr_qq,wupin.name,wupin.class,wupin.amount*quantity);
+           
+            
+            e.reply(`合成成功，获得${wupin.name}${wupin.amount*quantity}个`);
             return;
         }
 if (func == "烧制") {
