@@ -3113,8 +3113,8 @@ if (thing_name == "羊毛") {
                 return;
             }
             //看物品是否够
-            for (let i = 0; i < wupin.material.length; i++) {
-                const material = wupin.material[i];
+            for (let i = 0; i < wupin.materials.length; i++) {
+                const material = wupin.materials[i];
                 let x = await exist_najie_thing(usr_qq, material.name, material.class);
                 if(x==false){
                     x=0;
