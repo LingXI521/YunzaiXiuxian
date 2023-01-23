@@ -3681,6 +3681,7 @@ if (thing_name == "羊毛") {
             }
             await Add_najie_thing(usr_qq,wupin.name,wupin.class,quantity);
             e.reply(`合成成功，获得${wupin.name}${quantity}个`);
+            return;
         }
 if (func == "烧制") {
             if (thing_name == "烤土豆") {
