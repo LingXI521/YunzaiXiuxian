@@ -14,7 +14,6 @@ import {
     get_random_talent,
     Write_player,
     sleep,
-    isNotNull,
     ForwardMsg,
     Reduse_player_学习功法, Locked_najie_thing
 } from '../Xiuxian/xiuxian.js'
