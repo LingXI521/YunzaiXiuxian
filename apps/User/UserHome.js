@@ -1647,7 +1647,7 @@ export class UserHome extends plugin {
             
                 if (thing_name == "煤炭") {
                 let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number >  quantity - 1){
+                if (isNotNull(number) && number > 0){
                     await Add_najie_thing(usr_qq, "煤炭", "材料", -quantity);
                     player.热量+=9*quantity
                     await Write_player(usr_qq, player);
@@ -1659,7 +1659,7 @@ export class UserHome extends plugin {
         }
         if (thing_name == "原木") {
             let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-            if (isNotNull(number) && number >  quantity - 1){
+            if (isNotNull(number) && number >  0){
                 await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
                 player.热量+=2*quantity
                 await Write_player(usr_qq, player);
@@ -1671,7 +1671,7 @@ export class UserHome extends plugin {
     }
     if (thing_name == "木板") {
         let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-        if (isNotNull(number) && number >  quantity - 1){
+        if (isNotNull(number) && number >  0){
             await Add_najie_thing(usr_qq, "木板", "材料", -quantity);
             player.热量+=2*quantity
             await Write_player(usr_qq, player);
@@ -1683,7 +1683,7 @@ export class UserHome extends plugin {
 }
 if (thing_name == "木棍") {
     let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-    if (isNotNull(number) && number >  quantity - 1){
+    if (isNotNull(number) && number >0){
         await Add_najie_thing(usr_qq, "木棍", "材料", -quantity);
         player.热量+=1*quantity
         await Write_player(usr_qq, player);
@@ -1695,7 +1695,7 @@ if (thing_name == "木棍") {
 }
 if (thing_name == "羊毛") {
     let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-    if (isNotNull(number) && number >  quantity - 1){
+    if (isNotNull(number) && number >  0){
         await Add_najie_thing(usr_qq, "羊毛", "材料", -quantity);
         player.热量+=3*quantity
         await Write_player(usr_qq, player);
@@ -3679,7 +3679,7 @@ if (func == "烧制") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "黄金矿", "材料")
                 if(isNotNull(ronglu) && ronglu > 0){
-                    if(player.热量>1*quantity){
+                    if(player.热量>=1*quantity){
                 if (isNotNull(number) && number > 1* quantity-1 ) {
                     await Add_najie_thing(usr_qq, "黄金矿", "材料", -1* quantity);
                     await Add_najie_thing(usr_qq, "金锭", "材料",  quantity);
