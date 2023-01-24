@@ -2590,8 +2590,10 @@ if (thing_name == "羊毛") {
                         }else{
                            await Add_najie_thing(usr_qq, "原木", "材料", 1*n);      
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
+                            await Add_血气(usr_qq,xiuwei)
+                            await Add_修为(usr_qq,xueqi)
                             await Add_灵石(usr_qq,100000)
-                              e.reply(`你因为没带斧头,所以只捡到了10w灵石和原木${1*n}个`)
+                              e.reply(`你因为没带斧头,所以只捡到了10w灵石和原木${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                player.饱食度-=500;
                             await Write_player(usr_qq, player);
                             return;
