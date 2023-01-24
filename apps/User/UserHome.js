@@ -2851,7 +2851,7 @@ if (thing_name == "羊毛") {
                             return;
                         }
             }
-            if(thing_name == "降诸魔山"){  
+           if(thing_name == "降诸魔山"){  
                 if(player.饱食度< 2000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
@@ -2889,8 +2889,14 @@ if (thing_name == "羊毛") {
                 let kouxue=parseInt(player.血量上限*0.25)
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shigao=await exist_najie_thing(usr_qq, "石镐", "道具")
+                
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
+                    return;
+                }
+                let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
+                if(huoba<20){
+                    e.reply('你的火把不够,先去弄一些火把再来吧');
                     return;
                 }
                         if(mugao>0||shigao>0){
@@ -2994,6 +3000,11 @@ if (thing_name == "羊毛") {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
+                let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
+                if(huoba<64){
+                    e.reply('你的火把不够,先去弄一些火把再来吧');
+                    return;
+                }
                         if(mugao>0){
                             player.饱食度-=3000;
                             await Write_player(usr_qq, player);
@@ -3093,6 +3104,11 @@ if (thing_name == "羊毛") {
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
+                    return;
+                }
+                let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
+                if(huoba<128){
+                    e.reply('你的火把不够,先去弄一些火把再来吧');
                     return;
                 }
                         if(muchan>0||shichan>0||zuanshichan>0){
