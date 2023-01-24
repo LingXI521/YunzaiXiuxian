@@ -2651,7 +2651,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "原木", "材料", 5*n*futou);
                                 await Add_najie_thing(usr_qq, "木斧", "道具", -1);
                             }else{futou=0;}
-                            if(isNotNull(shifu) && shigao >  0){
+                            if(isNotNull(shifu) && shifu >  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 15*n*shifu);
                                 await Add_najie_thing(usr_qq, "石斧", "道具", -1);
                             }else{shifu=0;}
