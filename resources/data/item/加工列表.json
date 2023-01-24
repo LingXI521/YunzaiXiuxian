@@ -134,6 +134,6 @@
         "outputs":[
             {"name":"火把","class":"材料","amount":1,"const_amount":0}
         ]
-    },
+    }
 
 ]
