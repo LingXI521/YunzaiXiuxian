@@ -805,12 +805,11 @@ export class UserHome extends plugin {
         let quantity = code[1];
         if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
             quantity = 1;
+            e.reply('已经自动改为1,休想卡bug')
         } else {
             quantity = code[1].replace(/[^0-9]/ig, "");
         }
-        if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
-            quantity = 1;
-        }
+        quantity=Math.trunc(quantity);
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
