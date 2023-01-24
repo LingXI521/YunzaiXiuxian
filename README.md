@@ -32,7 +32,7 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 > 16.新增拍卖行    
 > 17.新增仙宠    
 > 18.新增#一键同步，可以同步宗门、冒险家协会和存档    
-> 19.修复一些bug以及显示
+> 19.修复一些bug以及显示  
 > 20.新增mc与原神修仙结合玩法
      
 
