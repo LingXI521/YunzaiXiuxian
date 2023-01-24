@@ -805,11 +805,10 @@ export class UserHome extends plugin {
         let quantity = code[1];
         if (quantity == null ) {
            quantity=1
-           e.reply('已经自动改为1,休想卡bug')
         } else {
             quantity = code[1].replace(/[^0-9]/ig, "");
         }
-        if(quantity<1){
+        if(quantity<=1){
              quantity = 1;
             e.reply('已经自动改为1,休想卡bug')
         }
