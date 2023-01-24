@@ -19,6 +19,7 @@ import {
 } from '../Xiuxian/xiuxian.js'
 import {
     Add_灵石,
+    Add_热量,
     Add_najie_thing,
     Add_HP,
     Add_修为,
@@ -54,7 +55,7 @@ export class UserHome extends plugin {
                 reg: '^#(存|取)灵石(.*)$',
                 fnc: 'Take_lingshi'
             }, {
-                reg: '^#(装备|消耗|服用|学习|打开|解除封印|寻宝|合成|烧制|处理)((.*)|(.*)*(.*))$',
+                reg: '^#(装备|消耗|服用|学习|打开|解除封印|寻宝|合成|加工)((.*)|(.*)*(.*))$',
                 fnc: 'Player_use'
             }, {
                 reg: '^#购买((.*)|(.*)*(.*))$',
@@ -795,7 +796,7 @@ export class UserHome extends plugin {
         let player = await Read_player(usr_qq);
         let najie = await Read_najie(usr_qq);
         //检索方法
-        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|烧制|处理/);
+        var reg = new RegExp(/装备|服用|消耗|学习|打开|解除封印|寻宝|合成|加工/);
         let func = reg.exec(e.msg);
         let msg = e.msg.replace(reg, '');
         msg = msg.replace("#", '');
@@ -3177,7 +3178,7 @@ if (thing_name == "羊毛") {
      if (func == "合成"){
             let wupin=data.hecheng_list.find(item=>item.name==thing_name);
             if (!isNotNull(wupin)) {
-                e.reply(`物品暂时未添加，请持续关注`);
+                e.reply(`合成物品暂时未添加，请持续关注`);
                 return;
             }
             //看物品是否够
@@ -3201,7 +3202,47 @@ if (thing_name == "羊毛") {
             e.reply(`合成成功，获得${wupin.name}${wupin.amount*quantity}个`);
             return;
         }
-if (func == "烧制") {
+        if (func == "加工") {
+            let wupin=data.jiagong_list.find(item=>item.name==thing_name);
+            if (!isNotNull(wupin)) {
+                e.reply(`加工物品暂时未添加，请持续关注`);
+                return;
+            }
+            //看物品是否够
+            for (let i = 0; i < wupin.inputs.length; i++) {
+                const input = wupin.inputs[i];
+                let x = await exist_najie_thing(usr_qq, input.name, input.class);
+                if(x==false){
+                    x=0;
+                }
+                if(x < input.amount*quantity+input.const_amount){
+                    e.reply(`纳戒中拥有${input.name}${x}份，加工需要${input.amount*quantity+input.const_amount}份`);
+                    return;
+                }
+            }
+            //看热量是否够
+            if (player.热量<wupin.热量*quantity) {
+                e.reply(`加工需要热量${wupin.热量*quantity}，现在不足！`);
+                return;
+            }
+            //减去加工消耗的热量
+            await Add_热量(usr_qq,-(wupin.热量*quantity));
+            //纳戒中减去对应输入物品
+            for (let i = 0; i < wupin.inputs.length; i++) {
+                const input = wupin.inputs[i];
+                await Add_najie_thing(usr_qq,input.name,input.class,-(input.amount*quantity+input.const_amount));
+            }
+            //纳戒中加上对应输出物品
+            let msg=[];
+            for (let i = 0; i < wupin.outputs.length; i++) {
+                const output = wupin.outputs[i];
+                await Add_najie_thing(usr_qq,output.name,output.class,(output.amount*quantity+output.const_amount));
+                msg.push(`获得${output.name}${output.amount*quantity+output.const_amount}个`);
+            }
+            e.reply(`加工成功，${msg}`);
+            return;
+        }
+/*if (func == "烧制") {
             if (thing_name == "烤土豆") {
                 let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
                 let number = await exist_najie_thing(usr_qq, "土豆", "食材")
@@ -3403,8 +3444,8 @@ if(thing_name == "野羊"){
     }
     }
         return;
-}
-    
+        */
+}    
          
 
     async yesxigen(e) {

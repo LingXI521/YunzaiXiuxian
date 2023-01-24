@@ -222,6 +222,13 @@ export async function Add_灵石(usr_qq, 灵石数量 = 0) {
     return;
 }
 
+export async function Add_热量(usr_qq, 热量 = 0) {
+    let player = await Read_player(usr_qq);
+    player.热量 += Math.trunc(热量);
+    await Write_player(usr_qq, player);
+    return;
+}
+
 export async function Add_修为(usr_qq, 修为数量 = 0) {
     let player = await Read_player(usr_qq);
     player.修为 += Math.trunc(修为数量);
