@@ -5,7 +5,7 @@
         "热量":1,
         "inputs":[
             {"name":"土豆","class":"食材","amount":1,"const_amount":0},
-            {"name":"熔炉","class":"道具","amount":0,"const_amount":1}
+            {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
             {"name":"烤土豆","class":"食材","amount":1,"const_amount":0}
@@ -16,7 +16,7 @@
         "热量":1,
         "inputs":[
             {"name":"生肉","class":"食材","amount":1,"const_amount":0},
-            {"name":"熔炉","class":"道具","amount":0,"const_amount":1}
+            {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
             {"name":"熟肉","class":"食材","amount":1,"const_amount":0}
@@ -27,7 +27,7 @@
         "热量":1,
         "inputs":[
             {"name":"烤鱼","class":"食材","amount":1,"const_amount":0},
-            {"name":"熔炉","class":"道具","amount":0,"const_amount":1}
+            {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
             {"name":"烤鱼","class":"食材","amount":1,"const_amount":0}
@@ -38,7 +38,7 @@
         "热量":1,
         "inputs":[
             {"name":"铁矿","class":"材料","amount":1,"const_amount":0},
-            {"name":"熔炉","class":"道具","amount":0,"const_amount":1}
+            {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
             {"name":"铁锭","class":"材料","amount":1,"const_amount":0}
@@ -49,7 +49,7 @@
         "热量":1,
         "inputs":[
             {"name":"黄金矿","class":"材料","amount":1,"const_amount":0},
-            {"name":"熔炉","class":"道具","amount":0,"const_amount":1}
+            {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
             {"name":"金锭","class":"材料","amount":1,"const_amount":0}
