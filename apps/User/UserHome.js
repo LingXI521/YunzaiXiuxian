@@ -2339,10 +2339,12 @@ if (thing_name == "羊毛") {
                             if (isNotNull(mugao) && mugao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 3*n);
                                 await Add_najie_thing(usr_qq, "木镐", "道具", -1);
+                                mugao=1
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 9*n);
                                 await Add_najie_thing(usr_qq, "石镐", "道具", -1);
+                                shigao=1
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "天横山", "道具", -1);
                             await Add_灵石(usr_qq,150000)
@@ -2440,7 +2442,7 @@ if (thing_name == "羊毛") {
                               return;
                         }   
             }
-            if(thing_name == "星落湖"){
+             if(thing_name == "星落湖"){
                 if(player.饱食度<1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
@@ -2493,11 +2495,7 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "星落湖", "道具", -1);
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math=0.01){
-                                await Add_najie_thing(usr_qq, "烤鱼", "食材", 100*n);   
-                                e.reply(`你钓鱼时遇到了可莉,与她一起炸鱼,得到烤鱼${100*n}个,生鱼${100*n}个`)
-                                return;
-                            }else if(math>0.7&&math<=1){
+                            if(math>0.7&&math<=1){
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n*2); 
                                 e.reply(`你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2*n}个,还有一些鱼肉`)
                                 return;
@@ -2546,7 +2544,7 @@ if (thing_name == "羊毛") {
                   }
                   await data.setData('player', player_id, player);
                 }
-                let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
+                let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
                 let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
@@ -2559,10 +2557,12 @@ if (thing_name == "羊毛") {
                             if (isNotNull(futou) && futou>  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 3*n);
                                 await Add_najie_thing(usr_qq, "木斧", "道具", -1);
+                                futou=1
                             }else{futou=0;}
                             if(isNotNull(shifu) && shigao >  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 9*n);
                                 await Add_najie_thing(usr_qq, "石斧", "道具", -1);
+                                shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
@@ -2591,8 +2591,10 @@ if (thing_name == "羊毛") {
                         }else{
                            await Add_najie_thing(usr_qq, "原木", "材料", 1*n);      
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
+                            await Add_血气(usr_qq,xiuwei)
+                            await Add_修为(usr_qq,xueqi)
                             await Add_灵石(usr_qq,100000)
-                              e.reply(`你因为没带斧头,所以只捡到了10w灵石和原木${1*n}个`)
+                              e.reply(`你因为没带斧头,所以只捡到了10w灵石和原木${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                player.饱食度-=500;
                             await Write_player(usr_qq, player);
                             return;
@@ -2633,7 +2635,9 @@ if (thing_name == "羊毛") {
                   }
                   await data.setData('player', player_id, player);
                 }
-                let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
+                let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
+                let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
+                
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
@@ -2646,7 +2650,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "原木", "材料", 5*n*futou);
                                 await Add_najie_thing(usr_qq, "木斧", "道具", -1);
                             }else{futou=0;}
-                            if(isNotNull(shifu) && shigao >  0){
+                            if(isNotNull(shifu) && shifu >  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 15*n*shifu);
                                 await Add_najie_thing(usr_qq, "石斧", "道具", -1);
                             }else{shifu=0;}
@@ -2728,11 +2732,13 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "胡萝卜", "食材", 150*n);
                                 await Add_najie_thing(usr_qq, "土豆", "食材", 150*n);
                                 await Add_najie_thing(usr_qq, "木铲", "道具", -1);
+                                muchan=1
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "胡萝卜", "食材", 300*n);
                                 await Add_najie_thing(usr_qq, "土豆", "食材", 300*n);
                                 await Add_najie_thing(usr_qq, "石铲", "道具", -1);
+                                shichan=1
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
                              await Add_血气(usr_qq,xiuwei)
