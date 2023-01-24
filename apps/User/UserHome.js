@@ -2368,7 +2368,7 @@ if (thing_name == "羊毛") {
                             return;
                         }      
             }
-            if(thing_name == "天臂池"){
+              if(thing_name == "天臂池"){
                 if(player.饱食度<1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
@@ -2430,7 +2430,8 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在天臂池钓到血气瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math=0.01){
-                                e.reply(`你在天臂池只钓到几条鱼,获得了修为${xiuwei}血气${xueqi}`)
+                               await Add_najie_thing(usr_qq, "经验瓶", "丹药", n*15);
+                                e.reply(`你运气爆棚了！在天臂池钓到经验瓶${n*10}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2438,7 +2439,7 @@ if (thing_name == "羊毛") {
                               return;
                         }   
             }
-             if(thing_name == "星落湖"){
+            if(thing_name == "星落湖"){
                 if(player.饱食度<1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
@@ -2545,38 +2546,45 @@ if (thing_name == "羊毛") {
                   await data.setData('player', player_id, player);
                 }
                 let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
+                let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
-                        if(futou>0){
+                        if(futou>0||shifu>0){
                             player.饱食度-=500;
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
-                            await Add_najie_thing(usr_qq, "原木", "材料", 5*n);      
-                            await Add_najie_thing(usr_qq, "斧头", "道具", -1*n);
+                            if (isNotNull(futou) && futou>  0){
+                                await Add_najie_thing(usr_qq, "原木", "材料", 3*n);
+                                await Add_najie_thing(usr_qq, "木斧", "道具", -1);
+                            }else{futou=0;}
+                            if(isNotNull(shifu) && shigao >  0){
+                                await Add_najie_thing(usr_qq, "原木", "材料", 9*n);
+                                await Add_najie_thing(usr_qq, "石斧", "道具", -1);
+                            }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "水天从林", "道具", 1*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${5*n}个和一个水天从林地图,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和一个水天从林地图,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${5*n}个和苹果${32*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和苹果${32*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",10*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${5*n}个和泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "树苗", "食材",1*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${5*n}个和树苗${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和树苗${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在低语森林捡到了10w灵石和原木${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2629,34 +2637,40 @@ if (thing_name == "羊毛") {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
-                        if(futou>0){
+                        if(futou>0||shifu>0){
                             player.饱食度-=300;
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
-                            await Add_najie_thing(usr_qq, "原木", "材料", 10*futou*n);      
-                            await Add_najie_thing(usr_qq, "斧头", "道具", -1*futou);
+                            if (isNotNull(futou) && futou>  0){
+                                await Add_najie_thing(usr_qq, "原木", "材料", 5*n*futou);
+                                await Add_najie_thing(usr_qq, "木斧", "道具", -1);
+                            }else{futou=0;}
+                            if(isNotNull(shifu) && shigao >  0){
+                                await Add_najie_thing(usr_qq, "原木", "材料", 15*n*shifu);
+                                await Add_najie_thing(usr_qq, "石斧", "道具", -1);
+                            }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
                             await Add_灵石(usr_qq,200000)
                              await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具", 1*n);
-                                e.reply(`你在水天丛林捡到了20w灵石和原木${10*futou*n}个和深渊地图${1*n}`)
+                                e.reply(`你在水天丛林捡到了20w灵石和原木${5*futou*n+15*shifu*n}个和深渊地图${1*n}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
-                                e.reply(`你在水天丛林捡到了20w灵石和原木${10*futou*n}个和西瓜${128*n}`)
+                                e.reply(`你在水天丛林捡到了20w灵石和原木${5*futou*n+15*shifu*n}个和西瓜${128*n}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",25*n);
-                                e.reply(`你在水天丛林捡到了20w灵石和原木${10*futou*n}个和泥土${25*n}`)
+                                e.reply(`你在水天丛林捡到了20w灵石和原木${5*futou*n+15*shifu*n}个和泥土${25*n}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
-                                await Add_najie_thing(usr_qq, "树苗", "食材",3*n);
-                                e.reply(`你在水天丛林捡到了20w灵石和原木${10*futou*n}个和树苗${3*n}`)
+                                await Add_najie_thing(usr_qq, "树苗", "食材",5*n);
+                                e.reply(`你在水天丛林捡到了20w灵石和原木${5*futou*n+15*shifu*n}个和树苗${5*n}`)
                                 return;
                             }else{
-                                e.reply(`你在水天丛林捡到了20w灵石和原木${10*futou*n}个`)
+                                e.reply(`你在水天丛林捡到了20w灵石和原木${5*futou*n+15*shifu*n}个`)
                                 return;
                             }
                         }else{
@@ -2739,13 +2753,14 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到熔炉${1*n}个`)
                                 return;
                             }else{
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*n+300*n}个和土豆${150*n+300*n}个`)
+                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个`)
                                 return;
                             }
                         }else{
                             e.reply('你想起来你没有铲子,于是又回家了')
                             return;
                         }
+            
             }
             if(thing_name == "轻策庄"){  
                 if(player.饱食度<=200){
