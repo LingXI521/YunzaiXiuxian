@@ -804,8 +804,8 @@ export class UserHome extends plugin {
         let thing_name = code[0];
         let quantity = code[1];
         if (quantity == null ) {
-            e.reply('休想卡bug')
-            return;
+           quantity=1
+           e.reply('已经自动改为1,休想卡bug')
         } else {
             quantity = code[1].replace(/[^0-9]/ig, "");
         }
@@ -813,8 +813,6 @@ export class UserHome extends plugin {
              quantity = 1;
             e.reply('已经自动改为1,休想卡bug')
         }
-
-        quantity=Math.trunc(quantity);
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
