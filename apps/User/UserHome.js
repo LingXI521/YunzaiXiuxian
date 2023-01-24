@@ -1584,7 +1584,7 @@ export class UserHome extends plugin {
             }
             if (thing_name == "钓鱼掉上来的奇怪盒子") {
                 let daomu = Math.random();
-                    if (daomu=0.01) {
+                    if (daomu==0.01) {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子,里面什么都没有"])
                         return
