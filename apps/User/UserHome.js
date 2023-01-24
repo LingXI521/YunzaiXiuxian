@@ -2338,10 +2338,12 @@ if (thing_name == "羊毛") {
                             if (isNotNull(mugao) && mugao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 3*n);
                                 await Add_najie_thing(usr_qq, "木镐", "道具", -1);
+                                mugao=1
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 9*n);
                                 await Add_najie_thing(usr_qq, "石镐", "道具", -1);
+                                shigao=1
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "天横山", "道具", -1);
                             await Add_灵石(usr_qq,150000)
@@ -2558,10 +2560,12 @@ if (thing_name == "羊毛") {
                             if (isNotNull(futou) && futou>  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 3*n);
                                 await Add_najie_thing(usr_qq, "木斧", "道具", -1);
+                                futou=1
                             }else{futou=0;}
                             if(isNotNull(shifu) && shigao >  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 9*n);
                                 await Add_najie_thing(usr_qq, "石斧", "道具", -1);
+                                shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_灵石(usr_qq,100000)
@@ -2727,11 +2731,13 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "胡萝卜", "食材", 150*n);
                                 await Add_najie_thing(usr_qq, "土豆", "食材", 150*n);
                                 await Add_najie_thing(usr_qq, "木铲", "道具", -1);
+                                muchan=1
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "胡萝卜", "食材", 300*n);
                                 await Add_najie_thing(usr_qq, "土豆", "食材", 300*n);
                                 await Add_najie_thing(usr_qq, "石铲", "道具", -1);
+                                shichan=1
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
                              await Add_血气(usr_qq,xiuwei)
