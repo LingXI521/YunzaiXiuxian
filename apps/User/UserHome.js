@@ -2441,7 +2441,7 @@ if (thing_name == "羊毛") {
                               return;
                         }   
             }
-            if(thing_name == "星落湖"){
+             if(thing_name == "星落湖"){
                 if(player.饱食度<1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
@@ -2494,11 +2494,7 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "星落湖", "道具", -1);
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math=0.01){
-                                await Add_najie_thing(usr_qq, "烤鱼", "食材", 100*n);   
-                                e.reply(`你钓鱼时遇到了可莉,与她一起炸鱼,得到烤鱼${100*n}个,生鱼${100*n}个`)
-                                return;
-                            }else if(math>0.7&&math<=1){
+                            if(math>0.7&&math<=1){
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n*2); 
                                 e.reply(`你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2*n}个,还有一些鱼肉`)
                                 return;
