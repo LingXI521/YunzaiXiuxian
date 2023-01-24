@@ -2547,7 +2547,7 @@ if (thing_name == "羊毛") {
                   }
                   await data.setData('player', player_id, player);
                 }
-                let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
+                let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
                 let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
@@ -2636,7 +2636,9 @@ if (thing_name == "羊毛") {
                   }
                   await data.setData('player', player_id, player);
                 }
-                let futou=await exist_najie_thing(usr_qq, "斧头", "道具")
+                let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
+                let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
+                
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
                     return;
