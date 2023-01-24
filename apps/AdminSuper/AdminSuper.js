@@ -1417,6 +1417,13 @@ export async function synchronization(e) {
         break;
       }
     }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="斧头") {
+        najie.道具[i].name="木斧";
+        break;
+      }
+    }
     //修
     if (!isNotNull(player.血量上限)) {
       player.血量上限 = 1;
