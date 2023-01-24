@@ -1183,8 +1183,6 @@ export class UserHome extends plugin {
 
                 }
             }
-
-
             if (this_danyao.type == '炼神') {
                 if (quantity != 1) {
                     e.reply(`一次闭关只能拥有一条炼神之力`);
@@ -1234,11 +1232,8 @@ export class UserHome extends plugin {
                         action[i].beiyong3 = this_danyao.概率
                         e.reply(`${player.名号}获得了神兽的恩赐,赐福的概率增加了,当前剩余次数${action[i].beiyong2}`)
                         await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
-
                     }
-
                 }
-
             }
             if (this_danyao.type == '灵根') {
                 change_神之心(usr_qq)
@@ -1254,7 +1249,6 @@ export class UserHome extends plugin {
                 e.reply(`${quantity}道黑色魔气入体,增加了${quantity * this_danyao.modao}魔道值`);
                 return;
             }
-
             if (this_danyao.type == "补根") {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
@@ -1642,8 +1636,6 @@ export class UserHome extends plugin {
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有4个经验瓶"])
                         return
                     }
-                
-                
             }if (thing_name == "钓鱼掉上来的奇怪盒子") {
                 let daomu = Math.random();
                     if (daomu=0.01) {
@@ -3248,212 +3240,7 @@ if (thing_name == "羊毛") {
             e.reply(`加工成功，${msg}`);
             return;
         }
-/*if (func == "烧制") {
-            if (thing_name == "烤土豆") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "土豆", "食材")
-                if(isNotNull(ronglu) && ronglu > 0){
-                    if(player.热量>quantity){
-                    if (isNotNull(number) && number > 1 * quantity-1 ) {
-                        await Add_najie_thing(usr_qq, "土豆", "食材", -1* quantity);
-                        await Add_najie_thing(usr_qq, "烤土豆", "食材",  quantity);
-                        await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                        player.热量=0;
-                    await Write_player(usr_qq, player);
-                        e.reply(["烧制成功，获得烤土豆" + quantity + "个"])
-                        return
-                    }
-                    else {
-                        e.reply("你没有足够的土豆")
-                        return
-                    }
-                }else{
-                       e.reply('燃料不足')
-                       return;
-                }
-                }else{
-                    e.reply('你没有熔炉,烤个毛啊')
-                }
-            }
-            if (thing_name == "熟肉") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "生肉", "食材")
-                if(isNotNull(ronglu) && ronglu >0){
-                    if(player.热量>quantity){
-                if (isNotNull(number) && number > 1 * quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "生肉", "食材", -1* quantity);
-                    await Add_najie_thing(usr_qq, "熟肉", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    player.热量=0;
-                    await Write_player(usr_qq, player);
-                    e.reply(["烧制成功，获得烤肉" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的生肉")
-                    return
-                }
-            }else{
-                e.reply('燃料不足')
-                return;
-         }
-            }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-            if (thing_name == "烤鱼") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "鱼肉", "食材")
-                if(isNotNull(ronglu) && ronglu > 0){
-                    if(player.热量>quantity){
-                if (isNotNull(number) && number > 1 * quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "鱼肉", "食材", -1* quantity);
-                    await Add_najie_thing(usr_qq, "烤鱼", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    player.热量=0;
-                    await Write_player(usr_qq, player);
-                    e.reply(["烧制成功，获得烤鱼" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的鱼肉")
-                    return
-                }
-            }else{
-                e.reply('燃料不足')
-                return;
-         }
-            }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-            if (thing_name == "铁锭") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "铁矿", "材料")
-                if(isNotNull(ronglu) && ronglu > 0){
-                    if(player.热量>=1*quantity){
-                if (isNotNull(number) && number >  1* quantity-1) {
-                    await Add_najie_thing(usr_qq, "铁矿", "材料", -1* quantity);
-                    await Add_najie_thing(usr_qq, "铁锭", "材料",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    player.热量=0;
-                    await Write_player(usr_qq, player);
-                    e.reply(["烧制成功，获得铁锭" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的铁锭")
-                    return
-                }
-            }else{
-                e.reply('燃料不足')
-                return;
-         }
-            }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-            if (thing_name == "金锭") {
-                let ronglu=await exist_najie_thing(usr_qq, "熔炉", "道具")
-                let number = await exist_najie_thing(usr_qq, "黄金矿", "材料")
-                if(isNotNull(ronglu) && ronglu > 0){
-                    if(player.热量>=1*quantity){
-                if (isNotNull(number) && number > 1* quantity-1 ) {
-                    await Add_najie_thing(usr_qq, "黄金矿", "材料", -1* quantity);
-                    await Add_najie_thing(usr_qq, "金锭", "材料",  quantity);
-                    await Add_najie_thing(usr_qq, "熔炉", "道具",  -1);
-                    player.热量=0;
-                    await Write_player(usr_qq, player);
-                    e.reply(["烧制成功，获得金锭" + quantity + "个"])
-                    return
-                }
-                else {
-                    e.reply("你没有足够的黄金矿")
-                    return
-                }
-            }else{
-                e.reply('燃料不足')
-                return;
-         }
-            }else{
-                e.reply('你没有熔炉,烤个毛啊')
-            }
-            }
-        }
-                 if(func=="处理"){
-        let x = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
-            if (!x) {
-                e.reply(`你没有【${thing_name}】这样的食材`);
-                return;
-            }
-            if(thing_name == "野鸡"){
-                let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-                if(isNotNull(caidao) && caidao > 0){
-                    await Add_najie_thing(usr_qq, "野鸡", "食材", -1* quantity);
-                    await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
-                    await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-                       e.reply('你处理了野鸡,获得生肉*'+quantity)
-            }else{
-                e.reply('你没菜刀,处理个毛啊')
-            }
-        }
-        if(thing_name == "野兔"){
-            let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-            if(isNotNull(caidao) && caidao >0){
-                await Add_najie_thing(usr_qq, "野兔", "食材", -1* quantity);
-                await Add_najie_thing(usr_qq, "生肉", "食材",  quantity);
-                await Add_najie_thing(usr_qq, "皮革", "食材",  quantity);
-                await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-                   e.reply('你处理了野兔,获得生肉*'+quantity+',皮革*'+quantity)
-        }else{
-            e.reply('你没菜刀,处理个毛啊')
-        }
-    }
-    if(thing_name == "野猪"){
-        let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-        if(isNotNull(caidao) && caidao > 0){
-            await Add_najie_thing(usr_qq, "野猪", "食材", -1* quantity);
-            await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
-            await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-               e.reply('你处理了野猪,获得生肉*'+2*quantity)
-    }else{
-        e.reply('你没菜刀,处理个毛啊')
-    }
-      }
-if(thing_name == "野牛"){
-    let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-    if(isNotNull(caidao) && caidao > 0){
-        await Add_najie_thing(usr_qq, "野牛", "食材", -1* quantity);
-        await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
-        await Add_najie_thing(usr_qq, "皮革", "食材",  2*quantity);
-        await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-           e.reply('你处理了野牛,获得生肉*'+2*quantity+',皮革*'+2*quantity)
-           return;
-             }else{
-    e.reply('你没菜刀,处理个毛啊')
-    return;
-              }
-          }
-if(thing_name == "野羊"){
-    let caidao=await exist_najie_thing(usr_qq, "菜刀", "道具");
-    if(isNotNull(caidao) && caidao > 0){
-        await Add_najie_thing(usr_qq, "野羊", "食材", -1* quantity);
-        await Add_najie_thing(usr_qq, "生肉", "食材",  2*quantity);
-        await Add_najie_thing(usr_qq, "羊毛", "食材",  quantity);
-        await Add_najie_thing(usr_qq, "菜刀", "道具",  -1);
-           e.reply('你处理了野羊,获得生肉*'+2*quantity+',羊毛*'+quantity)
-           return;
-     }else{
-    e.reply('你没菜刀,处理个毛啊')
-    return;
-    }
-    }
-    }
-        return;
-        */
-}    
-         
-
+}
     async yesxigen(e) {
         //不开放私聊功能
         if (!e.isGroup) {
