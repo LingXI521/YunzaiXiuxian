@@ -40,7 +40,7 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 ## 交流/直接游玩      
 > 体验群一：372093406     
 > 体验群二：642919478    
-> 服主交流群、bug反馈群：560090307 
+> 服主交流群、bug反馈群、攻略群：560090307 
     
  
 ## 鸣谢
