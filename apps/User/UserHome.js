@@ -2430,7 +2430,7 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在天臂池钓到血气瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math=0.01){
-                               await Add_najie_thing(usr_qq, "经验瓶", "丹药", n*15);
+                               await Add_najie_thing(usr_qq, "经验瓶", "丹药", n*10);
                                 e.reply(`你运气爆棚了！在天臂池钓到经验瓶${n*10}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
