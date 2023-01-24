@@ -2561,8 +2561,8 @@ if (thing_name == "羊毛") {
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
-                                await Add_najie_thing(usr_qq, "水天从林", "道具", 1*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和一个水天从林地图,获得了修为${xiuwei}血气${xueqi}`)
+                                await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32*n);
