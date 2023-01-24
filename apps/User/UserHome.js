@@ -803,12 +803,17 @@ export class UserHome extends plugin {
         let code = msg.split("\*");
         let thing_name = code[0];
         let quantity = code[1];
-        if (quantity < 1 || quantity == null || quantity == undefined || quantity == NaN) {
-            quantity = 1;
-            e.reply('已经自动改为1,休想卡bug')
+        if (quantity == null ) {
+            e.reply('休想卡bug')
+            return;
         } else {
             quantity = code[1].replace(/[^0-9]/ig, "");
         }
+        if(quantity<1){
+             quantity = 1;
+            e.reply('已经自动改为1,休想卡bug')
+        }
+
         quantity=Math.trunc(quantity);
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
@@ -2563,8 +2568,8 @@ if (thing_name == "羊毛") {
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
-                                await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
-                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
+                                await Add_najie_thing(usr_qq, "水天从林", "道具", 1*n);
+                                e.reply(`你在低语森林捡到了10w灵石和原木${3*futou*n+9*shifu*n}个和一个水天从林地图,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32*n);
