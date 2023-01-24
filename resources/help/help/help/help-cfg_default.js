@@ -101,7 +101,7 @@ export const helpList = [{
     desc: "查询体力，绑定Cookie帮助"
   }, {
     icon: 5,
-    title: "#原石 #原石统计",
+    title: "#圆石 #圆石统计",
     desc: "札记数据，需要绑定Cookie"
   }, {
     icon: 10,
