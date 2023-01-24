@@ -884,6 +884,9 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
+            if(quantity<1){
+                quantity=1;
+            }
              if(thing_name=="生肉"){
                  let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
