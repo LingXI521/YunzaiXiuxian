@@ -2810,33 +2810,33 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
-                                if(muchan>10){muchan=10}
+                                if(muchan>5){muchan=5}
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*muchan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",1*muchan*n);
-                                await Add_najie_thing(usr_qq, "青金石", "材料",3*muchan*n);
+                                await Add_najie_thing(usr_qq, "青金石", "材料",9*muchan*n);
                                 await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
-                                if(shichan>10){shichan=10}
+                                if(shichan>5){shichan=5}
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*shichan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",1*shichan*n);
-                                await Add_najie_thing(usr_qq, "青金石", "材料",3*shichan*n);
+                                await Add_najie_thing(usr_qq, "青金石", "材料",9*shichan*n);
                                 await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
                             }else{shichan=0;}
                             if(isNotNull(zuanshichan) && zuanshichan >  quantity - 1){
-                                if(zuanshichan>10){zuanshichan=10}
+                                if(zuanshichan>5){zuanshichan=5}
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",9*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",3*zuanshichan*n);
-                                await Add_najie_thing(usr_qq, "青金石", "材料",9*zuanshichan*n);
+                                await Add_najie_thing(usr_qq, "青金石", "材料",18*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "钻石镐", "道具", -1*zuanshichan);
                                 await Add_najie_thing(usr_qq, "黑曜石", "材料",12*n);
                                     e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                     钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                     绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                    青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,黑曜石${12*n}个`)
+                                    青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个`)
                                     return;
                             }else{zuanshichan=0;}
                             await Add_灵石(usr_qq,200000)
@@ -2846,7 +2846,7 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                 绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,找到了深渊地图${1*n}`)
+                                青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个,找到了深渊地图${1*n}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
@@ -2854,7 +2854,7 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                 绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
+                                青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个`)
                             }else if(math>0.6&&math<0.7){
                                 await Add_HP(usr_qq,-kouxue)
@@ -2862,23 +2862,23 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                 绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
+                                青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                             }else if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "红石", "材料",9);
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                 绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
+                                青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个,
                                 红石${9*n}个`)
                             }else{
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个,
                                 绿宝石${1*mugao*n+1*shichan*n+3*zuanshichan*n}个,
-                                青金石${3*mugao*n+3*shichan*n+9*zuanshichan*n}个`)
+                                青金石${9*mugao*n+9*shichan*n+18*zuanshichan*n}个`)
                             }
                         }else{
-                            e.reply('你想起来你没有斧头,于是又回家了')
+                            e.reply('你想起来你没有镐子,于是又回家了')
                             return;
                         }
             }
