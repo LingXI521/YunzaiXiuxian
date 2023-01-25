@@ -2697,12 +2697,20 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
+                                if(mugao>15){
+                                    mugao=15;
+                                    e.reply("一个地图最多使用15个镐子")
+                                }
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", 9*mugao*n);
                                 await Add_najie_thing(usr_qq, "铁镐", "道具", -1*mugao);
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
+                                if(shigao>15){
+                                    shigao=15;
+                                    e.reply("一个地图最多使用15个镐子")
+                                }
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", 3*shigao*n);
