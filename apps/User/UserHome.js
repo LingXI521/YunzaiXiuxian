@@ -2468,10 +2468,16 @@ if (thing_name == "羊毛") {
                             await Write_player(usr_qq, player);
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(futou) && futou>  0){
+                                if(futou>10){
+                                    futou=10;
+                                }
                                 await Add_najie_thing(usr_qq, "原木", "材料", 5*n*futou);
                                 await Add_najie_thing(usr_qq, "木斧", "道具", -1);
                             }else{futou=0;}
                             if(isNotNull(shifu) && shifu >  0){
+                                 if(shifu>10){
+                                    shifu=10;
+                                }
                                 await Add_najie_thing(usr_qq, "原木", "材料", 15*n*shifu);
                                 await Add_najie_thing(usr_qq, "石斧", "道具", -1);
                             }else{shifu=0;}
