@@ -2285,6 +2285,7 @@ if (thing_name == "羊毛") {
                   ']深埋在土壤中，是仙兽们的最爱。';
                 await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
               }
+                let player = data.getData("player", usr_qq);
             let last_msg='';
               let fyd_msg='';
               let math=Math.random();
@@ -2295,12 +2296,7 @@ if (thing_name == "羊毛") {
                 let t2 = 2 + Math.random();
                 let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
                 let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-            if(thing_name == "天横山"){  
-                if(player.饱食度< 1000){
-                    e.reply('你快饿死了,还是先吃点东西吧');
-                    return;
-                }
-                 if (math < player.幸运) {
+               if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
                   } else if (player.仙宠.type == '幸运') {
@@ -2319,6 +2315,11 @@ if (thing_name == "羊毛") {
                     player.addluckyNo = 0;
                   }
                   await data.setData('player', player_id, player);
+                }
+            if(thing_name == "天横山"){  
+                if(player.饱食度< 1000){
+                    e.reply('你快饿死了,还是先吃点东西吧');
+                    return;
                 }
                 let mugao=await exist_najie_thing(usr_qq, "木镐", "道具")
                 let shigao=await exist_najie_thing(usr_qq, "石镐", "道具")
@@ -2370,26 +2371,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
-                }
                 let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
@@ -2435,26 +2416,6 @@ if (thing_name == "羊毛") {
                 e.reply("你是仙人吗就去星落湖");
                  return;
            }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
-                }
                 let futou=await exist_najie_thing(usr_qq, "钓鱼竿", "道具")
                 if (quantity > 1) {
                     e.reply("地图一次只能使用一个")
@@ -2487,26 +2448,6 @@ if (thing_name == "羊毛") {
                 if(player.饱食度<500){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
-                }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
                 }
                 let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
                 let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
@@ -2569,26 +2510,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
-                }
                 let futou=await exist_najie_thing(usr_qq, "木斧", "道具")
                 let shifu=await exist_najie_thing(usr_qq, "石斧", "道具")
                 
@@ -2641,26 +2562,6 @@ if (thing_name == "羊毛") {
                 if(player.饱食度<=100){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
-                }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
                 }
                 let muchan=await exist_najie_thing(usr_qq, "木铲", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "石铲", "道具")
@@ -2717,26 +2618,6 @@ if (thing_name == "羊毛") {
                 if(player.饱食度<=200){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
-                }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
                 }
                 let muchan=await exist_najie_thing(usr_qq, "铁铲", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金铲", "道具")
@@ -2797,26 +2678,6 @@ if (thing_name == "羊毛") {
                 if(player.饱食度< 2000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
-                }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
                 }
                 let kouxue=parseInt(player.血量上限*0.25)
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
@@ -2896,26 +2757,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
-                }
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shigao=await exist_najie_thing(usr_qq, "石镐", "道具")
                 if (quantity > 1) {
@@ -2990,26 +2831,6 @@ if (thing_name == "羊毛") {
                 if(player.饱食度<=5000){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
-                }
-                 if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
-                    last_msg += '福源丹生效，所以在';
-                  } else if (player.仙宠.type == '幸运') {
-                    last_msg += '仙宠使你在探索中欧气满满，所以在';
-                  }
-                  n *= 2;
-                  last_msg += '本次探索中获得赐福加成\n';
-                }
-                if (player.islucky > 0) {
-                  player.islucky--;
-                  if (player.islucky != 0) {
-                    fyd_msg = `  \n福源丹的效力将在${player.islucky}次探索后失效\n`;
-                  } else {
-                    fyd_msg = `  \n本次探索后，福源丹已失效\n`;
-                    player.幸运 -= player.addluckyNo;
-                    player.addluckyNo = 0;
-                  }
-                  await data.setData('player', player_id, player);
                 }
                 let muchan=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
