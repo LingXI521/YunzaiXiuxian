@@ -72,6 +72,15 @@ export async function existplayer(usr_qq) {
     return false;
 }
 
+export async function convert2integer(amount) {
+    let number=1;
+    if (amount==null||amount==undefined||amount<1) {
+        return number;
+    }
+    number=Math.trunc(Number(amount));
+    return number;
+}
+
 export async function Read_updata_log() {
     let dir = path.join(`${__PATH.updata_log_path}`);
     let update_log = fs.readFileSync(dir, 'utf8', (err, data) => {
