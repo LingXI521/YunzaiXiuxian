@@ -1424,6 +1424,12 @@ export async function synchronization(e) {
         break;
       }
     }
+    for (let i = 0; i < najie.装备.length; i++) {
+      const element = najie.装备[i];
+      if (!isNotNull(element.fumo)) {
+        najie.装备[i].fumo="无";
+      }
+    }
     //修
     if (!isNotNull(player.血量上限)) {
       player.血量上限 = 1;
@@ -1471,6 +1477,15 @@ export async function synchronization(e) {
       player.幸运 += data.necklace_list.find(
         item => item.name == '幸运儿'
       ).加成;
+    }
+    if (!isNotNull(equipment.武器.fumo)) {
+      equipment.武器.fumo="无";
+    }
+    if (!isNotNull(equipment.护具.fumo)) {
+      equipment.武器.fumo="无";
+    }
+    if (!isNotNull(equipment.法宝.fumo)) {
+      equipment.武器.fumo="无";
     }
     await Write_najie(usr_qq, najie);
     await Write_player(usr_qq, player);
