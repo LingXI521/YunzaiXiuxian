@@ -810,7 +810,6 @@ export class UserHome extends plugin {
         }
         if(quantity<=1){
              quantity = 1;
-            e.reply('已经自动改为1,休想卡bug')
         }
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
