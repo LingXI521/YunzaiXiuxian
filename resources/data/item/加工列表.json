@@ -26,7 +26,7 @@
         "name":"烤鱼",
         "热量":1,
         "inputs":[
-            {"name":"烤鱼","class":"食材","amount":1,"const_amount":0},
+            {"name":"鱼肉","class":"食材","amount":1,"const_amount":0},
             {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
