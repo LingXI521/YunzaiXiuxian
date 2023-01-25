@@ -2285,22 +2285,21 @@ if (thing_name == "羊毛") {
                   ']深埋在土壤中，是仙兽们的最爱。';
                 await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
               }
-            
-            if(thing_name == "天横山"){  
-                if(player.饱食度< 1000){
-                    e.reply('你快饿死了,还是先吃点东西吧');
-                    return;
-                }
-                let math=Math.random();
+            let last_msg='';
+              let fyd_msg='';
+              let math=Math.random();
                 let n=1;
                let now_level_id=player.level_id;
                let now_physique_id=player.Physique_id;
               let t1 = 2 + Math.random();
                 let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
+                let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
+                let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
+            if(thing_name == "天横山"){  
+                if(player.饱食度< 1000){
+                    e.reply('你快饿死了,还是先吃点东西吧');
+                    return;
+                }
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2371,16 +2370,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2442,20 +2431,10 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
                if(now_level_id<41){
                 e.reply("你是仙人吗就去星落湖");
                  return;
            }
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2509,16 +2488,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2600,16 +2569,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2683,16 +2642,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2769,16 +2718,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2859,16 +2798,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -2967,16 +2896,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -3072,16 +2991,6 @@ if (thing_name == "羊毛") {
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
-                let math=Math.random();
-                let n=1;
-               let now_level_id=player.level_id;
-               let now_physique_id=player.Physique_id;
-              let t1 = 2 + Math.random();
-                let t2 = 2 + Math.random();
-                 let last_msg='';
-              let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
-               let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-                
                  if (math < player.幸运) {
                   if (math < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
@@ -3191,7 +3100,6 @@ if (thing_name == "羊毛") {
                         }
             }
          }
-           
      if (func == "合成"){
             let wupin=data.hecheng_list.find(item=>item.name==thing_name);
             if (!isNotNull(wupin)) {
