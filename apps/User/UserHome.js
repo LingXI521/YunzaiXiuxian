@@ -2245,6 +2245,7 @@ if (thing_name == "羊毛") {
             }
         }
         if (func == "寻宝") {
+            let player_id = await Read_player(usr_qq);
             let player = await Read_player(usr_qq);
             if (player.当前血量 < 200) {
                 e.reply("你都伤成这样了,就不要出去浪了");
