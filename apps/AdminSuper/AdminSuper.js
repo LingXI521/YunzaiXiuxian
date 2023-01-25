@@ -1177,6 +1177,12 @@ export async function synchronization(e) {
     if (isNotNull(player.法球倍率)) {
       player.法球倍率 = undefined;
     }
+    if (isNotNull(player.热能)) {
+      player.热能 = undefined;
+    }
+    if (!isNotNull(player.热量)||player.热量==null) {
+      player.热量 = 0;
+    }
     //补
     if (!isNotNull(najie.材料)) {
       najie.材料 = [];
