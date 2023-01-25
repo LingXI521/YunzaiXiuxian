@@ -2813,7 +2813,7 @@ if (thing_name == "羊毛") {
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
                                 if(muchan>5){muchan=5}
-                                await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
+                                await Add_najie_thing(usr_qq, "圆石", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*muchan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",1*muchan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",9*muchan*n);
@@ -2821,7 +2821,7 @@ if (thing_name == "羊毛") {
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
                                 if(shichan>5){shichan=5}
-                                await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
+                                await Add_najie_thing(usr_qq, "圆石", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*shichan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",1*shichan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",9*shichan*n);
@@ -2829,7 +2829,7 @@ if (thing_name == "羊毛") {
                             }else{shichan=0;}
                             if(isNotNull(zuanshichan) && zuanshichan >  quantity - 1){
                                 if(zuanshichan>5){zuanshichan=5}
-                                await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
+                                await Add_najie_thing(usr_qq, "圆石", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",9*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "绿宝石", "材料",3*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",18*zuanshichan*n);
