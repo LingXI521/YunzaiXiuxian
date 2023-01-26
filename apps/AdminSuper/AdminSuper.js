@@ -1495,10 +1495,10 @@ export async function synchronization(e) {
       equipment.武器.fumo="无";
     }
     if (!isNotNull(equipment.护具.fumo)) {
-      equipment.武器.fumo="无";
+      equipment.护具.fumo="无";
     }
     if (!isNotNull(equipment.法宝.fumo)) {
-      equipment.武器.fumo="无";
+      equipment.法宝.fumo="无";
     }
     await Write_najie(usr_qq, najie);
     await Write_player(usr_qq, player);
