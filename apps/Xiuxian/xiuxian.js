@@ -80,7 +80,7 @@ export async function convert2integer(amount) {
     let number=1;
     let reg = new RegExp(/^[1-9]\d*$/);
     if (!reg.test(amount)) {
-        return number
+        return number;
     }
     else{
         return amount;
