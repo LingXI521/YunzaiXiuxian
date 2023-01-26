@@ -2677,6 +2677,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "石镐", "道具", -1*shigao);
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "降诸魔山", "道具", -1);
+                            await Add_najie_thing(usr_qq, "火把", "道具", -20);
                             await Add_灵石(usr_qq,150000)
                              await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
@@ -2760,6 +2761,7 @@ if (thing_name == "羊毛") {
                                 shigao=1;
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
+                             await Add_najie_thing(usr_qq, "火把", "道具", -64);
                             await Add_灵石(usr_qq,1000000)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
@@ -2858,6 +2860,7 @@ if (thing_name == "羊毛") {
                             }else{zuanshichan=0;}
                             await Add_灵石(usr_qq,200000)
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
+                             await Add_najie_thing(usr_qq, "火把", "道具", -128);
                            if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "深渊", "道具",1*n);
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*mugao*n+18*shichan*n+18*zuanshichan*n}个,
