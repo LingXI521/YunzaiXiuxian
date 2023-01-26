@@ -323,7 +323,7 @@ export async function get_daoju_img(e) {
         daoju_need
     }
     const data1 = await new Show(e).get_huanying(player_data)
-    let img = await puppeteer.screenshot('daoju', {
+    let img = await puppeteer.screenshot('huanying', {
         ...data1
     })
     return img
