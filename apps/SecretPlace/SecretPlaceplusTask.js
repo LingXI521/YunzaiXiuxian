@@ -426,18 +426,13 @@ export class SecretPlaceplusTask extends plugin {
                   caoyao += '"炼骨花"';
                   await Add_najie_thing(player_id, '炼骨花', '草药', 1);
                 }
-                if (random8 > 0.98) {
-                  caoyao += '"仙缘草"';
-                  await Add_najie_thing(player_id, '仙缘草', '草药', 1);
-                }
                 if (
                   random2 > 0.95 ||
                   random3 > 0.95 ||
                   random4 > 0.98 ||
                   random5 > 0.95 ||
                   random6 > 0.995 ||
-                  random7 > 0.97 ||
-                  random8 > 0.98
+                  random7 > 0.97 
                 ) {
                   last_msg +=
                     '\n\n' +
