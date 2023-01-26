@@ -1200,6 +1200,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     let att = last_att;//最终伤害,last_att为原伤害
     let fyjiachen = 0//防御加成
     //AB灵根
+    let usr_qq = A_player.id
     let equipment = await Read_equipment(usr_qq);
     let A_lin = A_player.灵根.name
     let B_lin = B_player.灵根.name
@@ -1598,7 +1599,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     }
    
     //将字符串数据转变成数组格式
-    equipment = JSON.parse(equipment);
+    
     let random = Math.random()//是否触发
     // let random=1
 
