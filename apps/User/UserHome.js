@@ -1078,16 +1078,31 @@ export class UserHome extends plugin {
                 e.reply(`服用成功,当前血量为:${now_HP.当前血量} `);
                 return;
             }
-            if (this_danyao.type == "修为") {
+                 if (this_danyao.type == "修为") {
+                await Go(e);
+                if (allaction) {
+                    console.log(allaction);
+                } else {
+                    return;
+                }
+                allaction = false;
                 await Add_修为(usr_qq, quantity * this_danyao.exp);
                 e.reply(`服用成功,修为增加${quantity * this_danyao.exp}`);
                 return;
             }
             if (this_danyao.type == "血气") {
+                await Go(e);
+                if (allaction) {
+                    console.log(allaction);
+                } else {
+                    return;
+                }
+                allaction = false;
                 await Add_血气(usr_qq, quantity * this_danyao.xueqi);
                 e.reply(`服用成功,血气增加${quantity * this_danyao.xueqi}`);
                 return;
             }
+               
             if (this_danyao.type == "幸运") {
                 if (player.islucky > 0) {
                     e.reply("目前尚有福源丹在发挥效果，身体无法承受更多福源");
