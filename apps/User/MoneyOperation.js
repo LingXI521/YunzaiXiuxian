@@ -55,6 +55,10 @@ export class MoneyOperation extends plugin {
                     fnc: 'wup'
                 },
                 {
+                    reg: '^#全体发(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮|项链|食材).*\\*[1-9]\d*',
+                    fnc: 'wup_all'
+                },
+                {
                     reg: '^#扣除.*$',
                     fnc: 'Deduction'
                 },
@@ -117,6 +121,48 @@ export class MoneyOperation extends plugin {
         }
         await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount)
         e.reply("发放成功")
+    }
+
+    async wup_all(e) {
+        //主人
+        if (!e.isMaster) {
+            return;
+        }
+        //这是自己的
+        let A_qq = e.user_id;
+        //所有玩家
+        let File = fs.readdirSync(__PATH.player_path);
+        File = File.filter(file => file.endsWith(".json"));
+        let File_length = File.length;
+        //获取发送灵石数量
+        let msg = e.msg.replace("#全体发", "");
+        if (msg == "口粮") {
+            msg = "仙宠口粮"
+        }
+        let thing_name_pinji_amount = msg.substr(2).split("*");
+        let thing_name = thing_name_pinji_amount[0];
+        let amount = 1;
+        let pinji = null;
+        if (thing_name_pinji_amount.length == 2) {
+            amount = Number(thing_name_pinji_amount[1]);
+        } else if (thing_name_pinji_amount.length == 3) {
+            pinji = thing_name_pinji_amount[1];
+            amount = Number(thing_name_pinji_amount[2]);
+        }
+        if (amount == NaN) {
+            return;
+        }
+        //判断列表中是否存在，不存在不能卖,并定位是什么物品
+        let thing_exist = await foundthing(thing_name);
+        if (!thing_exist) {
+            e.reply(`这方世界没有[${thing_name}]`);
+            return;
+        }
+        for (let i = 0; i < File_length; i++) {
+            let this_qq = File[i].replace(".json", '');
+            await Add_najie_thing(this_qq, thing_name, thing_exist.class, amount);
+        }
+        e.reply(`发放成功,目前共有${File_length}个玩家,每人增加${amount}个${thing_name}`);
     }
 
     async MoneyWord(e) {
@@ -257,7 +303,7 @@ export class MoneyOperation extends plugin {
             }
             //没有输入正确数字或＜1000;
             //检验A有没有那么多灵石
-            var cost = this.xiuxianConfigData.percentage.cost;
+            const cost = this.xiuxianConfigData.percentage.cost;
             let lastlingshi = lingshi + Math.trunc(lingshi * cost);
             if (A_player.灵石 < lastlingshi) {
                 e.reply([segment.at(A_qq), `你身上似乎没有${lastlingshi}灵石`]);
@@ -286,8 +332,7 @@ export class MoneyOperation extends plugin {
             //记录本次获得赠送灵石的时间戳
             await redis.set("xiuxian:player:" + A_qq + ":last_getbung_time", nowTime);
             return;
-        } 
-        else {
+        } else {
             let A_najie = await data.getData("najie", A_qq);
             let A_player = await data.getData("player", A_qq);
             // if (A_player.魔道值 > 100) {
@@ -311,15 +356,15 @@ export class MoneyOperation extends plugin {
                 return;
             }
             let thing_exist = await foundthing(thing_name);
-           
+
             if (!thing_exist) {
-            e.reply(`这方世界没有[${thing_name}]`);
-            return;
+                e.reply(`这方世界没有[${thing_name}]`);
+                return;
             }
             if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
-            e.reply(`轮回功法${thing_name}禁止出售。`)
-            return;
-        }
+                e.reply(`轮回功法${thing_name}禁止出售。`)
+                return;
+            }
             let pj = {
                 "劣": 0,
                 "普": 1,
@@ -329,23 +374,20 @@ export class MoneyOperation extends plugin {
                 "绝": 5,
                 "顶": 6
             }
-            if (pinji!=null) {
+            if (pinji != null) {
                 pj = pj[pinji];
             }
-            let number=await exist_najie_thing(A_qq,thing_exist.name,thing_exist.class,pj)
-            if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class,pj) == 1) {
+            let number = await exist_najie_thing(A_qq, thing_exist.name, thing_exist.class, pj)
+            if (await Locked_najie_thing(A_qq, thing_name, thing_exist.class, pj) == 1) {
                 //锁定
                 e.reply(`你的纳戒中的${thing_exist.class}[${thing_name}]是锁定的`);
                 return;
             }
             if (number >= amount) {
-                if (thing_exist.class == "装备")
-                {
+                if (thing_exist.class == "装备") {
                     await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount, pj);
                     await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount, pj);
-                }
-                else
-                {
+                } else {
                     await Add_najie_thing(A_qq, thing_name, thing_exist.class, -amount);
                     await Add_najie_thing(B_qq, thing_name, thing_exist.class, amount);
                 }
@@ -355,6 +397,7 @@ export class MoneyOperation extends plugin {
             }
         }
     }
+
     //发红包
     async Give_honbao(e) {
         //不开放私聊功能
@@ -410,7 +453,7 @@ export class MoneyOperation extends plugin {
         }
         let getlingshi = 0;
         //循环取整
-        for (var i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 100; i++) {
             //校验输入灵石数
             if (parseInt(lingshi) == parseInt(lingshi) && parseInt(lingshi) == i * 10000) {
                 //按万算，最高送一百万一个红包的灵石
@@ -483,7 +526,7 @@ export class MoneyOperation extends plugin {
             return;
         }
         //这里有错
-        var acount = await redis.get("xiuxian:player:" + honbao_qq + ":honbaoacount");
+        let acount = await redis.get("xiuxian:player:" + honbao_qq + ":honbaoacount");
         acount = Number(acount);
         //根据个数判断
         if (acount <= 0) {
@@ -491,8 +534,8 @@ export class MoneyOperation extends plugin {
             return;
         }
         //看看一个有多少灵石
-        var lingshi = await redis.get("xiuxian:player:" + honbao_qq + ":honbao");
-        var addlingshi = Math.trunc(lingshi);
+        const lingshi = await redis.get("xiuxian:player:" + honbao_qq + ":honbao");
+        const addlingshi = Math.trunc(lingshi);
         //减少个数
         acount--;
         await redis.set("xiuxian:player:" + honbao_qq + ":honbaoacount", acount);
@@ -517,8 +560,8 @@ export class MoneyOperation extends plugin {
         }
         //获取发送灵石数量
         let lingshi = e.msg.replace("#发福利", "");
-        var pattern = new RegExp("[0-9]+");
-        var str = lingshi;
+        const pattern = new RegExp("[0-9]+");
+        const str = lingshi;
         if (!pattern.test(str)) {
             e.reply(`错误福利`);
             return;
@@ -549,7 +592,7 @@ export class MoneyOperation extends plugin {
         Worldmoney = Number(Worldmoney);
         Math.trunc(Worldmoney);
         await redis.set("Xiuxian:Worldmoney", Worldmoney);
-        for (var i = 0; i < File_length; i++) {
+        for (let i = 0; i < File_length; i++) {
             let this_qq = File[i].replace(".json", '');
             await Add_灵石(this_qq, lingshi);
         }
@@ -571,8 +614,8 @@ export class MoneyOperation extends plugin {
         let lingshi = e.msg.replace("#", "");
         lingshi = lingshi.replace("发", "");
         lingshi = lingshi.replace("补偿", "");
-        var pattern = new RegExp("[0-9]+");
-        var str = lingshi;
+        const pattern = new RegExp("[0-9]+");
+        const str = lingshi;
         if (!pattern.test(str)) {
             e.reply(`错误福利`);
             return;
@@ -639,16 +682,16 @@ export class MoneyOperation extends plugin {
         //扣掉装备
         await Add_najie_thing(usr_qq, thing_name, "装备", -1);
         //获得随机
-        var x = 0.4;
+        const x = 0.4;
         let random1 = Math.random();
-        var y = 0.3;
+        const y = 0.3;
         let random2 = Math.random();
-        var z = 0.2
+        const z = 0.2;
         let random3 = Math.random();
-        var p = 0.1
+        const p = 0.1;
         let random4 = Math.random();
-        var m = "";
-        var lingshi = 0;
+        let m = "";
+        let lingshi = 0;
         //查找秘境
         if (random1 < x) {
             if (random2 < y) {

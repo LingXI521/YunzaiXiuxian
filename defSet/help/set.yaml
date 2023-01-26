@@ -9,6 +9,9 @@
     - icon: help-icon_8
       title: '#发+物品类型+物品名称*数量@群友'
       desc: '@DD斩首 #发装备护摩之杖*114514'
+    - icon: help-icon_8
+      title: '#全体发+物品类型+物品名称*数量'
+      desc: '#全体发道具潘多拉魔盒*114514'
 
     - icon: help-icon_8
       title: '#扣除99999@群友'
