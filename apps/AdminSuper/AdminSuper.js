@@ -1491,6 +1491,20 @@ export async function synchronization(e) {
         item => item.name == '幸运儿'
       ).加成;
     }
+     if(equipment.项链.属性=="幸运"){
+      if (player.仙宠.type == '幸运' && player.幸运 < player.仙宠.加成+equipment.项链.加成) {
+        player.幸运 = player.仙宠.加成 + player.addluckyNo+equipment.项链.加成;
+        player.幸运=player.幸运.toFixed(2);
+      }else{
+          player.幸运 =player.addluckyNo+equipment.项链.加成;
+        player.幸运=player.幸运.toFixed(2);
+      }
+      }else{
+        if (player.仙宠.type == '幸运' && player.幸运 < player.仙宠.加成) {
+          player.幸运 = player.仙宠.加成 + player.addluckyNo;
+          player.幸运=player.幸运.toFixed(2);
+        }
+      }
     if (!isNotNull(equipment.武器.fumo)) {
       equipment.武器.fumo="无";
     }
