@@ -1526,7 +1526,6 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     //===============================================================================这里是武器======================================================================================================
-    let usr_qq = A_player.id
     if (!isNotNull(usr_qq)) {
         if (donjie) {//冻结
             cnt6++
