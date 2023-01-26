@@ -64,11 +64,11 @@ export class UserSellAll extends plugin {
                     fnc: "tiandao",
                 },
                 {
-                    reg: '^#(锁定|解锁)(装备|道具|丹药|功法|草药|材料|盒子|仙宠|口粮).*$',
+                    reg: '^#(锁定|解锁)(装备|道具|丹药|功法|草药|材料|食材|盒子|仙宠|口粮).*$',
                     fnc: 'locked'
                 },
                 {
-                    reg: '^#一键赠送(装备|道具|丹药|功法|草药|材料|盒子|仙宠|仙宠口粮)$',
+                    reg: '^#一键赠送(装备|道具|丹药|功法|草药|材料|食材|盒子|仙宠|仙宠口粮)$',
                     fnc: 'all_give'
                 }
             ]
@@ -180,6 +180,9 @@ export class UserSellAll extends plugin {
         }
         if (thing_exist.class == "材料") {
             ifexist = najie.材料.find(item => item.name == thing_name);
+        }
+        if (thing_exist.class == "食材") {
+            ifexist = najie.食材.find(item => item.name == thing_name);
         }
         if (thing_exist.class == "盒子") {
             ifexist = najie.盒子.find(item => item.name == thing_name);
