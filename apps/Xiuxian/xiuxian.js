@@ -71,6 +71,21 @@ export async function existplayer(usr_qq) {
     }
     return false;
 }
+/**
+ * 
+ * @param {*} amount 输入数量
+ * @returns 返回正整数
+ */
+export async function convert2integer(amount) {
+    let number=1;
+    let reg = new RegExp(/^[1-9]\d*$/);
+    if (!reg.test(amount)) {
+        return number;
+    }
+    else{
+        return amount;
+    }
+}
 
 export async function Read_updata_log() {
     let dir = path.join(`${__PATH.updata_log_path}`);
