@@ -77,7 +77,7 @@ export async function existplayer(usr_qq) {
  * @returns 返回正整数
  */
 export async function convert2integer(amount) {
-    let number=0;
+    let number=1;
     let reg = new RegExp(/^[1-9]\d*$/);
     if (!reg.test(amount)) {
         return number
