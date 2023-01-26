@@ -6,6 +6,7 @@ import { get_player_img } from '../ShowImeg/showData.js';
 import {
   existplayer,
   Add_修为,
+  Add_血气,
   isNotNull,
   Write_player,
   Write_najie,
