@@ -380,6 +380,7 @@ export class Tiandibang extends plugin {
                     blood=1.3;
                 }
                 B_player = {
+                    id:tiandibang[k].qq,
                     名号: tiandibang[k].名号,
                     攻击: tiandibang[k].攻击,
                     防御: tiandibang[k].防御,
@@ -391,6 +392,7 @@ export class Tiandibang extends plugin {
                 }
             }
             let A_player = {
+                id:tiandibang[x].qq,
                 名号: tiandibang[x].名号,
                 攻击: parseInt((tiandibang[x].攻击))*atk,
                 防御: parseInt((tiandibang[x].防御)*def),
