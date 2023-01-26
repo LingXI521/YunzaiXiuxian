@@ -2745,26 +2745,25 @@ if (thing_name == "羊毛") {
                                 shigao=1;
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
-                            await Add_灵石(usr_qq,1000000)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*n+9*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*n+9*n}个,
                                     煤炭${18*n+9*n}个,铁矿${9*n+3*n}个,黄金矿${5*n}个和层岩巨渊地图${1*n}个`)
                             }else if(math>0.8&&math<0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 64*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*n+9*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*n+9*n}个,
                                     煤炭${18*n+9*n}个,铁矿${9*n+3*n}个,黄金矿${5*n}个,
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${64*n}个`)
                             }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 10*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*n+9*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*n+9*n}个,
                                 煤炭${18*n+9*n}个,铁矿${9*n+3*n}个,黄金矿${5*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${10*n}个`)
                             }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "红石", "材料",9*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*n+9*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*n+9*n}个,
                                 煤炭${18*n+9*n}个,铁矿${9*n+3*n}个,黄金矿${5*n}个和红石${9*n}个`)
                             }else if(math>0.5&&math<0.6){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*n);
@@ -2778,7 +2777,7 @@ if (thing_name == "羊毛") {
                                 await Add_灵石(usr_qq,-1000000)
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'你什么都没有得到')
                             }else{
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*n+9*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*n+9*n}个,
                                 煤炭${18*n+9*n}个,铁矿${9*n+3*n}个,黄金矿${5*n}个`)
                             }
                         }else{
