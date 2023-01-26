@@ -1325,9 +1325,6 @@ export async function synchronization(e) {
         JSON.stringify(action)
       );
     }
-    if (player.仙宠.type == '幸运' && player.幸运 < player.仙宠.加成) {
-      player.幸运 = player.仙宠.加成 + player.addluckyNo;
-    }
     // player.仙宠.forEach(仙宠 => {
     //   if (!isNotNull(仙宠.体力)) {
     //    仙宠.体力 =
