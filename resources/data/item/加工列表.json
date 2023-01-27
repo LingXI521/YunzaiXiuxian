@@ -123,17 +123,5 @@
         "outputs":[
             {"name":"煤炭","class":"材料","amount":1,"const_amount":0}
         ]
-    },
-     {
-        "name":"火把",
-        "热量":0,
-        "inputs":[
-            {"name":"未点燃的火把","class":"材料","amount":1,"const_amount":0},
-            {"name":"打火石","class":"道具","amount":0,"const_amount":1}
-        ],
-        "outputs":[
-            {"name":"火把","class":"材料","amount":1,"const_amount":0}
-        ]
     }
-
 ]
