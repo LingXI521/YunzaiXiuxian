@@ -344,6 +344,13 @@ export class UserStart extends plugin {
         if (!ifexistplay) {
             return;
         }
+        let player=await Read_player(usr_qq)
+        
+        //判断是否为黑名单
+        if (usr_qq == 392852264 || usr_qq==1027447951 || usr_qq==1825945633 || usr_qq==3478593180 || usr_qq==1259766981) {
+            e.reply("您已被作者拉至黑名单")
+            return;
+        }
         let img = await get_player_img(e);
         e.reply(img);
         return;
