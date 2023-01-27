@@ -1646,67 +1646,107 @@ export class UserHome extends plugin {
                     }
             }
               if (thing_name == "煤炭") {
+                let ranliao=await exist_najie_thing(usr_qq,"煤炭","材料");
                 let number= await exist_najie_thing(usr_qq,"熔炉","道具");
                 if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
                     await Add_najie_thing(usr_qq, "煤炭", "材料", -quantity);
                     await Add_热量(usr_qq,9*quantity)
                     e.reply('添加成功,火烧的更旺了')
-
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
+        if (thing_name == "木炭") {
+                let ranliao=await exist_najie_thing(usr_qq,"木炭","材料");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "木炭", "材料", -quantity);
+                    await Add_热量(usr_qq,9*quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
             }else{
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
         if (thing_name == "原木") {
-            let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-            if (isNotNull(number) && number >  0){
-                await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
-                await Add_热量(usr_qq,2*quantity)
-                await Write_player(usr_qq, player);
-                e.reply('添加成功,火烧的更旺了')
-                  return;
-        }else{
-            e.reply('你没有熔炉放个屁的燃料！')
-            return;
+                let ranliao=await exist_najie_thing(usr_qq,"原木","材料");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
+                    await Add_热量(usr_qq,2*quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
         }
-    }
-    if (thing_name == "木板") {
-        let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-        if (isNotNull(number) && number >  0){
-            await Add_najie_thing(usr_qq, "木板", "材料", -quantity);
-            await Add_热量(usr_qq,2*quantity)
-            e.reply('添加成功,火烧的更旺了')
-            return;
-    }else{
-        e.reply('你没有熔炉放个屁的燃料！')
-        return;
-    }
-}
+    if (thing_name == "原木") {
+                let ranliao=await exist_najie_thing(usr_qq,"木板","材料");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "木板", "材料", -quantity);
+                    await Add_热量(usr_qq,2*quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
 if (thing_name == "木棍") {
-    let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-    if (isNotNull(number) && number >0){
-        await Add_najie_thing(usr_qq, "木棍", "材料", -quantity);
-        await Add_热量(usr_qq,2*quantity)
-        await Write_player(usr_qq, player);
-        e.reply('添加成功,火烧的更旺了')
-        return;
-}else{
-    e.reply('你没有熔炉放个屁的燃料！')
-    return;
-}
-}
+                let ranliao=await exist_najie_thing(usr_qq,"木棍","材料");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "木棍", "材料", -quantity);
+                    await Add_热量(usr_qq,quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
 if (thing_name == "羊毛") {
-    let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-    if (isNotNull(number) && number >  0){
-        await Add_najie_thing(usr_qq, "羊毛", "材料", -quantity);
-        await Add_热量(usr_qq,2*quantity)
-        await Write_player(usr_qq, player);
-        e.reply('添加成功,火烧的更旺了')
-        return;
-}else{
-    e.reply('你没有熔炉放个屁的燃料！')
-    return;
-}
-}
+                let ranliao=await exist_najie_thing(usr_qq,"羊毛","食材");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "羊毛", "食材", -quantity);
+                    await Add_热量(usr_qq,quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
