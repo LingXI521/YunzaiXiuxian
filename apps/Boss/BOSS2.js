@@ -819,9 +819,9 @@ async function InitWorldBoss() {
             TotalPlayer++;
         }
     }
-    let x=math.trunc(Math.random*temp.length);
+    let x=Math.trunc(Math.random*temp.length);
     let BOSS_qq=temp[x];
-    
+
     let WorldBossStatus = {
         "id":BOSS_qq,
         "名号":"天理",
