@@ -53,7 +53,7 @@ export class BOSS2 extends plugin {
     }
 
 //天理开启指令
-    async CreateWorldBoss2() {
+    async CreateWorldBoss2(e) {
         if (e.isMaster) {
             if (!await BossIsAlive()) {
                 if (await InitWorldBoss() == 0)
@@ -68,7 +68,7 @@ export class BOSS2 extends plugin {
         else return;
     }
     //天理结束指令
-    async DeleteWorldBoss2() {
+    async DeleteWorldBoss2(e) {
         if (e.isMaster) {
             if (await BossIsAlive()) {
                 await redis.del("Xiuxian:WorldBossStatus2");
