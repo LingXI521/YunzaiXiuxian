@@ -20,6 +20,7 @@ import {
 import {
     Add_灵石,
     Add_热量,
+    Add_饱食度,
     Add_najie_thing,
     Add_HP,
     Add_修为,
