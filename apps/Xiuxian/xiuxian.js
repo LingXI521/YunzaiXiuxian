@@ -2294,6 +2294,11 @@ export async function foundthing(thing_name) {
             return data.gongfa_list[i];
         }
     }
+    for (var i = 0; i < data.homegongfa_list.length; i++) {
+        if (thing_name == data.homegongfa_list[i].name) {
+            return data.homegongfa_list[i];
+        }
+    }
     for (var i = 0; i < data.timegongfa_list.length; i++) {
         if (thing_name == data.timegongfa_list[i].name) {
             return data.timegongfa_list[i];
