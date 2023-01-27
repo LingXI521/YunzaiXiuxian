@@ -392,7 +392,6 @@ export class Tiandibang extends plugin {
                 }
             }
             let A_player = {
-                id:tiandibang[x].qq,
                 名号: tiandibang[x].名号,
                 攻击: parseInt((tiandibang[x].攻击))*atk,
                 防御: parseInt((tiandibang[x].防御)*def),
@@ -408,7 +407,6 @@ export class Tiandibang extends plugin {
                 def=(0.8+0.4*Math.random());
                 blood=(0.8+0.4*Math.random());
                 B_player = {
-                    id:tiandibang[x].qq,
                     名号: "灵修兽",
                     攻击: parseInt((tiandibang[x].攻击))*atk,
                     防御: parseInt((tiandibang[x].防御)*def),
