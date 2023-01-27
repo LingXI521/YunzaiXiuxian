@@ -12,7 +12,7 @@ import {
     Write_player,
     Locked_najie_thing
 } from '../Xiuxian/xiuxian.js'
-import {Add_灵石, Add_najie_thing} from '../Xiuxian/xiuxian.js'
+import {Add_灵石, Add_najie_thing,convert2integer} from '../Xiuxian/xiuxian.js'
 import {__PATH} from "../Xiuxian/xiuxian.js"
 
 /**
@@ -355,8 +355,9 @@ export class MoneyOperation extends plugin {
                 e.reply(`你在想屁吃？`);
                 return;
             }
-            let thing_exist = await foundthing(thing_name);
+            amount= await convert2integer(amount);
 
+            let thing_exist = await foundthing(thing_name);
             if (!thing_exist) {
                 e.reply(`这方世界没有[${thing_name}]`);
                 return;
