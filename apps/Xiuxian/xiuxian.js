@@ -256,7 +256,12 @@ export async function Add_魔道值(usr_qq, 魔道值 = 0) {
     await Write_player(usr_qq, player);
     return;
 }
-
+export async function Add_饱食度(usr_qq, 饱食度 = 0) {
+    let player = await Read_player(usr_qq);
+    player.饱食度 += Math.trunc(饱食度);
+    await Write_player(usr_qq, player);
+    return;
+}
 export async function Add_血气(usr_qq, 血气 = 0) {
     let player = await Read_player(usr_qq);
     player.血气 += Math.trunc(血气);
