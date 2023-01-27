@@ -1098,7 +1098,7 @@ async function clearNajieThing(thingType, thingName) {
       );
       if (!thingInNajie) return false;
 
-      let thingNumber = thingInNajie.number;
+      let thingNumber = thingInNajie.数量;
       Add_najie_thing(usrId, thingName, thingType, -thingNumber);
 
       if (thingType == '装备') {
