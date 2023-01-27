@@ -1645,12 +1645,11 @@ export class UserHome extends plugin {
                         return
                     }
             }
-                if (thing_name == "煤炭") {
+              if (thing_name == "煤炭") {
                 let number= await exist_najie_thing(usr_qq,"熔炉","道具");
                 if (isNotNull(number) && number > 0){
                     await Add_najie_thing(usr_qq, "煤炭", "材料", -quantity);
-                    player.热量+=9*quantity
-                    await Write_player(usr_qq, player);
+                    await Add_热量(usr_qq,9*quantity)
                     e.reply('添加成功,火烧的更旺了')
 
             }else{
@@ -1661,48 +1660,51 @@ export class UserHome extends plugin {
             let number= await exist_najie_thing(usr_qq,"熔炉","道具");
             if (isNotNull(number) && number >  0){
                 await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
-                player.热量+=2*quantity
+                await Add_热量(usr_qq,2*quantity)
                 await Write_player(usr_qq, player);
                 e.reply('添加成功,火烧的更旺了')
-
+                  return;
         }else{
             e.reply('你没有熔炉放个屁的燃料！')
+            return;
         }
     }
     if (thing_name == "木板") {
         let number= await exist_najie_thing(usr_qq,"熔炉","道具");
         if (isNotNull(number) && number >  0){
             await Add_najie_thing(usr_qq, "木板", "材料", -quantity);
-            player.热量+=2*quantity
-            await Write_player(usr_qq, player);
+            await Add_热量(usr_qq,2*quantity)
             e.reply('添加成功,火烧的更旺了')
-
+            return;
     }else{
         e.reply('你没有熔炉放个屁的燃料！')
+        return;
     }
 }
 if (thing_name == "木棍") {
     let number= await exist_najie_thing(usr_qq,"熔炉","道具");
     if (isNotNull(number) && number >0){
         await Add_najie_thing(usr_qq, "木棍", "材料", -quantity);
-        player.热量+=1*quantity
+        await Add_热量(usr_qq,2*quantity)
         await Write_player(usr_qq, player);
         e.reply('添加成功,火烧的更旺了')
-
+        return;
 }else{
     e.reply('你没有熔炉放个屁的燃料！')
+    return;
 }
 }
 if (thing_name == "羊毛") {
     let number= await exist_najie_thing(usr_qq,"熔炉","道具");
     if (isNotNull(number) && number >  0){
         await Add_najie_thing(usr_qq, "羊毛", "材料", -quantity);
-        player.热量+=3*quantity
+        await Add_热量(usr_qq,2*quantity)
         await Write_player(usr_qq, player);
         e.reply('添加成功,火烧的更旺了')
-
+        return;
 }else{
     e.reply('你没有熔炉放个屁的燃料！')
+    return;
 }
 }
             if (thing_name == "轮回阵旗") {
@@ -2283,8 +2285,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(mugao>0||shigao>0){
-                            player.饱食度-=1000;
-                            await Write_player(usr_qq, player);
+                           await Add_饱食度(usr_qq,-1000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 3*n);
@@ -2332,8 +2333,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(futou>0){
-                            player.饱食度-=1000;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-1000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             await Add_najie_thing(usr_qq, "鱼肉", "食材", 100*n);      
                             await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
@@ -2377,8 +2377,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(futou>0){
-                            player.饱食度-=1000;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-1000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             await Add_najie_thing(usr_qq, "鱼肉", "食材", 100*n);      
                             await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
@@ -2411,8 +2410,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(futou>0||shifu>0){
-                            player.饱食度-=500;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-500)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(futou) && futou>  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 3*n);
@@ -2471,8 +2469,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(futou>0||shifu>0){
-                            player.饱食度-=300;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-1000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(futou) && futou>  0){
                                 await Add_najie_thing(usr_qq, "原木", "材料", 5*n);
@@ -2524,8 +2521,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(muchan>0||shichan>0){
-                            player.饱食度-=100;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-100)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
                                 await Add_najie_thing(usr_qq, "胡萝卜", "食材", 150*n);
@@ -2569,7 +2565,7 @@ if (thing_name == "羊毛") {
             
             }
             if(thing_name == "轻策庄"){  
-                if(player.饱食度<=200){
+                if(player.饱食度<100){
                     e.reply('你快饿死了,还是先吃点东西吧');
                     return;
                 }
@@ -2581,8 +2577,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(muchan>0||shichan>0||zuanshichan>0){
-                            player.饱食度-=200;
-                            await Write_player(usr_qq, player);
+                             await Add_饱食度(usr_qq,-100)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
                                 if(muchan>10){muchan=10}
@@ -2649,8 +2644,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(mugao>0||shigao>0){
-                            player.饱食度-=2000;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-2000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
                                 if(mugao>5){
@@ -2736,8 +2730,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(mugao>0){
-                            player.饱食度-=3000;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-3000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*n);
@@ -2819,8 +2812,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                         if(muchan>0||shichan>0||zuanshichan>0){
-                            player.饱食度-=5000;
-                            await Write_player(usr_qq, player);
+                            await Add_饱食度(usr_qq,-5000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
                                 if(muchan>5){muchan=5}
