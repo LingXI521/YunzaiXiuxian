@@ -1982,14 +1982,19 @@ if (thing_name == "羊毛") {
                     let gongfa = ["一转轮回", "二转轮回", "三转轮回", "四转轮回", "五转轮回", "六转轮回", "七转轮回", "八转轮回", "九转轮回"];
                     for (let i = 0; i < player.lunhui; i++) {
                         let x = await exist_najie_thing(usr_qq, gongfa[i], "功法");
+                        console.log(x)
                         if (!x) {
                             await Reduse_player_学习功法(usr_qq, gongfa[i]);
                         }
-                        await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        else
+                        {
+                            await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        }
                     }
-                    player.lunhui = 0;
                 }
                 await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                player = await Read_player(usr_qq);
+                player.lunhui = 0;
                 player.灵根 = await get_random_talent();
                 data.setData("player", usr_qq, player);
                 await player_efficiency(usr_qq);
