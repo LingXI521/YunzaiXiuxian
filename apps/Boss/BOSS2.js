@@ -804,7 +804,26 @@ async function InitWorldBoss() {
     let yuansu=["仙之心·火","仙之心·水","仙之心·雷","仙之心·冰","仙之心·木"];
     let index = Math.trunc(Math.random() * yuansu.length);
     let linggen = yuansu[index];
+    //从存档随机选一个qq号
+    let File = fs.readdirSync(data.filePathMap.player);
+    File = File.filter(file => file.endsWith(".json"));
+    let temp = [];
+    let TotalPlayer = 0;
+    for (let i = 0; i < File.length; i++) {
+        let this_qq = File[i].replace(".json", '');
+        this_qq = parseInt(this_qq);
+        let player = await data.getData("player", this_qq);
+        let level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
+        if (level_id >21 && level_id<42) {
+            temp[TotalPlayer] = parseInt(this_qq);
+            TotalPlayer++;
+        }
+    }
+    let x=math.trunc(Math.random*temp.length);
+    let BOSS_qq=temp[x];
+    
     let WorldBossStatus = {
+        "id":BOSS_qq,
         "名号":"天理",
         "当前血量": Health,
         "血量上限": Health,
