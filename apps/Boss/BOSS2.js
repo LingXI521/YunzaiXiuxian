@@ -775,7 +775,7 @@ export class BOSS2 extends plugin {
                     if (i == PlayerList.length - 1) Rewardmsg.push("其余参与的修仙者均获得30000灵石奖励！");
                 }
                 await ForwardMsg(e, Rewardmsg);
-                DeleteWorldBoss();
+                DeleteWorldBoss2();
             }
             WorldBOSSBattleCD[e.user_id] = new Date().getTime();
             WorldBOSSBattleLock = 0;
