@@ -819,7 +819,7 @@ async function InitWorldBoss() {
             TotalPlayer++;
         }
     }
-    let x=Math.trunc(Math.random*temp.length);
+    let x=Math.trunc(Math.random()*temp.length);
     let BOSS_qq=temp[x];
 
     let WorldBossStatus = {
