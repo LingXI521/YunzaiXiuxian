@@ -121,7 +121,7 @@
             {"name":"熔炉","class":"道具","amount":0,"const_amount":0}
         ],
         "outputs":[
-            {"name":"煤炭","class":"材料","amount":1,"const_amount":0}
+            {"name":"木炭","class":"材料","amount":1,"const_amount":0}
         ]
     }
 ]
