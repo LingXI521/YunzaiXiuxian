@@ -94,6 +94,11 @@ export class UserStart extends plugin {
             this.Show_player(e);
             return;
         }
+        //判断是否为黑名单
+        if (usr_qq == 392852264 || usr_qq==1027447951 || usr_qq==1825945633 || usr_qq==3478593180 || usr_qq==1259766981) {
+            e.reply("您已被作者拉至黑名单")
+            return;
+        }
         //初始化玩家信息
         let File_msg = fs.readdirSync(__PATH.player_path);
         let n = File_msg.length + 1;
