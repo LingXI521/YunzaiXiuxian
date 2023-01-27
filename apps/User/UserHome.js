@@ -887,13 +887,12 @@ export class UserHome extends plugin {
             if(quantity<1){
                 quantity=1;
             }
-             if(thing_name=="生肉"){
+               if(thing_name=="生肉"){
                  let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=2*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,2*quantity)
+                e.reply(`服用成功,增加了${2*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -904,9 +903,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=4*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,4*quantity)
+                e.reply(`服用成功,增加了${4*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -917,9 +915,8 @@ export class UserHome extends plugin {
                    let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=2*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,2*quantity)
+                e.reply(`服用成功,增加了${2*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -930,9 +927,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=4*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,4*quantity)
+                e.reply(`服用成功,增加了${4*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -943,10 +939,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=2*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
-                return;
+                await Add_饱食度(usr_qq,2*quantity)
+                e.reply(`服用成功,增加了${2*quantity}点饱食度`)
                  }else{
                      e.reply("你没有那么多的"+thing_name)
                      return;
@@ -956,9 +950,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=1*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,1*quantity)
+                e.reply(`服用成功,增加了${1*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -969,9 +962,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=1*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,1*quantity)
+                e.reply(`服用成功,增加了${1*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -982,9 +974,8 @@ export class UserHome extends plugin {
                 let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=3*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,3*quantity)
+                e.reply(`服用成功,增加了${3*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -995,9 +986,8 @@ export class UserHome extends plugin {
                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=2*quantity;
-                await Write_player(usr_qq, player);
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
+                await Add_饱食度(usr_qq,2*quantity)
+                e.reply(`服用成功,增加了${2*quantity}点饱食度`)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -1007,9 +997,8 @@ export class UserHome extends plugin {
             if(thing_name=="面包"){
                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
-                await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=3*quantity;
-                await Write_player(usr_qq, player);
+                    await Add_饱食度(usr_qq,3*quantity)
+                    e.reply(`服用成功,增加了${3*quantity}点饱食度`)
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
                  }else{
@@ -1022,13 +1011,13 @@ export class UserHome extends plugin {
                  if(shicai>=quantity){
                 if(player.当前血量>0){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                player.饱食度+=2*quantity;
+                await Add_饱食度(usr_qq,4*quantity)
                 player.当前血量-=500000;
                 await Write_player(usr_qq, player);
                 if(player.当前血量<0){
                     player.当前血量=0;
                 }
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度+'你还剩下血量'+player.当前血量)
+                e.reply(`服用成功,增加了${2*quantity}点饱食度,你还剩下${player.当前血量}点血量`)
                 }
                 return;
                  }else{
