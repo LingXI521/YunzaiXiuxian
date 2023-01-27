@@ -32,9 +32,10 @@ import {
     Add_血气,
     Read_equipment,
     Write_equipment,
-    foundthing
+    foundthing,
+    convert2integer
 } from '../Xiuxian/xiuxian.js'
-import { __PATH } from "../Xiuxian/xiuxian.js"
+import { __PATH} from "../Xiuxian/xiuxian.js"
 import { Add_仙宠 } from "../Pokemon/Pokemon.js"
 import { get_equipment_img } from '../ShowImeg/showData.js'
 
@@ -804,14 +805,7 @@ export class UserHome extends plugin {
         let code = msg.split("\*");
         let thing_name = code[0];
         let quantity = code[1];
-        if (quantity == null ) {
-           quantity=1
-        } else {
-            quantity = code[1].replace(/[^0-9]/ig, "");
-        }
-        if(quantity<=1){
-             quantity = 1;
-        }
+         quantity=await convert2integer(quantity);
         //看看物品名称有没有设定,是不是瞎说的
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
@@ -885,9 +879,7 @@ export class UserHome extends plugin {
                 e.reply(`你没有【${thing_name}】这样的【${thing_exist.class}】`);
                 return;
             }
-            if(quantity<1){
-                quantity=1;
-            }
+             quantity=await convert2integer(quantity)
                if(thing_name=="生肉"){
                  let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
