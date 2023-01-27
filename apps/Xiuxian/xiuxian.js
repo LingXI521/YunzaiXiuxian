@@ -698,7 +698,7 @@ export async function Add_najie_thing(usr_qq, thing_name, thing_class, n, pinji 
     }
     if (thing_class == "功法") {
         if (x > 0 && !exist) {//无中生有
-            let gonfa = data.gongfa_list.find(item => item.name == name);
+            let gonfa = data.gongfa_list.find(item => item.name == name)||data.homegongfa_list.find(item => item.name == name);
             if (gonfa == undefined) {
                 gonfa = data.timegongfa_list.find(item => item.name == name);
                 najie.功法.push(gonfa);
