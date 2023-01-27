@@ -301,7 +301,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"铁锭","class":"材料","amount":20}
+            {"name":"金锭","class":"材料","amount":20}
         ]
     },
     {
@@ -309,7 +309,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"铁锭","class":"材料","amount":20}
+            {"name":"金锭","class":"材料","amount":20}
         ]
     },
     {
@@ -317,7 +317,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"铁锭","class":"材料","amount":16}
+            {"name":"钻石","class":"材料","amount":16}
         ]
     },
     {
@@ -325,7 +325,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"铁锭","class":"材料","amount":16}
+            {"name":"钻石","class":"材料","amount":16}
         ]
     },
     {
