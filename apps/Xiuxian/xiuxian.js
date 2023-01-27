@@ -1200,8 +1200,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     let att = last_att;//最终伤害,last_att为原伤害
     let fyjiachen = 0//防御加成
     //AB灵根
-    let usr_qq = A_player.id
-    let equipment = await Read_equipment(usr_qq);
+    
+   
     let A_lin = A_player.灵根.name
     let B_lin = B_player.灵根.name
     let chufa = false//是否触发
@@ -1217,6 +1217,90 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     let gandianhuihe = Number(Agandianhuihe)
     //回合数
     let cnt6 = Number(cnt)
+
+
+    let usr_qq=A_player.id
+    if(!isNotNull(usr_qq)){
+        let fanyin = {
+            "A_player": A_player,
+            "B_player": B_player,
+            "msg": msg,
+            "att": att,
+            "fyjiachen": fyjiachen,
+            "chufa": chufa,
+            "cnt": cnt6,
+            "gandianhuihe": gandianhuihe,
+            "chaodaohuihe2": chaodaohuihe2,
+            "chaodao": chaodao,
+            "ranshao": ranshao,
+            "gandian": gandian
+        }
+        return fanyin
+    }
+    let dir = path.join(`${__PATH.equipment_path}/${usr_qq}.json`);
+    let equipment = fs.readFileSync(dir, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err)
+            return "error";
+        }
+        return data;
+    })
+    //将字符串数据转变成数组格式
+    equipment = JSON.parse(equipment);
+        if (donjie) {//冻结
+            cnt6++
+        }
+        if (ranshao || gandian) {//感电燃烧
+            gandianhuihe += 3
+        }
+        if (chaodao) {//超导
+            chaodaohuihe2 += 3
+        }
+        //燃烧
+        if (A_lin == yuansu[0] && B_lin == yuansu[6]) {
+            ranshao = true
+        }
+        if(A_lin == yuansu[0] &&equipment.武器.fumo=="草"){
+            ranshao = true
+        }
+        if (A_lin == yuansu[6] && B_lin == yuansu[0]) {
+            ranshao = true
+        }
+        if (A_lin == yuansu[6] && equipment.武器.fumo=="火") {
+            ranshao = true
+        }
+       
+        //感电
+        if (A_lin == yuansu[1] && B_lin == yuansu[2]) {
+            gandian = true
+        }
+        if (A_lin == yuansu[1] && equipment.武器.fumo=="雷") {
+            gandian = true
+        }
+        if (A_lin == yuansu[2] && B_lin == yuansu[1]) {
+            gandian = true
+        }
+        if (A_lin == yuansu[2] && equipment.武器.fumo=="火") {
+            gandian = true
+        }
+        //超导
+        if (A_lin == yuansu[2] && B_lin == yuansu[4]) {
+            chaodao = true
+        }
+        if (A_lin == yuansu[2] && equipment.武器.fumo=="冰") {
+            chaodao = true
+        }
+        if (A_lin == yuansu[4] && B_lin == yuansu[2]) {
+            chaodao = true
+        }
+        if (A_lin == yuansu[2] && equipment.武器.fumo=="雷") {
+            chaodao = true
+        }
+        if (chaodaohuihe > 0 && !chaodao) {
+            chaodao = true
+        }
+        A_player.攻击 = att
+      
     //火元素
     if (A_lin == yuansu[0]) {
         //火水
@@ -1526,76 +1610,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     //===============================================================================这里是武器======================================================================================================
-    if (!isNotNull(usr_qq)) {
-        if (donjie) {//冻结
-            cnt6++
-        }
-        if (ranshao || gandian) {//感电燃烧
-            gandianhuihe += 3
-        }
-        if (chaodao) {//超导
-            chaodaohuihe2 += 3
-        }
-        //燃烧
-        if (A_lin == yuansu[0] && B_lin == yuansu[6]) {
-            ranshao = true
-        }
-        if(A_lin == yuansu[0] &&equipment.武器.fumo=="草"){
-            ranshao = true
-        }
-        if (A_lin == yuansu[6] && B_lin == yuansu[0]) {
-            ranshao = true
-        }
-        if (A_lin == yuansu[6] && equipment.武器.fumo=="火") {
-            ranshao = true
-        }
-       
-        //感电
-        if (A_lin == yuansu[1] && B_lin == yuansu[2]) {
-            gandian = true
-        }
-        if (A_lin == yuansu[1] && equipment.武器.fumo=="雷") {
-            gandian = true
-        }
-        if (A_lin == yuansu[2] && B_lin == yuansu[1]) {
-            gandian = true
-        }
-        if (A_lin == yuansu[2] && equipment.武器.fumo=="火") {
-            gandian = true
-        }
-        //超导
-        if (A_lin == yuansu[2] && B_lin == yuansu[4]) {
-            chaodao = true
-        }
-        if (A_lin == yuansu[2] && equipment.武器.fumo=="冰") {
-            chaodao = true
-        }
-        if (A_lin == yuansu[4] && B_lin == yuansu[2]) {
-            chaodao = true
-        }
-        if (A_lin == yuansu[2] && equipment.武器.fumo=="雷") {
-            chaodao = true
-        }
-        if (chaodaohuihe > 0 && !chaodao) {
-            chaodao = true
-        }
-        A_player.攻击 = att
-        let fanyin = {
-            "A_player": A_player,
-            "B_player": B_player,
-            "msg": msg,
-            "att": att,
-            "fyjiachen": fyjiachen,
-            "chufa": chufa,
-            "cnt": cnt6,
-            "gandianhuihe": gandianhuihe,
-            "chaodaohuihe2": chaodaohuihe2,
-            "chaodao": chaodao,
-            "ranshao": ranshao,
-            "gandian": gandian
-        }
-        return fanyin
-    }
+    
+        
    
     //将字符串数据转变成数组格式
     
