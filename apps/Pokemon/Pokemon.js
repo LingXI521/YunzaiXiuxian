@@ -8,7 +8,7 @@ import {
     Write_player,
     Write_najie,
 } from '../Xiuxian/xiuxian.js';
-import {Add_najie_thing, Add_灵石} from '../Xiuxian/xiuxian.js';
+import {Add_najie_thing, Add_灵石,convert2integer} from '../Xiuxian/xiuxian.js';
 import plugin from '../../../../lib/plugins/plugin.js';
 import config from '../../model/Config.js';
 import data from '../../model/XiuxianData.js';
@@ -192,15 +192,7 @@ export class Pokemon extends plugin {
         let code = thing.split('*');
         let thing_name = code[0]; //物品
         let thing_value = code[1]; //数量
-        if (!isNotNull(thing_value) || thing_value < 0) {
-            e.reply('休想卡bug');
-            return;
-        }
-        if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
-        } else {
-            e.reply('休想卡bug');
-            return;
-        }
+        thing_value=await convert2integer(thing_value);
         let ifexist = data.xianchonkouliang.find(item => item.name == thing_name); //查找
         if (!isNotNull(ifexist)) {
             e.reply('此乃凡物,仙宠不吃' + thing_name);

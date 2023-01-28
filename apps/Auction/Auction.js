@@ -2,8 +2,6 @@ import plugin from '../../../../lib/plugins/plugin.js';
 import data from '../../model/XiuxianData.js';
 import common from '../../../../lib/common/common.js';
 import config from '../../model/Config.js';
-import fs from 'fs';
-import path from 'path';
 import Show from '../../model/show.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import { __PATH } from '../Xiuxian/xiuxian.js';
@@ -15,7 +13,7 @@ import {
   Read_najie,
   isNotNull,
 } from '../Xiuxian/xiuxian.js';
-import { Add_najie_thing, Add_灵石 } from '../Xiuxian/xiuxian.js';
+import { Add_najie_thing,convert2integer} from '../Xiuxian/xiuxian.js';
 
 // const intervalTime = 7 * 24 * 60 * 60 * 1000;
 
@@ -343,35 +341,9 @@ export class Auction extends plugin {
     let thing_name = code[0];
     let thing_value = parseInt(code[1]);
     let thing_amount = parseInt(code[2]);
+    thing_value=await convert2integer(thing_value);
+    thing_amount=await convert2integer(thing_amount);
     let thing_data;
-    if (
-      thing_amount < 1 ||
-      thing_amount == null ||
-      thing_amount == undefined ||
-      thing_amount == NaN
-    ) {
-      e.reply('你看看你输的什么玩意');
-      return;
-    }
-    if (
-      thing_value < -0 ||
-      thing_value == null ||
-      thing_value == undefined ||
-      thing_value == NaN
-    ) {
-      e.reply(`输入价格有误`);
-      return;
-    }
-    if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
-    } else {
-      e.reply('休想卡bug');
-      return;
-    }
-    if (!isNaN(parseFloat(thing_amount)) && isFinite(thing_amount)) {
-    } else {
-      e.reply('休想卡bug');
-      return;
-    }
     let najie = await Read_najie(usr_qq);
     let equips = najie.装备.filter(item => item.name == thing_name);
     let danyaos = najie.丹药.filter(item => item.name == thing_name);

@@ -349,14 +349,7 @@ export class MoneyOperation extends plugin {
                 pinji = thing_name_pinji_amount[1];
                 amount = Number(thing_name_pinji_amount[2]);
             }
-            if (amount == NaN) {
-                return;
-            } else if (amount < 0) {
-                e.reply(`你在想屁吃？`);
-                return;
-            }
             amount= await convert2integer(amount);
-
             let thing_exist = await foundthing(thing_name);
             if (!thing_exist) {
                 e.reply(`这方世界没有[${thing_name}]`);

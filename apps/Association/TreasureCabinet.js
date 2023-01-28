@@ -3,11 +3,11 @@ import config from "../../model/Config.js"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
 import { segment } from "oicq"
-import { timestampToTime, shijianc, get_random_fromARR, ForwardMsg, Getmsg_battle, get_random_talent, player_efficiency, Read_najie } from '../Xiuxian/xiuxian.js'
+import {shijianc, ForwardMsg,Read_najie,convert2integer} from '../Xiuxian/xiuxian.js'
 import { Add_灵石, Add_HP, Add_血气, Add_修为, Add_najie_thing, isNotNull, Read_player, __PATH, foundthing } from '../Xiuxian/xiuxian.js'
 import path from "path"
 import { existplayer } from "../Xiuxian/xiuxian.js";
-import { exist_najie_thing,Locked_najie_thing, Read_equipment, Write_equipment, Write_player } from "../Xiuxian/xiuxian.js";
+import { exist_najie_thing,Locked_najie_thing,Write_player } from "../Xiuxian/xiuxian.js";
 
 
 /**
@@ -219,16 +219,8 @@ export class TreasureCabinet extends plugin {
             e.reply("阁主:你想把藏宝阁淹了吗？")
             return;
         }
-        if (thing_acunot < 1 || thing_acunot == null || thing_acunot == undefined || thing_acunot == NaN) {
-            e.reply('休想卡bug');
-            return;
-        }
-        if (thing_value <= 1) {
-             e.reply('休想卡bug');
-            return;
-        }
-        thing_acunot=Math.ceil(thing_acunot);
-        thing_value=Math.ceil(thing_value);
+        thing_acunot=await convert2integer(thing_acunot);
+        thing_value=await convert2integer(thing_value);
         if (!isNaN(parseFloat(thing_value)) && isFinite(thing_value)) {
         } else {
             return;
@@ -777,7 +769,6 @@ export class TreasureCabinet extends plugin {
         }
     }
 
-
     async Feed_Beast(e) {
         //不开放私聊功能
         if (!e.isGroup) {
@@ -800,7 +791,6 @@ export class TreasureCabinet extends plugin {
             e.reply("你的宗门还没有神兽的护佑，快去召唤神兽吧");
             return;
         }
-
         let thing = e.msg.replace("#", '');
         thing = thing.replace("喂给神兽", '');
         let code = thing.split("\*");
@@ -809,19 +799,14 @@ export class TreasureCabinet extends plugin {
         let pinji=null;
         if (code.length==2) {
             thing_name=code[0];
-            thing_value=code[1].replace(/[^0-9]/ig, "");
+            thing_value=code[1];
         }
         else if(code.length==3){
             thing_name=code[0];
             pinji=code[1];
-            thing_value=code[2].replace(/[^0-9]/ig, "");
+            thing_value=code[2];
         }
-        if (thing_value < 1 || thing_value == null || thing_value == undefined || thing_value == NaN) {
-            e.reply('休想卡bug');
-            return;
-        }
-        thing_value=Math.ceil(thing_value)
-
+        thing_value=await convert2integer(thing_value);
         //判断列表中是否存在，不存在不能卖,并定位是什么物品
         let thing_exist = await foundthing(thing_name);
         if (!thing_exist) {
