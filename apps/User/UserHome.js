@@ -2963,7 +2963,8 @@ if (thing_name == "羊毛") {
                 }
                 let shenyuan=await exist_najie_thing(usr_qq, "深渊传送门", "道具")
                 if(shenyuan<1){
-
+                            e.reply('你的传送门不足')
+                            return;
                 }
                 let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
                 if(huoba<128){
@@ -2996,6 +2997,8 @@ if (thing_name == "羊毛") {
                     }else{zuanshichan=0;}
                     await Add_najie_thing(usr_qq, "火把", "道具", -128);
                     await Add_najie_thing(usr_qq, "深渊", "道具", -1);
+                    await Add_修为(usr_qq,-10000000)
+                    await Add_饱食度(usr_qq,-10000)
                   if(math>0.9&&math<=1){
                     await Add_najie_thing(usr_qq, "七星海棠丹", "丹药", 1*n);
                     e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
