@@ -1634,7 +1634,26 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             msg.push("你的元素与你佩戴的项链产生共鸣,下一击伤害增加" + equipment.项链.加成 * 100 + "%")
         }
     }
-
+       if(equipment.武器.name=="赤角石溃杵"){
+      if(A_lin == yuansu[3]&&random>0.5){
+        if(equipment.武器.fumo=="岩"){
+        msg.push("触发元素爆发:[鬼域狂欢],百分之0.2的防御转化成攻击")
+               fyjiachen-=A_player.防御 * 0.2
+               att=last_att+(A_player.防御*0.1)  
+                fyjiachen-=A_player.防御 * 0.2
+               att=last_att+(A_player.防御*0.1)
+               att=last_att*1.5
+               }else{
+                msg.push("触发元素爆发:[鬼王游行通通闪开],百分之0.1的防御转化成攻击")
+                fyjiachen-=A_player.防御 * 0.2
+                att=last_att+(A_player.防御*0.1)  
+               }
+      }else{
+        msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强120%")
+                fyjiachen += A_player.防御 * 0.5
+                att=last_att*1.2
+      }
+    }
 
     //玄冰之枪
     if (equipment.武器.name == "玄冰之枪") {
