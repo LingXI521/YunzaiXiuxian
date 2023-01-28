@@ -423,7 +423,7 @@
     },
     {
         "name":"深渊传送门",
-        "class":"材料",
+        "class":"道具",
         "amount":1,
         "materials":[
             {"name":"黑曜石","class":"材料","amount":12}
