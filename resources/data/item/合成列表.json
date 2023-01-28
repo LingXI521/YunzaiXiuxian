@@ -38,7 +38,7 @@
         "class":"道具",
         "amount":1,
         "materials":[
-            {"name":"钻石","class":"道具","amount":5}
+            {"name":"钻石","class":"材料","amount":5}
         ]
     },
     {
