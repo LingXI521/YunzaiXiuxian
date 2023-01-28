@@ -9,6 +9,7 @@
 git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian-emulator-plugin/
 
 ```
+[群友。做的修仙攻略](https://docs.qq.com/doc/DSUhqZWdpZXJuUndZ?&u=4bd0757f64094c48b02d7cfc4eaeb44b)  
 > 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
 > 转移存档            
 ![转移存档](pic/photo4.jpg)            
