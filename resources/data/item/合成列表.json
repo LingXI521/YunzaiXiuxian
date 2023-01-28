@@ -18,6 +18,15 @@
         ]
     },
     {
+        "name":"下界合金剑",
+        "class":"装备",
+        "amount":1,
+        "materials":[
+            {"name":"下界合金锭","class":"材料","amount":30},
+            {"name":"木棍","class":"材料","amount":1}
+        ]
+    },
+    {
         "name":"生铁甲",
         "class":"装备",
         "amount":1,
@@ -26,11 +35,27 @@
         ]
     },
     {
+        "name":"下界合金甲",
+        "class":"装备",
+        "amount":1,
+        "materials":[
+            {"name":"下界合金锭","class":"材料","amount":30}
+        ]
+    },
+    {
         "name":"生铁头盔",
         "class":"装备",
         "amount":1,
         "materials":[
             {"name":"生铁","class":"材料","amount":8}
+        ]
+    },
+     {
+        "name":"下界合金头盔",
+        "class":"装备",
+        "amount":1,
+        "materials":[
+            {"name":"下界合金锭","class":"材料","amount":30}
         ]
     },
     {
