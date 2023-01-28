@@ -420,5 +420,13 @@
             {"name":"木板","class":"材料","amount":8},
             {"name":"红石","class":"材料","amount":1}
         ]
+    },
+    {
+        "name":"深渊传送门",
+        "class":"材料",
+        "amount":1,
+        "materials":[
+            {"name":"黑曜石","class":"材料","amount":12}
+        ]
     }
 ]
