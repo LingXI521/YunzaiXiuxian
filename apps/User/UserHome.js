@@ -990,6 +990,7 @@ export class UserHome extends plugin {
             if(thing_name=="面包"){
                let shicai=await exist_najie_thing(usr_qq, thing_name, "食材")
                  if(shicai>=quantity){
+                     await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                     await Add_饱食度(usr_qq,3*quantity)
                     e.reply(`服用成功,增加了${3*quantity}点饱食度`)
                 e.reply('服用成功,你现在的饱食度是'+player.饱食度)
