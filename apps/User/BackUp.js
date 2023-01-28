@@ -48,9 +48,9 @@ export class BackUp extends plugin {
         'Forum',
         'qinmidu',
         'tiandibang',
-        'equipment_path',
-        'najie_path',
-        'player_path',
+        'equipment',
+        'najie',
+        'player',
       ];
 
       // [[fn, fn...], ...]
@@ -161,9 +161,9 @@ export class BackUp extends plugin {
         'Forum',
         'qinmidu',
         'tiandibang',
-        'equipment_path',
-        'najie_path',
-        'player_path',
+        'equipment',
+        'najie',
+        'player',
       ];
 
       // [[fn, fn...], ...]
