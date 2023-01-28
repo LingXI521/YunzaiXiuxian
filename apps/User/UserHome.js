@@ -1066,6 +1066,7 @@ export class UserHome extends plugin {
                 if (allaction) {
                     console.log(allaction);
                 } else {
+                    await Add_najie_thing(usr_qq, thing_name, "丹药", quantity);
                     return;
                 }
                 allaction = false;
@@ -1078,6 +1079,7 @@ export class UserHome extends plugin {
                 if (allaction) {
                     console.log(allaction);
                 } else {
+                    await Add_najie_thing(usr_qq, thing_name, "丹药", quantity);
                     return;
                 }
                 allaction = false;
