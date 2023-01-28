@@ -2457,7 +2457,7 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math>0&&math<0.5){
+                            if(math>0&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
                                 e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
@@ -2578,7 +2578,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个`)
                                 return;
-                            }else if(math>0.1&&math<=0.5){
+                            }else if(math>0.1&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个`)
                                 return;
@@ -2943,6 +2943,94 @@ if (thing_name == "羊毛") {
                             return;
                         }
             }
+            if(thing_name == "深渊"){  
+                if(player.饱食度<=10000){
+                    e.reply('你快饿死了,还是先吃点东西吧');
+                    return;
+                }
+                if(now_level_id<41){
+                    e.reply("你是仙人吗就去深渊");
+                     return;
+               }
+                if(player.修为<10000000){
+                    e.reply("你需要积累1000w修为才能抵御深渊魔气");
+                    return;
+                }
+                if (quantity > 1) {
+                    e.reply("地图一次只能使用一个")
+                    return;
+                }
+                let shenyuan=await exist_najie_thing(usr_qq, "深渊传送门", "道具")
+                if(shenyuan<1){
+
+                }
+                let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
+                if(huoba<128){
+                    e.reply('你的火把不够,先去弄一些火把再来吧');
+                    return;
+                }
+                let muchan=await exist_najie_thing(usr_qq, "铁镐", "道具")
+                let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
+                let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
+                if(muchan>0||shichan>0||zuanshichan>0){
+                    await Add_饱食度(usr_qq,-10000)
+                    await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
+                    if (isNotNull(muchan) && muchan> 0){
+                        muchan=1
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*muchan*n);
+                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*muchan*n);
+                        await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
+                    }else{muchan=0;}
+                    if(isNotNull(shichan) && shichan > 0){
+                        shichan=1
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*shichan*n);
+                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*shichan*n);
+                        await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
+                    }else{shichan=0;}
+                    if(isNotNull(zuanshichan) &&zuanshichan> 0){
+                        zuanshichan=1
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 36*zuanshichan*n);
+                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 9*zuanshichan*n);
+                        await Add_najie_thing(usr_qq, "钻石镐", "道具", -1*zuanshichan);
+                    }else{zuanshichan=0;}
+                    await Add_najie_thing(usr_qq, "火把", "道具", -128);
+                    await Add_najie_thing(usr_qq, "深渊", "道具", -1);
+                  if(math>0.9&&math<=1){
+                    await Add_najie_thing(usr_qq, "七星海棠丹", "丹药", 1*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,还有七星海棠丹一个`)
+                    return;
+                  }else if(math>0.6&&math<=0.9){
+                    await Add_najie_thing(usr_qq, "深渊石", "材料", 100*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,额外捡到深渊石${100*n}个`)
+                    return;
+                  }else if(math>0.1&&math<=0.2){
+                    await Add_najie_thing(usr_qq, "经验球", "丹药", 100*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验球${150*n}个`)
+                    return;
+                  }else if(math>0.2&&math<=0.3){
+                    await Add_najie_thing(usr_qq, "血气瓶", "丹药", 25*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,血气瓶${50*n}个`)
+                    return;
+                  }else if(math>0.3&&math<=0.5){
+                    await Add_najie_thing(usr_qq, "经验瓶", "丹药", 40*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验瓶${40*n}个`)
+                    return;
+                  }else{
+                    await Add_najie_thing(usr_qq, "岩浆", "材料", 10*n);
+                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,岩浆${10*n}个`)
+                    return;
+                  }
+        }else{
+            e.reply('你想起来你没有镐子,于是又回家了')
+            return;
+        }
+    }
          }
      if (func == "合成"){
             let wupin=data.hecheng_list.find(item=>item.name==thing_name);
