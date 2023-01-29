@@ -141,7 +141,10 @@ export class UserStart extends plugin {
             "仙宠": [],
             "练气皮肤":0,
             "装备皮肤":0,
-            "幸运": data.necklace_list.find(item => item.name == "幸运儿").加成
+            "幸运": data.necklace_list.find(item => item.name == "幸运儿").加成,
+            "熔炉":0,
+            "附魔台":0,
+            "书架":0
         }
         await Write_player(usr_qq, new_player);
         //初始化装备
