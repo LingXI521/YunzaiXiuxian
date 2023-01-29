@@ -1583,34 +1583,28 @@ if (thing_name == "寻宝工具盒") {
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有4个血气瓶"])
                         return
                     }
-                    if (daomu > 0.5 && daomu <= 0.6) {
+                    if (daomu > 0.5 && daomu <= 0.7) {
                         await Add_najie_thing(usr_qq, "经验瓶", "丹药",4 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有3个经验瓶"])
                         return
                     }
-                    if (daomu > 0.6 && daomu <= 0.7) {
+                    if (daomu > 0.7 && daomu <= 0.8) {
                         await Add_najie_thing(usr_qq, "定灵珠", "道具",1 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个定灵珠"])
                         return
                     }
-                    if (daomu > 0.7 && daomu <= 0.8) {
+                    if (daomu > 0.8 && daomu <= 0.9) {
                         await Add_najie_thing(usr_qq, "起死回生丹", "丹药",1 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个起死回生丹"])
                         return
                     }
-                    if (daomu > 0.8 && daomu <= 0.9) {
+                    if (daomu > 0.9 && daomu <= 1) {
                         await Add_najie_thing(usr_qq, "重铸石", "道具",1 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
                         e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个重铸石"])
-                        return
-                    }
-                    if (daomu > 0.9 && daomu <= 1) {
-                        await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具",1 );
-                        await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个闹钟呼唤器"])
                         return
                     }
             }
@@ -2759,7 +2753,6 @@ if (thing_name == "羊毛") {
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
                              await Add_najie_thing(usr_qq, "火把", "道具", -64);
-                            await Add_灵石(usr_qq,1200000)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
                                 e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
