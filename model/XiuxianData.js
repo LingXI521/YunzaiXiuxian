@@ -86,6 +86,9 @@ class XiuxianData {
         this.jiagong_list=JSON.parse(fs.readFileSync(`${this.lib_path}/加工列表.json`));
        //加载mc附魔书列表
         this.fumoshu_list=JSON.parse(fs.readFileSync(`${this.lib_path}/附魔书列表.json`));
+        //加载常驻附魔书
+        this.changzhufumoshu_list=JSON.parse(fs.readFileSync(`${this.lib_path}/常驻附魔书.json`));
+
         //加载地点列表
         this.didian_list = JSON.parse(fs.readFileSync(`${this.lib_path}/地点列表.json`));
         //加载洞天福地列表

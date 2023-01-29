@@ -1669,16 +1669,19 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
             att=last_att*1.8
             msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,由于武器自带火属性附魔,造成了融化反应,伤害爆炸了")
         }else if(A_lin == yuansu[4]&&B_lin == yuansu[0]) {
-           att=last.att*1.4
+           att=last_att*1.4
            msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,由于对方是火灵根,造成了融化反应,伤害提高了")
         }else if(A_lin == yuansu[4]&&equipment.武器.fumo=="雷") {
             att=last_att*1.8
             msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,由于武器自带雷属性附魔,造成了超导反应,伤害爆炸了")
         }else if(A_lin == yuansu[4]&&B_lin == yuansu[2]){
-            att=last.att*1.4
+            att=last_att*1.4
             msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,由于对方是雷灵根,造成了超导反应,伤害提高了")
+        }else if(A_lin == yuansu[4]){
+            att=last_att*1.5
+            msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,伤害提高了")
         }else{
-            att=last.att*1.2
+            att=last_att*1.2
             msg.push("寒冰之枪，出鞘！\n使用了冰元素技能,伤害提高了")
         }
     }

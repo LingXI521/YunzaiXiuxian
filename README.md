@@ -1,4 +1,6 @@
 # 绝云间修仙V1.2.4「银花造福盈」(原DD斩首魔改版)  
+## 玩家自制攻略：
+[修仙攻略](https://docs.qq.com/doc/DSUhqZWdpZXJuUndZ?&u=4bd0757f64094c48b02d7cfc4eaeb44b)  
 ## 访问量：        
 <br><img src="https://count.getloli.com/get/@:DDZS-XIUXIAN-V1.2.4?theme=rule34" /> <br>       
 [![懒得输入](pic/photo.jpg)](https://zh.moegirl.org.cn/%E8%83%A1%E6%A1%83(%E5%8E%9F%E7%A5%9E)#)

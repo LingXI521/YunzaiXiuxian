@@ -1230,6 +1230,15 @@ export async function synchronization(e) {
     if (!isNotNull(player.occupation)) {
       player.occupation = [];
     }
+    if (!isNotNull(player.熔炉)) {
+      player.熔炉 = 0;
+    }
+    if (!isNotNull(player.附魔台)) {
+      player.附魔台 = 0;
+    }
+    if (!isNotNull(player.书架)) {
+      player.书架 = 0;
+    }
     if (!isNotNull(player.favorability)) {
       player.favorability = 0;
     }
