@@ -1710,6 +1710,23 @@ if (thing_name == "羊毛") {
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
+        if (thing_name == "皮革") {
+                let ranliao=await exist_najie_thing(usr_qq,"皮革","食材");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "皮革", "食材", -quantity);
+                    await Add_热量(usr_qq,quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
@@ -2549,7 +2566,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个`)
                                 return;
-                            }else if(math>0.1&&math<=0.3){
+                            }else if(math>0&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个`)
                                 return;
