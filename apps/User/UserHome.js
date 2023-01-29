@@ -2739,6 +2739,7 @@ if (thing_name == "羊毛") {
                     e.reply("你是仙人吗就去星荧洞窟");
                      return;
                }
+                let kouxue=parseInt(player.血量上限*0.25)
                 let mugao=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shigao=await exist_najie_thing(usr_qq, "石镐", "道具")
                 if (quantity > 1) {
@@ -2819,6 +2820,7 @@ if (thing_name == "羊毛") {
                     e.reply("你是仙人吗就去层岩巨渊");
                      return;
                }
+                let kouxue=parseInt(player.血量上限*0.25)
                 let muchan=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
