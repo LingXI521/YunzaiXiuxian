@@ -77,7 +77,7 @@ export class shenren extends plugin {
     }
     player.神石+=x;
     await Write_player(usr_qq, player);
-    e.reply("供奉成功,当前供奉进度"+player.神石+"/800");
+    e.reply("供奉成功,当前供奉进度"+player.神石+"/200");
     await Add_najie_thing(usr_qq, "神石", "道具", -x);
     return;
   }
