@@ -1471,9 +1471,9 @@ if (thing_name == "寻宝工具盒") {
                   e.reply("你充满期待的打开了盒子，结果发现了里面有一个清灵藏的新春木盒")
                   return;
                 }else {
-                    await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", 1); 
+                    await Add_najie_thing(usr_qq, "潘多拉魔盒", "道具", 1); 
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了是1个闹钟呼唤器")
+                    e.reply("你充满期待的打开了盒子，结果发现了是1个潘多拉魔盒")
                     return;
                 }
             }
