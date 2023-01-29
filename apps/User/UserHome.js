@@ -1465,10 +1465,15 @@ if (thing_name == "寻宝工具盒") {
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                     e.reply("你充满期待的打开了盒子，结果发现了里面是八个蛋,去医院花费了100w灵石")
                     return;
+                }else if(math>0.5&&math<=0.75){
+                     await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", 1); 
+                   await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                  e.reply("你充满期待的打开了盒子，结果发现了里面有一个清灵藏的新春木盒")
+                  return;
                 }else {
-                    await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", 2); 
+                    await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", 1); 
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了是2个闹钟呼唤器")
+                    e.reply("你充满期待的打开了盒子，结果发现了是1个闹钟呼唤器")
                     return;
                 }
             }
