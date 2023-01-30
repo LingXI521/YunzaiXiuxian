@@ -1727,6 +1727,23 @@ if (thing_name == "羊毛") {
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
+         if (thing_name == "皮革") {
+                let ranliao=await exist_najie_thing(usr_qq,"岩浆","材料");
+                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
+                if (isNotNull(number) && number > 0){
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                    await Add_najie_thing(usr_qq, "岩浆", "材料", -quantity);
+                    await Add_热量(usr_qq,3000*quantity)
+                    e.reply('添加成功,火烧的更旺了')
+                    return;
+                   
+            }else{
+                e.reply('你没有熔炉放个屁的燃料！')
+            }
+        }
             if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
