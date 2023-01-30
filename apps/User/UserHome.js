@@ -1394,6 +1394,20 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具", -1);
                 return
             }
+            if (thing_name == "熔炉") {
+                player.熔炉=1;
+                e.reply("熔炉放置成功");
+                 await Write_player(usr_qq, player);
+                await Add_najie_thing(usr_qq, "熔炉", "道具", -1);
+                return
+            }
+            if (thing_name == "书架") {
+                player.书架+=1;
+                e.reply("书架放置成功");
+                 await Write_player(usr_qq, player);
+                await Add_najie_thing(usr_qq, "书架", "材料", -1);
+                return
+            }
             
             //寄术原因，写了很多多余的东西，但是能跑
             if (thing_name == "打火石") {
@@ -1610,8 +1624,7 @@ if (thing_name == "寻宝工具盒") {
             }
               if (thing_name == "煤炭") {
                 let ranliao=await exist_najie_thing(usr_qq,"煤炭","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+                if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1627,8 +1640,7 @@ if (thing_name == "寻宝工具盒") {
         }
         if (thing_name == "木炭") {
                 let ranliao=await exist_najie_thing(usr_qq,"木炭","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+               if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1644,8 +1656,7 @@ if (thing_name == "寻宝工具盒") {
         }
         if (thing_name == "原木") {
                 let ranliao=await exist_najie_thing(usr_qq,"原木","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+                if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1661,8 +1672,7 @@ if (thing_name == "寻宝工具盒") {
         }
     if (thing_name == "原木") {
                 let ranliao=await exist_najie_thing(usr_qq,"木板","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+             if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1678,8 +1688,7 @@ if (thing_name == "寻宝工具盒") {
         }
 if (thing_name == "木棍") {
                 let ranliao=await exist_najie_thing(usr_qq,"木棍","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+              if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1695,8 +1704,7 @@ if (thing_name == "木棍") {
         }
 if (thing_name == "羊毛") {
                 let ranliao=await exist_najie_thing(usr_qq,"羊毛","食材");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+               if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1712,8 +1720,7 @@ if (thing_name == "羊毛") {
         }
         if (thing_name == "皮革") {
                 let ranliao=await exist_najie_thing(usr_qq,"皮革","食材");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+                if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
@@ -1727,10 +1734,9 @@ if (thing_name == "羊毛") {
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
-         if (thing_name == "皮革") {
+         if (thing_name == "岩浆") {
                 let ranliao=await exist_najie_thing(usr_qq,"岩浆","材料");
-                let number= await exist_najie_thing(usr_qq,"熔炉","道具");
-                if (isNotNull(number) && number > 0){
+                if (player.熔炉==1){
                     if(ranliao<quantity){
                          e.reply('你似乎没有那么多'+thing_name)
                          return;
