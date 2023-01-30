@@ -65,7 +65,7 @@
     "efficiency": 0.30,
     "level": 3
   },
-    {
+  {
     "id": 2000006,
     "name": "蒙德",
     "efficiency": 0.36,
@@ -120,10 +120,10 @@
     "level": 1
   },
   {
-  "id": 1000006,
-  "name": "五湖商会",
-  "efficiency": 0.1,
-  "level": 1
+    "id": 1000006,
+    "name": "五湖商会",
+    "efficiency": 0.1,
+    "level": 1
   },
   {
     "id": 1000007,
