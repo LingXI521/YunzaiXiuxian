@@ -2656,9 +2656,9 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "黑曜石", "材料",5);
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和黑曜石${5*n}`)
                                 return;
-                            }else if(math>0&&math<=0.3){
-                                await Add_najie_thing(usr_qq, "深渊", "道具",1);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1*n}`)
+                            }else if(math>0&&math<=0.1){
+                                await Add_najie_thing(usr_qq, "深渊", "道具",1*n);
+                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1*n}个`)
                                 return;
                             }else{
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个`)
