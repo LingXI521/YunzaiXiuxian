@@ -100,7 +100,7 @@
     "name": "道成林",
     "efficiency": 0.15,
     "level": 1
-   },
+  },
   {
     "id": 1000003,
     "name": "华山",
@@ -113,18 +113,18 @@
     "efficiency": 0.1,
     "level": 1
   },
-{
-   "id": 1000005,
-   "name": "黄山",
-   "efficiency": 0.1,
-   "level": 1
-},
-{
+  {
+    "id": 1000005,
+    "name": "黄山",
+    "efficiency": 0.1,
+    "level": 1
+  },
+  {
   "id": 1000006,
   "name": "五湖商会",
   "efficiency": 0.1,
   "level": 1
-},
+  },
   {
     "id": 1000007,
     "name": "泰山",
