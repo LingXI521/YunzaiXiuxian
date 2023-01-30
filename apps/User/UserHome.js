@@ -2986,7 +2986,6 @@ if (thing_name == "羊毛") {
                 let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
                 if(muchan>0||shichan>0||zuanshichan>0){
-                    await Add_饱食度(usr_qq,-10000)
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     if (isNotNull(muchan) && muchan> 0){
                         muchan=1
