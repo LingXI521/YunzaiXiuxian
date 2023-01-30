@@ -342,7 +342,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"钻石","class":"材料","amount":16}
+            {"name":"钻石","class":"材料","amount":20}
         ]
     },
     {
@@ -350,7 +350,7 @@
         "class":"装备",
         "amount":1,
         "materials":[
-            {"name":"钻石","class":"材料","amount":16}
+            {"name":"钻石","class":"材料","amount":20}
         ]
     },
     {
