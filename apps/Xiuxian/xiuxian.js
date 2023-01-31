@@ -1723,7 +1723,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 att *= 2.3
             chufa=true
             }else if(A_lin == yuansu[2]&&equipment.武器.fumo=="火"){
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超导反应")
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超载反应")
                 att *= 2
             chufa=true
             } else {
