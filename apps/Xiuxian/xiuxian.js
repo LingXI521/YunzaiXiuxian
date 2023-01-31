@@ -2317,6 +2317,7 @@ export async function find_qinmidu(A, B) {
     } else {
         return qinmidu[i].亲密度;
     }
+}
 export async function Write_shitu(shitu) {
     let dir = path.join(__PATH.shitu, `shitu.json`);
     let new_ARR = JSON.stringify(shitu, "", "\t");
@@ -2339,8 +2340,6 @@ export async function Read_shitu() {
     return shitu;
 }
 
-
-
 export async function fstadd_shitu(A) {
     let shitu;
     try {
@@ -2359,9 +2358,7 @@ export async function fstadd_shitu(A) {
         renwu1:0,
         renwu2:0,
         renwu3:0,
-        师徒BOOS剩余血量:100000000,
         已出师徒弟:[],
-
 
     }
     shitu.push(player);
@@ -2443,7 +2440,8 @@ export async function find_tudi(A) {
     } else {
         return shitu[i].师徒;
     }
-}}
+}
+
 export async function anti_cheating(e){
     let memberMap = await e.group.getMemberMap();
     let arrMember = Array.from(memberMap.values());
