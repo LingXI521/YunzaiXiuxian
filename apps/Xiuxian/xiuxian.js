@@ -2358,6 +2358,7 @@ export async function fstadd_shitu(A) {
         renwu1:0,
         renwu2:0,
         renwu3:0,
+        师徒BOOS剩余血量:100000000,
         已出师徒弟:[],
 
     }
