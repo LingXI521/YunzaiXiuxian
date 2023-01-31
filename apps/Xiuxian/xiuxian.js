@@ -34,6 +34,7 @@ export const __PATH = {
     qinmidu: path.join(__dirname, "/resources/data/qinmidu"),
     backup: path.join(__dirname, "/resources/backup"),
     player_pifu_path: path.join(__dirname, "/resources/img/player_pifu"),
+      shitu: path.join(__dirname, "/resources/data/shitu"),
     equipment_pifu_path: path.join(__dirname, "/resources/img/equipment_pifu"),
 }
 let xiuxianSetFile = "./plugins/xiuxian-emulator-plugin/config/xiuxian/xiuxian.yaml";
@@ -2316,7 +2317,133 @@ export async function find_qinmidu(A, B) {
     } else {
         return qinmidu[i].亲密度;
     }
+export async function Write_shitu(shitu) {
+    let dir = path.join(__PATH.shitu, `shitu.json`);
+    let new_ARR = JSON.stringify(shitu, "", "\t");
+    fs.writeFileSync(dir, new_ARR, 'utf8', (err) => {
+        console.log('写入成功', err)
+    })
+    return;
 }
+export async function Read_shitu() {
+    let dir = path.join(`${__PATH.shitu}/shitu.json`);
+    let shitu = fs.readFileSync(dir, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err)
+            return "error";
+        }
+        return data;
+    })
+    //将字符串数据转变成数组格式
+    shitu = JSON.parse(shitu);
+    return shitu;
+}
+
+
+
+export async function fstadd_shitu(A) {
+    let shitu;
+    try {
+        shitu = await Read_shitu();
+        ;
+    } catch {
+        //没有表要先建立一个！
+        await Write_shitu([]);
+        shitu = await Read_shitu();
+    }
+    let player = {
+        师傅: A,
+        收徒:0,
+        未出师徒弟:0,
+        任务阶段:0,
+        renwu1:0,
+        renwu2:0,
+        renwu3:0,
+        师徒BOOS剩余血量:100000000,
+        已出师徒弟:[],
+
+
+    }
+    shitu.push(player);
+    await Write_shitu(shitu);
+    return;
+}
+
+export async function add_shitu(A,num) {
+    let shitu;
+    try {
+        shitu = await Read_shitu();
+        ;
+    } catch {
+        //没有表要先建立一个！
+        await Write_shitu([]);
+        shitu = await Read_shitu();
+    }
+    let i;
+    for (i = 0; i < shitu.length; i++) {
+        if (shitu[i].A == A ) {
+            break;
+        }
+    }
+    if (i == shitu.length) {
+        await fstadd_shitu(A);
+        shitu = await Read_shitu();
+    }
+    shitu[i].收徒 += num;
+    await Write_shitu(shitu);
+    return;
+}
+
+export async function find_shitu(A) {
+    let shitu;
+    try {
+        shitu = await Read_shitu();
+    } catch {
+        //没有建立一个
+        await Write_shitu([])
+        shitu = await Read_shitu();
+    }
+    let i;
+    let QQ = [];
+    for (i = 0; i < shitu.length; i++) {
+        if (shitu[i].师傅== A ) {
+           break;
+        
+    }}
+    if (i == shitu.length) {
+        return false;
+    } else if (QQ.length != 0) {
+        return 0;
+    } else {
+        return shitu[i].师徒;
+    }
+}
+
+export async function find_tudi(A) {
+    let shitu;
+    shitu = await Read_shitu();
+    //try {
+    //    shitu = await Read_shitu();
+    //} catch {
+    //    await Write_shitu([])
+    //    shitu = await Read_shitu();
+    //    e.reply('他并没有开启收徒');
+    //}
+    let i;
+    let QQ = [];
+    for (i = 0; i < shitu.length; i++) {
+        if (shitu[i].未出师徒弟== A ) {
+           break;
+        
+    }}
+    if (i == shitu.length) {
+        return false;
+    } else if (QQ.length != 0) {
+        return 0;
+    } else {
+        return shitu[i].师徒;
+    }
+}}
 export async function anti_cheating(e){
     let memberMap = await e.group.getMemberMap();
     let arrMember = Array.from(memberMap.values());
