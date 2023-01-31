@@ -1221,6 +1221,12 @@ export async function synchronization(e) {
     if (!isNotNull(player.linggen)) {
       player.linggen = [];
     }
+     if (!isNotNull(player.师徒任务阶段)) {
+      player.师徒任务阶段 = 0;
+    }
+    if (!isNotNull(player.师徒积分)) {
+      player.师徒积分 = 0;
+    }
     if (!isNotNull(player.linggenshow)) {
       player.linggenshow = 1;
     }
