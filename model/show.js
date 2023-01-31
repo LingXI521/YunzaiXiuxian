@@ -14,6 +14,33 @@ export default class Game extends base {
       ...myData,
     };
   }
+    //师徒商城
+    async get_shitujifenData(myData) {
+      this.model = 'shitujifen';
+      return {
+        ...this.screenData,
+        saveId: 'shitujifen',
+        ...myData,
+      };
+    }
+     //我的弟子
+  async get_shituData(myData) {
+    this.model = 'shitu';
+    return {
+      ...this.screenData,
+      saveId: 'shitu',
+      ...myData,
+    };
+  }
+  //我的师门
+  async get_shifuData(myData) {
+    this.model = 'shifu';
+    return {
+      ...this.screenData,
+      saveId: 'shifu',
+      ...myData,
+    };
+  }
   async get_gongfaData(myData) {
     this.model = 'gongfa';
     return {
