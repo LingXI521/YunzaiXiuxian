@@ -427,7 +427,7 @@ export class shituxitong extends plugin {
     let player = await Read_player(usr_qq);
     let i;
     let t = 0;
-    let shoutu = ``;
+    let shoutu = `师傅列表:\n仅显示随机五个可拜师师傅`;
     let suiji = 0;
     if (shitu.length > 5) {
       suiji = Math.floor(Math.random() * shitu.length);
