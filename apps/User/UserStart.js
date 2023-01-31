@@ -144,7 +144,9 @@ export class UserStart extends plugin {
             "幸运": data.necklace_list.find(item => item.name == "幸运儿").加成,
             "熔炉":0,
             "附魔台":0,
-            "书架":0
+            "书架":0,
+            "师徒任务阶段":0,
+            "师徒积分":0
         }
         await Write_player(usr_qq, new_player);
         //初始化装备
