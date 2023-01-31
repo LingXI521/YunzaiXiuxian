@@ -125,7 +125,7 @@
         ]
     },
     {
-        "name":"煤炭",
+        "name":"木炭",
         "热量":1,
         "inputs":[
             {"name":"原木","class":"材料","amount":1,"const_amount":0},
@@ -133,6 +133,17 @@
         ],
         "outputs":[
             {"name":"木炭","class":"材料","amount":1,"const_amount":0}
+        ]
+    },
+    {
+        "name":"未点燃的火把",
+        "热量":0,
+        "inputs":[
+            {"name":"木炭","class":"材料","amount":1,"const_amount":0},
+            {"name":"木棍","class":"材料","amount":1,"const_amount":0}
+        ],
+        "outputs":[
+            {"name":"未点燃的火把","class":"道具","amount":1,"const_amount":0}
         ]
     }
 ]

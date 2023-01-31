@@ -1723,7 +1723,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 att *= 2.3
             chufa=true
             }else if(A_lin == yuansu[2]&&equipment.武器.fumo=="火"){
-                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超导反应")
+                msg.push("触发雾切之回光被动技能:[雾切御腰物],元素伤害提升120%\n手中的雷元素异常贴切[雾切之回光]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益，元素伤害提升200%,触发了超载反应")
                 att *= 2
             chufa=true
             } else {
@@ -1813,11 +1813,11 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 }else if(equipment.武器.fumo=="水"){
                     att*=1.4
                B_player.防御*=0.8
-               msg.push("风之眼元素力催动武器,扩散水元素附魔,下次攻击转化成冰元素伤害,伤害提高40%,触发苍古被动[抗争的践行之歌],"+B_player.名号+"的防御力减少了20%")
+               msg.push("风之眼元素力催动武器,扩散水元素附魔,下次攻击转化成水元素伤害,伤害提高40%,触发苍古被动[抗争的践行之歌],"+B_player.名号+"的防御力减少了20%")
                 }else if(equipment.武器.fumo=="草"){
                     att*=1.5
                B_player.防御*=0.8
-               msg.push("风之眼元素力催动武器,扩散草种子附魔,下次攻击转化成冰元素伤害,伤害提高50%,触发苍古被动[抗争的践行之歌],"+B_player.名号+"的防御力减少了20%")
+               msg.push("风之眼元素力催动武器,扩散草元素附魔,生成了草种子,下次攻击转化成草元素伤害,伤害提高50%,触发苍古被动[抗争的践行之歌],"+B_player.名号+"的防御力减少了20%")
                 }else{
                     att*=1.3
                     B_player.防御*=0.8
@@ -1849,15 +1849,15 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 }else if(equipment.武器.fumo=="雷"){
                     att*=1.8
                B_player.防御*=0.7
-               msg.push("风之眼元素力催动武器,扩散冰元素附魔,下次攻击转化成冰元素伤害,伤害提高80%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
+               msg.push("风之眼元素力催动武器,扩散冰元素附魔,下次攻击转化成雷元素伤害,伤害提高80%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
                 }else if(equipment.武器.fumo=="水"){
                     att*=1.4
                B_player.防御*=0.7
-               msg.push("风之眼元素力催动武器,扩散水元素附魔,下次攻击转化成冰元素伤害,伤害提高40%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
+               msg.push("风之眼元素力催动武器,扩散水元素附魔,下次攻击转化成水元素伤害,伤害提高40%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
                 }else if(equipment.武器.fumo=="草"){
                     att*=1.5
                B_player.防御*=0.7
-               msg.push("风之眼元素力催动武器,扩散草种子附魔,下次攻击转化成冰元素伤害,伤害提高50%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
+               msg.push("风之眼元素力催动武器,扩散草元素附魔,生成了草种子,下次攻击转化成草元素伤害,伤害提高50%,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了30%")
                 }else{
                     att*=1.3
                     B_player.防御*=0.7

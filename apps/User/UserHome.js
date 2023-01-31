@@ -993,7 +993,6 @@ export class UserHome extends plugin {
                      await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                     await Add_饱食度(usr_qq,3*quantity)
                     e.reply(`服用成功,增加了${3*quantity}点饱食度`)
-                e.reply('服用成功,你现在的饱食度是'+player.饱食度)
                 return;
                  }else{
                      e.reply("你没有那么多的"+thing_name)
@@ -2796,23 +2795,23 @@ if (thing_name == "羊毛") {
                              await Add_najie_thing(usr_qq, "火把", "道具", -64);
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个和层岩巨渊地图${1*n}个`)
                             }else if(math>0.1&&math<=0.3){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 64*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个,
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${64*n}个`)
                             }else if(math>0.3&&math<=0.5){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 10*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${10*n}个`)
                             }else if(math>0.8&&math<=0.9){
                                 await Add_najie_thing(usr_qq, "红石", "材料",128*n);
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个和红石${128*n}个`)
                             }else if(math==0.01){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
@@ -2826,7 +2825,7 @@ if (thing_name == "羊毛") {
                                 await Add_灵石(usr_qq,-1000000)
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'你什么都没有得到')
                             }else{
-                                e.reply(`你在星荧洞窟捡到了100w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个`)
                             }
                         }else{
@@ -2985,6 +2984,7 @@ if (thing_name == "羊毛") {
                 let muchan=await exist_najie_thing(usr_qq, "铁镐", "道具")
                 let shichan=await exist_najie_thing(usr_qq, "金镐", "道具")
                 let zuanshichan=await exist_najie_thing(usr_qq, "钻石镐", "道具")
+                n=1;
                 if(muchan>0||shichan>0||zuanshichan>0){
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     if (isNotNull(muchan) && muchan> 0){
