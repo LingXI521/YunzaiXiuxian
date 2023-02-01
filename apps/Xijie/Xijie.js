@@ -119,7 +119,7 @@ export class Xijie extends plugin {
             名号: player.名号,
             攻击: parseInt(player.攻击 * buff),
             防御: parseInt(player.防御 * buff),
-            当前血量: parseInt(player.当前血量 * buff),
+            当前血量: parseInt(player.血量上限 * buff),
             暴击率: player.暴击率,
             灵根: player.灵根,
             法球倍率: player.灵根.法球倍率,
