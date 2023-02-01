@@ -1436,9 +1436,9 @@ if (thing_name == "寻宝工具盒") {
                     e.reply("你充满期待的打开了盒子，结果发现了一个雪铃零藏的新春木盒")
                     return;
                 }else if(math>0.9&&math<1){
-                    await Add_najie_thing(usr_qq, "斧头", "道具",1);
+                    await Add_najie_thing(usr_qq, "木斧", "道具",1);
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
-                    e.reply("你充满期待的打开了盒子，结果发现了一个斧头")
+                    e.reply("你充满期待的打开了盒子，结果发现了一个木斧")
                     return;
                 }else{
                         await Add_najie_thing(usr_qq, "猫猫藏的新春礼盒", "道具", 1);
