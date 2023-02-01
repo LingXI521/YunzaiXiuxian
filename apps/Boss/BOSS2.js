@@ -2,7 +2,7 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import { segment } from "oicq"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
-import { Gaodenyuansulun,Add_najie_thing } from '../Xiuxian/xiuxian.js'
+import { Gaodenyuansulun, Add_najie_thing } from '../Xiuxian/xiuxian.js'
 import config from "../../model/Config.js"
 
 //本模块由(qq:1695037643)和jio佬完成
@@ -48,26 +48,34 @@ export class BOSS2 extends plugin {
         this.task = {
             cron: this.set.BossTask2,
             name: 'BossTask',
-            fnc: (e) => this.CreateWorldBoss2(e)
+            fnc: (e) => this.CreateWorldBoss()
         }
     }
-
-//天理开启指令
-    async CreateWorldBoss2(e) {
-        if (e.isMaster) {
-            if (!await BossIsAlive()) {
-                if (await InitWorldBoss() == 0)
-                    e.reply("天理挑战开启！");
-                return true;
-            }
-            else {
-                e.reply("天理已经存在");
-                return true;
-            }
-        }
-        else return;
+    //天理开启指令
+    async CreateWorldBoss() {
+        await InitWorldBoss()
+        return;
     }
     //天理结束指令
+    async DeleteWorldBoss() {
+        if (await BossIsAlive()) {
+            await redis.del("Xiuxian:WorldBossStatus2");
+            await redis.del("Xiuxian:PlayerRecord2");
+        }
+        return;
+    }
+
+
+    //天理手动开启指令
+    async CreateWorldBoss2(e) {
+        if (e.isMaster) {
+            await InitWorldBoss();
+            e.reply("天理挑战开启！");
+            return;
+        }
+        return;
+    }
+    //天理手动结束指令
     async DeleteWorldBoss2(e) {
         if (e.isMaster) {
             if (await BossIsAlive()) {
@@ -75,9 +83,8 @@ export class BOSS2 extends plugin {
                 await redis.del("Xiuxian:PlayerRecord2");
                 e.reply("天理挑战关闭！");
             }
-            else e.reply("天理未开启");
         }
-        else return;
+        return;
     }
     //天理状态指令
     async LookUpWorldBossStatus(e) {
@@ -90,7 +97,7 @@ export class BOSS2 extends plugin {
                         e.reply(`BOSS正在刷新，晚上8点开启`);
                         return true;
                     }
-                    let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击 ) : WorldBossStatus.攻击;
+                    let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击) : WorldBossStatus.攻击;
                     let BOSSCurrentDefence = WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.防御 * 0.8) : WorldBossStatus.防御;
                     let ReplyMsg = [`----天理状态----\n血量:${WorldBossStatus.当前血量}\n基础攻击:${WorldBossStatus.攻击}\n基础防御:${WorldBossStatus.防御}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`];
                     if (WorldBossStatus.isWeak) ReplyMsg.push(`虚弱(还剩${WorldBossStatus.isWeak}回合)`);
@@ -121,7 +128,7 @@ export class BOSS2 extends plugin {
             }
             let PlayerRecordJSON = JSON.parse(PlayerRecord);
             let PlayerList = await SortPlayer(PlayerRecordJSON);
-            if (!PlayerRecordJSON?.Name) {
+            if (!PlayerRecordJSON ?.Name) {
                 e.reply("请等待下次天理周本刷新后再使用本功能");
                 return true;
             }
@@ -134,87 +141,67 @@ export class BOSS2 extends plugin {
             ];
             for (var i = 0; i < PlayerList.length; i++) {
                 if (i < 20) {
-                        let Reward;
-                        if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.025)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.06);
+                    let Reward;
+                    if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.06);
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.05) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.045);
+                        if (Reward < Math.trunc(TotalDamage * 0.025 * 0.06)) {
+                            Reward = Math.trunc(TotalDamage * 0.025 * 0.06);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.05)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.045);
-                            if (Reward<Math.trunc(TotalDamage*0.025*0.06))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.025*0.06);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.075) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.036);
+                        if (Reward < Math.trunc(TotalDamage * 0.05 * 0.045)) {
+                            Reward = Math.trunc(TotalDamage * 0.05 * 0.045);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.075)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.036);
-                            if (Reward<Math.trunc(TotalDamage*0.05*0.045))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.05*0.045);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.1) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.032);
+                        if (Reward < Math.trunc(TotalDamage * 0.075 * 0.036)) {
+                            Reward = Math.trunc(TotalDamage * 0.075 * 0.036);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.1)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.032);
-                            if (Reward<Math.trunc(TotalDamage*0.075*0.036))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.075*0.036);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.15) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.025);
+                        if (Reward < Math.trunc(TotalDamage * 0.1 * 0.032)) {
+                            Reward = Math.trunc(TotalDamage * 0.1 * 0.032);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.15)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.025);
-                            if (Reward<Math.trunc(TotalDamage*0.1*0.032))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.1*0.032);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.2) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.022);
+                        if (Reward < Math.trunc(TotalDamage * 0.15 * 0.025)) {
+                            Reward = Math.trunc(TotalDamage * 0.15 * 0.025);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.2)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.022);
-                            if (Reward<Math.trunc(TotalDamage*0.15*0.025))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.15*0.025);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.3) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.018);
+                        if (Reward < Math.trunc(TotalDamage * 0.2 * 0.022)) {
+                            Reward = Math.trunc(TotalDamage * 0.2 * 0.022);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.3)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.018);
-                            if (Reward<Math.trunc(TotalDamage*0.2*0.022))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.2*0.022);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.4) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.016);
+                        if (Reward < Math.trunc(TotalDamage * 0.3 * 0.018)) {
+                            Reward = Math.trunc(TotalDamage * 0.3 * 0.018);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.4)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.016);
-                            if (Reward<Math.trunc(TotalDamage*0.3*0.018))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.3*0.018);
-                            }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.5) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.015);
+                        if (Reward < Math.trunc(TotalDamage * 0.4 * 0.016)) {
+                            Reward = Math.trunc(TotalDamage * 0.4 * 0.016);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.5)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.015);
-                            if (Reward<Math.trunc(TotalDamage*0.4*0.016))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.4*0.016);
-                            }
-                        }
-                        else
-                        {
-                            Reward=Math.trunc(TotalDamage*0.5*0.015);
-                        }
-                        if (TotalDamage>120000000)
-                        {
-                            Reward=Math.trunc(Reward/(TotalDamage/120000000));
-                        }
-                        if (Reward<100000)
-                        {
-                            Reward=100000;
-                        }
+                    }
+                    else {
+                        Reward = Math.trunc(TotalDamage * 0.5 * 0.015);
+                    }
+                    if (TotalDamage > 120000000) {
+                        Reward = Math.trunc(Reward / (TotalDamage / 120000000));
+                    }
+                    if (Reward < 100000) {
+                        Reward = 100000;
+                    }
                     msg.push("第" + `${i + 1}` + "名:\n" + `名号:${PlayerRecordJSON.Name[PlayerList[i]]}` + '\n' + `总伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + `\n${WorldBossStatus.当前血量 == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`);
                 }
                 if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id) CurrentQQ = i + 1;
@@ -242,7 +229,7 @@ export class BOSS2 extends plugin {
                 e.reply("修为至少达到化神初期才能参与挑战");
                 return true;
             }
-            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 41|| CurrentPlayerAttributes.lunhui>0) {
+            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 41 || CurrentPlayerAttributes.lunhui > 0) {
                 e.reply("仙人不得下凡");
                 return true;
             }
@@ -264,7 +251,7 @@ export class BOSS2 extends plugin {
                 e.reply("还是先疗伤吧，别急着参战了");
                 return true;
             }
-         if (WorldBOSSBattleCD[e.user_id] != undefined) {
+            if (WorldBOSSBattleCD[e.user_id] != undefined) {
                 let Seconds = Math.trunc((300000 - (new Date().getTime() - WorldBOSSBattleCD[e.user_id])) / 1000);
                 if (Seconds <= 300 && Seconds >= 0) {
                     e.reply(`刚刚一战消耗了太多气力，还是先歇息一会儿吧~(剩余${Seconds}秒)`);
@@ -322,7 +309,7 @@ export class BOSS2 extends plugin {
                 }
             }
             let BattleFrame = 0, TotalDamage = 0, msg = [];
-            let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击 ) : WorldBossStatus.攻击;
+            let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击) : WorldBossStatus.攻击;
             let BOSSCurrentDefence = WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.防御 * 0.8) : WorldBossStatus.防御;
             if (WorldBOSSBattleUnLockTimer)
                 clearTimeout(WorldBOSSBattleUnLockTimer);
@@ -335,44 +322,43 @@ export class BOSS2 extends plugin {
                 "action": "讨伐boss",//动作
                 "Place_action": "1",//秘境状态---关闭
                 "Place_actionplus": "1",//沉迷秘境状态---关闭
-                "action_time":60000,
+                "action_time": 60000,
                 "end_time": new Date().getTime() + 60000,//结束时间
             };
             await redis.set("xiuxian:player:" + e.user_id + ":action", JSON.stringify(arr));
             WorldBOSSBattleLock = 1;
-            let afangyu=CurrentPlayerAttributes.防御//记录A原防御
-            let bfangyu=WorldBossStatus.防御//记录B原防御
-            let aATK=CurrentPlayerAttributes.攻击//记录A原攻击
-            let bATK=WorldBossStatus.攻击//记录B原攻击
-            let Agandianhuihe=0;//感电燃烧回合数
-            let Bgandianhuihe=0;//感电燃烧回合数
-            let Achaodaohuihe=0;//超导回合数
-            let Bchaodaohuihe=0;//超导回合数
+            let afangyu = CurrentPlayerAttributes.防御//记录A原防御
+            let bfangyu = WorldBossStatus.防御//记录B原防御
+            let aATK = CurrentPlayerAttributes.攻击//记录A原攻击
+            let bATK = WorldBossStatus.攻击//记录B原攻击
+            let Agandianhuihe = 0;//感电燃烧回合数
+            let Bgandianhuihe = 0;//感电燃烧回合数
+            let Achaodaohuihe = 0;//超导回合数
+            let Bchaodaohuihe = 0;//超导回合数
             while (CurrentPlayerAttributes.当前血量 > 0 && WorldBossStatus.当前血量 > 0) {
                 let Random = Math.random();
                 if (!(BattleFrame & 1)) {
-                    let 持续伤害=0
-                    let yuansu=await Gaodenyuansulun(CurrentPlayerAttributes,WorldBossStatus,aATK,msg,BattleFrame,Agandianhuihe,Achaodaohuihe)
-                    Agandianhuihe=yuansu.gandianhuihe
-                    Achaodaohuihe=yuansu.chaodaohuihe2
-                    CurrentPlayerAttributes=yuansu.A_player
-                    WorldBossStatus=yuansu.B_player
-        
-                    if(yuansu.chaodao&&Achaodaohuihe>0){
-                        Achaodaohuihe-=1
-                        msg.push(WorldBossStatus.名号+"的抗性大大下降,虚弱状态剩余"+Achaodaohuihe+"回合")
-                        WorldBossStatus.防御*=0.5
+                    let 持续伤害 = 0
+                    let yuansu = await Gaodenyuansulun(CurrentPlayerAttributes, WorldBossStatus, aATK, msg, BattleFrame, Agandianhuihe, Achaodaohuihe)
+                    Agandianhuihe = yuansu.gandianhuihe
+                    Achaodaohuihe = yuansu.chaodaohuihe2
+                    CurrentPlayerAttributes = yuansu.A_player
+                    WorldBossStatus = yuansu.B_player
+
+                    if (yuansu.chaodao && Achaodaohuihe > 0) {
+                        Achaodaohuihe -= 1
+                        msg.push(WorldBossStatus.名号 + "的抗性大大下降,虚弱状态剩余" + Achaodaohuihe + "回合")
+                        WorldBossStatus.防御 *= 0.5
                     }
-        
-                    if(yuansu.fyjiachen!=0){
-                       CurrentPlayerAttributes.防御+=yuansu.fyjiachen
+
+                    if (yuansu.fyjiachen != 0) {
+                        CurrentPlayerAttributes.防御 += yuansu.fyjiachen
                     }
-                    msg=yuansu.msg
-                    let Player_To_BOSS_Damage = Harm(CurrentPlayerAttributes.攻击*0.85, BOSSCurrentDefence) + Math.trunc(CurrentPlayerAttributes.攻击 * CurrentPlayerAttributes.灵根.法球倍率 + CurrentPlayerAttributes.防御*0.1);
+                    msg = yuansu.msg
+                    let Player_To_BOSS_Damage = Harm(CurrentPlayerAttributes.攻击 * 0.85, BOSSCurrentDefence) + Math.trunc(CurrentPlayerAttributes.攻击 * CurrentPlayerAttributes.灵根.法球倍率 + CurrentPlayerAttributes.防御 * 0.1);
                     let SuperAttack = (Math.random() < CurrentPlayerAttributes.暴击率) ? 1.5 : 1;
                     msg.push(`第${Math.trunc(BattleFrame / 2) + 1}回合：`);
-                    if (Random < 0.05 && data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id <= 28 && CurrentPlayerAttributes.攻击 < 3000000) 
-                    {
+                    if (Random < 0.05 && data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id <= 28 && CurrentPlayerAttributes.攻击 < 3000000) {
                         msg.push("你的气息太弱了，甚至于轻手轻脚溜到【天理】旁边都没被它发现。你打断了他的阵法，导致【天理】被反噬");
                         Player_To_BOSS_Damage = Math.trunc(WorldBossStatus.血量上限 * 0.05);
                     }
@@ -398,51 +384,51 @@ export class BOSS2 extends plugin {
                     }
                     else if (Random < 0.09 && CurrentPlayerAttributes.攻击 <= 2000000) {
                         msg.push("你的实力弱小，你全意收敛气息，使用出你意外得到的“九天惊雷符”！");
-                        Player_To_BOSS_Damage =Math.trunc(Player_To_BOSS_Damage * 5);;
+                        Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 5);;
                     }
                     else if (Random >= 0.92 && data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id <= 35) {
                         msg.push("你知道你的实力弱小，所以你使用了秘技【神行雷】，但是你的境界还是太低了，只发挥出来5%");
-                        Player_To_BOSS_Damage =Math.trunc(Player_To_BOSS_Damage * 3);
+                        Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
                     }
                     else if (Random < 0.5 && CurrentPlayerAttributes.攻击 <= 500000) {
                         msg.push("【天理】见你你的实力弱小，根本没把你放心上，你的攻击有了奇效");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.5 + 100000);
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·鬼帝功")>-1 && BattleFrame==0) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("八品·鬼帝功") > -1 && BattleFrame == 0) {
                         msg.push("你使用了使用【鬼剑】暴起进攻");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.1 + 100000);
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·八荒剑法")>-1 && BattleFrame==2) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("八品·八荒剑法") > -1 && BattleFrame == 2) {
                         msg.push("你使用了八荒剑法【斩八荒！】");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.2);
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("伪九品·第一魔功")>-1 && BattleFrame==2) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("伪九品·第一魔功") > -1 && BattleFrame == 2) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用第一魔功【噬天！】`);
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.1 + 300000);
-                    }else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("伪八品·二重梦之㱬")>-1 && BattleFrame==4) {
+                    } else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("伪八品·二重梦之㱬") > -1 && BattleFrame == 4) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用二重梦之㱬【梦轮】`);
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.15);
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·心禅不灭诀")>-1 && BattleFrame==4) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("八品·心禅不灭诀") > -1 && BattleFrame == 4) {
                         msg.push("你使用了心禅不灭诀【万剑归宗】");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.25);
-                    } 
-                    else if (CurrentPlayerAttributes.灵根.name==="轮回道体"&& BattleFrame==0) {
+                    }
+                    else if (CurrentPlayerAttributes.灵根.name === "轮回道体" && BattleFrame == 0) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了先天神通，轮回之力需要时间准备`);
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.8);
-                    }                     
-                    else if (CurrentPlayerAttributes.灵根.name==="轮回道体"&& BattleFrame==4) {
+                    }
+                    else if (CurrentPlayerAttributes.灵根.name === "轮回道体" && BattleFrame == 4) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了先天神通，轮回之力崩泄而出！`);
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.5);
                     }
-                    else if (CurrentPlayerAttributes.灵根.name==="灭道杀神体"&& BattleFrame==12) {
+                    else if (CurrentPlayerAttributes.灵根.name === "灭道杀神体" && BattleFrame == 12) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了先天神通 【杀破神】！`);
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
                     }
                     else if (Random < 0.11) {
                         msg.push("你等了许久，终于【天理】疲劳，露出了破绽，你飞杀而去，但是【天理】使用了【混元】！！你的伤害被吸收了！");
                         Player_To_BOSS_Damage = -250000;
-                    }                                                         
+                    }
                     else if (Random >= 0.95) {
                         msg.push("你看到【天理】一瞬间的破绽，放出强大剑技！痛击BOSS！");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
@@ -459,80 +445,78 @@ export class BOSS2 extends plugin {
                         msg.push("【天理】认可你的实力，【天理】认真对待你，你不再能轻易攻击");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.7);
                     }
-                    WorldBossStatus.防御=bfangyu
-                    Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * SuperAttack + Math.random()*30);
-                    if(yuansu.ranshao&&Agandianhuihe>0){
-                        持续伤害=Math.trunc(Player_To_BOSS_Damage*0.15)
-                        Agandianhuihe-=1
-                        WorldBossStatus.当前血量-=持续伤害
-                        msg.push(WorldBossStatus.名号+"烧了起来,受到了"+持续伤害+"的燃烧伤害")
-                        
+                    WorldBossStatus.防御 = bfangyu
+                    Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * SuperAttack + Math.random() * 30);
+                    if (yuansu.ranshao && Agandianhuihe > 0) {
+                        持续伤害 = Math.trunc(Player_To_BOSS_Damage * 0.15)
+                        Agandianhuihe -= 1
+                        WorldBossStatus.当前血量 -= 持续伤害
+                        msg.push(WorldBossStatus.名号 + "烧了起来,受到了" + 持续伤害 + "的燃烧伤害")
+
                     }
-                    if(yuansu.gandian&&Agandianhuihe>0){
-                        持续伤害=Math.trunc(Player_To_BOSS_Damage*0.15)
-                        Agandianhuihe-=1
-                        WorldBossStatus.当前血量-=持续伤害
-                        msg.push(WorldBossStatus.名号+"触电了,受到了"+持续伤害+"的感电伤害")
+                    if (yuansu.gandian && Agandianhuihe > 0) {
+                        持续伤害 = Math.trunc(Player_To_BOSS_Damage * 0.15)
+                        Agandianhuihe -= 1
+                        WorldBossStatus.当前血量 -= 持续伤害
+                        msg.push(WorldBossStatus.名号 + "触电了,受到了" + 持续伤害 + "的感电伤害")
                     }
-                    Player_To_BOSS_Damage=Math.trunc(Player_To_BOSS_Damage);
+                    Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage);
                     WorldBossStatus.当前血量 -= Player_To_BOSS_Damage;
-                    if ((WorldBossStatus.灵根.name=="仙之心·水"&&CurrentPlayerAttributes.灵根.name=="仙之心·木") || (WorldBossStatus.灵根.name=="仙之心·木"&&CurrentPlayerAttributes.灵根.name=="仙之心·水"))
-                    {
-                        TotalDamage= (CurrentPlayerAttributes.攻击*0.3)+TotalDamage;
-                
+                    if ((WorldBossStatus.灵根.name == "仙之心·水" && CurrentPlayerAttributes.灵根.name == "仙之心·木") || (WorldBossStatus.灵根.name == "仙之心·木" && CurrentPlayerAttributes.灵根.name == "仙之心·水")) {
+                        TotalDamage = (CurrentPlayerAttributes.攻击 * 0.3) + TotalDamage;
+
                     }
-                    TotalDamage = Player_To_BOSS_Damage+TotalDamage+持续伤害;
+                    TotalDamage = Player_To_BOSS_Damage + TotalDamage + 持续伤害;
                     if (WorldBossStatus.当前血量 < 0) { WorldBossStatus.当前血量 = 0 }
                     msg.push(`${CurrentPlayerAttributes.名号}${ifbaoji(SuperAttack)}造成伤害${Player_To_BOSS_Damage}，天理剩余血量${WorldBossStatus.当前血量}`);
-                    
+
                     //说明被冻结了
-                    if (BattleFrame!=yuansu.cnt)
-                    {
+                    if (BattleFrame != yuansu.cnt) {
                         msg.push(`${WorldBossStatus.名号}冻结中`);
-                        BattleFrame+=2;
+                        BattleFrame += 2;
                         continue;
                     }
 
 
                 }
                 else {
-                    let 持续伤害=0
-                    let yuansu=await Gaodenyuansulun(WorldBossStatus,CurrentPlayerAttributes,bATK,msg,BattleFrame,Bgandianhuihe,Bchaodaohuihe)
-                    Bgandianhuihe=yuansu.gandianhuihe
-                    Bchaodaohuihe=yuansu.chaodaohuihe2
-                    CurrentPlayerAttributes=yuansu.B_player
-                    WorldBossStatus=yuansu.A_player
-                    
+                    let 持续伤害 = 0
+                    let yuansu = await Gaodenyuansulun(WorldBossStatus, CurrentPlayerAttributes, bATK, msg, BattleFrame, Bgandianhuihe, Bchaodaohuihe)
+                    Bgandianhuihe = yuansu.gandianhuihe
+                    Bchaodaohuihe = yuansu.chaodaohuihe2
+                    CurrentPlayerAttributes = yuansu.B_player
+                    WorldBossStatus = yuansu.A_player
 
-                    if(yuansu.chaodao&&Bchaodaohuihe>0){
-                        Bchaodaohuihe-=1
-                        msg.push(CurrentPlayerAttributes.名号+"的抗性大大下降,虚弱状态剩余"+Bchaodaohuihe+"回合")
-                        CurrentPlayerAttributes.防御*=0.5
+
+                    if (yuansu.chaodao && Bchaodaohuihe > 0) {
+                        Bchaodaohuihe -= 1
+                        msg.push(CurrentPlayerAttributes.名号 + "的抗性大大下降,虚弱状态剩余" + Bchaodaohuihe + "回合")
+                        CurrentPlayerAttributes.防御 *= 0.5
                     }
 
-                    if(yuansu.fyjiachen!=0){
-                        WorldBossStatus.防御+=yuansu.fyjiachen
+                    if (yuansu.fyjiachen != 0) {
+                        WorldBossStatus.防御 += yuansu.fyjiachen
                     }
-                    msg=yuansu.msg
-                    let BOSS_To_Player_Damage = Harm(BOSSCurrentAttack, Math.trunc(CurrentPlayerAttributes.防御*0.1 ));
+                    msg = yuansu.msg
+                    let BOSS_To_Player_Damage = Harm(BOSSCurrentAttack, Math.trunc(CurrentPlayerAttributes.防御 * 0.1));
                     if (Random < 0.015) {
                         msg.push("【天理】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 2.2);
                     }
 
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·避空")>-1 && BattleFrame==4) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("八品·避空") > -1 && BattleFrame == 4) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了避空【遁空！】`);
                         BOSS_To_Player_Damage *= 0.5;
                     }
-                    else if (Random < 0.02 &&CurrentPlayerAttributes.灵根.type==="转生") {
+                    else if (Random < 0.02 && CurrentPlayerAttributes.灵根.type === "转生") {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了转生神通【轮墓】！你的伤害无法生效！`);
                         BOSS_To_Player_Damage = 0;
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·桃花神功")>-1 && BattleFrame==5 && Random > 0.66) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("八品·桃花神功") > -1 && BattleFrame == 5 && Random > 0.66) {
                         msg.push(`${CurrentPlayerAttributes.名号} 使用了【三生桃花！】让攻击慢慢变成了漫天桃花飞舞。`);
                         BOSS_To_Player_Damage *= -0.2;
                     }
-                    else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("伪九品·魔帝功")>-1 && BattleFrame==3 && Random > 0.50) {
+                    else if (CurrentPlayerAttributes.学习的功法 && CurrentPlayerAttributes.学习的功法.indexOf("伪九品·魔帝功") > -1 && BattleFrame == 3 && Random > 0.50) {
                         msg.push(`${CurrentPlayerAttributes.名号} 用了魔帝功【吞噬】吸收了伤害变成自己的血量`);
                         BOSS_To_Player_Damage *= -0.1;
                     }
@@ -568,38 +552,38 @@ export class BOSS2 extends plugin {
                         msg.push("【天理】向你斩出一剑");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.8);
                     }
-                    if(yuansu.ranshao&&Bgandianhuihe>0){
-                        持续伤害=Math.trunc(BOSS_To_Player_Damage*0.15)
-                        Bgandianhuihe-=1
-                        CurrentPlayerAttributes.当前血量-=持续伤害
-                        msg.push(CurrentPlayerAttributes.名号+"烧了起来,受到了"+持续伤害+"的燃烧伤害")
-                
+                    if (yuansu.ranshao && Bgandianhuihe > 0) {
+                        持续伤害 = Math.trunc(BOSS_To_Player_Damage * 0.15)
+                        Bgandianhuihe -= 1
+                        CurrentPlayerAttributes.当前血量 -= 持续伤害
+                        msg.push(CurrentPlayerAttributes.名号 + "烧了起来,受到了" + 持续伤害 + "的燃烧伤害")
+
                     }
-                    if(yuansu.gandian&&Bgandianhuihe>0){
-                        持续伤害=Math.trunc(BOSS_To_Player_Damage*0.15)
-                        Bgandianhuihe-=1
-                        CurrentPlayerAttributes.当前血量-=持续伤害
-                        msg.push(CurrentPlayerAttributes.名号+"触电了,受到了"+持续伤害+"的感电伤害")
+                    if (yuansu.gandian && Bgandianhuihe > 0) {
+                        持续伤害 = Math.trunc(BOSS_To_Player_Damage * 0.15)
+                        Bgandianhuihe -= 1
+                        CurrentPlayerAttributes.当前血量 -= 持续伤害
+                        msg.push(CurrentPlayerAttributes.名号 + "触电了,受到了" + 持续伤害 + "的感电伤害")
                     }
-                    BOSS_To_Player_Damage=Math.trunc(BOSS_To_Player_Damage);
+                    BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage);
                     CurrentPlayerAttributes.当前血量 -= BOSS_To_Player_Damage;
                     WorldBossStatus.isAngry ? --WorldBossStatus.isAngry : 0;
                     WorldBossStatus.isWeak ? --WorldBossStatus.isWeak : 0;
                     if (!WorldBossStatus.isAngry && BOSSCurrentAttack > WorldBossStatus.攻击) BOSSCurrentAttack = WorldBossStatus.攻击;
                     if (!WorldBossStatus.isWeak && BOSSCurrentDefence < WorldBossStatus.防御) BOSSCurrentDefence = WorldBossStatus.防御;
                     if (CurrentPlayerAttributes.当前血量 < 0) { CurrentPlayerAttributes.当前血量 = 0 }
-                    CurrentPlayerAttributes.防御=afangyu
+                    CurrentPlayerAttributes.防御 = afangyu
                     msg.push(`天理攻击了${CurrentPlayerAttributes.名号}，造成伤害${BOSS_To_Player_Damage}，${CurrentPlayerAttributes.名号}剩余血量${CurrentPlayerAttributes.当前血量}`);
                 }
                 if (CurrentPlayerAttributes.当前血量 == 0 || WorldBossStatus.当前血量 == 0)
                     break;
-                    
+
                 BattleFrame++;
             }
-            CurrentPlayerAttributes.防御=afangyu
-            WorldBossStatus.防御=bfangyu
-            CurrentPlayerAttributes.攻击=aATK
-            WorldBossStatus.攻击=bATK
+            CurrentPlayerAttributes.防御 = afangyu
+            WorldBossStatus.防御 = bfangyu
+            CurrentPlayerAttributes.攻击 = aATK
+            WorldBossStatus.攻击 = bATK
             if (msg.length <= 60)
                 await ForwardMsg(e, msg);
             else {
@@ -619,13 +603,13 @@ export class BOSS2 extends plugin {
                 e.reply("BOSS不知是不是缺乏睡眠，看起来它好像虚弱了很多。\n天理攻击、防御降低，持续30回合");
             }
             if (CurrentPlayerAttributes.当前血量 == 0) {
-                CurrentPlayerAttributes.当前血量=CurrentPlayerAttributes.血量上限
+                CurrentPlayerAttributes.当前血量 = CurrentPlayerAttributes.血量上限
                 e.reply("很可惜您未能击败天理,再接再厉！");
                 if (Math.random() < BattleFrame * 0.012) {
                     let ExpFormBOSS = 1000 + data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id * 210;
                     e.reply(`你在与天理的打斗中突然对其招式有所领悟，修为提升${ExpFormBOSS}`);
                     CurrentPlayerAttributes.修为 += ExpFormBOSS;
-                    CurrentPlayerAttributes.当前血量=CurrentPlayerAttributes.血量上限
+                    CurrentPlayerAttributes.当前血量 = CurrentPlayerAttributes.血量上限
                 }
                 if (Math.random() < BattleFrame * 0.012) {
                     let HPFormBOSS = 5000 + CurrentPlayerAttributes.血量上限 * 0.2;
@@ -633,10 +617,10 @@ export class BOSS2 extends plugin {
                     HPFormBOSS = Math.trunc(HPFormBOSS);
                     e.reply(`虽然你被锤得半死不活，但是却因此通了气血，生命恢复${HPFormBOSS}点`);
                     CurrentPlayerAttributes.当前血量 += HPFormBOSS;
-                    CurrentPlayerAttributes.当前血量=CurrentPlayerAttributes.血量上限
+                    CurrentPlayerAttributes.当前血量 = CurrentPlayerAttributes.血量上限
                 }
             }
-            
+
             await sleep(1000);
             PlayerRecordJSON.TotalDamage[Userid] += TotalDamage;
             redis.set("Xiuxian:PlayerRecord2", JSON.stringify(PlayerRecordJSON));
@@ -649,12 +633,12 @@ export class BOSS2 extends plugin {
                 await sleep(1000);
 
                 var a
-                var z=1
-                var weizhi=data.sanbin
+                var z = 1
+                var weizhi = data.sanbin
                 a = Math.floor(Math.random() * (weizhi.length));
-                await Add_najie_thing(e.user_id,weizhi[a].name,weizhi[a].class,z)
+                await Add_najie_thing(e.user_id, weizhi[a].name, weizhi[a].class, z)
 
-                e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了天理的性命,为民除害，额外获得50000灵石奖励！并在天理身上翻到了"+weizhi[a].name+"!"]);
+                e.reply([segment.at(e.user_id), "\n恭喜你亲手结果了天理的性命,为民除害，额外获得50000灵石奖励！并在天理身上翻到了" + weizhi[a].name + "!"]);
                 CurrentPlayerAttributes.灵石 += 50000;
                 Bot.logger.mark(`[天理] 结算:${e.user_id}增加奖励50000`);
                 await data.setData("player", e.user_id, CurrentPlayerAttributes);
@@ -681,85 +665,65 @@ export class BOSS2 extends plugin {
                     let CurrentPlayer = await data.getData("player", PlayerRecordJSON.QQ[PlayerList[i]]);
                     if (i < Show_MAX) {
                         let Reward;
-                        if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.025)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.06);
+                        if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.06);
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.05)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.045);
-                            if (Reward<Math.trunc(TotalDamage*0.025*0.06))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.025*0.06);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.05) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.045);
+                            if (Reward < Math.trunc(TotalDamage * 0.025 * 0.06)) {
+                                Reward = Math.trunc(TotalDamage * 0.025 * 0.06);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.075)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.036);
-                            if (Reward<Math.trunc(TotalDamage*0.05*0.045))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.05*0.045);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.075) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.036);
+                            if (Reward < Math.trunc(TotalDamage * 0.05 * 0.045)) {
+                                Reward = Math.trunc(TotalDamage * 0.05 * 0.045);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.1)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.032);
-                            if (Reward<Math.trunc(TotalDamage*0.075*0.036))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.075*0.036);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.1) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.032);
+                            if (Reward < Math.trunc(TotalDamage * 0.075 * 0.036)) {
+                                Reward = Math.trunc(TotalDamage * 0.075 * 0.036);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.15)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.025);
-                            if (Reward<Math.trunc(TotalDamage*0.1*0.032))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.1*0.032);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.15) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.025);
+                            if (Reward < Math.trunc(TotalDamage * 0.1 * 0.032)) {
+                                Reward = Math.trunc(TotalDamage * 0.1 * 0.032);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.2)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.022);
-                            if (Reward<Math.trunc(TotalDamage*0.15*0.025))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.15*0.025);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.2) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.022);
+                            if (Reward < Math.trunc(TotalDamage * 0.15 * 0.025)) {
+                                Reward = Math.trunc(TotalDamage * 0.15 * 0.025);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.3)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.018);
-                            if (Reward<Math.trunc(TotalDamage*0.2*0.022))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.2*0.022);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.3) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.018);
+                            if (Reward < Math.trunc(TotalDamage * 0.2 * 0.022)) {
+                                Reward = Math.trunc(TotalDamage * 0.2 * 0.022);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.4)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.016);
-                            if (Reward<Math.trunc(TotalDamage*0.3*0.018))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.3*0.018);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.4) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.016);
+                            if (Reward < Math.trunc(TotalDamage * 0.3 * 0.018)) {
+                                Reward = Math.trunc(TotalDamage * 0.3 * 0.018);
                             }
                         }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.5)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.015);
-                            if (Reward<Math.trunc(TotalDamage*0.4*0.016))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.4*0.016);
+                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.5) {
+                            Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.015);
+                            if (Reward < Math.trunc(TotalDamage * 0.4 * 0.016)) {
+                                Reward = Math.trunc(TotalDamage * 0.4 * 0.016);
                             }
                         }
-                        else
-                        {
-                            Reward=Math.trunc(TotalDamage*0.5*0.015);
+                        else {
+                            Reward = Math.trunc(TotalDamage * 0.5 * 0.015);
                         }
-                        if (TotalDamage>120000000)
-                        {
-                            Reward=Math.trunc(Reward/(TotalDamage/120000000));
+                        if (TotalDamage > 120000000) {
+                            Reward = Math.trunc(Reward / (TotalDamage / 120000000));
                         }
-                        if (Reward<100000)
-                        {
-                            Reward=100000;
+                        if (Reward < 100000) {
+                            Reward = 100000;
                         }
                         Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
                         CurrentPlayer.灵石 += Reward;
@@ -775,7 +739,7 @@ export class BOSS2 extends plugin {
                     if (i == PlayerList.length - 1) Rewardmsg.push("其余参与的修仙者均获得30000灵石奖励！");
                 }
                 await ForwardMsg(e, Rewardmsg);
-                DeleteWorldBoss2();
+                await DeleteWorldBoss();
             }
             WorldBOSSBattleCD[e.user_id] = new Date().getTime();
             WorldBOSSBattleLock = 0;
@@ -798,15 +762,15 @@ async function InitWorldBoss() {
     let X = AverageDamage * 0.01;
     Bot.logger.mark(`[天理] 化神玩家总数：${player_quantity}`);
     Bot.logger.mark(`[天理] 生成基数:${X}`);
-    let Health =  Math.trunc(X * 280 * player_quantity*2);
-    let Attack = Math.trunc(X*220);
-    let Defence = Math.trunc(X*200);
-    let yuansu=["仙之心·火","仙之心·水","仙之心·雷","仙之心·冰","仙之心·木"];
+    let Health = Math.trunc(X * 280 * player_quantity * 2);
+    let Attack = Math.trunc(X * 220);
+    let Defence = Math.trunc(X * 200);
+    let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·冰", "仙之心·木"];
     let index = Math.trunc(Math.random() * yuansu.length);
     let linggen = yuansu[index];
     //从存档随机选一个qq号
     let WorldBossStatus = {
-        "名号":"天理",
+        "名号": "天理",
         "当前血量": Health,
         "血量上限": Health,
         "isAngry": 0,
@@ -923,7 +887,7 @@ async function GetAverageDamage() {
         this_qq = parseInt(this_qq);
         let player = await data.getData("player", this_qq);
         let level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-        if (level_id >21 && level_id<42) {
+        if (level_id > 21 && level_id < 42) {
             temp[TotalPlayer] = parseInt(player.攻击);
             Bot.logger.mark(`[天理] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
             TotalPlayer++;
