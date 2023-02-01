@@ -197,7 +197,7 @@ export class Xijie extends plugin {
             return;
         }
         let player = await Read_player(usr_qq);
-        let Price = shop[i].price;
+        let Price = shop[i].price*0.3;
         if (player.灵石 < Price) {
             e.reply('你需要更多的灵石去打探消息');
             return;
