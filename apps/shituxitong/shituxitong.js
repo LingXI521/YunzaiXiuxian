@@ -21,6 +21,7 @@ let allaction = false; //全局状态判断
 /**
  * 作者：晓飞
  * 特别鸣谢：
+ * 再氪两单嘛：悉心教导
  * 摸鱼：开始师徒试炼
  * 航：师徒帮助
  */
@@ -80,6 +81,11 @@ export class shituxitong extends plugin {
           reg: '^#开始师徒试炼$',
           fnc: 'jijian',
         },
+        {
+          reg: '^#师徒同步$',
+          fnc: 'tongbu'
+        }
+
       ],
     });
   }
@@ -331,12 +337,14 @@ export class shituxitong extends plugin {
             now_Time
           );
           shitu[i].收徒 = 0;
-          await Write_shitu(shitu);
           e.reply('你解除了任务阶段大于3的徒弟，1个小时后才能再次收徒');
         } else {
           shitu[i].收徒 = 1;
-          await Write_shitu(shitu);
         }
+        shitu[i].renwu1 = 0;
+        shitu[i].renwu2 = 0;
+        shitu[i].renwu3 = 0;
+        shitu[i].任务阶段 = 0;
         shitu[i].未出师徒弟 = 0;
         await Write_shitu(shitu);
         e.reply('解除成功');
@@ -347,8 +355,11 @@ export class shituxitong extends plugin {
       }
       //这里是徒弟解除
     } else {
+      shitu[i].renwu1 = 0;
+      shitu[i].renwu2 = 0;
+      shitu[i].renwu3 = 0;
+      shitu[i].任务阶段 = 0;
       shitu[x].未出师徒弟 = 0;
-      await Write_shitu(shitu);
       shitu[x].收徒 = 1;
       await Write_shitu(shitu);
       e.reply('解除成功，1个小时后才能再次拜师');
@@ -509,6 +520,7 @@ export class shituxitong extends plugin {
     ]);
     return;
   }
+  /*师徒boss */
   async jijian(e) {
     let usr_qq = e.user_id;
     let player = await Read_player(usr_qq);
@@ -598,7 +610,7 @@ export class shituxitong extends plugin {
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
-          e.reply(`这次并没有一口气通过试炼呢，再接再厉！`);
+          e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
           return;
         }
       }
@@ -649,13 +661,15 @@ export class shituxitong extends plugin {
           e.reply(`第六回合你对道祖虚影造成${xue * 5}点伤害`);
           await sleep(10000);
         }
-        if (shitu[x].师徒BOOS剩余血量 == 0) {
+        if (shitu[x].师徒BOOS剩余血量 < 1) {
+          shitu[i].师徒BOOS剩余血量 = 0;
+          await Write_shitu(shitu);
           e.reply(`恭喜你通过了师徒试炼！`);
           return;
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
-          e.reply(`这次并没有一口气通过试炼呢，再接再厉！`);
+          e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
           return;
         }
       }
@@ -663,6 +677,33 @@ export class shituxitong extends plugin {
       e.reply(`你的任务还没到此阶段`);
       return;
     }
+  }
+  /*师徒同步 */
+    async tongbu(e) {
+    let shitu = await Read_shitu();
+    let user_A;
+    let A = e.user_id;
+    user_A = A;
+    let i = await found(user_A);
+    e.reply(`开始同步`);
+    if (!isNotNull(shitu[i].师徒BOOS剩余血量)) {
+      shitu[i].师徒BOOS剩余血量 = 100000000;
+    }
+    if (!isNotNull(shitu[i].已出师徒弟)) {
+      shitu[i].已出师徒弟 = [];
+    }
+    if (!isNotNull(shitu[i].任务阶段)) {
+      shitu[i].任务阶段 = 0;
+    }
+    if (!isNotNull(shitu[i].未出师徒弟)) {
+      shitu[i].未出师徒弟 = 0;
+    }
+    if (!isNotNull(shitu[i].收徒)) {
+      shitu[i].收徒 = 0;
+    }
+    e.reply(`同步完成`);
+    await Write_shitu(shitu);
+    return
   }
 }
 export async function get_shitujifen_img(e) {
