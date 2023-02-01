@@ -1252,10 +1252,14 @@ export class UserHome extends plugin {
                         if (!x) {
                             await Reduse_player_学习功法(usr_qq, gongfa[i]);
                         }
-                        await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        else
+                        {
+                            await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        }
                     }
-                    player.lunhui = 0;
                 }
+                player = await Read_player(usr_qq);
+                player.lunhui = 0;
                 player.灵根 = {
                     "id": 70001, "name": "垃圾五灵根", "type": "伪灵根", "eff": 0.01, "法球倍率": 0.01
                 };
@@ -1280,10 +1284,14 @@ export class UserHome extends plugin {
                         if (!x) {
                             await Reduse_player_学习功法(usr_qq, gongfa[i]);
                         }
-                        await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        else
+                        {
+                            await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        }
                     }
-                    player.lunhui = 0;
                 }
+                player = await Read_player(usr_qq);
+                player.lunhui = 0;
                 player.灵根 = {
                     "id": 70054, "name": "天五灵根", "type": "圣体", "eff": 0.20, "法球倍率": 0.12
                 };
