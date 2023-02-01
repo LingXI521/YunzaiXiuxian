@@ -1304,6 +1304,9 @@ export async function synchronization(e) {
     if (!isNotNull(player.神石)) {
       player.神石 = 0;
     }
+    if (player.Physique_id == 0) {
+      player.Physique_id = 1;
+    }
     let i = 0;
     let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
     action2 = JSON.parse(action2);
