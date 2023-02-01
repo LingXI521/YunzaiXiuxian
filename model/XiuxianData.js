@@ -101,6 +101,8 @@ class XiuxianData {
         this.forbiddenarea_list = JSON.parse(fs.readFileSync(`${this.lib_path}/禁地列表.json`));
         //加载仙域列表
         this.Fairyrealm_list = JSON.parse(fs.readFileSync(`${this.lib_path}/仙境列表.json`));
+        //加载寻宝列表
+        this.xunbao_list=JSON.parse(fs.readFileSync(`${this.lib_path}/寻宝列表.json`));
 
         //加载限定仙府
         this.timeplace_list = JSON.parse(fs.readFileSync(`${this.Timelimit}/限定仙府.json`));
