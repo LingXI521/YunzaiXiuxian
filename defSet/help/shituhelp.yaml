@@ -33,3 +33,6 @@
    - icon: help-icon_13
      title: "#开始师徒试炼"
      desc: "阶段五专用：讨伐师徒BOSS"
+   - icon: help-icon_13
+     title: "#师徒同步"
+     desc: "如果你的师徒有问题，可以试试这个"
