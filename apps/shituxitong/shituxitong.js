@@ -965,6 +965,7 @@ export async function get_renwu_img(e) {
     shitu[i].renwu2 = 1;
     shitu[i].renwu3 = 1;
     shitu[i].任务阶段 = player.师徒任务阶段;
+    shitu[i].师徒BOOS剩余血量 = 100000000;
     await Write_shitu(shitu);
     e.reply(
       `任务已刷新！\n你上次任务进行到了阶段${player.师徒任务阶段}已自动为你延续`
@@ -975,6 +976,7 @@ export async function get_renwu_img(e) {
     shitu[i].renwu2 = 1;
     shitu[i].renwu3 = 1;
     shitu[i].任务阶段 = 1;
+    shitu[i].师徒BOOS剩余血量 = 100000000;
     await Write_shitu(shitu);
     player.师徒任务阶段 = 1;
     await Write_player(usr_qq, player);
