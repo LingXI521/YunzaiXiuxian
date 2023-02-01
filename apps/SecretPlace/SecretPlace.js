@@ -30,6 +30,10 @@ export class SecretPlace extends plugin {
                     reg: '^#秘境$',
                     fnc: 'Secretplace'
                 },
+                 {
+                    reg: '^#寻宝$',
+                    fnc: 'xunbao'
+                },
                 {
                     reg: '^#降临秘境.*$',
                     fnc: 'Gosecretplace'
@@ -106,6 +110,15 @@ export class SecretPlace extends plugin {
             return;
         }
         e.reply("仙府乃民间传说之地,请自行探索")
+    }
+    async xunbao(e) {
+        //不开放私聊功能
+        if (!e.isGroup) {
+            return;
+        }
+        let addres = "寻宝";
+        let weizhi = data.xunbao_list;
+        await Goweizhi(e, weizhi, addres);
     }
 
     //仙境
