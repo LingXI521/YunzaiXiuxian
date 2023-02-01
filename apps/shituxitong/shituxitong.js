@@ -435,27 +435,32 @@ export class shituxitong extends plugin {
   //查看师傅列表
   async looklook(e) {
     let usr_qq = e.user_id;
-    let shitu = await Read_shitu();
-    let player = await Read_player(usr_qq);
-    let i;
-    let t = 0;
-    let shoutu = `师傅列表:\n仅显示随机五个可拜师师傅`;
+    let shitu = await Read_shitu()
+    let i
+    let t = 0
+    let kaiqi = await found3();
+    let shoutu = ``
     let suiji = 0;
+    if(kaiqi == 1){
+      shoutu = `师傅列表：\n(仅显示随机的五个可拜师师傅)\n`
+    }else if(kaiqi == 0){
+      shoutu = `暂时还没有开启收徒的师傅`
+    }
+
     if (shitu.length > 5) {
       suiji = Math.floor(Math.random() * shitu.length);
       if (shitu.length - suiji < 5) {
-        suiji = shitu.length - 5;
+        suiji = shitu.length - 5
       }
     }
     for (i = suiji; i < shitu.length; i++) {
       if (shitu[i].收徒 == 1) {
-        shoutu += `QQ:${shitu[i].师傅}\n道号:${data.getData(
-          `player`,
-          shitu[i].师傅.名号
-        )}\n`;
-        t++;
+        let player = await Read_player(shitu[i].师傅);
+        let daohao = player.名号
+        shoutu += `道号:${daohao}\nQQ:${shitu[i].师傅}\n`;
+        t++
         if (t == 5) {
-          break;
+          break
         }
       }
     }
@@ -686,6 +691,13 @@ export class shituxitong extends plugin {
     let A = e.user_id;
     user_A = A;
     let i = await found(user_A);
+    let shifu = await find_shitu(A);
+    let tudi = await find_tudi(A);
+    //判断对方有没有存档
+    if (shifu == 0 && tudi == 0) {
+      e.reply('你还没拜师&收徒过！');
+      return;
+    }
     e.reply(`开始同步`);
     if (!isNotNull(shitu[i].师徒BOOS剩余血量)) {
       shitu[i].师徒BOOS剩余血量 = 100000000;
@@ -1259,4 +1271,16 @@ async function found2(A) {
     }
   }
   return i;
+}
+async function found3(A) {
+  let shitu = await Read_shitu();
+  let i;
+  let m = 0
+  for (i = 0; i < shitu.length; i++) {
+    if (shitu[i].收徒 == 1) {
+      m = 1
+      break;
+    }
+  }
+  return m;
 }
