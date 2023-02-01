@@ -67,7 +67,15 @@ export class Xijie extends plugin {
                 return;
             }
         }
-
+        let nowTime = new Date().getTime();
+        let lastxijie_time = await redis.get("xiuxian:player:" + usr_qq + ":lastxijie_time");
+        lastxijie_time = parseInt(lastxijie_time);
+        if (nowTime < lastxijie_time+5400000) {
+            let lastxijie_m = Math.trunc((lastxijie_time+5400000 - nowTime) / 60 / 1000);
+            let lastxijie_s = Math.trunc(((lastxijie_time+5400000 - nowTime) % 60000) / 1000);
+            e.reply(`每90分钟洗劫一次，正在CD中，` + `剩余cd: ${lastxijie_m}分${lastxijie_s}秒`);
+            return;
+        }
         var didian = e.msg.replace('#洗劫', '');
         didian = didian.trim();
         let shop = await Read_shop();
@@ -115,11 +123,10 @@ export class Xijie extends plugin {
             暴击率: player.暴击率,
             灵根: player.灵根,
             法球倍率: player.灵根.法球倍率,
-            魔值:0,
+            魔值: 0,
         };
-        if (player.魔道值>999)
-        {
-            A_player.魔值=1;
+        if (player.魔道值 > 999) {
+            A_player.魔值 = 1;
         }
         var time = 15; //时间（分钟）
         let action_time = 60000 * time; //持续时间，单位毫秒
@@ -143,10 +150,8 @@ export class Xijie extends plugin {
         if (e.isGroup) {
             arr.group_id = e.group_id;
         }
-        await redis.set(
-            'xiuxian:player:' + usr_qq + ':action',
-            JSON.stringify(arr)
-        );
+        await redis.set('xiuxian:player:' + usr_qq + ':action',JSON.stringify(arr));
+        await redis.set("xiuxian:player:" + usr_qq + ":lastxijie_time", nowTime);
         msg += '\n开始前往' + didian + ',祝你好运!';
         e.reply(msg, true);
         return;
@@ -197,7 +202,7 @@ export class Xijie extends plugin {
             return;
         }
         let player = await Read_player(usr_qq);
-        let Price = shop[i].price*0.3;
+        let Price = shop[i].price * 0.3;
         if (player.灵石 < Price) {
             e.reply('你需要更多的灵石去打探消息');
             return;
