@@ -434,6 +434,7 @@ export class shituxitong extends plugin {
   }
   //查看师傅列表
   async looklook(e) {
+    let usr_qq = e.user_id;
     let shitu = await Read_shitu();
     let player = await Read_player(usr_qq);
     let i;
@@ -705,6 +706,11 @@ export class shituxitong extends plugin {
     await Write_shitu(shitu);
     return
   }
+}
+export function isNotNull(obj) {
+  if (obj == undefined || obj == null)
+      return false;
+  return true;
 }
 export async function get_shitujifen_img(e) {
   let usr_qq = e.user_id;
