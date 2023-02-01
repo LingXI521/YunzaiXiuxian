@@ -1468,7 +1468,13 @@ if (thing_name == "寻宝工具盒") {
             }
             if (thing_name == "闹钟藏的新春铁盒") {
                 let math=Math.random();
-                if(math>0&&math<=0.25){
+                if(math==0.01){
+                    await Add_najie_thing(usr_qq, "赤角石溃杵", "装备", 1); 
+                   await Add_najie_thing(usr_qq, thing_name, "道具", -1);
+                  e.reply("你充满期待的打开了盒子，结果发现了里面有一个赤角石溃杵")
+                  return;
+                }
+                if(math>0.01&&math<=0.25){
                     await Add_najie_thing(usr_qq, "百合花篮", "道具", 1); 
                    await Add_najie_thing(usr_qq, thing_name, "道具", -1);
                   e.reply("你充满期待的打开了盒子，结果发现了里面有一个百合花篮")
