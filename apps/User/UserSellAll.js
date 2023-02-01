@@ -292,13 +292,6 @@ export class UserSellAll extends plugin {
         if (!ifexistplay) {
             return;
         }
-        await Go(e);
-                if (allaction) {
-                    console.log(allaction);
-                } else {
-                    return;
-                }
-                allaction = false;
         //检索方法
         let najie = await data.getData("najie", usr_qq);
         let xiuwei = 0
@@ -327,13 +320,7 @@ export class UserSellAll extends plugin {
         if (!ifexistplay) {
             return;
         }
-        await Go(e);
-                if (allaction) {
-                    console.log(allaction);
-                } else {
-                    return;
-                }
-                allaction = false;
+        
         //检索方法
         let najie = await data.getData("najie", usr_qq);
         let xueqi = 0
