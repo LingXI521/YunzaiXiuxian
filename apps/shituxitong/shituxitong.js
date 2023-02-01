@@ -790,10 +790,10 @@ export async function get_tijiao_img(e) {
     await Add_修为(usr_qq, 40000);
     await Add_灵石(usr_qq, 40000);
     await Add_血气(usr_qq, 40000);
-    await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
-    await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务2\n获得奖励：\n1.修为*40000\n2.血气*40000\n3.灵石*40000\n4.功法盒*1\n5.药水盒*1'
+      '已完成阶段任务2\n获得奖励：\n1.修为*40000\n2.血气*40000\n3.灵石*40000'
     );
     return;
   } else if (
@@ -814,10 +814,10 @@ export async function get_tijiao_img(e) {
     await Add_修为(usr_qq, 50000);
     await Add_灵石(usr_qq, 50000);
     await Add_血气(usr_qq, 50000);
-    await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
-    await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务3\n获得奖励：\n1.修为*50000\n2.血气*50000\n3.灵石*50000\n4.功法盒*1\n5.道具盒*1'
+      '已完成阶段任务3\n获得奖励：\n1.修为*50000\n2.血气*50000\n2.灵石*50000'
     );
     return;
   } else if (
@@ -838,10 +838,10 @@ export async function get_tijiao_img(e) {
     await Add_修为(usr_qq, 150000);
     await Add_灵石(usr_qq, 150000);
     await Add_血气(usr_qq, 150000);
-    await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
-    await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
+    // await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务4\n获得奖励：\n1.修为*150000\n2.血气*150000\n3.灵石*150000\n4.道具盒*1\n5.药水盒*1'
+      '已完成阶段任务4\n获得奖励：\n1.修为*150000\n2.血气*150000\n3.灵石*150000'
     );
     return;
   } else if (
@@ -864,11 +864,11 @@ export async function get_tijiao_img(e) {
     await Add_修为(usr_qq, 250000);
     await Add_灵石(usr_qq, 250000);
     await Add_血气(usr_qq, 250000);
-    await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
-    await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
-    await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
+    await Add_najie_thing(usr_qq, '功法盒', '盒子', 3);
+    await Add_najie_thing(usr_qq, '药水盒', '盒子', 3);
+    await Add_najie_thing(usr_qq, '道具盒', '盒子', 3);
     e.reply(
-      '已完成阶段任务5，恭喜你成功出师！\n获得奖励：\n1.修为*250000\n2.血气*250000\n3.灵石*250000\n4.功法盒*1\n5.药水盒*1\n6.道具盒*1'
+      '已完成阶段任务5，恭喜你成功出师！\n获得奖励：\n1.修为*250000\n2.血气*250000\n3.灵石*250000\n4.功法盒*3\n5.药水盒*3\n6.道具盒*3'
     );
     return;
   } else if (
