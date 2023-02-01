@@ -2541,7 +2541,7 @@ if (thing_name == "羊毛") {
                              await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
-                                await Add_najie_thing(usr_qq, "深渊", "道具", 1*n);
+                                await Add_najie_thing(usr_qq, "深渊", "道具", 1);
                                 e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和深渊地图${1*n},,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
@@ -2602,7 +2602,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个`)
                                 return;
-                            }else if(math>0&&math<=0.3){
+                            }else if(math>0&&math<=0.2){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1*n);
                                 e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个`)
                                 return;
@@ -2670,7 +2670,7 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和黑曜石${5*n}`)
                                 return;
                             }else if(math>0&&math<=0.1){
-                                await Add_najie_thing(usr_qq, "深渊", "道具",1*n);
+                                await Add_najie_thing(usr_qq, "深渊", "道具",1);
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1*n}个`)
                                 return;
                             }else{
@@ -2898,17 +2898,17 @@ if (thing_name == "羊毛") {
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
                              await Add_najie_thing(usr_qq, "火把", "道具", -128);
-                           if(math>0&&math<0.3){
-                                await Add_najie_thing(usr_qq, "深渊", "道具",1*n);
+                           if(math>0&&math<0.1){
+                                await Add_najie_thing(usr_qq, "深渊", "道具",1);
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n},找到了一个深渊地图${1*n}`)
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n},找到了一个深渊地图`)
                                 return;
                                 }else{
                                 e.reply(`你在层岩巨渊捡到了20w灵石挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,找到了一个深渊地图${1*n}`)
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,找到了一个深渊地图`)
                                  return;
                                 }
                             }else if(math>0.9&&math<1){
@@ -2917,12 +2917,12 @@ if (thing_name == "羊毛") {
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n},
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个`)
                                 }else{
                                     e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个`)
                                 }
                             }else if(math>0.8&&math<0.9){
@@ -2931,12 +2931,12 @@ if (thing_name == "羊毛") {
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                                 }else{
                                      e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                                 }
                             }else if(math>0.3&&math<=0.5){
@@ -2945,22 +2945,22 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
-                                红石${256*n}个`)
+                                红石${256*n}个，黑曜石${12*n}个,`)
                                 }else{
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
-                                红石${256*n}个,黑曜石${12*n}个`)
+                                红石${256*n}个`)
                                 }
                             }else{
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个`) 
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,,黑曜石${12*n}个`) 
                                 }else{
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个`)
+                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个`)
                                 }
                             }
                         }else{
