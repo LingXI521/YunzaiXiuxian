@@ -1741,7 +1741,7 @@ if (thing_name == "羊毛") {
                          return;
                     }
                     await Add_najie_thing(usr_qq, "岩浆", "材料", -quantity);
-                    await Add_热量(usr_qq,3000*quantity)
+                    await Add_热量(usr_qq,500*quantity)
                     e.reply('添加成功,火烧的更旺了')
                     return;
                    
@@ -3022,12 +3022,12 @@ if (thing_name == "羊毛") {
                   }else if(math>0.1&&math<=0.2){
                     await Add_najie_thing(usr_qq, "经验球", "丹药", 100*n);
                     e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验球${150*n}个`)
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验球${100*n}个`)
                     return;
                   }else if(math>0.2&&math<=0.3){
                     await Add_najie_thing(usr_qq, "血气瓶", "丹药", 25*n);
                     e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,血气瓶${50*n}个`)
+                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,血气瓶${25*n}个`)
                     return;
                   }else if(math>0.3&&math<=0.5){
                     await Add_najie_thing(usr_qq, "经验瓶", "丹药", 40*n);
