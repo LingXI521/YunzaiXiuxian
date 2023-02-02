@@ -436,11 +436,11 @@ export async function zd_battle(A_player, B_player) {
   let Achaodaohuihe = 0; //超导回合数
   let Bchaodaohuihe = 0; //超导回合数
   let msg = [];
-  let Random = Math.random();
-  let random = Math.random();
   let jineng1=data.jineng1;
   let jineng2=data.jineng2;
   while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
+    let Random = Math.random();
+    let random = Math.random();
     if (cnt % 2 == 0) {
       let baoji = baojishanghai(A_player.暴击率);
       if (!isNotNull(A_player.仙宠)) {
