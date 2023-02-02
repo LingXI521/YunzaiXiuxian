@@ -479,9 +479,9 @@ export async function zd_battle(A_player, B_player) {
       伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
       for (var i=0;i<jineng1.length;i++)
       {
-        if ((jineng1[i].class=="常驻" && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr)||
-         ((jineng1[i].class=="功法" && A_player.学习的功法.indexOf(jineng1[i].name)>-1) && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr) || 
-         (jineng1[i].class=="灵根" && A_player.灵根.name==jineng1[i].name && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr))
+        if ((jineng1[i].class=="常驻" && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr)||
+         ((jineng1[i].class=="功法" && A_player.学习的功法.indexOf(jineng1[i].name)>-1) && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr) || 
+         (jineng1[i].class=="灵根" && A_player.灵根.name==jineng1[i].name && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr))
         {
           if (jineng1[i].msg2=="")
           {
@@ -496,9 +496,9 @@ export async function zd_battle(A_player, B_player) {
       }
       for (var i=0;i<jineng2.length;i++)
       {
-        if ((jineng2[i].class=="常驻" && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr)||
-         ((jineng2[i].class=="功法" && B_player.学习的功法.indexOf(jineng2[i].name) > -1) && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr) || 
-         (jineng2[i].class=="灵根" && B_player.灵根.name==jineng2[i].name && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng1[i].pr))
+        if ((jineng2[i].class=="常驻" && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr)||
+         ((jineng2[i].class=="功法" && B_player.学习的功法.indexOf(jineng2[i].name) > -1) && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr) || 
+         (jineng2[i].class=="灵根" && B_player.灵根.name==jineng2[i].name && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng1[i].pr))
         {
           if (jineng2[i].msg2=="")
           {
@@ -594,9 +594,9 @@ ${B_player.名号}冻结中`);
       伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + B_player.防御 * 0.1);
       for (var i=0;i<jineng1.length;i++)
       {
-        if ((jineng1[i].class=="常驻" && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr)||
-         ((jineng1[i].class=="功法" && B_player.学习的功法.indexOf(jineng1[i].name)>-1) && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr) || 
-         (jineng1[i].class=="灵根" && B_player.灵根.name==jineng1[i].name && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr))
+        if ((jineng1[i].class=="常驻" && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr)||
+         ((jineng1[i].class=="功法" && B_player.学习的功法.indexOf(jineng1[i].name)>-1) && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr) || 
+         (jineng1[i].class=="灵根" && B_player.灵根.name==jineng1[i].name && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr))
         {
           if (jineng1[i].msg2=="")
           {
@@ -611,9 +611,9 @@ ${B_player.名号}冻结中`);
       }
       for (var i=0;i<jineng2.length;i++)
       {
-        if ((jineng2[i].class=="常驻" && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr)||
-         ((jineng2[i].class=="功法" && A_player.学习的功法.indexOf(jineng2[i].name) > -1) && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr) || 
-         (jineng2[i].class=="灵根" && A_player.灵根.name==jineng2[i].name && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng1[i].pr))
+        if ((jineng2[i].class=="常驻" && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr)||
+         ((jineng2[i].class=="功法" && A_player.学习的功法.indexOf(jineng2[i].name) > -1) && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr) || 
+         (jineng2[i].class=="灵根" && A_player.灵根.name==jineng2[i].name && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng1[i].pr))
         {
           if (jineng2[i].msg2=="")
           {
