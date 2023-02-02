@@ -72,7 +72,7 @@ export class BackUp extends plugin {
       // 先泡杯茶等等dataProm吧
 
       // redis
-      const redisKeys = await redis.keys('xiuxian::*');
+      const redisKeys = await redis.keys('xiuxian:*');
       const redisObj = redisKeys.reduce(
         async (obj, key) => (obj[key] = await redis.get(key)),
         {}
@@ -217,7 +217,7 @@ export class BackUp extends plugin {
 
         // 删原本的redis
         if (includeBackup) {
-          const originRedisKeys = await redis.keys('xiuxian::*');
+          const originRedisKeys = await redis.keys('xiuxian:*');
           const clearRedisTask = originRedisKeys.map(key => redis.del(key));
           await Promise.all(clearRedisTask);
         }
