@@ -1650,8 +1650,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 att=last_att+(A_player.防御*0.1)  
                }
       }else{
-        msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强20%")
-                fyjiachen += A_player.防御 * 0.5
+        msg.push("触发赤角石溃杵被动技能:[进军],防御增强30%,攻击增强20%")
+                fyjiachen += A_player.防御 * 0.3
                 att=last_att*1.2
       }
     }
