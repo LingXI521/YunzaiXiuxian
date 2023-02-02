@@ -1,6 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import { __PATH } from '../Xiuxian/xiuxian.js';
-import config from '../../model/Config.js';
+// import config from '../../model/Config.js';
 import fs from 'fs';
 
 export class BackUp extends plugin {
@@ -28,12 +28,12 @@ export class BackUp extends plugin {
         },
       ],
     });
-    this.saving = false;
-    this.task = {
-      cron: config.getdefSet('task', 'task').AutoBackUpTask,
-      name: 'AutoBackUp',
-      fnc: this.saveBackUp,
-    };
+    // this.saving = false;
+    // this.task = {
+    //   cron: config.getdefSet('task', 'task').AutoBackUpTask,
+    //   name: 'AutoBackUp',
+    //   fnc: this.saveBackUp,
+    // };
   }
 
   async saveBackUp(e) {
@@ -71,6 +71,13 @@ export class BackUp extends plugin {
       const dataProm = Promise.all(readDoneTask);
       // 先泡杯茶等等dataProm吧
 
+      // redis
+      const redisKeys = await redis.keys('xiuxian::*');
+      const redisObj = redisKeys.reduce(
+        async (obj, key) => (obj[key] = await redis.get(key)),
+        {}
+      );
+
       // 看看前置工作有没有完成
       if (!fs.existsSync(__PATH.backup)) {
         fs.mkdirSync(__PATH.backup, { recursive: true });
@@ -96,6 +103,9 @@ export class BackUp extends plugin {
         );
         return Promise.all(writeTask);
       });
+
+      // redis
+      fs.writeFileSync(`${saveFolder}/redis.json`, JSON.stringify(redisObj));
 
       // 尘埃落定了就提示一下
       await Promise.all(finishTask);
@@ -182,8 +192,19 @@ export class BackUp extends plugin {
         );
         return Promise.all(readTask);
       });
+
+      // redis
+      let redisObj = {};
+      let includeBackup = true;
+      try {
+        redisObj = JSON.parse(fs.readFileSync(`${backUpPath}/redis.json`));
+      } catch (_) {
+        includeBackup = false; // 这个备份不包含redis
+      }
+
       const loadData = await Promise.all(readDoneTask);
 
+      // 导入
       const finishTask = needLoad.map(async (folderName, index) => {
         // 删一删原本的存档
         const originFname = fs.readdirSync(`${__PATH[folderName]}`);
@@ -194,6 +215,13 @@ export class BackUp extends plugin {
         });
         await Promise.all(clearTask);
 
+        // 删原本的redis
+        if (includeBackup) {
+          const originRedisKeys = await redis.keys('xiuxian::*');
+          const clearRedisTask = originRedisKeys.map(key => redis.del(key));
+          await Promise.all(clearRedisTask);
+        }
+
         // 然后再写入备份的
         const writeTask = loadData[index].map((ld, i) =>
           fs.promises.writeFile(
@@ -201,6 +229,14 @@ export class BackUp extends plugin {
             ld
           )
         );
+
+        // 写入备份的redis
+        if (includeBackup) {
+          await Promise.all(
+            Object.keys(redisObj).map(key => redis.set(key, redisObj[key]))
+          );
+        }
+
         return Promise.all(writeTask);
       });
 
