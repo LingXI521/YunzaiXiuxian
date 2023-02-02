@@ -1,7 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js'
 import config from "../../model/Config.js"
 import { Write_shop,Read_shop} from "../Xijie/Xijie.js"
-import { dati2} from "../SpringFestival/GuessLanternRiddles.js"
+
 
 export class ShopGradetask extends plugin {
     constructor() {
@@ -21,22 +21,5 @@ export class ShopGradetask extends plugin {
             fnc: () => this.ShopGradetask()
         }
     }
-    async ShopGradetask() {
-        let shop=await Read_shop();
-        for (var i=0;i<shop.length;i++)
-        {
-            shop[i].Grade--;
-            if (shop[i].Grade<1)
-            {
-                shop[i].Grade=1;
-            }
-        }
-        await Write_shop(shop);
-        let action = await redis.get("xiuxian:player:" + 1 + ":dati");
-        action = await JSON.parse(action);
-        if (action=="1")
-        {
-            await dati2();
-        }
-    }
+    
 }
