@@ -436,6 +436,10 @@ export async function zd_battle(A_player, B_player) {
   let Achaodaohuihe = 0; //超导回合数
   let Bchaodaohuihe = 0; //超导回合数
   let msg = [];
+  let Random = Math.random();
+  let random = Math.random();
+  let jineng1=data.jineng1;
+  let jineng2=data.jineng2;
   while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
     if (cnt % 2 == 0) {
       let baoji = baojishanghai(A_player.暴击率);
@@ -473,146 +477,39 @@ export async function zd_battle(A_player, B_player) {
       let 伤害 = Harm(A_player.攻击 * 0.85, B_player.防御);
       let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
       伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
-      let Random = Math.random();
-      if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·鬼帝功') > -1 &&
-        Random > 0.2 &&
-        cnt == 0
-      ) {
-        msg.push(
-          `${A_player.名号} 使用【鬼剑】然暴起冲向 ${B_player.名号}，速度之快，对方根本反应不过来。`
-        );
-        伤害 = Math.trunc(伤害 * 1.1 + 100000);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('伪八品·影杀') > -1 &&
-        Random > 0.2 &&
-        cnt == 0
-      ) {
-        msg.push(
-          `${A_player.名号} 使用影杀！突然暴起冲向 ${B_player.名号}，速度之快，对方根本反应不过来。`
-        );
-        伤害 = Math.trunc(伤害 * 1 + 100000);
-      } else if (Random > 0.5 && cnt == 0) {
-        msg.push(
-          `你找准时机！突然暴起冲向 ${B_player.名号}，但是被对方反应过来了`
-        );
-        伤害 = 0;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·八荒剑法') > -1 &&
-        cnt == 2
-      ) {
-        msg.push(`${A_player.名号} 使用八荒剑法【斩八荒！】`);
-        伤害 = Math.trunc(伤害 * 1.2);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·天星') > -1 &&
-        cnt == 4
-      ) {
-        msg.push(`${A_player.名号} 使用天星【天动万象！】`);
-        伤害 = Math.trunc(伤害 * 1.2 + 200000);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·太素') > -1 &&
-        cnt == 4
-      ) {
-        msg.push(`${A_player.名号} 使用太素【太素】`);
-        伤害 = Math.trunc(伤害 * 1.2 + 200000);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·心禅不灭诀') > -1 &&
-        cnt == 4
-      ) {
-        msg.push(`${A_player.名号} 使用八品·心禅不灭诀【万剑归宗】`);
-        伤害 *= 1.25;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·太皇经') > -1 &&
-        cnt == 2
-      ) {
-        msg.push(`${A_player.名号} 使用八品·太皇经【无量仙功】开始聚集仙气`);
-        伤害 *= 0.9;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·太皇经') > -1 &&
-        cnt == 2
-      ) {
-        msg.push(`${A_player.名号} 使用八品·太皇经 聚集完成！【皇极斩！】`);
-        伤害 = Math.trunc(伤害 * 1.25 + 500000);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('伪八品·二重梦之㱬') > -1 &&
-        cnt == 6
-      ) {
-        msg.push(`${A_player.名号} 使用二重梦之㱬【梦轮】`);
-        伤害 *= 1.25;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('九品·第一魔功') > -1 &&
-        cnt == 2
-      ) {
-        msg.push(`${A_player.名号} 使用第一魔功【噬天！】`);
-        伤害 = Math.trunc(伤害 * 1.15 + 300000);
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('九品·第一魔功') > -1 &&
-        Random < 0.03
-      ) {
-        msg.push(
-          `${B_player.名号} 使用了第一魔功【魔转！】你的伤害被转走了大部分`
-        );
-        伤害 *= 0.5;
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('伪九品·魔帝功') > -1 &&
-        Random < 0.3 &&
-        cnt == 2
-      ) {
-        msg.push(`${B_player.名号} 使用了魔帝功【吞噬】你的伤害被吸收了`);
-        伤害 *= -0.1;
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·避空') > -1 &&
-        cnt == 4
-      ) {
-        msg.push(`${B_player.名号} 使用了避空【遁空！】`);
-        伤害 *= 0.5;
-      } else if (Random < 0.06) {
-        msg.push(`你找到了 ${B_player.名号} 的破绽！这一下无处可逃！`);
-        伤害 *= 1.3;
-      } else if (A_player.灵根.name === '轮回道体' && cnt == 0) {
-        msg.push(`${A_player.名号} 使用了先天神通，轮回之力需要时间准备`);
-        伤害 *= 0.8;
-      } else if (A_player.灵根.name === '轮回道体' && cnt == 4) {
-        msg.push(`${A_player.名号} 使用了先天神通，轮回之力崩泄而出！`);
-        伤害 *= 1.5;
-      } else if (B_player.灵根.name === '破虚踏星体' && Random > 0.98) {
-        msg.push(`${B_player.名号}使用了先天神通 【破虚】！你的伤害无法命中！`);
-        伤害 *= 0;
-      } else if (B_player.灵根.type === '转生' && Random > 0.98) {
-        msg.push(`${B_player.名号}使用了转生神通 【轮墓】！你的伤害无法生效！`);
-        伤害 *= 0;
-      } else if (A_player.灵根.name === '灭道杀神体' && cnt == 12) {
-        msg.push(`${A_player.名号}使用了先天神通 【杀破神】！`);
-        伤害 *= 3;
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·桃花神功') > -1 &&
-        cnt == 4 &&
-        Random > 0.66
-      ) {
-        msg.push(
-          `${A_player.名号} 使用了【三生桃花！】你的攻击慢慢变成了漫天桃花飞舞。`
-        );
-        伤害 *= -0.2;
-      } else if (Random > 0.94) {
-        msg.push(`你的攻击被 ${B_player.名号} 破解了`);
-        伤害 *= 0.6;
-      } else if (Random > 0.9) {
-        msg.push(`你的攻击被 ${B_player.名号} 接下来了`);
-        伤害 *= 0.8;
+      for (var i=0;i<jineng1.length;i++)
+      {
+        if ((jineng1[i].class=="常驻" && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr)||
+         ((jineng1[i].class=="功法" && A_player.学习的功法.indexOf(jineng1[i].name)>-1) && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr) || 
+         (jineng1[i].class=="灵根" && A_player.灵根.name==jineng1[i].name && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr))
+        {
+          if (jineng1[i].msg2=="")
+          {
+            msg.push(A_player.名号+jineng1[i].msg1);
+          }
+          else
+          {
+            msg.push(A_player.名号+jineng1[i].msg1+B_player.名号+jineng1[i].msg2);
+          }
+          伤害 = 伤害*jineng1[i].beilv+jineng1[i].other;
+        }
+      }
+      for (var i=0;i<jineng2.length;i++)
+      {
+        if ((jineng2[i].class=="常驻" && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr)||
+         ((jineng2[i].class=="功法" && B_player.学习的功法.indexOf(jineng2[i].name) > -1) && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr) || 
+         (jineng2[i].class=="灵根" && B_player.灵根.name==jineng2[i].name && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng1[i].pr))
+        {
+          if (jineng2[i].msg2=="")
+          {
+            msg.push(B_player.名号+jineng2[i].msg1);
+          }
+          else
+          {
+            msg.push(B_player.名号+jineng2[i].msg1+A_player.名号+jineng2[i].msg2);
+          }
+          伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
+        }
       }
 
       if (yuansu.ranshao && Agandianhuihe > 0) {
@@ -695,121 +592,39 @@ ${B_player.名号}冻结中`);
       let 伤害 = Harm(B_player.攻击 * 0.85, A_player.防御);
       let 法球伤害 = Math.trunc(B_player.攻击 * B_player.法球倍率);
       伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + B_player.防御 * 0.1);
-      let Random = Math.random();
-      if (Random < 0.06) {
-        msg.push(`你找到了 ${A_player.名号} 的破绽！这一下无处可逃！`);
-        伤害 *= 1.3;
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·八荒剑法') > -1 &&
-        cnt == 3
-      ) {
-        msg.push(`${B_player.名号} 使用八荒剑法【斩八荒！】`);
-        伤害 *= 1.2;
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·太皇经') > -1 &&
-        cnt == 3
-      ) {
-        msg.push(`${B_player.名号} 使用八品·太皇经【无量仙功】开始聚集仙气`);
-        伤害 *= 0.9;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·太皇经') > -1 &&
-        cnt == 9
-      ) {
-        msg.push(`${A_player.名号} 使用八品·太皇经 聚集完成！【皇极斩！】`);
-        伤害 = Math.trunc(伤害 * 1.25 + 500000);
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·天星') > -1 &&
-        cnt == 5
-      ) {
-        msg.push(`${B_player.名号} 使用天星【天动万象！】`);
-        伤害 = Math.trunc(伤害 * 1.2 + 200000);
-      } else if (
-        A_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·太素') > -1 &&
-        cnt == 4
-      ) {
-        msg.push(`${B_player.名号} 使用太素【太素】`);
-        伤害 = Math.trunc(伤害 * 1.2 + 200000);
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('八品·心禅不灭诀') > -1 &&
-        cnt == 5
-      ) {
-        msg.push(`${B_player.名号} 使用八品·心禅不灭诀【万剑归宗】`);
-        伤害 = Math.trunc(伤害 * 1.25);
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('伪八品·二重梦之㱬') > -1 &&
-        cnt == 7
-      ) {
-        msg.push(`${B_player.名号} 使用二重梦之㱬【梦轮】`);
-        伤害 = Math.trunc(伤害 * 1.25);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·避空') > -1 &&
-        cnt == 5
-      ) {
-        msg.push(`${A_player.名号} 使用了避空【遁空！】`);
-        伤害 = Math.trunc(伤害 * 0.5);
-      } else if (
-        B_player.学习的功法 &&
-        B_player.学习的功法.indexOf('九品·第一魔功') > -1 &&
-        cnt == 3
-      ) {
-        msg.push(`${B_player.名号} 使用第一魔功【噬天！】`);
-        伤害 = Math.trunc(伤害 * 1.15 + 300000);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('九品·第一魔功') > -1 &&
-        Random < 0.03
-      ) {
-        msg.push(
-          `${A_player.名号} 使用了第一魔功【魔转！】你的伤害被转走了大部分`
-        );
-        伤害 = Math.trunc(伤害 * 0.5);
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('伪九品·魔帝功') > -1 &&
-        Random < 0.3 &&
-        cnt == 3
-      ) {
-        msg.push(`${A_player.名号} 使用了魔帝功【吞噬】你的伤害被吸收了`);
-        伤害 *= -0.1;
-      } else if (
-        A_player.学习的功法 &&
-        A_player.学习的功法.indexOf('八品·桃花神功') > -1 &&
-        cnt == 5 &&
-        Random > 0.66
-      ) {
-        msg.push(
-          `${B_player.名号} 使用了【三生桃花！】你的攻击慢慢变成了漫天桃花飞舞。`
-        );
-        伤害 *= -0.2;
-      } else if (B_player.灵根.name === '轮回道体' && cnt == 0) {
-        msg.push(`${B_player.名号} 使用了先天神通，轮回之力需要时间准备`);
-        伤害 *= 0.8;
-      } else if (B_player.灵根.name === '轮回道体' && cnt == 4) {
-        msg.push(`${B_player.名号} 使用了先天神通，轮回之力崩泄而出！`);
-        伤害 *= 1.5;
-      } else if (A_player.灵根.name === '破虚踏星体' && Random > 0.98) {
-        msg.push(`${A_player.名号}使用了先天神通 【破虚】！你的伤害无法命中！`);
-        伤害 *= 0;
-      } else if (A_player.灵根.type === '转生' && Random > 0.98) {
-        msg.push(`${A_player.名号}使用了转生神通 【轮墓】！你的伤害无法生效！`);
-        伤害 *= 0;
-      } else if (B_player.灵根.name === '灭道杀神体' && cnt == 13) {
-        msg.push(`${B_player.名号}使用了先天神通 【杀破神】！`);
-        伤害 *= 3;
-      } else if (Random > 0.94) {
-        msg.push(`你的攻击被 ${A_player.名号} 破解了`);
-        伤害 = Math.trunc(伤害 * 0.6);
-      } else if (Random > 0.9) {
-        msg.push(`你的攻击被 ${A_player.名号} 接下来了`);
-        伤害 = Math.trunc(伤害 * 0.8);
+      for (var i=0;i<jineng1.length;i++)
+      {
+        if ((jineng1[i].class=="常驻" && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr)||
+         ((jineng1[i].class=="功法" && B_player.学习的功法.indexOf(jineng1[i].name)>-1) && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr) || 
+         (jineng1[i].class=="灵根" && B_player.灵根.name==jineng1[i].name && (cnt==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr))
+        {
+          if (jineng1[i].msg2=="")
+          {
+            msg.push(B_player.名号+jineng1[i].msg1);
+          }
+          else
+          {
+            msg.push(B_player.名号+jineng1[i].msg1+A_player.名号+jineng1[i].msg2);
+          }
+          伤害 = 伤害*jineng1[i].beilv+jineng1[i].other;
+        }
+      }
+      for (var i=0;i<jineng2.length;i++)
+      {
+        if ((jineng2[i].class=="常驻" && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr)||
+         ((jineng2[i].class=="功法" && A_player.学习的功法.indexOf(jineng2[i].name) > -1) && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr) || 
+         (jineng2[i].class=="灵根" && A_player.灵根.name==jineng2[i].name && (cnt==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng1[i].pr))
+        {
+          if (jineng2[i].msg2=="")
+          {
+            msg.push(A_player.名号+jineng2[i].msg1);
+          }
+          else
+          {
+            msg.push(A_player.名号+jineng2[i].msg1+B_player.名号+jineng2[i].msg2);
+          }
+          伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
+        }
       }
 
       if (yuansu.ranshao && Bgandianhuihe > 0) {
