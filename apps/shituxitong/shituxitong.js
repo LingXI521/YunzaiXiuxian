@@ -527,7 +527,7 @@ export class shituxitong extends plugin {
     return;
   }
   /*师徒boss */
-  async jijian(e) {
+async jijian(e) {
     let usr_qq = e.user_id;
     let player = await Read_player(usr_qq);
     let user_A;
@@ -536,16 +536,13 @@ export class shituxitong extends plugin {
     let shitu = await Read_shitu();
     let i = await found(user_A);
     let x = await found1(user_A);
-    let z = await found2(user_A);
+    let z
     let shifu = await find_shitu(A);
     let tudi = await find_tudi(A);
-    let xue = player.攻击;
-    let gaoji;
-    if (xue - 100000 < 0) {
-      gaoji = 0;
-    } else {
-      gaoji = xue - 100000;
-    }
+    let shifushanghai
+    let tudishanghai
+    let xue = player.攻击
+    let gaoji
     //不开放私聊功能
     if (!e.isGroup) {
       return;
@@ -557,7 +554,16 @@ export class shituxitong extends plugin {
     }
     //判断当前血量
     if (player.当前血量 < 10000) {
-      e.reply('你都伤成这样了,先回回血再打吧');
+      e.reply("你都伤成这样了,先回回血再打吧");
+      return;
+    }
+    //判断是师傅还是徒弟
+    if (tudi == 0 && shitu[i].师傅 == A) {
+      z = i
+    } else if (tudi != 0) {
+      z = x
+    } else {
+      e.reply('只能由徒弟提交任务');
       return;
     }
     //判断任务进度
@@ -566,43 +572,79 @@ export class shituxitong extends plugin {
       if (shifu != 0 && tudi == 0) {
         if (shitu[i].师徒BOOS剩余血量 == 0) {
           e.reply(`你已经通过了师徒试炼`);
-          return;
+          return
         }
         e.reply(`你即将进入上古战场`);
         await sleep(10000);
         e.reply(`你受到此方天地的限制`);
         await sleep(10000);
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第一回合你对道祖虚影造成${gaoji}点伤害`);
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第二回合你对道祖虚影造成${gaoji}点伤害`);
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第三回合你对道祖虚影造成${gaoji}点伤害`);
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第四回合你对道祖虚影造成${gaoji}点伤害`);
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第五回合你对道祖虚影造成${gaoji}点伤害`);
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
+          shifushanghai = Math.round(Math.random() * 1000000)
+          if (xue - shifushanghai < 0) {
+            gaoji = 0
+          } else {
+            gaoji = xue - shifushanghai
+          }
           shitu[i].师徒BOOS剩余血量 -= gaoji;
           await Write_shitu(shitu);
           e.reply(`第六回合你对道祖虚影造成${gaoji}点伤害`);
@@ -612,76 +654,83 @@ export class shituxitong extends plugin {
           shitu[i].师徒BOOS剩余血量 = 0;
           await Write_shitu(shitu);
           e.reply(`恭喜你通过了师徒试炼！`);
-          return;
+          return
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
           e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
-          return;
+          return
         }
       }
       //判断是不是徒弟
       if (tudi != 0) {
         if (shitu[x].师徒BOOS剩余血量 == 0) {
           e.reply(`你已经通过了师徒试炼`);
-          return;
+          return
         }
         e.reply(`你即将进入上古战场`);
         await sleep(10000);
         e.reply(`你进去了古战场试炼之地`);
         await sleep(10000);
         e.reply(`你得到了古战场试炼之地的眷顾，伤害提升了。`);
+        await sleep(10000);
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第一回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第一回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第二回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第二回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第三回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第三回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第四回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第四回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第五回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第五回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 > 0) {
-          shitu[x].师徒BOOS剩余血量 -= xue * 5;
+          tudishanghai = Math.round(Math.random() * 5)
+          shitu[x].师徒BOOS剩余血量 -= xue * tudishanghai;
           await Write_shitu(shitu);
-          e.reply(`第六回合你对道祖虚影造成${xue * 5}点伤害`);
+          e.reply(`第六回合你对道祖虚影造成${xue * tudishanghai}点伤害`);
           await sleep(10000);
         }
         if (shitu[x].师徒BOOS剩余血量 < 1) {
-          shitu[i].师徒BOOS剩余血量 = 0;
+          shitu[x].师徒BOOS剩余血量 = 0;
           await Write_shitu(shitu);
           e.reply(`恭喜你通过了师徒试炼！`);
-          return;
+          return
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
           e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
-          return;
+          return
         }
       }
     } else {
       e.reply(`你的任务还没到此阶段`);
-      return;
+      return
     }
   }
   /*师徒同步 */
@@ -888,7 +937,7 @@ export async function get_renwu_img(e) {
   let A = e.user_id;
   user_A = A;
   let shitu = await Read_shitu();
-  let i = await found2(user_A);
+  let i = await found1(user_A);
   let shifu = await find_shitu(A);
   let tudi = await find_tudi(A);
   //无存档
@@ -999,7 +1048,7 @@ export async function get_shitu_img(e) {
   let A = e.user_id;
   user_A = A;
   let shitu = await Read_shitu();
-  let x = await found2(user_A);
+  let x = await found(user_A);
   let shifu = await find_shitu(A);
   //无存档
   let ifexistplay = data.existData('player', usr_qq);
@@ -1119,7 +1168,7 @@ export async function get_shifu_img(e) {
   let A = e.user_id;
   user_A = A;
   let shitu = await Read_shitu();
-  let x = await found2(user_A);
+  let x = await found1(user_A);
   //无存档
   let ifexistplay = data.existData('player', usr_qq);
   if (!ifexistplay) {
@@ -1259,16 +1308,6 @@ async function found1(A) {
   let i;
   for (i = 0; i < shitu.length; i++) {
     if (shitu[i].未出师徒弟 == A) {
-      break;
-    }
-  }
-  return i;
-}
-async function found2(A) {
-  let shitu = await Read_shitu();
-  let i;
-  for (i = 0; i < shitu.length; i++) {
-    if (shitu[i].未出师徒弟 == A || shitu[i].师傅 == A) {
       break;
     }
   }
