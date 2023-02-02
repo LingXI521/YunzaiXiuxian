@@ -72,10 +72,23 @@ export class BackUp extends plugin {
       // 先泡杯茶等等dataProm吧
 
       // redis
+      const redisObj = {};
       const redisKeys = await redis.keys('xiuxian:*');
-      const redisObj = redisKeys.reduce(
-        async (obj, key) => (obj[key] = await redis.get(key)),
-        {}
+      const redisTypes = await Promise.all(
+        redisKeys.map(key => redis.type(key))
+      );
+      const redisValues = await Promise.all(
+        redisKeys.map((key, i) => {
+          switch (redisTypes[i]) {
+            case 'string':
+              return redis.get(key);
+            case 'set':
+              return redis.sMembers(key);
+          }
+        })
+      );
+      redisKeys.forEach(
+        (key, i) => (redisObj[key] = [redisTypes[i], redisValues[i]])
       );
 
       // 看看前置工作有没有完成
@@ -233,7 +246,14 @@ export class BackUp extends plugin {
         // 写入备份的redis
         if (includeBackup) {
           await Promise.all(
-            Object.keys(redisObj).map(key => redis.set(key, redisObj[key]))
+            Object.keys(redisObj).map(key => {
+              switch (redisObj[key][0]) {
+                case 'string':
+                  return redis.set(key, redisObj[key][1]);
+                case 'set':
+                  return redis.sAdd(key, redisObj[key][1]);
+              }
+            })
           );
         }
 
