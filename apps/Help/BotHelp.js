@@ -42,8 +42,8 @@ export class BotHelp extends plugin {
           fnc: 'Xiuxianhelpcopy',
         },
         {
-          reg: '^#新春帮助$',
-          fnc: 'xinchunhelp',
+          reg: '^#寻宝帮助$',
+          fnc: 'xunbaohelp',
         },
         {
           reg: '^#师徒帮助$',
@@ -52,11 +52,11 @@ export class BotHelp extends plugin {
       ],
     });
   }
-  async xinchunhelp(e) {
+  async xunbaohelp(e) {
     if (!e.isGroup) {
       return;
     }
-    let data = await Help1.xinchunhelp(e);
+    let data = await Help1.xunbaohelp(e);
     if (!data) return;
     let img = await this.cache(data);
     await e.reply(img);
