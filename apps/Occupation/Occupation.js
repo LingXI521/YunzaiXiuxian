@@ -290,7 +290,6 @@ export class Occupation extends plugin {
             "Place_actionplus": "1",//沉迷---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
             "mine": "1",//采矿-开启
 
@@ -448,9 +447,7 @@ export class Occupation extends plugin {
             "Place_actionplus": "1",//沉迷---关闭
             "power_up": "1",//渡劫状态--关闭
             "mojie": "1",//魔界状态---关闭
-            "power_up": "1",//渡劫状态--关闭
             "xijie": "1", //洗劫状态开启
-            "plant": "1",//采药-开启
         };
         if (e.isGroup) {
             arr.group_id = e.group_id
