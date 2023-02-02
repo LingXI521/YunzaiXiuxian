@@ -2932,12 +2932,12 @@ if (thing_name == "羊毛") {
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,
-                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
+                                在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                                 }else{
                                      e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
-                                在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
+                                在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                                 }
                             }else if(math>0.3&&math<=0.5){
                                 await Add_najie_thing(usr_qq, "红石", "材料",256*n);
