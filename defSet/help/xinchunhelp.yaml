@@ -42,4 +42,19 @@
     - icon: help-icon_70
       title: '#幻影楼'
       desc: '查看皮肤列表'
+      icon: help-icon_81
+      title: '#寻宝'
+      desc: '查看寻宝列表'
+      icon: help-icon_82
+      title: '#消耗熔炉,消耗燃料'
+      desc: '熔炉消耗一次即可,燃料更多的自己研究'
+      icon: help-icon_83
+      title: '#服用xx'
+      desc: '服用你的食物'
+      icon: help-icon_84
+      title: '#合成xx'
+      desc: '具体自己研究'
+      icon: help-icon_85
+      title: '#加工xx'
+      desc: '具体自己研究'
 
