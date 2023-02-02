@@ -1650,7 +1650,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 att=last_att+(A_player.防御*0.1)  
                }
       }else{
-        msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强120%")
+        msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强20%")
                 fyjiachen += A_player.防御 * 0.5
                 att=last_att*1.2
       }
@@ -1742,14 +1742,9 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 fyjiachen += A_player.防御 * 0.5
                 att *= 1.5
             }else if(A_lin == yuansu[3]&&equipment.武器.fumo=="岩"){
-                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益,岩属性附魔与武器产生了共鸣,元素伤害提升150%")
+                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益,岩属性附魔与武器产生了共鸣,元素伤害提升180%")
                 fyjiachen += A_player.防御 * 1
-                att *= 1.5
-                if(random>0.8){
-                    msg.push("你开启了元素爆发鬼王游行通通闪开,防御转化成了攻击,元素伤害增加了300%")
-                    att *= 3;
-                 A_player.防御 =-fyjiachen;
-                }
+                att *= 1.8
             }else {
                 msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%")
                 fyjiachen += A_player.防御 * 0.5
