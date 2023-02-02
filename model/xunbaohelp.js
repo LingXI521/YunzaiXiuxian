@@ -4,16 +4,16 @@ import xiuxianCfg from './Config.js';
 export default class Help1 extends base {
   constructor(e) {
     super(e);
-    this.model = 'xinchunhelp';
+    this.model = 'xunbaohelp';
   }
 
-  static async xinchunhelp(e) {
+  static async xunbaohelp(e) {
     let html = new Help1(e);
-    return await html.xinchunhelp();
+    return await html.xunbaohelp();
   }
 
-  async xinchunhelp() {
-    let helpData = xiuxianCfg.getdefSet('help', 'xinchunhelp');
+  async xunbaohelp() {
+    let helpData = xiuxianCfg.getdefSet('help', 'xunbaohelp');
     let versionData = xiuxianCfg.getdefSet('version', 'version');
     const version =
       (versionData && versionData.length && versionData[0].version) || '1.0.4';
