@@ -421,278 +421,146 @@ export class Battle extends plugin {
     return;
   }
 }
-export async function zd_battle(A_player, B_player) {
-  let now_A_HP = A_player.当前血量; //保留初始血量方便计算最后扣多少血,避免反复读写文件
-  let now_B_HP = B_player.当前血量;
+export async function zd_battle(AA_player, BB_player) {
+  let A_player=BB_player;
+  let B_player=AA_player;
+  let cnt = 0; //回合数
   let A_xue = 0; //最后要扣多少血
   let B_xue = 0;
-  let cnt = 0; //回合数
-  let afangyu = A_player.防御; //记录A原防御
-  let bfangyu = B_player.防御; //记录B原防御
-  let aATK = A_player.攻击; //记录A原攻击
-  let bATK = B_player.攻击; //记录B原攻击
-  let Agandianhuihe = 0; //感电燃烧回合数
-  let Bgandianhuihe = 0; //感电燃烧回合数
-  let Achaodaohuihe = 0; //超导回合数
-  let Bchaodaohuihe = 0; //超导回合数
+  A_player.atk=BB_player.攻击;
+  A_player.gandianhuihe=0;
+  A_player.chaodaohuihe=0;
+  B_player.atk=AA_player.攻击;
+  B_player.gandianhuihe=0;
+  B_player.chaodaohuihe=0;
+  let t;
   let msg = [];
   let jineng1=data.jineng1;
   let jineng2=data.jineng2;
   while (A_player.当前血量 > 0 && B_player.当前血量 > 0) {
     let Random = Math.random();
     let random = Math.random();
-    if (cnt % 2 == 0) {
-      let baoji = baojishanghai(A_player.暴击率);
-      if (!isNotNull(A_player.仙宠)) {
-        //判断有无仙宠
-      } else if (A_player.仙宠.type == '暴伤') {
-        baoji = baojishanghai(A_player.暴击率) + A_player.仙宠.加成;
-      }
-      let 持续伤害 = 0;
-      let yuansu = await Gaodenyuansulun(
-        A_player,
-        B_player,
-        aATK,
-        msg,
-        cnt,
-        Agandianhuihe,
-        Achaodaohuihe
-      );
-      Agandianhuihe = yuansu.gandianhuihe;
-      Achaodaohuihe = yuansu.chaodaohuihe2;
-      A_player = yuansu.A_player;
-      B_player = yuansu.B_player;
-      if (yuansu.chaodao && Achaodaohuihe > 0) {
-        Achaodaohuihe -= 1;
-        msg.push(
-          B_player.名号 + '的抗性大大下降,虚弱状态剩余' + Achaodaohuihe + '回合'
-        );
-        B_player.防御 *= 0.5;
-      }
-
-      if (yuansu.fyjiachen != 0) {
-        A_player.防御 += yuansu.fyjiachen;
-      }
-      msg = yuansu.msg;
-      let 伤害 = Harm(A_player.攻击 * 0.85, B_player.防御);
-      let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
-      伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
-      for (var i=0;i<jineng1.length;i++)
+    t=A_player;
+    A_player=B_player;
+    B_player=t;
+    let baoji = baojishanghai(A_player.暴击率);
+    if (!isNotNull(A_player.仙宠)) {
+      //判断有无仙宠
+    } else if (A_player.仙宠.type == '暴伤') {
+       baoji = baojishanghai(A_player.暴击率) + A_player.仙宠.加成;
+    }
+    let 持续伤害 = 0;
+    let yuansu = await Gaodenyuansulun(A_player,B_player,A_player.atk,msg,cnt,A_player.gandianhuihe,A_player.chaodaohuihe);
+    A_player.gandianhuihe = yuansu.gandianhuihe;
+    A_player.chaodaohuihe = yuansu.chaodaohuihe2;
+    A_player = yuansu.A_player;
+    B_player = yuansu.B_player;
+    if (yuansu.chaodao && A_player.chaodaohuihe > 0) {
+      A_player.chaodaohuihe -= 1;
+      msg.push(B_player.名号 + '的抗性大大下降,虚弱状态剩余' + A_player.chaodaohuihe + '回合');
+      B_player.防御 *= 0.5;
+    }
+    if (yuansu.fyjiachen != 0) {
+      A_player.防御 += yuansu.fyjiachen;
+    }
+    msg = yuansu.msg;
+    let 伤害 = Harm(A_player.攻击 * 0.85, B_player.防御);
+    let 法球伤害 = Math.trunc(A_player.攻击 * A_player.法球倍率);
+    伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + A_player.防御 * 0.1);
+    for (var i=0;i<jineng1.length;i++)
+    {
+      if ((jineng1[i].class=="常驻" && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr)||
+        ((A_player.学习的功法 && jineng1[i].class=="功法" && A_player.学习的功法.indexOf(jineng1[i].name)>-1) && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr) || 
+        (jineng1[i].class=="灵根" && A_player.灵根.name==jineng1[i].name && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr))
       {
-        if ((jineng1[i].class=="常驻" && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr)||
-         ((A_player.学习的功法 && jineng1[i].class=="功法" && A_player.学习的功法.indexOf(jineng1[i].name)>-1) && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr) || 
-         (jineng1[i].class=="灵根" && A_player.灵根.name==jineng1[i].name && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && Random<jineng1[i].pr))
+        if (jineng1[i].msg2=="")
         {
-          if (jineng1[i].msg2=="")
-          {
-            msg.push(A_player.名号+jineng1[i].msg1);
-          }
-          else
-          {
-            msg.push(A_player.名号+jineng1[i].msg1+B_player.名号+jineng1[i].msg2);
-          }
-          伤害 = 伤害*jineng1[i].beilv+jineng1[i].other;
+           msg.push(A_player.名号+jineng1[i].msg1);
         }
-      }
-      for (var i=0;i<jineng2.length;i++)
-      {
-        if ((jineng2[i].class=="常驻" && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr)||
-         ((B_player.学习的功法 && jineng2[i].class=="功法" && B_player.学习的功法.indexOf(jineng2[i].name) > -1) && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr) || 
-         (jineng2[i].class=="灵根" && B_player.灵根.name==jineng2[i].name && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng1[i].pr))
+        else
         {
-          if (jineng2[i].msg2=="")
-          {
-            msg.push(B_player.名号+jineng2[i].msg1);
-          }
-          else
-          {
-            msg.push(B_player.名号+jineng2[i].msg1+A_player.名号+jineng2[i].msg2);
-          }
-          伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
+          msg.push(A_player.名号+jineng1[i].msg1+B_player.名号+jineng1[i].msg2);
         }
-      }
-
-      if (yuansu.ranshao && Agandianhuihe > 0) {
-        持续伤害 = Math.trunc(伤害 * 0.15);
-        Agandianhuihe -= 1;
-        B_player.当前血量 -= 持续伤害;
-        msg.push(B_player.名号 + '烧了起来,受到了' + 持续伤害 + '的燃烧伤害');
-      }
-      if (yuansu.gandian && Agandianhuihe > 0) {
-        持续伤害 = Math.trunc(伤害 * 0.15);
-        Agandianhuihe -= 1;
-        B_player.当前血量 -= 持续伤害;
-        msg.push(B_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
-      }
-      if (A_player.魔道值 > 999) {
-        var buff = Math.trunc(A_player.魔道值 / 1000) / 100 + 1;
-        if (buff > 1.3) buff = 1.3;
-        if (A_player.灵根.name == "九重魔功") buff+= 0.2;
-        伤害 *= buff;
-      }
-      if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
-        var buff = Math.trunc(B_player.神石*0.0015);
-        if (buff > 0.3) buff = 0.3;
-        if (B_player.灵根.name == "九转轮回体") buff+= 0.2;
-        伤害 *= (1-buff);
-      }
-      伤害 = Math.trunc(伤害);
-      B_player.当前血量 -= 伤害;
-      B_player.防御 = bfangyu;
-      if (B_player.当前血量 < 0) {
-        B_player.当前血量 = 0;
-      }
-      msg.push(`第${Math.trunc(cnt / 2) + 1}回合：
-${A_player.名号}攻击了${B_player.名号}，${ifbaoji(baoji)}造成伤害${伤害}，${
-        B_player.名号
-      }剩余血量${B_player.当前血量}`);
-
-      //说明被冻结了
-      if (cnt != yuansu.cnt) {
-        msg.push(`第${Math.trunc(cnt / 2) + 1}回合：
-${B_player.名号}冻结中`);
-        cnt += 2;
-        continue;
+        伤害 = 伤害*jineng1[i].beilv+jineng1[i].other;
       }
     }
-
-    if (cnt % 2 == 1) {
-      let baoji = baojishanghai(B_player.暴击率);
-      if (!isNotNull(B_player.仙宠)) {
-        //判断有无仙宠
-      } else if (B_player.仙宠.type == '暴伤') {
-        baoji = baojishanghai(B_player.暴击率) + B_player.仙宠.加成;
-      }
-      let 持续伤害 = 0;
-      let yuansu = await Gaodenyuansulun(
-        B_player,
-        A_player,
-        bATK,
-        msg,
-        cnt,
-        Bgandianhuihe,
-        Bchaodaohuihe
-      );
-      Bgandianhuihe = yuansu.gandianhuihe;
-      Bchaodaohuihe = yuansu.chaodaohuihe2;
-      A_player = yuansu.B_player;
-      B_player = yuansu.A_player;
-      if (yuansu.chaodao && Bchaodaohuihe > 0) {
-        Bchaodaohuihe -= 1;
-        msg.push(
-          A_player.名号 + '的抗性大大下降,虚弱状态剩余' + Bchaodaohuihe + '回合'
-        );
-        A_player.防御 *= 0.5;
-      }
-
-      if (yuansu.fyjiachen != 0) {
-        B_player.防御 += yuansu.fyjiachen;
-      }
-      msg = yuansu.msg;
-      let 伤害 = Harm(B_player.攻击 * 0.85, A_player.防御);
-      let 法球伤害 = Math.trunc(B_player.攻击 * B_player.法球倍率);
-      伤害 = Math.trunc(baoji * 伤害 + 法球伤害 + B_player.防御 * 0.1);
-      for (var i=0;i<jineng1.length;i++)
+    for (var i=0;i<jineng2.length;i++)
+    {
+      if ((jineng2[i].class=="常驻" && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr)||
+        ((B_player.学习的功法 && jineng2[i].class=="功法" && B_player.学习的功法.indexOf(jineng2[i].name) > -1) && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng2[i].pr) || 
+        (jineng2[i].class=="灵根" && B_player.灵根.name==jineng2[i].name && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && random<jineng1[i].pr))
       {
-        if ((jineng1[i].class=="常驻" && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr)||
-         ((B_player.学习的功法 && jineng1[i].class=="功法" && B_player.学习的功法.indexOf(jineng1[i].name)>-1) && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr) || 
-         (jineng1[i].class=="灵根" && B_player.灵根.name==jineng1[i].name && (Math.trunc(cnt/2)==jineng1[i].cnt || jineng1[i].cnt==-1) && random<jineng1[i].pr))
+        if (jineng2[i].msg2=="")
         {
-          if (jineng1[i].msg2=="")
-          {
-            msg.push(B_player.名号+jineng1[i].msg1);
-          }
-          else
-          {
-            msg.push(B_player.名号+jineng1[i].msg1+A_player.名号+jineng1[i].msg2);
-          }
-          伤害 = 伤害*jineng1[i].beilv+jineng1[i].other;
+          msg.push(B_player.名号+jineng2[i].msg1);
         }
-      }
-      for (var i=0;i<jineng2.length;i++)
-      {
-        if ((jineng2[i].class=="常驻" && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr)||
-         ((A_player.学习的功法 && jineng2[i].class=="功法" && A_player.学习的功法.indexOf(jineng2[i].name) > -1) && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng2[i].pr) || 
-         (jineng2[i].class=="灵根" && A_player.灵根.name==jineng2[i].name && (Math.trunc(cnt/2)==jineng2[i].cnt || jineng2[i].cnt==-1) && Random<jineng1[i].pr))
+        else
         {
-          if (jineng2[i].msg2=="")
-          {
-            msg.push(A_player.名号+jineng2[i].msg1);
-          }
-          else
-          {
-            msg.push(A_player.名号+jineng2[i].msg1+B_player.名号+jineng2[i].msg2);
-          }
-          伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
+          msg.push(B_player.名号+jineng2[i].msg1+A_player.名号+jineng2[i].msg2);
         }
+        伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
       }
-
-      if (yuansu.ranshao && Bgandianhuihe > 0) {
-        持续伤害 = Math.trunc(伤害 * 0.15);
-        Bgandianhuihe -= 1;
-        A_player.当前血量 -= 持续伤害;
-        msg.push(A_player.名号 + '烧了起来,受到了' + 持续伤害 + '的燃烧伤害');
-      }
-      if (yuansu.gandian && Bgandianhuihe > 0) {
-        持续伤害 = Math.trunc(伤害 * 0.15);
-        Bgandianhuihe -= 1;
-        A_player.当前血量 -= 持续伤害;
-        msg.push(A_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
-      }
-      if (B_player.魔道值 > 999) {
-        var buff = Math.trunc(B_player.魔道值 / 1000) / 100 + 1;
-        if (buff > 1.3) buff = 1.3;
-        if (B_player.灵根.name == "九重魔功") buff+= 0.2;
-        伤害 *= buff;
-      }
-      if (A_player.魔道值<1 && (A_player.灵根.type == "转生" || A_player.level_id >41)) {
-        var buff = Math.trunc(A_player.神石*0.0015);
-        if (buff > 0.3) buff = 0.3;
-        if (A_player.灵根.name == "九转轮回体") buff+= 0.2;
-        伤害 *= (1-buff);
-      }
-      伤害 = Math.trunc(伤害);
-      A_player.当前血量 -= 伤害;
-      A_player.防御 = afangyu;
-      if (A_player.当前血量 < 0) {
-        A_player.当前血量 = 0;
-      }
+    }
+    if (yuansu.ranshao && A_player.gandianhuihe > 0) {
+      持续伤害 = Math.trunc(伤害 * 0.15);
+      A_player.A_player.gandianhuihe -= 1;
+      B_player.当前血量 -= 持续伤害;
+      msg.push(B_player.名号 + '烧了起来,受到了' + 持续伤害 + '的燃烧伤害');
+    }
+    if (yuansu.gandian && A_player.gandianhuihe > 0) {
+      持续伤害 = Math.trunc(伤害 * 0.15);
+      A_player.gandianhuihe -= 1;
+      B_player.当前血量 -= 持续伤害;
+      msg.push(B_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
+    }
+    if (A_player.魔道值 > 999) {
+      var buff = Math.trunc(A_player.魔道值 / 1000) / 100 + 1;
+      if (buff > 1.3) buff = 1.3;
+      if (A_player.灵根.name == "九重魔功") buff+= 0.2;
+      伤害 *= buff;
+    }
+    if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
+      var buff = Math.trunc(B_player.神石*0.0015);
+      if (buff > 0.3) buff = 0.3;
+      if (B_player.灵根.name == "九转轮回体") buff+= 0.2;
+      伤害 *= (1-buff);
+    }
+    伤害 = Math.trunc(伤害);
+    B_player.当前血量 -= 伤害;
+    B_player.防御 = BB_player.防御;
+    if (B_player.当前血量 < 0) {
+      B_player.当前血量 = 0;
+    }
+    msg.push(`第${Math.trunc(cnt / 2) + 1}回合：
+${A_player.名号}攻击了${B_player.名号}，${ifbaoji(baoji)}造成伤害${伤害}，${B_player.名号}剩余血量${B_player.当前血量}`);
+      //说明被冻结了
+    if (cnt != yuansu.cnt) {
       msg.push(`第${Math.trunc(cnt / 2) + 1}回合：
-${B_player.名号}攻击了${A_player.名号}，${ifbaoji(baoji)}造成伤害${伤害}，${
-        A_player.名号
-      }剩余血量${A_player.当前血量}`);
-      if (cnt != yuansu.cnt) {
-        msg.push(`第${Math.trunc(cnt / 2) + 2}回合：
-${A_player.名号}冻结中`);
-        cnt++;
-      }
+${B_player.名号}冻结中`);
+      cnt += 2;
+      continue;
     }
     cnt++;
   }
+  if (cnt%2==0)
+  {
+    t=A_player;
+    A_player=B_player;
+    B_player=t;
+  }
   if (A_player.当前血量 <= 0) {
-    A_player.当前血量 = 0;
-    msg.push(`${B_player.名号}击败了${A_player.名号}`);
-    B_xue = B_player.当前血量 - now_B_HP;
-    A_xue = -now_A_HP;
+    AA_player.当前血量 = 0;
+    msg.push(`${BB_player.名号}击败了${AA_player.名号}`);
+    B_xue = B_player.当前血量 - BB_player.当前血量;
+    A_xue = -AA_player.当前血量;
   }
   if (B_player.当前血量 <= 0) {
-    B_player.当前血量 = 0;
-    msg.push(`${A_player.名号}击败了${B_player.名号}`);
-    B_xue = -now_B_HP;
-    A_xue = A_player.当前血量 - now_A_HP;
+    BB_player.当前血量 = 0;
+    msg.push(`${AA_player.名号}击败了${BB_player.名号}`);
+    B_xue = -BB_player.当前血量;
+    A_xue = A_player.当前血量 - AA_player.当前血量;
   }
-
-  //剃掉加成
-  A_player.防御 = afangyu;
-  B_player.防御 = bfangyu;
-  A_player.攻击 = aATK;
-  B_player.攻击 = bATK;
-
-  let Data_nattle = {
-    msg: msg,
-    A_xue: A_xue,
-    B_xue: B_xue,
-  };
+  let Data_nattle = {msg: msg,A_xue: A_xue,B_xue: B_xue,};
   return Data_nattle;
 }
 export function baojishanghai(baojilv) {
