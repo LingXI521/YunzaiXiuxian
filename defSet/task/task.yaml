@@ -11,7 +11,7 @@ jiance_task: 0 59 23 * * ?
 # 清空时间
 qingkong_task: 0 0 0 * * ?
 # 商店刷新
-shop: 0 0 0 ? * 1,3,6
+shop: 0 0 0 ? * 1,3,5
 # 冲水堂清理
 ExchangeTask: 0 0 4 * * ?
 # 开启怪物
