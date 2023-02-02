@@ -1,7 +1,7 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 import Help from '../../model/help.js';
-import Help1 from '../../model/xinchunhelp.js';
+import Help1 from '../../model/xunbaohelp.js';
 import Help2 from '../../model/shituhelp.js';
 import md5 from 'md5';
 
