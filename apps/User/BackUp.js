@@ -1,6 +1,6 @@
 import plugin from '../../../../lib/plugins/plugin.js';
 import { __PATH } from '../Xiuxian/xiuxian.js';
-// import config from '../../model/Config.js';
+import config from '../../model/Config.js';
 import fs from 'fs';
 
 export class BackUp extends plugin {
@@ -28,12 +28,12 @@ export class BackUp extends plugin {
         },
       ],
     });
-    // this.saving = false;
-    // this.task = {
-    //   cron: config.getdefSet('task', 'task').AutoBackUpTask,
-    //   name: 'AutoBackUp',
-    //   fnc: this.saveBackUp,
-    // };
+    this.saving = false;
+    this.task = {
+      cron: config.getdefSet('task', 'task').AutoBackUpTask,
+      name: 'AutoBackUp',
+      fnc: this.saveBackUp,
+    };
   }
 
   async saveBackUp(e) {
