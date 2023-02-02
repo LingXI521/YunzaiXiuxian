@@ -220,6 +220,8 @@ export class BOSS3 extends plugin {
     //与伐难战斗
     async WorldBossBattle(e) {
         if (e.isPrivate) return;
+        e.reply("伐难正在进化成初夏中,等她进化完毕吧")
+        return;
 
         if (!await BossIsAlive()) {
             e.reply("伐难未开启！");
