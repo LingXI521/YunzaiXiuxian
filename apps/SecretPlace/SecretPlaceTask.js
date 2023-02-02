@@ -417,13 +417,13 @@ export class SecretPlaceTask extends plugin {
                 }else if (random2 > 0.83&&random2<=0.88) {
                   caoyao += '"古神藤"';
                   await Add_najie_thing(player_id, '古神藤', '草药', 1);
-                }else if (random2==0.01) {
+                }else if (random2>0&&random2<=0.01) {
                   caoyao += '"神之眼"';
                   await Add_najie_thing(player_id, '神之眼', '草药', 1);
                 }else if (random2 > 0.80&&random2<=0.83) {
                   caoyao += '"炼骨花"';
                   await Add_najie_thing(player_id, '炼骨花', '草药', 1);
-                }else if(random==0.02){
+                }else if(random2>0.01&&random2<=0.02){
                     caoyao +=  '"仙缘草"';
                   await Add_najie_thing(player_id, '神之眼', '草药', 1);
                 }
@@ -432,9 +432,9 @@ export class SecretPlaceTask extends plugin {
                  random2 > 0.9&&random2<=0.95 ||
                  random2 > 0.88&&random2<=0.9 ||
                   random2 > 0.83&&random2<=0.88 ||
-                 random2==0.01 ||
+                 random2>0&&random2<=0.01 ||
                   random2 > 0.80&&random2<=0.83||
-                  random==0.02
+                  random2>0.01&&random2<=0.02
                 ) {
                   last_msg +=
                     '\n\n' +
