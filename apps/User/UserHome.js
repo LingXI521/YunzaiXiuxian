@@ -2443,7 +2443,7 @@ if (thing_name == "羊毛") {
                                 return;
                             }else{
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n); 
-                                e.reply(`你钓到了一些鱼钓鱼掉上来的奇怪盒子${n}个`)
+                                e.reply(`你钓到了一些鱼,钓鱼掉上来的奇怪盒子${n}个`)
                                 return;
                             }
                         }else{
@@ -2539,7 +2539,7 @@ if (thing_name == "羊毛") {
                             await Add_修为(usr_qq,xueqi)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具", 1);
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和深渊地图${1*n},,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和深渊地图${1}个,,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
@@ -2668,7 +2668,7 @@ if (thing_name == "羊毛") {
                                 return;
                             }else if(math>0&&math<=0.1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具",1);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1*n}个`)
+                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1}个`)
                                 return;
                             }else{
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个`)
