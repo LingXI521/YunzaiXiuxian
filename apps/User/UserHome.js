@@ -2780,10 +2780,6 @@ if (thing_name == "羊毛") {
                     return;
                 }
                 let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
-                if(huoba<64){
-                    e.reply('你的火把不够,先去弄一些火把再来吧');
-                    return;
-                }
                         if(mugao>0){
                             await Add_饱食度(usr_qq,-3000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
