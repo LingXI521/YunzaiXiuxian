@@ -2301,6 +2301,7 @@ if (thing_name == "羊毛") {
               }
             let last_msg='';
               let fyd_msg='';
+              let shuangbei=Math.random();
               let math=Math.random();
                 let n=1;
                let now_level_id=player.level_id;
@@ -2309,8 +2310,8 @@ if (thing_name == "羊毛") {
                 let t2 = 2 + Math.random();
                 let xiuwei = Math.trunc( 2000 + (100 * now_level_id * now_level_id * t1 * 0.1) / 5);
                 let xueqi = Math.trunc(2000 + 100 * now_physique_id * now_physique_id * t2 * 0.1);
-               if (math < player.幸运) {
-                  if (math < player.addluckyNo) {
+               if (shuangbei < player.幸运) {
+                  if (shuangbei < player.addluckyNo) {
                     last_msg += '福源丹生效，所以在';
                   } else if (player.仙宠.type == '幸运') {
                     last_msg += '仙宠使你在探索中欧气满满，所以在';
@@ -2408,7 +2409,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "血气瓶", "丹药",n);
                                 e.reply(`你在天臂池钓到血气瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
-                            }else if(math==0.01){
+                            }else if(math>0&&math<=0.01){
                                await Add_najie_thing(usr_qq, "经验瓶", "丹药", n*10);
                                 e.reply(`你运气爆棚了！在天臂池钓到经验瓶${n*10}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
