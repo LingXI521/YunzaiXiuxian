@@ -282,6 +282,9 @@ export async function Add_HP(usr_qq, blood = 0) {
     if (player.当前血量 > player.血量上限) {
         player.当前血量 = player.血量上限;
     }
+    if (player.当前血量<0) {
+        player.当前血量 = 0;
+    }
     await Write_player(usr_qq, player);
     return;
 }
