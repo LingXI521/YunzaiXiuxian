@@ -1005,7 +1005,7 @@ export class UserHome extends plugin {
                 if(player.当前血量>0){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
                 await Add_饱食度(usr_qq,2*quantity)
-                await Add_Hp(usr_qq,-500000*quantity)
+                await Add_HP(usr_qq,-500000*quantity)
                 e.reply(`服用成功,增加了${2*quantity}点饱食度,你还剩下${player.当前血量}点血量`)
                 }
                 return;
