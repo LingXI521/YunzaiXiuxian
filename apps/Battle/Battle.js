@@ -503,21 +503,25 @@ export async function zd_battle(AA_player, BB_player) {
         伤害 = 伤害*jineng2[i].beilv+jineng2[i].other;
       }
     }
+    if (A_player.魔道值 > 999) {
+      buff += Math.trunc(A_player.魔道值 / 1000) / 100;
+      if (buff > 1.3) buff = 1.3;
+      if (A_player.灵根.name == "九重魔功") buff+= 0.2;
+      msg.push("魔道值为"+A_player.名号+"提供了"+Math.trunc((buff-1)*100)+"%的增伤");
+    }
+    if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
+      var buff2=Math.trunc(B_player.神石*0.0015);
+      if (buff2 > 0.3) buff2 = 0.3;
+      if (B_player.灵根.name == "九转轮回体") buff2+= 0.2;
+      buff-= buff2
+      msg.push("神石为"+B_player.名号+"提供了"+Math.trunc((buff2)*100)+"%的减伤");
+    }
     if (A_player.gandianhuihe > 0) {
       持续伤害 = Math.trunc(伤害 * 0.15);
       A_player.gandianhuihe -= 1;
       B_player.当前血量 -= 持续伤害;
       if (yuansu.ranshao) msg.push(B_player.名号 + '烧了起来,受到了' + 持续伤害 + '的燃烧伤害');
       else if (yuansu.gandian)  msg.push(B_player.名号 + '触电了,受到了' + 持续伤害 + '的感电伤害');
-    }
-    if (A_player.魔道值 > 999) {
-      buff += Math.trunc(A_player.魔道值 / 1000) / 100;
-      if (buff > 1.3) buff = 1.3;
-      if (A_player.灵根.name == "九重魔功") buff+= 0.2;
-    }
-    if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
-      Math.trunc(B_player.神石*0.0015)>=0.3 ? buff-=0.3 : buff-=Math.trunc(B_player.神石*0.0015);
-      if (B_player.灵根.name == "九转轮回体") buff-= 0.2;
     }
     伤害 = Math.trunc(伤害*buff);
     B_player.当前血量 -= 伤害;
