@@ -1097,19 +1097,19 @@ export async function get_shitu_img(e) {
         renwu3 = '学习一个功法';
       } else if (shitu[x].任务阶段 == 2) {
         renwu1 = '练气等级达到元婴中期';
-        renwu2 = '练气等级达到炼骨初期';
+        renwu2 = '练体等级达到炼骨初期';
         renwu3 = '消耗一个定灵珠';
       } else if (shitu[x].任务阶段 == 3) {
         renwu1 = '练气等级达到化神圆满';
-        renwu2 = '练气等级达到炼血后期';
+        renwu2 = '练体等级达到炼血后期';
         renwu3 = '拥有400w灵石(此项任务不会扣除灵石！)';
       } else if (shitu[x].任务阶段 == 4) {
         renwu1 = '练气等级达到合体后期';
-        renwu2 = '练气等级达到炼脏圆满';
+        renwu2 = '练体等级达到炼脏圆满';
         renwu3 = '进行一次转职且等级到达黄袍中品';
       } else if (shitu[x].任务阶段 == 5) {
         renwu1 = '羽化登仙';
-        renwu2 = '练气等级达到炼神中期';
+        renwu2 = '练体等级达到炼神中期';
         renwu3 = '击败师徒BOSS';
       }
       if (shitu[x].renwu1 == 0) {
@@ -1220,19 +1220,19 @@ export async function get_shifu_img(e) {
         renwu3 = '学习一个功法';
       } else if (shitu[x].任务阶段 == 2) {
         renwu1 = '练气等级达到元婴中期';
-        renwu2 = '练气等级达到炼骨初期';
+        renwu2 = '练体等级达到炼骨初期';
         renwu3 = '消耗一个定灵珠';
       } else if (shitu[x].任务阶段 == 3) {
         renwu1 = '练气等级达到化神圆满';
-        renwu2 = '练气等级达到炼血后期';
+        renwu2 = '练体等级达到炼血后期';
         renwu3 = '拥有400w灵石(此项任务不会扣除灵石！)';
       } else if (shitu[x].任务阶段 == 4) {
         renwu1 = '练气等级达到合体后期';
-        renwu2 = '练气等级达到炼脏圆满';
+        renwu2 = '练体等级达到炼脏圆满';
         renwu3 = '进行一次转职且等级到达黄袍中品';
       } else if (shitu[x].任务阶段 == 5) {
         renwu1 = '羽化登仙';
-        renwu2 = '练气等级达到炼神中期';
+        renwu2 = '练体等级达到炼神中期';
         renwu3 = '击败师徒BOSS';
       }
       if (shitu[x].renwu1 == 0) {
