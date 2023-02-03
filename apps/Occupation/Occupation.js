@@ -1097,7 +1097,8 @@ export class Occupation extends plugin {
                 魔道值: player.魔道值,
                 灵根: player.灵根,
                 法球倍率: player.灵根.法球倍率,
-                仙宠: player.仙宠
+                仙宠: player.仙宠,
+                神石: player.神石
             }
             let Data_battle = await zd_battle(player_A, player_B);
             let msg = Data_battle.msg;
