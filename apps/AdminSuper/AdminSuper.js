@@ -1515,12 +1515,16 @@ export async function synchronization(e) {
       ).加成;
     }
      if(equipment.项链.属性=="幸运"){
-      if (player.仙宠.type == "幸运" && player.幸运 < player.仙宠.加成+equipment.项链.加成) {
+      if (player.仙宠.type == "幸运" && player.幸运 != player.仙宠.加成+equipment.项链.加成+player.addluckyNo) {
         player.幸运 = player.仙宠.加成 + player.addluckyNo+equipment.项链.加成;
+      }else if(player.仙宠.type != "幸运" && player.幸运 !=equipment.项链.加成+player.addluckyNo){
+            player.幸运 = player.addluckyNo+equipment.项链.加成;
       }
       }else{
-        if (player.仙宠.type == "幸运" && player.幸运 < player.仙宠.加成) {
+        if (player.仙宠.type == "幸运" && player.幸运 !=player.仙宠.加成+player.addluckyNo) {
           player.幸运 = player.仙宠.加成 + player.addluckyNo;
+        }else if(player.仙宠.type != "幸运" && player.幸运 !=player.addluckyNo){
+            player.幸运=player.addluckyNo;
         }
       }
     if (!isNotNull(equipment.武器.fumo)) {
