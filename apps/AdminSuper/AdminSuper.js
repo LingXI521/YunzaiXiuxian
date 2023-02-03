@@ -293,7 +293,8 @@ export class AdminSuper extends plugin {
         str[j] == '画手' ||
         str[j] == '摸鱼' ||
         str[j] == '闹钟' ||
-        str[j] == '晓飞'
+        str[j] == '晓飞' ||
+        str[j] == '航' 
       ) {
         let m = j;
         while (
@@ -305,6 +306,7 @@ export class AdminSuper extends plugin {
           str[m - 1] != '摸鱼' &&
           str[m - 1] != '闹钟' &&
           str[m - 1] !=  '晓飞' &&
+          str[m - 1] !=  '航' &&
           m > 0
         ) {
           T = str[m];
