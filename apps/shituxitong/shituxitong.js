@@ -818,7 +818,7 @@ export async function get_tijiao_img(e) {
     await Add_灵石(usr_qq, 10000);
     await Add_血气(usr_qq, 10000);
     e.reply(
-      '已完成阶段任务1\n获得奖励：\n1.修为*10000\n2.血气*10000\n3.灵石*10000'
+      '已完成阶段任务1\n获得奖励：\n1.修为*10000\n2.血气*10000\n3.灵石*10000\n师傅获得奖励：师徒积分*5'
     );
     return;
   } else if (
@@ -842,7 +842,7 @@ export async function get_tijiao_img(e) {
     // await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
     // await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务2\n获得奖励：\n1.修为*40000\n2.血气*40000\n3.灵石*40000'
+      '已完成阶段任务2\n获得奖励：\n1.修为*40000\n2.血气*40000\n3.灵石*40000\n师傅获得奖励：师徒积分*15'
     );
     return;
   } else if (
@@ -866,7 +866,7 @@ export async function get_tijiao_img(e) {
     // await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
     // await Add_najie_thing(usr_qq, '功法盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务3\n获得奖励：\n1.修为*50000\n2.血气*50000\n2.灵石*50000'
+      '已完成阶段任务3\n获得奖励：\n1.修为*50000\n2.血气*50000\n2.灵石*50000\n师傅获得奖励：师徒积分*20'
     );
     return;
   } else if (
@@ -890,7 +890,7 @@ export async function get_tijiao_img(e) {
     // await Add_najie_thing(usr_qq, '药水盒', '盒子', 1);
     // await Add_najie_thing(usr_qq, '道具盒', '盒子', 1);
     e.reply(
-      '已完成阶段任务4\n获得奖励：\n1.修为*150000\n2.血气*150000\n3.灵石*150000'
+      '已完成阶段任务4\n获得奖励：\n1.修为*150000\n2.血气*150000\n3.灵石*150000\n师傅获得奖励：师徒积分*30'
     );
     return;
   } else if (
@@ -917,7 +917,7 @@ export async function get_tijiao_img(e) {
     await Add_najie_thing(usr_qq, '药水盒', '盒子', 3);
     await Add_najie_thing(usr_qq, '道具盒', '盒子', 3);
     e.reply(
-      '已完成阶段任务5，恭喜你成功出师！\n获得奖励：\n1.修为*250000\n2.血气*250000\n3.灵石*250000\n4.功法盒*3\n5.药水盒*3\n6.道具盒*3'
+      '已完成阶段任务5，恭喜你成功出师！\n获得奖励：\n1.修为*250000\n2.血气*250000\n3.灵石*250000\n4.功法盒*3\n5.药水盒*3\n6.道具盒*3\n师傅获得奖励：师徒积分*50'
     );
     return;
   } else if (
