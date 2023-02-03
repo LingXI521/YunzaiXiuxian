@@ -1004,8 +1004,8 @@ export class UserHome extends plugin {
                  if(shicai>=quantity){
                 if(player.当前血量>0){
                 await Add_najie_thing(usr_qq, thing_name, "食材", -quantity);
-                await Add_饱食度(usr_qq,4*quantity)
-                player.当前血量-=500000;
+                await Add_饱食度(usr_qq,2*quantity)
+                player.当前血量-=500000*quantity;
                 await Write_player(usr_qq, player);
                 if(player.当前血量<0){
                     player.当前血量=0;
