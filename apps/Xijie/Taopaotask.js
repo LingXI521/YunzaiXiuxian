@@ -100,7 +100,7 @@ export class Taopaotask extends plugin {
                         //设定npc数值
                         let B_player = {
                             名号: monster.name,
-                            攻击: parseInt(monster.atk * player.攻击),
+                            攻击: parseInt(monster.atk*(player.攻击+200000)),
                             防御: parseInt(monster.def * player.防御),
                             当前血量: parseInt(monster.blood * player.血量上限),
                             暴击率: monster.baoji,
