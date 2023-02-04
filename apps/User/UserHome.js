@@ -2779,7 +2779,6 @@ if (thing_name == "羊毛") {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
-                let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
                         if(mugao>0){
                             await Add_饱食度(usr_qq,-3000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
@@ -2799,7 +2798,6 @@ if (thing_name == "羊毛") {
                                 shigao=1;
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "星荧洞窟", "道具", -1);
-                             await Add_najie_thing(usr_qq, "火把", "道具", -64);
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
                                 e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
