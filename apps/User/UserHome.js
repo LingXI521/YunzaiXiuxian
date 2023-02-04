@@ -2354,7 +2354,7 @@ if (thing_name == "羊毛") {
                             await Add_灵石(usr_qq,150000)
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math>0.9&&math<1){
+                            if(math>0.95&&math<1){
                                 await Add_najie_thing(usr_qq, "降诸魔山", "道具", 1*n);
                                 e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
