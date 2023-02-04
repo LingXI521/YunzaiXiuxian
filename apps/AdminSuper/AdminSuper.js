@@ -1306,6 +1306,9 @@ export async function synchronization(e) {
     if (!isNotNull(player.神石)) {
       player.神石 = 0;
     }
+    if(player.血气==null){
+      player.血气=0;
+    }
     if (player.Physique_id == 0) {
       player.Physique_id = 1;
     }
