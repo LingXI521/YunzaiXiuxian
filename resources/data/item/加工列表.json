@@ -121,7 +121,7 @@
         ],
         "outputs":[
             {"name":"生肉","class":"食材","amount":2,"const_amount":0},
-            {"name":"羊毛","class":"食材","amount":1,"const_amount":0}
+            {"name":"羊毛","class":"食材","amount":2,"const_amount":0}
         ]
     },
     {
