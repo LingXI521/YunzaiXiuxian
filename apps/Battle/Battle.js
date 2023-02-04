@@ -510,11 +510,11 @@ export async function zd_battle(AA_player, BB_player) {
       msg.push("魔道值为"+A_player.名号+"提供了"+Math.trunc((buff-1)*100)+"%的增伤");
     }
     if (B_player.魔道值<1 && (B_player.灵根.type == "转生" || B_player.level_id >41)) {
-      var buff2=Math.trunc(B_player.神石*0.0015);
+      var buff2=B_player.神石*0.0015;
       if (buff2 > 0.3) buff2 = 0.3;
       if (B_player.灵根.name == "九转轮回体") buff2+= 0.2;
       buff-= buff2
-      msg.push("神石为"+B_player.名号+"提供了"+Math.trunc((buff2)*100)+"%的减伤");
+      msg.push("神石为"+B_player.名号+"提供了"+Math.trunc(buff2*100)+"%的减伤");
     }
     if (A_player.gandianhuihe > 0) {
       持续伤害 = Math.trunc(伤害 * 0.15);
