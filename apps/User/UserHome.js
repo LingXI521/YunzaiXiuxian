@@ -1591,13 +1591,13 @@ if (thing_name == "寻宝工具盒") {
                     if (daomu > 0.25 && daomu <= 0.3) {
                         await Add_najie_thing(usr_qq, "血气瓶", "丹药",10);
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有16个血气瓶"])
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有10个血气瓶"])
                         return
                     }
                     if (daomu > 0.3 && daomu <= 0.4) {
                         await Add_najie_thing(usr_qq, "血气瓶", "丹药",5 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有8个血气瓶"])
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有5个血气瓶"])
                         return
                     }
                     if (daomu > 0.4 && daomu <= 0.5) {
@@ -1609,7 +1609,7 @@ if (thing_name == "寻宝工具盒") {
                     if (daomu > 0.5 && daomu <= 0.7) {
                         await Add_najie_thing(usr_qq, "经验瓶", "丹药",4 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有3个经验瓶"])
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有4个经验瓶"])
                         return
                     }
                     if (daomu > 0.7 && daomu <= 0.8) {
