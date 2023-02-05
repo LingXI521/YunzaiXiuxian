@@ -579,7 +579,7 @@ async jijian(e) {
         e.reply(`你受到此方天地的限制`);
         await sleep(10000);
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -591,7 +591,7 @@ async jijian(e) {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -603,7 +603,7 @@ async jijian(e) {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -615,7 +615,7 @@ async jijian(e) {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -627,7 +627,7 @@ async jijian(e) {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -639,7 +639,7 @@ async jijian(e) {
           await sleep(10000);
         }
         if (shitu[i].师徒BOOS剩余血量 > 0) {
-          shifushanghai = Math.round(Math.random() * 1000000)
+          shifushanghai = Math.round(Math.random() * 50000000)
           if (xue - shifushanghai < 0) {
             gaoji = 0
           } else {
@@ -724,7 +724,7 @@ async jijian(e) {
         } else {
           player.当前血量 = 0;
           await Write_player(usr_qq, player);
-          e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[i].师徒BOOS剩余血量}`);
+          e.reply(`这次并没有一口气通过试炼呢，再接再厉！\n道祖虚影剩余血量:${shitu[x].师徒BOOS剩余血量}`);
           return
         }
       }
