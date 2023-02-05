@@ -3114,6 +3114,50 @@ if (thing_name == "羊毛") {
             e.reply(`加工成功，${msg}`);
             return;
         }
+         if (func == "附魔") {
+            let wupin=data.fumoshu_list.find(item=>item.name==thing_name);
+                if (!isNotNull(wupin)) {
+                    e.reply(`该附魔书暂时未添加，请持续关注`);
+                    return;
+                }
+                let x = await exist_najie_thing(usr_qq, wupin.name, wupin.class);
+                    if(isNotNull(x) && x> 0){
+                        const type=wupin.type;
+                        let equipment = await Read_equipment(usr_qq);
+                    if(type=="武器"){
+                    const desc=wupin.desc;
+                    await Add_najie_thing(usr_qq,wupin.name,wupin.class,-1)
+                    if( equipment.武器.fumo==desc){
+                        e.reply(`你的武器的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                    }
+                    equipment.武器.fumo=desc;
+                    e.reply(`附魔成功,你的武器现在的附魔属性是${desc}`)
+                    }
+                    if(type=="护具"){
+                        const desc=wupin.desc;
+                    await Add_najie_thing(usr_qq,wupin.name,wupin.class,-1)
+                    if( equipment.护具.fumo==desc){
+                        e.reply(`你的护具的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                    }
+                    equipment.护具.fumo=desc;
+                    e.reply(`附魔成功,你的护具现在的附魔属性是${desc}`)
+                    }
+                    if(type=="法宝"){
+                        const desc=wupin.desc;
+                    await Add_najie_thing(usr_qq,wupin.name,wupin.class,-1)
+                    if(equipment.法宝.fumo==desc){
+                        e.reply(`你的法宝的附魔属性已经是${desc}了,不需要再附魔这个属性了`)
+                    }
+                    equipment.法宝.fumo=desc;
+                    e.reply(`附魔成功,你的法宝现在的附魔属性是${desc}`)
+                    }
+                    await Write_equipment(usr_qq, equipment);
+                    return;
+                    }else{
+                        e.reply('你没有该附魔书')
+                        return;
+                    }
+        }
 }
     async yesxigen(e) {
         //不开放私聊功能
