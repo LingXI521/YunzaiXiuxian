@@ -2693,7 +2693,7 @@ if (thing_name == "羊毛") {
                     return;
                 }
                 let huoba=await exist_najie_thing(usr_qq, "火把", "道具")
-                if(huoba<20){
+                if(huoba<64){
                     e.reply('你的火把不够,先去弄一些火把再来吧');
                     return;
                 }
@@ -2719,7 +2719,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "石镐", "道具", -1*shigao);
                             }else{shigao=0;}
                             await Add_najie_thing(usr_qq, "降诸魔山", "道具", -1);
-                            await Add_najie_thing(usr_qq, "火把", "道具", -20);
+                            await Add_najie_thing(usr_qq, "火把", "道具", -64);
                             await Add_灵石(usr_qq,150000)
                              await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
