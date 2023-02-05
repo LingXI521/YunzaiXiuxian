@@ -2354,7 +2354,7 @@ if (thing_name == "羊毛") {
                             await Add_灵石(usr_qq,150000)
                             await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math>0.95&&math<1){
+                            if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "降诸魔山", "道具", 1*n);
                                 e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
@@ -2701,18 +2701,14 @@ if (thing_name == "羊毛") {
                             await Add_饱食度(usr_qq,-2000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
-                                if(mugao>5){
-                                    mugao=5;
-                                }
+                                mugao=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", 18*mugao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", 9*mugao*n);
                                 await Add_najie_thing(usr_qq, "铁镐", "道具", -1*mugao);
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
-                                if(shigao>5){
-                                    shigao=5;
-                                }
+                                mugao=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", 3*shigao*n);
@@ -2865,21 +2861,21 @@ if (thing_name == "羊毛") {
                             await Add_饱食度(usr_qq,-5000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(muchan) && muchan>  quantity - 1){
-                                if(muchan>5){muchan=5}
+                                muchan=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*muchan*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*muchan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",9*muchan*n);
                                 await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
                             }else{muchan=0;}
                             if(isNotNull(shichan) && shichan >  quantity - 1){
-                                if(shichan>5){shichan=5}
+                                 shichan=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*shichan*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",3*shichan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",9*shichan*n);
                                 await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
                             }else{shichan=0;}
                             if(isNotNull(zuanshichan) && zuanshichan >  quantity - 1){
-                                if(zuanshichan>5){zuanshichan=5}
+                               zuanshichan=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 18*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "钻石", "材料",9*zuanshichan*n);
                                 await Add_najie_thing(usr_qq, "青金石", "材料",18*zuanshichan*n);
