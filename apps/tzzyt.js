@@ -32,10 +32,6 @@ export class tzzyt extends plugin {
         }
         if (await data.existData("player", e.user_id)) {
             let CurrentPlayerAttributes = await data.getData("player", e.user_id);
-            if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 50) {
-                e.reply("修为至超过50级无法接触【镇妖塔】");
-                return true;
-            }
     let usr_qq = e.user_id;
     let player = data.getData("player", usr_qq);
 //\apps\User\UserStart.js里面改
@@ -100,9 +96,9 @@ export class tzzyt extends plugin {
         "Reward": Reward,
     };
     
-     if(player.镇妖塔层数>=4500){
-        CurrentPlayerAttributes.镇妖塔层数 =4500;
-        e.reply('镇妖塔层数最多4500');
+     if(player.镇妖塔层数>=3000){
+        CurrentPlayerAttributes.镇妖塔层数 =3000;
+        e.reply('镇妖塔层数最多3000');
         await data.setData("player", e.user_id, CurrentPlayerAttributes); 
         return;
     }
