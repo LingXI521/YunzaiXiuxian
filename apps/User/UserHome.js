@@ -2708,7 +2708,7 @@ if (thing_name == "羊毛") {
                                 await Add_najie_thing(usr_qq, "铁镐", "道具", -1*mugao);
                             }else{mugao=0;}
                             if(isNotNull(shigao) && shigao >  quantity - 1){
-                                mugao=1;
+                                shigao=1;
                                 await Add_najie_thing(usr_qq, "圆石", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", 9*shigao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", 3*shigao*n);
