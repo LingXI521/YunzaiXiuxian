@@ -21,5 +21,16 @@ export class ShopGradetask extends plugin {
             fnc: () => this.ShopGradetask()
         }
     }
-    
+    async ShopGradetask() {
+        let shop=await Read_shop();
+        for (var i=0;i<shop.length;i++)
+        {
+            shop[i].Grade--;
+            if (shop[i].Grade<1)
+            {
+                shop[i].Grade=1;
+            }
+        }
+        await Write_shop(shop);
+    }  
 }
