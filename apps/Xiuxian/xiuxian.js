@@ -1226,8 +1226,17 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     let gandianhuihe = Number(Agandianhuihe)
     //回合数
     let cnt6 = Number(cnt)
+    if(cnt==20){
+        A.player.当前血量=0;
+        B.player.当前血量=0;
+        msg.push("回合数超过20,平局！")
+    }
 
 
+  
+   
+    let A= await Read_equipment(A_player.id);
+    let B= await Read_equipment(B_player.id);
     let usr_qq=A_player.id
     if(!isNotNull(usr_qq)){
         let fanyin = {
@@ -1642,19 +1651,17 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
       if(A_lin == yuansu[3]&&random>0.5){
         if(equipment.武器.fumo=="岩"){
         msg.push("触发元素爆发:[鬼域狂欢],百分之0.2的防御转化成攻击")
-               fyjiachen-=A_player.防御 * 0.2
-               att=last_att+(A_player.防御*0.1)  
-                fyjiachen-=A_player.防御 * 0.2
-               att=last_att+(A_player.防御*0.1)
+               A_player.防御*=0.6;
+               att=last_att+(A_player.防御*0.2)
                att=last_att*1.5
                }else{
                 msg.push("触发元素爆发:[鬼王游行通通闪开],百分之0.1的防御转化成攻击")
-                fyjiachen-=A_player.防御 * 0.2
-                att=last_att+(A_player.防御*0.1)  
+                A_player.防御*=0.8;
+               att=last_att+(A_player.防御*0.1) 
                }
       }else{
-        msg.push("触发赤角石溃杵被动技能:[进军],防御增强30%,攻击增强20%")
-                fyjiachen += A_player.防御 * 0.3
+        msg.push("触发赤角石溃杵被动技能:[御嘉大王],防御增强50%,攻击增强120%")
+                fyjiachen += A_player.防御 * 0.5
                 att=last_att*1.2
       }
     }
@@ -1745,9 +1752,14 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
                 fyjiachen += A_player.防御 * 0.5
                 att *= 1.5
             }else if(A_lin == yuansu[3]&&equipment.武器.fumo=="岩"){
-                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益,岩属性附魔与武器产生了共鸣,元素伤害提升180%")
+                msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强200%\n手中的岩元素异常贴切[贯虹之槊]," + A_player.名号 + "感到筋脉中的元素之力得到了异常增益,岩属性附魔与武器产生了共鸣,元素伤害提升150%")
                 fyjiachen += A_player.防御 * 1
-                att *= 1.8
+                att *= 1.5
+                if(random>0.8){
+                    msg.push("你开启了元素爆发鬼王游行通通闪开,防御转化成了攻击,元素伤害增加了300%")
+                    att *= 3;
+                 A_player.防御 =-fyjiachen;
+                }
             }else {
                 msg.push("触发贯虹之槊被动技能:[金璋皇极],防御强效增强120%")
                 fyjiachen += A_player.防御 * 0.5
@@ -1868,6 +1880,137 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     }
+    let math=Math.random;
+    if(math)
+   if(equipment.武器.fumo=="夏侯兄弟"){
+    if(random>0.8){
+        msg.push(A_player.名号+"使用了箭震山河")
+        att*=1.5;
+    }else{
+        msg.push(A_player.名号+"使用了侵略如火")
+        att*=1.2;
+    }
+   }else if(equipment.护具.fumo=="乱世枭雄"){
+    if(random>0.8){
+        msg.push(A_player.名号+"使用了火卦-星火燎原,下次伤害将转化成燃烧反应,下次伤害提升了50%")
+        att*1.5;
+        gandianhuihe += 3
+        gandianhuihe -= 3
+        ranshao=true;
+    }else if(random>0.5&&random<=0.8){
+        msg.push(A_player.名号+"使用了水卦-杯水一战,双方血量同时减少20%")
+        A_player.当前血量-=A_player.当前血量*0.2
+        B_player.当前血量-=B_player.当前血量*0.2
+    }else{
+        msg.push(A_player.名号+"使用了凤卦-变幻莫测,下次伤害提升了20%")
+        att*1.2;
+    }
+   }else if(equipment.武器.fumo=="江东霸王"){
+    if(random>0.6&&random<=0.8){
+        msg.push(A_player.名号+"使用了决机")
+        att*=1.5;
+        
+    }else if(random>0.8){
+        msg.push(A_player.名号+"使用了火船摄阵,下次伤害将转化成燃烧反应,下次伤害提升了50%")
+        ranshao=true;
+        att*=1.5;
+    }else{
+        msg.push(A_player.名号+"使用了余音绕梁")
+        att*=1.2;
+    }
+   }else if(equipment.法宝.fumo=="天变之龙"){
+    if(random>0.8){
+        msg.push(A_player.名号+"使用了八卦奇袭")
+        att*=2;
+    }else if(random>0.6&&random<=0.8){
+    msg.push(A_player.名号+"使用了十面之围")
+    att*=1.5;
+   }else{
+    msg.push(A_player.名号+"使用了虎守,下次防御增加20%,血量增加20%")
+    A_player.防御*=1.2;
+    A_player.当前血量+= A_player.血量上限*0.2
+   }
+}else if(equipment.武器.fumo=="长板之龙"){
+    if(random>0.8){
+        msg.push(A_player.名号+"使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%")
+        att=last_att*2;
+}else{
+    if(B_player.魔道值>1000){
+        msg.push("因为"+B_player.名号+"是大魔王,触发了长板之龙被动技能惩奸除恶,下次伤害提升了50%")
+        att=last_att*1.5;
+    }else{
+        msg.push(A_player.名号+"使用了虎守,下次防御增加20%,血量增加20%")
+    A_player.防御*=1.2;
+    A_player.当前血量+= A_player.血量上限*0.2
+    }
+}
+} 
+if(A.法宝.fumo=="制衡天下1"){
+    if(B.法宝.fumo=="制衡天下2"||B.法宝.fumo=="制衡天下3"||B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下1"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加10%")
+        A_player.当前血量+=A_player.血量上限*0.1
+        B_player.当前血量+=B_player.血量上限*0.1
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了5%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.05
+        }
+
+}else if(A.法宝.fumo=="制衡天下2"){
+    if(B.法宝.fumo=="制衡天下3"||B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下2"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加20%")
+        A_player.当前血量+=A_player.血量上限*0.2
+        B_player.当前血量+=B_player.血量上限*0.2
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了4%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.04
+        }
+
+}else if(A.法宝.fumo=="制衡天下3"){
+    if(B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下3"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加30%")
+        A_player.当前血量+=A_player.血量上限*0.3
+        B_player.当前血量+=B_player.血量上限*0.3
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了3%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.03
+        }
+
+}else if(A.法宝.fumo=="制衡天下4"){
+    if(B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下4"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加40%")
+        A_player.当前血量+=A_player.血量上限*0.4
+        B_player.当前血量+=B_player.血量上限*0.4
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了2%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.02
+        }
+
+}else if(A.法宝.fumo=="制衡天下5"){
+ if(B.法宝.fumo=="制衡天下5"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加50%")
+        A_player.当前血量+=A_player.血量上限*0.5
+        B_player.当前血量+=B_player.血量上限*0.5
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了1%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.01
+        }
+
+}
+
+   
 
     //===============================================================================这里是仙宠======================================================================================================
     if (A_player.仙宠.type == "战斗") {
