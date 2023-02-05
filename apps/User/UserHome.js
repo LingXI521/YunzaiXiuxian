@@ -2779,7 +2779,7 @@ if (thing_name == "羊毛") {
                     e.reply("地图一次只能使用一个")
                     return;
                 }
-                        if(mugao>0){
+                        if(mugao>0||shigao>0){
                             await Add_饱食度(usr_qq,-3000)
                             await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                             if (isNotNull(mugao) && mugao >  quantity - 1){
