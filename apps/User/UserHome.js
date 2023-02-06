@@ -81,9 +81,6 @@ export class UserHome extends plugin {
                 reg: '^#抽(天地卡池|灵界卡池|凡界卡池)$',
                 fnc: 'sk'
             }, {
-                reg: '^#十连抽(天地卡池|灵界卡池|凡界卡池)$',
-                fnc: 'skten'
-            }, {
                 reg: '^#供奉奇怪的石头$',
                 fnc: 'Add_lhd'
             },
