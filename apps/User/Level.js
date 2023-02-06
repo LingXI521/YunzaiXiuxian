@@ -211,7 +211,7 @@ export class Level extends plugin {
         }
         now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
         //真仙突破
-        if (now_level_id >= 51 && player.灵根.name != "天五灵根" && player.灵根.name != "垃圾五灵根" && player.灵根.name != "九转轮回体"&&player.灵根.name != "九重魔功") {
+        if (now_level_id >= 51 && player.灵根.name != "天五灵根" && player.灵根.name != "垃圾五灵根" && player.灵根.name != "九转轮回体"&&player.灵根.name != "九重魔功"&&player.灵根.name != "仙之心·火"&&player.灵根.name != "仙之心·水"&&player.灵根.name != "仙之心·雷"&&player.灵根.name != "仙之心·冰"&&player.灵根.name != "仙之心·岩"&&player.灵根.name != "仙之心·风"&&player.灵根.name != "仙之心·木") {
             e.reply(`你灵根不齐，无成帝的资格！请先夺天地之造化，修补灵根后再来突破吧`);
             return;
         }
