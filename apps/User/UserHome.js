@@ -2885,7 +2885,7 @@ if (thing_name == "羊毛") {
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
                              await Add_najie_thing(usr_qq, "火把", "道具", -60);
-                           if(math>0&&math<0.1){
+                           if(math>0&&math<=0.1){
                                 await Add_najie_thing(usr_qq, "深渊", "道具",1);
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
@@ -2898,7 +2898,7 @@ if (thing_name == "羊毛") {
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,找到了一个深渊地图`)
                                  return;
                                 }
-                            }else if(math>0.9&&math<1){
+                            }else if(math>0.9&&math<=1){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 128*n);
                                 if(heiyaoshi==true){
@@ -2912,7 +2912,7 @@ if (thing_name == "羊毛") {
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个`)
                                 }
-                            }else if(math>0.8&&math<0.9){
+                            }else if(math>0.8&&math<=0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 20*n);
                                 if(heiyaoshi==true){
@@ -2926,7 +2926,7 @@ if (thing_name == "羊毛") {
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个`)
                                 }
-                            }else if(math>0.3&&math<=0.5){
+                            }else if(math>0.3&&math<=0.4){
                                 await Add_najie_thing(usr_qq, "红石", "材料",256*n);
                                 if(heiyaoshi==true){
                                 e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
