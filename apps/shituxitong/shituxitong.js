@@ -447,12 +447,12 @@ export class shituxitong extends plugin {
       shoutu = `暂时还没有开启收徒的师傅`
     }
 
-    if (shitu.length > 5) {
-      suiji = Math.floor(Math.random() * shitu.length);
-      if (shitu.length - suiji < 5) {
-        suiji = shitu.length - 5
-      }
-    }
+    // if (shitu.length > 5) {
+    //   suiji = Math.floor(Math.random() * shitu.length);
+    //   if (shitu.length - suiji < 5) {
+    //     suiji = shitu.length - 5
+    //   }
+    // }
     for (i = suiji; i < shitu.length; i++) {
       if (shitu[i].收徒 == 1) {
         let player = await Read_player(shitu[i].师傅);
