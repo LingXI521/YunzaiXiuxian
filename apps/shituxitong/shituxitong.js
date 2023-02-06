@@ -434,10 +434,11 @@ export class shituxitong extends plugin {
   }
   //查看师傅列表
   async looklook(e) {
-    let usr_qq = e.user_id;
     let shitu = await Read_shitu()
     let i
     let t = 0
+    let v = 0
+    let A = 0
     let kaiqi = await found3();
     let shoutu = ``
     let suiji = 0;
