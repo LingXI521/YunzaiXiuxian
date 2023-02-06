@@ -1226,14 +1226,9 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     let gandianhuihe = Number(Agandianhuihe)
     //回合数
     let cnt6 = Number(cnt)
-    if(cnt==20){
-        A.player.当前血量=0;
-        B.player.当前血量=0;
-        msg.push("回合数超过20,平局！")
-    }
-
-    let usr_qq=A_player.id
-    if(!isNotNull(usr_qq)){
+   let usr_qq=A_player.id
+    let B_qq=B_player.id;
+    if(!isNotNull(usr_qq)||!isNotNull(B_qq)){
         let fanyin = {
             "A_player": A_player,
             "B_player": B_player,
@@ -1258,8 +1253,17 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
         return data;
     })
+    let dir1 = path.join(`${__PATH.equipment_path}/${B_qq}.json`);
+    let B = fs.readFileSync(dir1, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err)
+            return "error";
+        }
+        return data;
+    })
     //将字符串数据转变成数组格式
     equipment = JSON.parse(equipment);
+    B = JSON.parse(B);
         if (donjie) {//冻结
             cnt6++
         }
@@ -1940,6 +1944,71 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     }
 }
 } 
+if(equipment.法宝.fumo=="制衡天下1"){
+    if(B.法宝.fumo=="制衡天下2"||B.法宝.fumo=="制衡天下3"||B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下1"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加10%")
+        A_player.当前血量+=A_player.血量上限*0.1
+        B_player.当前血量+=B_player.血量上限*0.1
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了5%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.05
+        }
+
+}else if(equipment.法宝.fumo=="制衡天下2"){
+    if(B.法宝.fumo=="制衡天下3"||B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下2"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加20%")
+        A_player.当前血量+=A_player.血量上限*0.2
+        B_player.当前血量+=B_player.血量上限*0.2
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了4%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.04
+        }
+
+}else if(equipment.法宝.fumo=="制衡天下3"){
+    if(B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下3"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加30%")
+        A_player.当前血量+=A_player.血量上限*0.3
+        B_player.当前血量+=B_player.血量上限*0.3
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了3%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.03
+        }
+
+}else if(equipment.法宝.fumo=="制衡天下4"){
+    if(B.法宝.fumo=="制衡天下5"){
+        msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
+    }else if(B.法宝.fumo=="制衡天下4"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加40%")
+        A_player.当前血量+=A_player.血量上限*0.4
+        B_player.当前血量+=B_player.血量上限*0.4
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了2%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.02
+        }
+
+}else if(equipment.法宝.fumo=="制衡天下5"){
+ if(B.法宝.fumo=="制衡天下5"){
+        msg.push("由于双方制衡天下等级相同，双方血量都增加50%")
+        A_player.当前血量+=A_player.血量上限*0.5
+        B_player.当前血量+=B_player.血量上限*0.5
+    }else{
+        msg.push(`${A_player.名号}使用了制衡天下,血量回复为满血,${B_player.名号}血量增加了1%`)
+        A_player.当前血量=A_player.血量上限
+        B_player.当前血量+=B_player.血量上限*0.01
+        }
+
+}
+
 
 
    
