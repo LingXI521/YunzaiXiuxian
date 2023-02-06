@@ -1879,8 +1879,6 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         }
     }
     }
-    let math=Math.random;
-    if(math)
    if(equipment.武器.fumo=="夏侯兄弟"){
     if(random>0.8){
         msg.push(A_player.名号+"使用了箭震山河")
@@ -1891,8 +1889,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     }
    }else if(equipment.护具.fumo=="乱世枭雄"){
     if(random>0.8){
-        msg.push(A_player.名号+"使用了火卦-星火燎原,下次伤害将转化成燃烧反应,下次伤害提升了50%")
-        att*1.5;
+        msg.push(A_player.名号+"使用了火卦-星火燎原,下次伤害将转化成燃烧反应,下次伤害提升了100%")
+        att*2;
         gandianhuihe += 3
         gandianhuihe -= 3
         ranshao=true;
@@ -1901,8 +1899,8 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         A_player.当前血量-=A_player.当前血量*0.2
         B_player.当前血量-=B_player.当前血量*0.2
     }else{
-        msg.push(A_player.名号+"使用了凤卦-变幻莫测,下次伤害提升了20%")
-        att*1.2;
+        msg.push(A_player.名号+"使用了凤卦-变幻莫测,下次防御提升了30%")
+        A_player.防御*=1.3
     }
    }else if(equipment.武器.fumo=="江东霸王"){
     if(random>0.6&&random<=0.8){
@@ -1910,8 +1908,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         att*=1.5;
         
     }else if(random>0.8){
-        msg.push(A_player.名号+"使用了火船摄阵,下次伤害将转化成燃烧反应,下次伤害提升了50%")
-        ranshao=true;
+        msg.push(A_player.名号+"使用了火船摄阵,下次伤害提升了50%")
         att*=1.5;
     }else{
         msg.push(A_player.名号+"使用了余音绕梁")
@@ -1943,7 +1940,133 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     A_player.当前血量+= A_player.血量上限*0.2
     }
 }
-} 
+}else if(equipment.法宝.fumo=="赤壁奇谋"){
+    if(random>0.7){
+        msg.push(A_player.名号+"使用了赤壁奇谋主动技能炎龙冲阵,下次伤害转化成燃烧反应,伤害提升了50%")
+        att=last_att*1.5;
+        gandianhuihe += 3
+        gandianhuihe -= 3
+        ranshao=true;
+    }else{
+        msg.push(A_player.名号+"使用了赤壁奇谋被动技能疾风烈火,下次伤害转化成燃烧扩散反应,伤害提升了20%")
+        att=last_att*1.2;
+        gandianhuihe += 3
+        gandianhuihe -= 3
+        ranshao=true;
+        chufa=true;
+    }
+}else if(equipment.武器.fumo=="锋利1"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是锋利1,${A_player.名号}下次伤害提升10%`)
+    att=last_att*1.1;
+    }
+}else if(equipment.武器.fumo=="锋利2"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是锋利2,${A_player.名号}下次伤害提升20%`)
+    att=last_att*1.2;
+    }
+}else if(equipment.武器.fumo=="锋利3"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是锋利3,${A_player.名号}下次伤害提升30%`)
+    att=last_att*1.3;
+    }
+}else if(equipment.武器.fumo=="锋利4"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是锋利4,${A_player.名号}下次伤害提升40%`)
+    att=last_att*1.4;
+    }
+}else if(equipment.武器.fumo=="锋利5"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是锋利5,${A_player.名号}下次伤害提升50%`)
+    att=last_att*1.5;
+    }
+}else if(equipment.武器.fumo=="横扫之刃1"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是横扫之刃1,${A_player.名号}下次伤害提升10%`)
+    att=last_att*1.1;
+    }
+}else if(equipment.武器.fumo=="横扫之刃2"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是横扫之刃2,${A_player.名号}下次伤害提升20%`)
+    att=last_att*1.2;
+    }
+}else if(equipment.武器.fumo=="横扫之刃3"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`)
+    att=last_att*1.3;
+    }
+}else if(equipment.法宝.fumo=="生命吸收1"){
+    if(random>0.8){
+    msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}10%血量被${A_player.名号}吸取了`)
+    B_player.当前血量-=B_player.当前血量*0.1
+    A_player.当前血量+=B_player.当前血量*0.1
+    }
+}else if(equipment.法宝.fumo=="生命吸收2"){
+    if(random>0.8){
+    msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}20%血量被${A_player.名号}吸取了`)
+    B_player.当前血量-=B_player.当前血量*0.2
+    A_player.当前血量+=B_player.当前血量*0.2
+    }
+}else if(equipment.法宝.fumo=="生命吸收3"){
+    if(random>0.8){
+    msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}30%血量被${A_player.名号}吸取了`)
+    B_player.当前血量-=B_player.当前血量*0.3
+    A_player.当前血量+=B_player.当前血量*0.3
+    }
+}else if(equipment.武器.fumo=="斩首"){
+    msg.push(`${A_player.名号}使用了斩首,冲向了${B_player.名号},下次伤害提升50%`)
+    att=last_att*1.5;
+}else if(equipment.武器.fumo=="力量1"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是力量1,${A_player.名号}下次伤害提升10%`)
+    att=last_att*1.1;
+    }
+}else if(equipment.武器.fumo=="力量2"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是力量2,${A_player.名号}下次伤害提升20%`)
+    att=last_att*1.2;
+    }
+}else if(equipment.武器.fumo=="力量3"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是力量3,${A_player.名号}下次伤害提升30%`)
+    att=last_att*1.3;
+    }
+}else if(equipment.武器.fumo=="力量4"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是力量4,${A_player.名号}下次伤害提升40%`)
+    att=last_att*1.4;
+    }
+}else if(equipment.武器.fumo=="力量5"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是力量5,${A_player.名号}下次伤害提升50%`)
+    att=last_att*1.5;
+    }
+}else if(equipment.护具.fumo=="保护1"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升10%`)
+    A_player.防御+=A_player.防御*0.1
+    }
+}else if(equipment.护具.fumo=="保护2"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是保护2,${A_player.名号}下次防御提升20%`)
+    A_player.防御+=A_player.防御*0.2
+    }
+}else if(equipment.护具.fumo=="保护3"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升30%`)
+    A_player.防御+=A_player.防御*0.3
+    }
+}else if(equipment.护具.fumo=="保护4"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是保护1,${A_player.名号}下次防御提升40%`)
+    A_player.防御+=A_player.防御*0.4
+}
+}else if(equipment.护具.fumo=="保护5"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是保护5,${A_player.名号}下次防御提升50%`)
+    A_player.防御+=A_player.防御*0.5
+    }
+}
 if(equipment.法宝.fumo=="制衡天下1"){
     if(B.法宝.fumo=="制衡天下2"||B.法宝.fumo=="制衡天下3"||B.法宝.fumo=="制衡天下4"||B.法宝.fumo=="制衡天下5"){
         msg.push(`由于${B_player.名号}制衡天下等级比${A_player.名号}高,${A_player.名号}被${B_player.名号}制衡了`)
@@ -2007,8 +2130,44 @@ if(equipment.法宝.fumo=="制衡天下1"){
         B_player.当前血量+=B_player.血量上限*0.01
         }
 
+}else if(B.武器.fumo=="击退1"){
+    if(random>0.8){
+        msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击将无效`)
+        att=last_att*0;
+    }
+}else if(B.武器.fumo=="击退2"){
+    if(random>0.8){
+        msg.push(`${B_player.名号}使用了击退,${A_player.名号}下次攻击被打断,受到了反噬,血量减少10%`)
+        att=last_att*0;
+        A_player.当前血量-= A_player.当前血量*0.1
+    }
+}else if(B.武器.fumo=="荆棘1"){
+    if(random>0.8){
+        msg.push(`由于护具的附魔书属性是荆棘1,${A_player.名号}下次伤害被反弹了10%`)
+       att=last_att*-0.1
+        }
+}else if(B.武器.fumo=="荆棘2"){
+    if(random>0.8){
+        msg.push(`由于护具的附魔书属性是荆棘2,${A_player.名号}下次伤害被反弹了20%`)
+       att=last_att*-0.2
+        }
+}else if(B.武器.fumo=="荆棘3"){
+    if(random>0.8){
+        msg.push(`由于护具的附魔书属性是荆棘3,${A_player.名号}下次伤害被反弹了30%`)
+       att=last_att*-0.3
+        }
+}else if(B.武器.fumo=="荆棘4"){
+    if(random>0.8){
+        msg.push(`由于护具的附魔书属性是荆棘4,${A_player.名号}下次伤害被反弹了40%`)
+       att=last_att*-0.4
+        }
 }
-
+else if(B.武器.fumo=="荆棘5"){
+    if(random>0.8){
+        msg.push(`由于护具的附魔书属性是荆棘5,${A_player.名号}下次伤害被反弹了50%`)
+       att=last_att*-0.5
+        }
+}
 
 
    
