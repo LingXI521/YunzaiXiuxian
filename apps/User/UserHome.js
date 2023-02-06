@@ -2537,11 +2537,7 @@ if (thing_name == "羊毛") {
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
                              await Add_血气(usr_qq,xiuwei)
                             await Add_修为(usr_qq,xueqi)
-                            if(math>0.9&&math<1){
-                                await Add_najie_thing(usr_qq, "深渊", "道具", 1);
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和深渊地图${1}个,,获得了修为${xiuwei}血气${xueqi}`)
-                                return;
-                            }else if(math>0.8&&math<0.9){
+                           if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
                                 e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和西瓜${128*n},,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
@@ -2665,10 +2661,6 @@ if (thing_name == "羊毛") {
                             }else if(math>0.6&&math<=0.7){
                                 await Add_najie_thing(usr_qq, "黑曜石", "材料",5);
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和黑曜石${5*n}`)
-                                return;
-                            }else if(math>0&&math<=0.1){
-                                await Add_najie_thing(usr_qq, "深渊", "道具",1);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和深渊地图${1}个`)
                                 return;
                             }else{
                                 e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个`)
@@ -2885,20 +2877,7 @@ if (thing_name == "羊毛") {
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
                              await Add_najie_thing(usr_qq, "火把", "道具", -60);
-                           if(math>0&&math<=0.1){
-                                await Add_najie_thing(usr_qq, "深渊", "道具",1);
-                                if(heiyaoshi==true){
-                                e.reply(`你在层岩巨渊捡到了20w灵石挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
-                                钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n},找到了一个深渊地图`)
-                                return;
-                                }else{
-                                e.reply(`你在层岩巨渊捡到了20w灵石挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
-                                钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
-                                青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,找到了一个深渊地图`)
-                                 return;
-                                }
-                            }else if(math>0.9&&math<=1){
+                          if(math>0.9&&math<=1){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 128*n);
                                 if(heiyaoshi==true){
