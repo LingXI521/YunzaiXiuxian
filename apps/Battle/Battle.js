@@ -626,7 +626,7 @@ export async function mjzd_battle(A_player, B_player) {
         cnt == 0
       ) {
         msg.push(
-          `${A_player.名号} 使用【鬼剑】然暴起冲向 ${B_player.名号}，速度之快，对方根本反应不过来。`
+          `${A_player.名号} 使用【鬼剑】然暴起冲向 ${B_player.名号}`
         );
         伤害 = Math.trunc(伤害 * 1.1 + 100000);
       } else if (
@@ -636,7 +636,7 @@ export async function mjzd_battle(A_player, B_player) {
         cnt == 0
       ) {
         msg.push(
-          `${A_player.名号} 使用影杀！突然暴起冲向 ${B_player.名号}，速度之快，对方根本反应不过来。`
+          `${A_player.名号} 使用影杀！突然暴起冲向 ${B_player.名号}`
         );
         伤害 = Math.trunc(伤害 * 1 + 100000);
       } else if (Random > 0.5 && cnt == 0) {
