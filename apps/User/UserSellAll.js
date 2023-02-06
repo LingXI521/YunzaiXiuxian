@@ -240,7 +240,7 @@ export class UserSellAll extends plugin {
         }
         let najie = await data.getData("najie", usr_qq);
         let commodities_price = 0
-        let wupin = ['装备', '丹药', '道具', '功法', '草药', '材料', '盒子','仙宠'];
+        let wupin = ['装备', '丹药', '道具', '功法', '草药', '材料', '盒子','仙宠','仙宠口粮','食材'];
         let wupin1 = []
         if (e.msg != '#一键出售') {
             let thing = e.msg.replace("#一键出售", '');
