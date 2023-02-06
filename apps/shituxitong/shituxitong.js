@@ -446,13 +446,11 @@ export class shituxitong extends plugin {
     }else if(kaiqi == 0){
       shoutu = `暂时还没有开启收徒的师傅`
     }
-
-    // if (shitu.length > 5) {
-    //   suiji = Math.floor(Math.random() * shitu.length);
-    //   if (shitu.length - suiji < 5) {
-    //     suiji = shitu.length - 5
-    //   }
-    // }
+for(i = 0 ;i<shitu.length;i++){
+      if(shitu[i].收徒 == 1) v++
+    }
+    if(v<= 5)suiji = 0
+    suiji = Math.floor(Math.random() * shitu.length);
     for (i = suiji; i < shitu.length; i++) {
       if (shitu[i].收徒 == 1) {
         let player = await Read_player(shitu[i].师傅);
@@ -461,6 +459,22 @@ export class shituxitong extends plugin {
         t++
         if (t == 5) {
           break
+        }
+      }
+    }
+    if(t!=5){
+      for (i = 0; i < shitu.length; i++) {
+        if (shitu[i].收徒 == 1) {
+          if(i == suiji){
+            break
+          }
+          let player = await Read_player(shitu[i].师傅);
+          let daohao = player.名号
+          shoutu += `道号:${daohao}\nQQ:${shitu[i].师傅}\n`;
+          A++
+          if (A == 5-t) {
+            break
+          }
         }
       }
     }
