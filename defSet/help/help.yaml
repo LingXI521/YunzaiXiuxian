@@ -228,3 +228,9 @@
     - icon: help-icon_14
       title: '#查看日志'
       desc: '查看更新日志'
+    - icon: help-icon_14
+      title: '#师徒帮助'
+      desc: '查看师徒指令'
+    - icon: help-icon_14
+      title: '#寻宝帮助'
+      desc: '查看寻宝指令'
