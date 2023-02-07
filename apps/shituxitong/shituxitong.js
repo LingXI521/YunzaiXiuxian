@@ -450,8 +450,8 @@ export class shituxitong extends plugin {
 for(i = 0 ;i<shitu.length;i++){
       if(shitu[i].收徒 == 1) v++
     }
-    if(v<= 5)suiji = 0
     suiji = Math.floor(Math.random() * shitu.length);
+    if(v<6)suiji = 0
     for (i = suiji; i < shitu.length; i++) {
       if (shitu[i].收徒 == 1) {
         let player = await Read_player(shitu[i].师傅);
@@ -463,7 +463,7 @@ for(i = 0 ;i<shitu.length;i++){
         }
       }
     }
-    if(t!=5){
+    if(t!=5 && v> 5){
       for (i = 0; i < shitu.length; i++) {
         if (shitu[i].收徒 == 1) {
           if(i == suiji){
