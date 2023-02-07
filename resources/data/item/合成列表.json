@@ -246,7 +246,7 @@
     {
         "name":"未点燃的火把",
         "class":"道具",
-        "amount":4,
+        "amount":5,
         "materials":[
             {"name":"木棍","class":"材料","amount":1},
             {"name":"煤炭","class":"材料","amount":1}
