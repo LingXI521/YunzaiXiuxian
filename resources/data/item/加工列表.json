@@ -143,7 +143,7 @@
             {"name":"木棍","class":"材料","amount":1,"const_amount":0}
         ],
         "outputs":[
-            {"name":"未点燃的火把","class":"道具","amount":1,"const_amount":0}
+            {"name":"未点燃的火把","class":"道具","amount":5,"const_amount":0}
         ]
     }
 ]
