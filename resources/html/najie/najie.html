@@ -88,9 +88,6 @@
             {{each najie.丹药 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                {{if item.HP > 0}}
-                <div class="item_int">恢复：{{item.HP}}</div>
-                {{/if}}
                 {{if item.HPp > 0}}
                 <div class="item_int">恢复百分比：{{item.HPp*100}}%</div>
                 {{/if}}
@@ -133,8 +130,6 @@
             {{each najie.道具 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
@@ -177,8 +172,6 @@
             {{each najie.草药 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
@@ -196,8 +189,6 @@
             {{each najie.材料 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
@@ -215,11 +206,6 @@
             {{each najie.食材 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
-                 {{if item.加成 > 0}}
-                <div class="item_int">加成：{{item.加成}}</div>
-                {{/if}}
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
@@ -237,8 +223,6 @@
             {{each najie.盒子 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
@@ -263,8 +247,6 @@
                     <div class="item_int">【无绑定】</div>
                     {{/if}}
                 </div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">等级：[{{item.等级}}/{{item.等级上限}}]</div>
                 <div class="item_int">攻/防/血量加成:【{{item.atk}}/{{item.def}}/{{item.HP}}】</div>
                 <div class="item_int">{{item.type}}加成:{{item.加成*100}}%</div>
@@ -285,8 +267,6 @@
             {{each najie.仙宠口粮 item}}
             <div class="item">
                 <div class="item_title">{{item.name}}</div>
-                <div class="item_int">类别：{{item.type}}</div>
-                <div class="item_int">说明：{{item.desc}}</div>
                 <div class="item_int">数量：{{item.数量}}</div>
                 <div class="item_int">出售价：{{item.出售价}}灵石</div>
                 <div class="item_int">锁定状态：({{['未锁定','已锁定'][item.islockd]}})</div>
