@@ -393,7 +393,7 @@ export class SecretPlaceplusTask extends plugin {
                   '倒下后,你正准备离开此地，看见路边草丛里有个长相奇怪的石头，顺手放进了纳戒。';
                 await Add_najie_thing(player_id, '长相奇怪的小石头', '道具', 1);
               }
-               let random2 = Math.random();
+              let random2 = Math.random();
               let caoyao = '';
               if (A_player.职业 == '采药师') {
                 if (random2 > 0.95&&random2<=1) {
@@ -408,24 +408,24 @@ export class SecretPlaceplusTask extends plugin {
                 }else if (random2 > 0.83&&random2<=0.88) {
                   caoyao += '"古神藤"';
                   await Add_najie_thing(player_id, '古神藤', '草药', 1);
-                }else if (random2>0&&random2<=0.01) {
+                }else if (random2>0&&random2<=0.005) {
                   caoyao += '"神之眼"';
                   await Add_najie_thing(player_id, '神之眼', '草药', 1);
                 }else if (random2 > 0.80&&random2<=0.83) {
                   caoyao += '"炼骨花"';
                   await Add_najie_thing(player_id, '炼骨花', '草药', 1);
-                }else if(random2>0.01&&random2<=0.02){
+                }else if(random2>0.005&&random2<=0.01){
                     caoyao +=  '"仙缘草"';
-                  await Add_najie_thing(player_id, '神之眼', '草药', 1);
+                  await Add_najie_thing(player_id, '仙缘草', '草药', 1);
                 }
                 if (
                   random2 > 0.95&&random2<=1 ||
                  random2 > 0.9&&random2<=0.95 ||
                  random2 > 0.88&&random2<=0.9 ||
                   random2 > 0.83&&random2<=0.88 ||
-                 random2>0&&random2<=0.01 ||
+                 random2>0&&random2<=0.005||
                   random2 > 0.80&&random2<=0.83||
-                  random2>0.01&&random2<=0.02
+                  random2>0.005&&random2<=0.01
                 ) {
                   last_msg +=
                     '\n\n' +
