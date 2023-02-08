@@ -18,7 +18,7 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 ```
 \Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 ```      
-若要转移存档，将上面画框的文件保存，将原版删除，执行上面安装命令，将上面画框的文件替换到对应文件,然后执行【#一键同步】               
+若要转移存档，将上面画框的文件保存，将修仙插件删除，执行上面安装命令，将上面画框的文件替换到对应文件,然后执行【#一键同步】               
 ## 更新完后一定要发【#一键同步】！！！还有不要偷懒直接保存data文件夹
 ## 魔改内容  
 > 1.新增职业系统:采药师,采矿师,炼器师,炼丹师,猎户     
