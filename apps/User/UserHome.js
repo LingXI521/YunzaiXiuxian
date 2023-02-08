@@ -2388,8 +2388,8 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "鱼肉", "食材", 100*n);      
                             await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
                             await Add_najie_thing(usr_qq, "天臂池", "道具", -1);
-                            await Add_血气(usr_qq,xiuwei)
-                            await Add_修为(usr_qq,xueqi)
+                           await Add_血气(usr_qq,xueqi)
+                            await Add_修为(usr_qq,xiuwei)
                             if(math>0.7&&math<=1){
                                 await Add_najie_thing(usr_qq, "经验瓶", "丹药", n);
                                 e.reply(`你运气真好，在天臂池钓到经验瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
@@ -2432,8 +2432,8 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "鱼肉", "食材", 100*n);      
                             await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
                             await Add_najie_thing(usr_qq, "星落湖", "道具", -1);
-                             await Add_血气(usr_qq,xiuwei)
-                            await Add_修为(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
+                            await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n*2); 
                                 e.reply(`你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2*n}个,还有一些鱼肉`)
@@ -2473,8 +2473,8 @@ export class UserHome extends plugin {
                                 shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
-                              await Add_血气(usr_qq,xiuwei)
-                            await Add_修为(usr_qq,xueqi)
+                              await Add_血气(usr_qq,xueqi)
+                            await Add_修为(usr_qq,xiuwei)
                             if(math>0&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
                                 e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
@@ -2532,8 +2532,8 @@ export class UserHome extends plugin {
                                 shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
-                              await Add_血气(usr_qq,xiuwei)
-                            await Add_修为(usr_qq,xueqi)
+                              await Add_血气(usr_qq,xueqi)
+                            await Add_修为(usr_qq,xiuwei)
                            if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
                                 e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和西瓜${128*n},获得了修为${xiuwei}血气${xueqi}`)
