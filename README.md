@@ -13,7 +13,11 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 ```
 > 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
 > 转移存档            
-![转移存档](pic/photo4.jpg)            
+![转移存档](pic/photo4.jpg)     
+存档位置  
+```
+\Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
+```      
 若要转移存档，将上面画框的文件保存，将原版删除，执行上面安装命令，将上面画框的文件替换到对应文件,然后执行【#一键同步】               
 ## 更新完后一定要发【#一键同步】！！！还有不要偷懒直接保存data文件夹
 ## 魔改内容  
