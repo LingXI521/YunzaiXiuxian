@@ -2282,16 +2282,6 @@ export class UserHome extends plugin {
             }
             let random=Math.random();
             let newrandom=0.995
-            if (random > newrandom) {
-                let length = data.xianchonkouliang.length;
-                let index = Math.trunc(Math.random() * length);
-                let kouliang = data.xianchonkouliang[index];
-                last_msg +=
-                  '\n七彩流光的神奇仙谷[' +
-                  kouliang.name +
-                  ']深埋在土壤中，是仙兽们的最爱。';
-                await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
-              }
             let last_msg='';
               let fyd_msg='';
               let shuangbei=Math.random();
@@ -2323,6 +2313,16 @@ export class UserHome extends plugin {
                   }
                   await data.setData('player', player_id, player);
                 }
+                 if (random > newrandom) {
+                let length = data.xianchonkouliang.length;
+                let index = Math.trunc(Math.random() * length);
+                let kouliang = data.xianchonkouliang[index];
+                last_msg +=
+                  '\n七彩流光的神奇仙谷[' +
+                  kouliang.name +
+                  ']深埋在土壤中，是仙兽们的最爱。';
+                await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
+              }
            if(thing_name == "天衡山"){  
                 if(player.饱食度< 1000){
                     e.reply('你快饿死了,还是先吃点东西吧');
@@ -2353,18 +2353,18 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "降诸魔山", "道具", 1*n);
-                                e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及降诸魔山地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
-                                e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",30*n);
-                                e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n}以及泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天衡山捡到了15w灵石和圆石${3*mugao*n+9*shigao*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2392,19 +2392,19 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.7&&math<=1){
                                 await Add_najie_thing(usr_qq, "经验瓶", "丹药", n);
-                                e.reply(`你运气真好，在天臂池钓到经验瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你运气真好，在天臂池钓到经验瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.3&&math<=0.7){
                                 await Add_najie_thing(usr_qq, "经验球", "丹药",1);
-                                e.reply(`你在天臂池钓到经验球${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天臂池钓到经验球${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.01&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "血气瓶", "丹药",n);
-                                e.reply(`你在天臂池钓到血气瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在天臂池钓到血气瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0&&math<=0.01){
                                await Add_najie_thing(usr_qq, "经验瓶", "丹药", n*10);
-                                e.reply(`你运气爆棚了！在天臂池钓到经验瓶${n*10}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你运气爆棚了！在天臂池钓到经验瓶${n*10}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2436,11 +2436,11 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n*2); 
-                                e.reply(`你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2*n}个,还有一些鱼肉`)
+                                e.reply(`${last_msg}${fyd_msg}你运气太好了,钓上来了钓鱼掉上来的奇怪盒子${2*n}个,还有一些鱼肉`)
                                 return;
                             }else{
                                 await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", n); 
-                                e.reply(`你钓到了一些鱼,钓鱼掉上来的奇怪盒子${n}个`)
+                                e.reply(`${last_msg}${fyd_msg}你钓到了一些鱼,钓鱼掉上来的奇怪盒子${n}个`)
                                 return;
                             }
                         }else{
@@ -2477,22 +2477,22 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
-                                e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和一个水天丛林地图,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "苹果", "食材",32*n);
-                                e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和苹果${32*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和苹果${32*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",10*n);
-                                e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和泥土${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.6&&math<0.7){
                                 await Add_najie_thing(usr_qq, "树苗", "食材",1*n);
-                                e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和树苗${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3*futou*n+9*shifu*n}个和树苗${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在低语森林捡到了原木${3*futou*n+9*shifu*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在低语森林捡到了原木${3*futou*n+9*shifu*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2536,18 +2536,18 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                            if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和西瓜${128*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和西瓜${128*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "泥土", "材料",25*n);
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和泥土${25*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和泥土${25*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_najie_thing(usr_qq, "树苗", "食材",5*n);
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和树苗${5*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个和树苗${5*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在水天丛林捡到了原木${5*futou*n+15*shifu*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2586,22 +2586,22 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.90&&math<=1){
                                 await Add_najie_thing(usr_qq, "铁矿", "材料",2*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到铁矿${2*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到铁矿${2*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<=0.9){
                                 await Add_najie_thing(usr_qq, "煤炭", "材料",5*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到煤炭${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0&&math<=0.2){
                                 await Add_najie_thing(usr_qq, "轻策庄", "道具",1*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人箱子里找到轻策庄地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<=0.8){
                                 await Add_najie_thing(usr_qq, "书架", "材料",5*n);
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人家里找到书架${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,在猪人家里找到书架${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150*muchan*n+300*n*shichan}个和土豆${150*muchan*n+300*n*shichan}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2645,22 +2645,22 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "书架", "材料", 5);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和书架${5*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和书架${5*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<=0.9){
                                 await Add_najie_thing(usr_qq, "书本", "材料",15);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和书本${15*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和书本${15*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<=0.8){
                                 await Add_najie_thing(usr_qq, "甘蔗", "食材",10);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和甘蔗${10*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和甘蔗${10*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.6&&math<=0.7){
                                 await Add_najie_thing(usr_qq, "黑曜石", "材料",5);
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和黑曜石${5*n},获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个和黑曜石${5*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else{
-                                e.reply(`你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                                e.reply(`${last_msg}${fyd_msg}你在轻策庄捡到了小麦${1000*muchan*n+1000*shichan*n+2000*zuanshichan*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
                         }else{
@@ -2710,20 +2710,20 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "星荧洞窟", "道具", 1*n);
-                                e.reply(`你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
                                 煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,和星荧洞窟地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.8&&math<0.9){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 32*n);
-                                e.reply(`你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
                                 煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}血量,捡到腐肉${32*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.7&&math<0.8){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 5*n);
-                                e.reply(`你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
                                 煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,
                                 '在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}血量,捡到骨头${5*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
@@ -2741,7 +2741,7 @@ export class UserHome extends plugin {
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'血量，你什么都没有得到')
                                 return;
                             }else{
-                                e.reply(`你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在降诸魔山捡到了15w灵石和挖到圆石${18*mugao*n+9*shigao*n}个,
                                 煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }
@@ -2789,23 +2789,23 @@ export class UserHome extends plugin {
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "层岩巨渊", "道具", 1*n);
-                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个和层岩巨渊地图${1*n}个,获得了修为${xiuwei}血气${xueqi}`)
                             }else if(math>0.1&&math<=0.3){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 64*n);
-                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个,
                                 '在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${64*n}个,获得了修为${xiuwei}血气${xueqi}`)
                             }else if(math>0.3&&math<=0.5){
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 10*n);
-                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                             }else if(math>0.8&&math<=0.9){
                                 await Add_najie_thing(usr_qq, "红石", "材料",128*n);
-                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个和红石${128*n}个,获得了修为${xiuwei}血气${xueqi}`)
                             }else if(math==0.01){
                                 await Add_najie_thing(usr_qq, "圆石", "材料", -18*mugao*n);
@@ -2821,7 +2821,7 @@ export class UserHome extends plugin {
                                 await Add_灵石(usr_qq,-1000000)
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'你什么都没有得到')
                             }else{
-                                e.reply(`你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在星荧洞窟捡到了挖到圆石${18*mugao*n+9*shigao*n}个,
                                     煤炭${18*mugao*n+9*shigao*n}个,铁矿${9*mugao*n+3*shigao*n}个,黄金矿${9*mugao*n}个,获得了修为${xiuwei}血气${xueqi}`)
                             }
                         }else{
@@ -2886,12 +2886,12 @@ export class UserHome extends plugin {
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "腐肉", "食材", 128*n);
                                 if(heiyaoshi==true){
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n},
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 }else{
-                                    e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                    e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些僵尸,你击败了他们,剩余${player.当前血量}捡到腐肉${128*n}个,获得了修为${xiuwei}血气${xueqi}`)
@@ -2900,12 +2900,12 @@ export class UserHome extends plugin {
                                 await Add_HP(usr_qq,-kouxue)
                                 await Add_najie_thing(usr_qq, "骨头", "材料", 20*n);
                                 if(heiyaoshi==true){
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,黑曜石${12*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 }else{
-                                     e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                     e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 在探索途中遇到一些骷髅,你击败了他们,剩余${player.当前血量}捡到骨头${20*n}个,获得了修为${xiuwei}血气${xueqi}`)
@@ -2913,23 +2913,23 @@ export class UserHome extends plugin {
                             }else if(math>0.3&&math<=0.4){
                                 await Add_najie_thing(usr_qq, "红石", "材料",256*n);
                                 if(heiyaoshi==true){
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 红石${256*n}个，黑曜石${12*n}个,,获得了修为${xiuwei}血气${xueqi}`)
                                 }else{
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
                                 红石${256*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 }
                             }else{
                                 if(heiyaoshi==true){
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,,黑曜石${12*n}个,获得了修为${xiuwei}血气${xueqi}`) 
                                 }else{
-                                e.reply(`你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
+                                e.reply(`${last_msg}${fyd_msg}你在层岩巨渊捡到了20w灵石和挖到圆石${18*muchan*n+18*shichan*n+18*zuanshichan*n}个,
                                 钻石${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,
                                 青金石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,获得了修为${xiuwei}血气${xueqi}`)
                                 }
@@ -2998,32 +2998,32 @@ export class UserHome extends plugin {
                     await Add_修为(usr_qq,xiuwei)
                   if(math>0.95&&math<=1){
                     await Add_najie_thing(usr_qq, "七星海棠丹", "丹药", 1*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,还有七星海棠丹一个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.6&&math<=0.9){
                     await Add_najie_thing(usr_qq, "深渊石", "材料", 100*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,额外捡到深渊石${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.1&&math<=0.2){
                      await Add_najie_thing(usr_qq, "岩浆", "材料", 10*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,岩浆${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.2&&math<=0.3){
                     await Add_najie_thing(usr_qq, "血气瓶", "丹药", 25*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,血气瓶${25*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.3&&math<=0.5){
                     await Add_najie_thing(usr_qq, "经验瓶", "丹药", 40*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验瓶${40*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else{
                     await Add_najie_thing(usr_qq, "经验球", "丹药", 100*n);
-                    e.reply(`你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
                     下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验球${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }
