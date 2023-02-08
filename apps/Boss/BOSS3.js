@@ -22,23 +22,23 @@ export class BOSS3 extends plugin {
             priority: 600,
             rule: [
                 {
-                    reg: '^#开启伐难$',
+                    reg: '^#开启初夏$',
                     fnc: 'CreateWorldBoss'
                 },
                 {
-                    reg: '^#关闭伐难$',
+                    reg: '^#关闭初夏$',
                     fnc: 'DeleteWorldBoss'
                 },
                 {
-                    reg: '^#伐难状态$',
+                    reg: '^#初夏状态$',
                     fnc: 'LookUpWorldBossStatus'
                 },
                 {
-                    reg: '^#伐难贡献榜$',
+                    reg: '^#初夏贡献榜$',
                     fnc: 'ShowDamageList'
                 },
                 {
-                    reg: '^#讨伐伐难$',
+                    reg: '^#讨伐初夏$',
                     fnc: 'WorldBossBattle'
                 }
             ]
@@ -47,7 +47,7 @@ export class BOSS3 extends plugin {
     }
 
 
-    //伐难开启指令
+    //初夏开启指令
     async CreateWorldBoss(e) {
         if (!e.isMaster) {
             return
@@ -57,7 +57,7 @@ export class BOSS3 extends plugin {
         e.reply("强制开启成功")
         return;
     }
-    //伐难结束指令
+    //初夏结束指令
     async DeleteWorldBoss(e) {
         if (!e.isMaster) {
             return
@@ -69,7 +69,7 @@ export class BOSS3 extends plugin {
         e.reply("强制关闭成功")
         return ;
     }
-    //伐难状态指令
+    //初夏状态指令
     async LookUpWorldBossStatus(e) {
         if (await BossIsAlive()) {
             let WorldBossStatusStr = await redis.get("Xiuxian:WorldBossStatus3");
@@ -79,10 +79,14 @@ export class BOSS3 extends plugin {
                     if (new Date().getTime() - WorldBossStatus.KilledTime < 1) {
                         e.reply(`BOSS正在刷新，晚上8点开启`);
                         return true;
+                    }else if (WorldBossStatus.KilledTime != -1) {
+                        if (await InitWorldBoss(e) == 0)
+                            await this.LookUpWorldBossStatus(e);
+                        return true;
                     }
                     let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击 ) : WorldBossStatus.攻击;
                     let BOSSCurrentDefence = WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.防御 * 0.8) : WorldBossStatus.防御;
-                    let ReplyMsg = [`----伐难状态----\n血量:${WorldBossStatus.当前血量}\n基础攻击:${WorldBossStatus.攻击}\n基础防御:${WorldBossStatus.防御}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`];
+                    let ReplyMsg = [`----初夏状态----\n血量:${WorldBossStatus.当前血量}\n基础攻击:${WorldBossStatus.攻击}\n基础防御:${WorldBossStatus.防御}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`];
                     if (WorldBossStatus.isWeak) ReplyMsg.push(`虚弱(还剩${WorldBossStatus.isWeak}回合)`);
                     else if (WorldBossStatus.isAngry) ReplyMsg.push(`狂暴(还剩${WorldBossStatus.isAngry}回合)`);
                     else ReplyMsg.push("正常");
@@ -92,10 +96,10 @@ export class BOSS3 extends plugin {
             }
             else e.reply("Redis WorldBossStatus Error");
         }
-        else e.reply("伐难未开启！")
+        else e.reply("初夏未开启！")
         return true;
     }
-    //伐难伤害贡献榜
+    //初夏伤害贡献榜
     async ShowDamageList(e) {
         if (await BossIsAlive()) {
             let PlayerRecord = await redis.get("Xiuxian:PlayerRecord3");
@@ -106,13 +110,13 @@ export class BOSS3 extends plugin {
                 return true;
             }
             if (PlayerRecord == 0) {
-                e.reply("还没有人挑战伐难哦~");
+                e.reply("还没有人挑战初夏哦~");
                 return true;
             }
             let PlayerRecordJSON = JSON.parse(PlayerRecord);
             let PlayerList = await SortPlayer(PlayerRecordJSON);
             if (!PlayerRecordJSON?.Name) {
-                e.reply("请等待下次伐难副本刷新后再使用本功能");
+                e.reply("请等待下次初夏副本刷新后再使用本功能");
                 return true;
             }
             let CurrentQQ;
@@ -120,7 +124,7 @@ export class BOSS3 extends plugin {
             for (let i = 0; i < (PlayerList.length <= 20 ? PlayerList.length : 20); i++)
                 TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
             let msg = [
-                "****伐难副本贡献排行榜****"
+                "****初夏副本贡献排行榜****"
             ];
             for (var i = 0; i < PlayerList.length; i++) {
                 if (i < 20) {
@@ -212,19 +216,17 @@ export class BOSS3 extends plugin {
             await ForwardMsg(e, msg);
             await sleep(1000);
             if (CurrentQQ != undefined)
-                e.reply(`你在伐难副本贡献排行榜中排名第${CurrentQQ}，造成伤害${PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]}，再接再厉！`);
+                e.reply(`你在初夏副本贡献排行榜中排名第${CurrentQQ}，造成伤害${PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]}，再接再厉！`);
         }
-        else e.reply("伐难未开启！");
+        else e.reply("初夏未开启！");
         return true;
     }
-    //与伐难战斗
+    //与初夏战斗
     async WorldBossBattle(e) {
         if (e.isPrivate) return;
-        e.reply("伐难正在进化成初夏中,等她进化完毕吧")
-        return;
 
         if (!await BossIsAlive()) {
-            e.reply("伐难未开启！");
+            e.reply("初夏未开启！");
             return true;
         }
 
@@ -282,7 +284,7 @@ export class BOSS3 extends plugin {
                 return true;
             }
             if (WorldBossStatus.当前血量 <= 0) {
-                e.reply("伐难正在被封印中....");
+                e.reply("初夏正在被封印中....");
                 return true;
             }
             let PlayerRecordJSON, Userid;
@@ -321,7 +323,7 @@ export class BOSS3 extends plugin {
                 clearTimeout(WorldBOSSBattleUnLockTimer);
             SetWorldBOSSBattleUnLockTimer(e);
             if (WorldBOSSBattleLock != 0) {
-                e.reply("好像有旅行者正在和伐难激战，现在去怕是有未知的凶险，还是等等吧！");
+                e.reply("好像有旅行者正在和初夏激战，现在去怕是有未知的凶险，还是等等吧！");
                 return true;
             }
             let arr = {
@@ -366,27 +368,27 @@ export class BOSS3 extends plugin {
                     msg.push(`第${Math.trunc(BattleFrame / 2) + 1}回合：`);
                     if (Random < 0.05 && data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id <= 28 && CurrentPlayerAttributes.攻击 < 3000000) 
                     {
-                        msg.push("你的气息太弱了，甚至于轻手轻脚溜到【伐难】旁边都没被它发现。你打断了他的阵法，导致【伐难】被反噬");
+                        msg.push("你的气息太弱了，甚至于轻手轻脚溜到【初夏】旁边都没被它发现。你打断了他的阵法，导致【初夏】被反噬");
                         Player_To_BOSS_Damage = Math.trunc(WorldBossStatus.血量上限 * 0.05);
                     }
                     else if (Random < 0.25 && CurrentPlayerAttributes.攻击 >= 5000000) {
-                        msg.push("你的实力超过了【伐难】的假想，【伐难】见你袭来，使用【闪影】躲掉了大部分伤害");
+                        msg.push("你的实力超过了【初夏】的假想，【初夏】见你袭来，使用【闪影】躲掉了大部分伤害");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.3);
                     }
                     else if (Random < 0.55 && CurrentPlayerAttributes.攻击 >= 5000000) {
-                        msg.push("你的实力引起了【伐难】的重视，【伐难】开启了【护身剑罡】，导致你的攻击没有太大效果");
+                        msg.push("你的实力引起了【初夏】的重视，【初夏】开启了【护身剑罡】，导致你的攻击没有太大效果");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.6);
                     }
                     else if (Random < 0.2 && CurrentPlayerAttributes.攻击 >= 5000000) {
-                        msg.push("你的实力足够强大，【伐难】见你袭来不在随便应对，你的攻击效果不好");
+                        msg.push("你的实力足够强大，【初夏】见你袭来不在随便应对，你的攻击效果不好");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.5);
                     }
                     else if (Random < 0.5 && CurrentPlayerAttributes.攻击 >= 5000000) {
-                        msg.push("你的实力强大，【伐难】见你袭来，开启了【护身剑罡】，攻击被影响了");
+                        msg.push("你的实力强大，【初夏】见你袭来，开启了【护身剑罡】，攻击被影响了");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.7);
                     }
                     else if (Random < 1 && CurrentPlayerAttributes.攻击 >= 5000000) {
-                        msg.push("你的实力强大，【伐难】见你袭来，开启了【护身剑罡】，攻击被影响了");
+                        msg.push("你的实力强大，【初夏】见你袭来，开启了【护身剑罡】，攻击被影响了");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.5);
                     }
                     else if (Random < 0.09 && CurrentPlayerAttributes.攻击 <= 2000000) {
@@ -398,7 +400,7 @@ export class BOSS3 extends plugin {
                         Player_To_BOSS_Damage =Math.trunc(Player_To_BOSS_Damage * 3);
                     }
                     else if (Random < 0.5 && CurrentPlayerAttributes.攻击 <= 500000) {
-                        msg.push("【伐难】见你你的实力弱小，根本没把你放心上，你的攻击有了奇效");
+                        msg.push("【初夏】见你你的实力弱小，根本没把你放心上，你的攻击有了奇效");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 1.5 + 100000);
                     }
                     else if (CurrentPlayerAttributes.学习的功法&&CurrentPlayerAttributes.学习的功法.indexOf("八品·鬼帝功")>-1 && BattleFrame==0) {
@@ -433,23 +435,23 @@ export class BOSS3 extends plugin {
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
                     }
                     else if (Random < 0.11) {
-                        msg.push("你等了许久，终于【伐难】疲劳，露出了破绽，你飞杀而去，但是【伐难】使用了【混元】！！你的伤害被吸收了！");
+                        msg.push("你等了许久，终于【初夏】疲劳，露出了破绽，你飞杀而去，但是【初夏】使用了【混元】！！你的伤害被吸收了！");
                         Player_To_BOSS_Damage = -250000;
                     }                                                         
                     else if (Random >= 0.95) {
-                        msg.push("你看到【伐难】一瞬间的破绽，放出强大剑技！痛击BOSS！");
+                        msg.push("你看到【初夏】一瞬间的破绽，放出强大剑技！痛击BOSS！");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 3);
                     }
                     else if (Random >= 0.89) {
-                        msg.push("你如老猎人般屏息观察，终于看准【伐难】身法中的一处缺陷，瞄准后用力一刺，正中其要害之处。");
+                        msg.push("你如老猎人般屏息观察，终于看准【初夏】身法中的一处缺陷，瞄准后用力一刺，正中其要害之处。");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 2);
                     }
                     else if (Random >= 0.82) {
-                        msg.push("你瞄了许久，看准时机放出一道凌厉剑气，结果【伐难】使用了【幻剑】，你一头雾水");
+                        msg.push("你瞄了许久，看准时机放出一道凌厉剑气，结果【初夏】使用了【幻剑】，你一头雾水");
                         Player_To_BOSS_Damage *= 0.5;
                     }
                     else if (Random >= 0 && CurrentPlayerAttributes.攻击 >= 1500000) {
-                        msg.push("【伐难】认可你的实力，【伐难】认真对待你，你不再能轻易攻击");
+                        msg.push("【初夏】认可你的实力，【初夏】认真对待你，你不再能轻易攻击");
                         Player_To_BOSS_Damage = Math.trunc(Player_To_BOSS_Damage * 0.7);
                     }
                     WorldBossStatus.防御=bfangyu
@@ -480,7 +482,7 @@ export class BOSS3 extends plugin {
                     }
                     TotalDamage = Player_To_BOSS_Damage+TotalDamage+持续伤害;
                     if (WorldBossStatus.当前血量 < 0) { WorldBossStatus.当前血量 = 0 }
-                    msg.push(`${CurrentPlayerAttributes.名号}${ifbaoji(SuperAttack)}造成伤害${Player_To_BOSS_Damage}，伐难剩余血量${WorldBossStatus.当前血量}`);
+                    msg.push(`${CurrentPlayerAttributes.名号}${ifbaoji(SuperAttack)}造成伤害${Player_To_BOSS_Damage}，初夏剩余血量${WorldBossStatus.当前血量}`);
                     
                     //说明被冻结了
                     if (BattleFrame!=yuansu.cnt)
@@ -513,7 +515,7 @@ export class BOSS3 extends plugin {
                     msg=yuansu.msg
                     let BOSS_To_Player_Damage = Harm(BOSSCurrentAttack, Math.trunc(CurrentPlayerAttributes.防御*0.2 ));
                     if (Random < 0.015) {
-                        msg.push("【伐难】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭");
+                        msg.push("【初夏】使用了超上古功法【唱，跳，rap】你被不知名的球体差点打的形神具灭");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 2.2);
                     }
 
@@ -534,35 +536,35 @@ export class BOSS3 extends plugin {
                         BOSS_To_Player_Damage *= -0.1;
                     }
                     else if (Random < 0.06) {
-                        msg.push("【伐难】使用【流云剑法】，刚刚好你学过一门功法可以克制。");
+                        msg.push("【初夏】使用【流云剑法】，刚刚好你学过一门功法可以克制。");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.3);
                     }
                     else if (Random < 0.15) {
-                        msg.push("【伐难】使用了绝技【开天】");
+                        msg.push("【初夏】使用了绝技【开天】");
                         BOSS_To_Player_Damage *= 2.5;
                     }
                     else if (Random < 0.25) {
-                        msg.push("【伐难】使用了【葬天剑】，这招你感受到了恐怖的能量，不过还好速度不快，但也稍受波及。");
+                        msg.push("【初夏】使用了【葬天剑】，这招你感受到了恐怖的能量，不过还好速度不快，但也稍受波及。");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.3);
                     }
                     else if (Random < 0.3) {
-                        msg.push("【伐难】释放领域，你无法再动，结结实实吃了一记。");
+                        msg.push("【初夏】释放领域，你无法再动，结结实实吃了一记。");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 1.6);
                     }
                     else if (Random < 0.4) {
-                        msg.push("【伐难】释放技能【灭灵剑】");
+                        msg.push("【初夏】释放技能【灭灵剑】");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 1.4);
                     }
                     else if (Random >= 0.8) {
-                        msg.push("【伐难】释放技能【流云乱剑】");
+                        msg.push("【初夏】释放技能【流云乱剑】");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 1.2);
                     }
                     else if (Random >= 0.7) {
-                        msg.push("【伐难】释放技能【乱剑冢】");
+                        msg.push("【初夏】释放技能【乱剑冢】");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 1);
                     }
                     else {
-                        msg.push("【伐难】向你斩出一剑");
+                        msg.push("【初夏】向你斩出一剑");
                         BOSS_To_Player_Damage = Math.trunc(BOSS_To_Player_Damage * 0.8);
                     }
                     if(yuansu.ranshao&&Bgandianhuihe>0){
@@ -586,7 +588,7 @@ export class BOSS3 extends plugin {
                     if (!WorldBossStatus.isWeak && BOSSCurrentDefence < WorldBossStatus.防御) BOSSCurrentDefence = WorldBossStatus.防御;
                     if (CurrentPlayerAttributes.当前血量 < 0) { CurrentPlayerAttributes.当前血量 = 0 }
                     CurrentPlayerAttributes.防御=afangyu
-                    msg.push(`伐难攻击了${CurrentPlayerAttributes.名号}，造成伤害${BOSS_To_Player_Damage}，${CurrentPlayerAttributes.名号}剩余血量${CurrentPlayerAttributes.当前血量}`);
+                    msg.push(`初夏攻击了${CurrentPlayerAttributes.名号}，造成伤害${BOSS_To_Player_Damage}，${CurrentPlayerAttributes.名号}剩余血量${CurrentPlayerAttributes.当前血量}`);
                 }
                 if (CurrentPlayerAttributes.当前血量 == 0 || WorldBossStatus.当前血量 == 0)
                     break;
@@ -605,22 +607,22 @@ export class BOSS3 extends plugin {
                 e.reply("战斗过长，仅展示部分内容");
             }
             await sleep(1000);
-            e.reply([`${CurrentPlayerAttributes.名号}攻击了伐难，造成伤害${TotalDamage}，伐难剩余血量${WorldBossStatus.当前血量}`]);
+            e.reply([`${CurrentPlayerAttributes.名号}攻击了初夏，造成伤害${TotalDamage}，初夏剩余血量${WorldBossStatus.当前血量}`]);
             await sleep(1000);
             if (TotalDamage >= 0.1 * WorldBossStatus.血量上限 && !WorldBossStatus.isWeak && !WorldBossStatus.isAngry) {
                 WorldBossStatus.isAngry = 20;
-                e.reply("这场战斗重创了伐难，但也令其躁动不安而进入狂暴模式！\n伐难攻击获得强化，持续20回合");
+                e.reply("这场战斗重创了初夏，但也令其躁动不安而进入狂暴模式！\n初夏攻击获得强化，持续20回合");
             }
             if (!WorldBossStatus.isAngry && !WorldBossStatus.isWeak && Math.random() < BattleFrame * 0.015) {
                 WorldBossStatus.isWeak = 30;
-                e.reply("BOSS不知是不是缺乏睡眠，看起来它好像虚弱了很多。\n伐难攻击、防御降低，持续30回合");
+                e.reply("BOSS不知是不是缺乏睡眠，看起来它好像虚弱了很多。\n初夏攻击、防御降低，持续30回合");
             }
             if (CurrentPlayerAttributes.当前血量 == 0) {
                 CurrentPlayerAttributes.当前血量=CurrentPlayerAttributes.血量上限
-                e.reply("很可惜您未能击败伐难,再接再厉！");
+                e.reply("很可惜您未能击败初夏,再接再厉！");
                 if (Math.random() < BattleFrame * 0.012) {
                     let ExpFormBOSS = 1000 + data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id * 210;
-                    e.reply(`你在与伐难的打斗中突然对其招式有所领悟，修为提升${ExpFormBOSS}`);
+                    e.reply(`你在与初夏的打斗中突然对其招式有所领悟，修为提升${ExpFormBOSS}`);
                     CurrentPlayerAttributes.修为 += ExpFormBOSS;
                     CurrentPlayerAttributes.当前血量=CurrentPlayerAttributes.血量上限
                 }
@@ -642,19 +644,13 @@ export class BOSS3 extends plugin {
 
 
             if (WorldBossStatus.当前血量 == 0) {
-                e.reply("伐难被击杀！玩家们可以根据贡献获得奖励！");
+                e.reply("初夏被击杀！玩家们可以根据贡献获得奖励！");
                 await sleep(1000);
+                await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",1)
 
-                var a
-                var z=1
-
-                a = Math.floor(Math.random() * 20);
-                await Add_najie_thing(e.user_id,"纠缠之缘","道具",a)
-                await Add_najie_thing(e.user_id,"幻影-伐难","道具",1)
-
-                e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了伐难的性命,为民除害，额外获得50000灵石奖励！并在伐难身上翻到了[相遇之缘]x"+a+"!并收取了他的残魄之力，形成[幻影-伐难]"]);
+                e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了初夏的性命,为民除害，额外获得50000灵石奖励！并在初夏身上翻到了[相遇之缘]x"+a+"!并收取了他的残魄之力，形成[幻影-初夏]"]);
                 CurrentPlayerAttributes.灵石 += 50000;
-                Bot.logger.mark(`[伐难] 结算:${e.user_id}增加奖励50000`);
+                Bot.logger.mark(`[初夏] 结算:${e.user_id}增加奖励50000`);
                 await data.setData("player", e.user_id, CurrentPlayerAttributes);
                 let action = await redis.get("xiuxian:player:" + e.user_id + ":action");
                 action = await JSON.parse(action);
@@ -668,7 +664,7 @@ export class BOSS3 extends plugin {
                     await data.getData("player", PlayerRecordJSON.QQ[PlayerList[i]]);
                 let Show_MAX;
                 let Rewardmsg = [
-                    "****伐难副本贡献排行榜****"
+                    "****初夏副本贡献排行榜****"
                 ];
                 if (PlayerList.length > 20) Show_MAX = 20;
                 else Show_MAX = PlayerList.length;
@@ -760,23 +756,8 @@ export class BOSS3 extends plugin {
                             Reward=100000;
                         }
                         Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
-
-                        let action2 = await redis.get('xiuxian:player:' + CurrentPlayer.id + ':Guanghangon');
-                        
-                        action2 = await JSON.parse(action2);
-                        if(!isNotNull(action)){
-                            action2=0
-                            console.log("判断1")
-                        }
-                        console.log("数量lllllllllllllllllllllllllllllllllllllllllllllllllllllllll"+action2)
-                        if(action2>=2){
-                            console.log(action)
-                            e.reply(`[伐难副本] 结算:您已超出获取限制`);
-                            continue;
-                        }
-                        e.reply("拦截失败")
-                        await Add_najie_thing(CurrentPlayer.id,"仙子邀约","道具",1)
-                        Bot.logger.mark(`[伐难副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得仙子的赏识,获得道具【仙子邀约】x1`);
+                        await Add_najie_thing(CurrentPlayer.id,"清灵藏的新春木盒","道具",1)
+                        Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得清灵藏的新春木盒x1`);
                             
                         await redis.set("xiuxian:player:" + CurrentPlayer.id + ":Guanghangon", JSON.stringify(action2+1))
 
@@ -787,7 +768,7 @@ export class BOSS3 extends plugin {
                     }
                     else {
                         CurrentPlayer.灵石 += 300000;
-                        Bot.logger.mark(`[伐难副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励300000`);
+                        Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励300000`);
                         await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
                     }
                     if (i == PlayerList.length - 1) Rewardmsg.push("其余参与的修仙者均获得300000灵石奖励！");
@@ -806,7 +787,7 @@ export class BOSS3 extends plugin {
     }
 }
 
-//初始化伐难
+//初始化初夏
 async function InitWorldBoss() {
     let AverageDamageStruct = await GetAverageDamage();
     let player_quantity = parseInt(AverageDamageStruct.player_quantity);
@@ -814,8 +795,8 @@ async function InitWorldBoss() {
     let fairyNums = parseInt(AverageDamageStruct.fairy_nums);
     WorldBOSSBattleLock = 0;
     let X = AverageDamage * 0.01;
-    Bot.logger.mark(`[伐难] 化神玩家总数：${player_quantity}`);
-    Bot.logger.mark(`[伐难] 生成基数:${X}`);
+    Bot.logger.mark(`[初夏] 化神玩家总数：${player_quantity}`);
+    Bot.logger.mark(`[初夏] 生成基数:${X}`);
     let Health =  Math.trunc(X * 280 * player_quantity*2);
     let Attack = Math.trunc(X*200);
     let Defence = Math.trunc(X*190);
@@ -823,7 +804,7 @@ async function InitWorldBoss() {
     let index = Math.trunc(Math.random() * yuansu.length);
     let linggen = yuansu[index];
     let WorldBossStatus = {
-        "名号":"伐难",
+        "名号":"初夏",
         "当前血量": Health,
         "血量上限": Health,
         "isAngry": 0,
@@ -841,7 +822,7 @@ async function InitWorldBoss() {
     return 0;
 }
 
-//获取伐难是否已开启
+//获取初夏是否已开启
 async function BossIsAlive() {
     return (await redis.get("Xiuxian:WorldBossStatus3") && await redis.get("Xiuxian:PlayerRecord3"));
 }
@@ -927,7 +908,7 @@ function Harm(atk, def) {
     x = Math.trunc(x * atk * rand);
     return x;
 }
-    //伐难结束指令
+    //初夏结束指令
 async function DeleteWorldBoss() {
     if (await BossIsAlive()) {
         await redis.del("Xiuxian:WorldBossStatus3");
@@ -949,7 +930,7 @@ async function GetAverageDamage() {
         let level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
         if (level_id >21 && level_id<42) {
             temp[TotalPlayer] = parseInt(player.攻击);
-            Bot.logger.mark(`[伐难] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
+            Bot.logger.mark(`[初夏] ${this_qq}玩家攻击:${temp[TotalPlayer]}`);
             TotalPlayer++;
         }
     }
