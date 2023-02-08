@@ -1031,6 +1031,7 @@ export class AdminSuper extends plugin {
     if (!e.isGroup) {
       return;
     }
+    let usr_qq = e.user_id;
     //没有at信息直接返回,不执行
     let isat = e.message.some(item => item.type === 'at');
     if (!isat) {
