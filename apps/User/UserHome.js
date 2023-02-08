@@ -1560,7 +1560,7 @@ export class UserHome extends plugin {
                         return
                 }
             }
-               if (thing_name == "钓鱼掉上来的奇怪盒子") {
+            if (thing_name == "钓鱼掉上来的奇怪盒子") {
                 let daomu = Math.random();
                     if (daomu==0.01) {
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
@@ -1628,7 +1628,7 @@ export class UserHome extends plugin {
                         return
                     }
             }
-              if (thing_name == "煤炭") {
+            if (thing_name == "煤炭") {
                 let ranliao=await exist_najie_thing(usr_qq,"煤炭","材料");
                 if (player.熔炉==1){
                     if(ranliao<quantity){
@@ -1740,7 +1740,7 @@ export class UserHome extends plugin {
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
-         if (thing_name == "岩浆") {
+        if (thing_name == "岩浆") {
                 let ranliao=await exist_najie_thing(usr_qq,"岩浆","材料");
                 if (player.熔炉==1){
                     if(ranliao<quantity){
@@ -1756,7 +1756,7 @@ export class UserHome extends plugin {
                 e.reply('你没有熔炉放个屁的燃料！')
             }
         }
-            if (thing_name == "轮回阵旗") {
+        if (thing_name == "轮回阵旗") {
                 player.lunhuiBH = 1;
                 await data.setData("player", usr_qq, player);
                 e.reply(["已得到\"轮回阵旗\"的辅助，下次轮回可抵御轮回之苦的十之八九"]);
@@ -2388,7 +2388,7 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "鱼肉", "食材", 100*n);      
                             await Add_najie_thing(usr_qq, "钓鱼竿", "道具", -1);
                             await Add_najie_thing(usr_qq, "天臂池", "道具", -1);
-                           await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.7&&math<=1){
                                 await Add_najie_thing(usr_qq, "经验瓶", "丹药", n);
@@ -2473,7 +2473,7 @@ export class UserHome extends plugin {
                                 shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "低语森林", "道具", -1);
-                              await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0&&math<=0.3){
                                 await Add_najie_thing(usr_qq, "水天丛林", "道具", 1*n);
@@ -2532,7 +2532,7 @@ export class UserHome extends plugin {
                                 shifu=1
                             }else{shifu=0;}
                             await Add_najie_thing(usr_qq, "水天丛林", "道具", -1);
-                              await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                            if(math>0.8&&math<0.9){
                                 await Add_najie_thing(usr_qq, "西瓜", "食材",128*n);
@@ -2582,7 +2582,7 @@ export class UserHome extends plugin {
                                 shichan=1
                             }else{shichan=0;}
                             await Add_najie_thing(usr_qq, "恒那兰那", "道具", -1);
-                             await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.90&&math<=1){
                                 await Add_najie_thing(usr_qq, "铁矿", "材料",2*n);
@@ -2641,7 +2641,7 @@ export class UserHome extends plugin {
                                 await Add_najie_thing(usr_qq, "钻石铲", "道具", -1*zuanshichan);
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "轻策庄", "道具", -1);
-                              await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<=1){
                                 await Add_najie_thing(usr_qq, "书架", "材料", 5);
@@ -2706,7 +2706,7 @@ export class UserHome extends plugin {
                             await Add_najie_thing(usr_qq, "降诸魔山", "道具", -1);
                             await Add_najie_thing(usr_qq, "火把", "道具", -30);
                             await Add_灵石(usr_qq,150000)
-                              await Add_血气(usr_qq,xueqi)
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                             if(math>0.9&&math<1){
                                 await Add_najie_thing(usr_qq, "星荧洞窟", "道具", 1*n);
@@ -2736,8 +2736,8 @@ export class UserHome extends plugin {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", -9*shigao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", -3*shigao*n);
                                 await Add_灵石(usr_qq,-150000)
-                              await Add_血气(usr_qq,-xueqi)
-                            await Add_修为(usr_qq,-xiuwei)
+                                await Add_血气(usr_qq,-xueqi)
+                                await Add_修为(usr_qq,-xiuwei)
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'血量，你什么都没有得到')
                                 return;
                             }else{
@@ -2816,7 +2816,7 @@ export class UserHome extends plugin {
                                 await Add_najie_thing(usr_qq, "煤炭", "材料", -9*shigao*n);
                                 await Add_najie_thing(usr_qq, "铁矿", "材料", -3*shigao*n);
                                 await Add_血气(usr_qq,-xueqi)
-                            await Add_修为(usr_qq,-xiuwei)
+                                await Add_修为(usr_qq,-xiuwei)
                                 await Add_HP(usr_qq,-kouxue*4)
                                 await Add_灵石(usr_qq,-1000000)
                                 e.reply('你在挖矿途中一只苦力怕靠近你然后爆炸了,你来不及反应,剩余'+player.当前血量+'你什么都没有得到')
@@ -2879,8 +2879,8 @@ export class UserHome extends plugin {
                                  heiyaoshi=true;
                             }else{zuanshichan=0;}
                             await Add_najie_thing(usr_qq, "层岩巨渊", "道具", -1);
-                             await Add_najie_thing(usr_qq, "火把", "道具", -60);
-                              await Add_血气(usr_qq,xueqi)
+                            await Add_najie_thing(usr_qq, "火把", "道具", -60);
+                            await Add_血气(usr_qq,xueqi)
                             await Add_修为(usr_qq,xiuwei)
                           if(math>0.9&&math<=1){
                                 await Add_HP(usr_qq,-kouxue)
