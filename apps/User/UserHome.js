@@ -1216,12 +1216,12 @@ export class UserHome extends plugin {
             if (this_danyao.type == '灵根') {
                 if (player.lunhui != 0) {
                     let lhxg = await redis.get("xiuxian:player:" + usr_qq + ":Player_use");
-                    if (lhxg != 3) {
+                    if (lhxg != 4) {
                         e.reply("使用【洗根水】【补天丹】【补根丹】【神心丹】进行洗髓将清除轮回状态！\n回复:【确认使用】或者【取消】进行选择");
                         await Add_najie_thing(usr_qq, "补根丹", "丹药", quantity);
                         this.setContext('yesxigen');
                         return;
-                    } else if (lhxg == 3) {
+                    } else if (lhxg == 4) {
                         await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 0);
                     }
                     let gongfa = ["一转轮回", "二转轮回", "三转轮回", "四转轮回", "五转轮回", "六转轮回", "七转轮回", "八转轮回", "九转轮回"];
