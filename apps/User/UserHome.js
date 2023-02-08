@@ -1544,7 +1544,7 @@ export class UserHome extends plugin {
                         return
                     }
             }
-          if (thing_name == "清灵藏的新春木盒") {
+            if (thing_name == "清灵藏的新春木盒") {
                 let math=Math.random();
              if(math>0.85&&math<=1){
                     await Add_najie_thing(usr_qq, "万妖王", "草药",quantity);
