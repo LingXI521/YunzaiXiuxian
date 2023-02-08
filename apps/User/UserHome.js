@@ -2971,7 +2971,7 @@ export class UserHome extends plugin {
                     e.reply("你是仙人吗就去深渊");
                      return;
                }
-                if(player.修为<15000000){
+                if(player.修为<10000000){
                     e.reply("你需要积累1500w修为才能抵御深渊魔气");
                     return;
                 }
