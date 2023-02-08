@@ -90,6 +90,7 @@ export class Level extends plugin {
             return;
         }
         if (now_level_id == 54) {
+            e.reply(`你已突破至最高境界`);
             return;
         }
         var Time = this.xiuxianConfigData.CD.level_up;
