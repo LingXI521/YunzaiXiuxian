@@ -1214,6 +1214,20 @@ export class UserHome extends plugin {
                 }
             }
             if (this_danyao.type == '灵根') {
+                 let gongfa = ["一转轮回", "二转轮回", "三转轮回", "四转轮回", "五转轮回", "六转轮回", "七转轮回", "八转轮回", "九转轮回"];
+                    for (let i = 0; i < player.lunhui; i++) {
+                        let x = await exist_najie_thing(usr_qq, gongfa[i], "功法");
+                        if (!x) {
+                            await Reduse_player_学习功法(usr_qq, gongfa[i]);
+                        }
+                        else
+                        {
+                            await Add_najie_thing(usr_qq, gongfa[i], "功法", -1);
+                        }
+                    }
+                }
+                player = await Read_player(usr_qq);
+                player.lunhui = 0;
                 change_神之心(usr_qq)
                 e.reply(`异界的力量汇涌入${player.名号}的体内,${player.名号}获得了七神的祝福`)
             }
