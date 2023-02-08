@@ -2940,8 +2940,8 @@ export class UserHome extends plugin {
                     e.reply("你是仙人吗就去深渊");
                      return;
                }
-                if(player.修为<10000000){
-                    e.reply("你需要积累1000w修为才能抵御深渊魔气");
+                if(player.修为<15000000){
+                    e.reply("你需要积累1500w修为才能抵御深渊魔气");
                     return;
                 }
                 if (quantity > 1) {
@@ -2966,25 +2966,25 @@ export class UserHome extends plugin {
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     if (isNotNull(muchan) && muchan> 0){
                         muchan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*muchan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料",9*muchan*n);
                         await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*muchan*n);
                         await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
                     }else{muchan=0;}
                     if(isNotNull(shichan) && shichan > 0){
                         shichan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*shichan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 9*shichan*n);
                         await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*shichan*n);
                         await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
                     }else{shichan=0;}
                     if(isNotNull(zuanshichan) &&zuanshichan> 0){
                         zuanshichan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料", 36*zuanshichan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*zuanshichan*n);
                         await Add_najie_thing(usr_qq, "下界合金矿", "材料", 9*zuanshichan*n);
                         await Add_najie_thing(usr_qq, "钻石镐", "道具", -1*zuanshichan);
                     }else{zuanshichan=0;}
                     await Add_najie_thing(usr_qq, "火把", "道具", -120);
                     await Add_najie_thing(usr_qq, "深渊", "道具", -1);
-                    await Add_修为(usr_qq,-10000000)
+                    await Add_修为(usr_qq,-15000000)
                     await Add_饱食度(usr_qq,-10000)
                   if(math>0.9&&math<=1){
                     await Add_najie_thing(usr_qq, "七星海棠丹", "丹药", 1*n);
