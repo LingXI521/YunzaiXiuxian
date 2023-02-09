@@ -304,8 +304,24 @@ export class Occupation extends plugin {
         return true;
     }
 
-
-
+ async qingchushangjinbang(e){
+        if (!e.isMaster) {
+            return;
+        }
+        let usr_qq = e.user_id;
+        let ifexistplay = await existplayer(usr_qq);
+        if (!ifexistplay) {
+            return;
+        }
+        let action = await redis.get("xiuxian:player:" + 1 + ":shangjing");
+        action = await JSON.parse(action);
+        e.reply("开启清除")
+        action=null;
+        e.reply("清除完成")
+        await redis.set("xiuxian:player:" + 1 + ":shangjing", JSON.stringify(action));
+        return;
+    }
+    
     async plant_back(e) {
         //不开放私聊功能
         if (!e.isGroup) {
