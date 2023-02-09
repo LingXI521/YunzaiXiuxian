@@ -95,6 +95,10 @@ export class Occupation extends plugin {
                 {
                     reg: '^#结束狩猎$',
                     fnc: 'shoulie_back'
+                },
+                {
+                    reg: '^#清空赏金榜$',
+                    fnc: 'qingchushangjinbang'
                 }
             ]
         });
