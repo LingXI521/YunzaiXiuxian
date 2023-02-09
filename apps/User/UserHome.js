@@ -3126,6 +3126,42 @@ export class UserHome extends plugin {
             return;
         }
          if (func == "附魔") {
+              if(thing_name=="附魔台"){
+                if(player.书架<50){
+                let x = await exist_najie_thing(usr_qq, "青金石", "材料")
+            if (!x) {
+                e.reply("你没有【青金石】")
+                return;
+            }
+            await Add_najie_thing(usr_qq, "青金石", "材料", -1)
+            let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
+            tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
+            console.log(tianluoRandom);
+            e.reply("附魔书亮起来了")
+            await sleep(5000)
+            e.reply(`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`)
+            await sleep(1000)
+            await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1)
+            e.reply("恭喜获得" + data.changzhufumoshu_list[tianluoRandom].name)
+            return;
+        }else{
+        let x = await exist_najie_thing(usr_qq, "青金石", "材料")
+        if (!x&&x<3) {
+            e.reply("你没有足够的【青金石】")
+            return;
+        }
+        await Add_najie_thing(usr_qq, "青金石", "材料", -1)
+        let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
+        console.log(tianluoRandom);
+        e.reply("附魔书亮起来了")
+        await sleep(5000)
+        e.reply(`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`)
+        await sleep(1000)
+        await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name, 1)
+        e.reply("恭喜获得" + data.changzhufumoshu_list[tianluoRandom].name)
+        return;}
+       
+    }
             let wupin=data.fumoshu_list.find(item=>item.name==thing_name);
                 if (!isNotNull(wupin)) {
                     e.reply(`该附魔书暂时未添加，请持续关注`);
