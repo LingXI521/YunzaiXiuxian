@@ -2419,7 +2419,7 @@ export class UserHome extends plugin {
                                 e.reply(`${last_msg}${fyd_msg}你运气真好，在天臂池钓到经验瓶${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.3&&math<=0.7){
-                                await Add_najie_thing(usr_qq, "经验球", "丹药",1);
+                                await Add_najie_thing(usr_qq, "经验球", "丹药",n);
                                 e.reply(`${last_msg}${fyd_msg}你在天臂池钓到经验球${n}个,鱼肉${100*n},获得了修为${xiuwei}血气${xueqi}`)
                                 return;
                             }else if(math>0.01&&math<=0.3){
