@@ -1151,6 +1151,7 @@ export class UserHome extends plugin {
 
                             if (action[i].biguan > 0) { action[i].biguan += this_danyao.机缘 * quantity }
                             if (action[i].lianti > 0) { action[i].lianti += this_danyao.机缘 * quantity }
+                            if (action[i].ped    > 0) { action[i].ped    += this_danyao.机缘 * quantity }
                             if (action[i].beiyong2 > 0) { action[i].beiyong2 += this_danyao.机缘 * quantity }
                             e.reply(`丹韵入体,身体内蕴含的仙丹药效增加了${this_danyao.机缘 * quantity}次`)
                             await redis.set("xiuxian:player:" + 10 + ":biguang", JSON.stringify(action))
