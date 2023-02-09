@@ -256,6 +256,14 @@ export class SecretPlaceplus extends plugin {
         if (!isNotNull(weizhi)) {
             return;
         }
+        if (didian == '提瓦特') {
+            let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·岩", "仙之心·冰", "仙之心·风", "仙之心·木"]
+            let lingen = player.灵根.name
+            if(!(A_lin == yuansu[0]||A_lin == yuansu[1]||A_lin == yuansu[2]||A_lin == yuansu[3]||A_lin == yuansu[4]||A_lin == yuansu[5]||A_lin == yuansu[6])){
+                e.rpely("你是元素灵根吗,就来提瓦特大陆");
+                return
+        }
+    }
         if (player.灵石 < weizhi.Price * 10 * i) {
             e.reply("没有灵石寸步难行,攒到" + weizhi.Price * 10 * i + "灵石才够哦~");
             return true;
