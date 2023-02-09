@@ -3016,7 +3016,7 @@ export class UserHome extends plugin {
                     }else{zuanshichan=0;}
                     await Add_najie_thing(usr_qq, "火把", "道具", -120);
                     await Add_najie_thing(usr_qq, "深渊", "道具", -1);
-                    await Add_修为(usr_qq,-15000000)
+                    await Add_修为(usr_qq,-10000000)
                     await Add_饱食度(usr_qq,-10000)
                     await Add_血气(usr_qq,xueqi)
                     await Add_修为(usr_qq,xiuwei)
