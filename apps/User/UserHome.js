@@ -2972,7 +2972,7 @@ export class UserHome extends plugin {
                     e.reply("你是仙人吗就去深渊");
                      return;
                }
-                if(player.修为<10000000){
+                if(player.修为<15000000){
                     e.reply("你需要积累1500w修为才能抵御深渊魔气");
                     return;
                 }
@@ -3016,7 +3016,7 @@ export class UserHome extends plugin {
                     }else{zuanshichan=0;}
                     await Add_najie_thing(usr_qq, "火把", "道具", -120);
                     await Add_najie_thing(usr_qq, "深渊", "道具", -1);
-                    await Add_修为(usr_qq,-10000000)
+                    await Add_修为(usr_qq,-15000000)
                     await Add_饱食度(usr_qq,-10000)
                     await Add_血气(usr_qq,xueqi)
                     await Add_修为(usr_qq,xiuwei)
