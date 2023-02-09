@@ -2998,13 +2998,13 @@ export class UserHome extends plugin {
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     if (isNotNull(muchan) && muchan> 0){
                         muchan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料",9*muchan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料",18*muchan*n);
                         await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*muchan*n);
                         await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
                     }else{muchan=0;}
                     if(isNotNull(shichan) && shichan > 0){
                         shichan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料", 9*shichan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*shichan*n);
                         await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*shichan*n);
                         await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
                     }else{shichan=0;}
