@@ -3183,12 +3183,6 @@ export class UserHome extends plugin {
             await this.reply('已取消洗髓');
             this.finish('yesxigen');
             return;
-        } else if (choice == "确认使用") {
-            await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 1);
-            e.reply("请再次输入#服用神心丹！");
-            //console.log(this.getContext().recall);
-            this.finish('yesxigen');
-            return;
         } else if (choice == "确认洗根") {
             await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 1);
             e.reply("请再次输入#消耗洗根水！");
@@ -3204,6 +3198,12 @@ export class UserHome extends plugin {
         } else if (choice == "确认补根") {
             await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 3);
             e.reply("请再次输入#服用补根丹！");
+            //console.log(this.getContext().recall);
+            this.finish('yesxigen');
+            return;
+        } else if (choice == "确认使用") {
+            await redis.set("xiuxian:player:" + usr_qq + ":Player_use", 4);
+            e.reply("请再次输入#服用神心丹！");
             //console.log(this.getContext().recall);
             this.finish('yesxigen');
             return;
