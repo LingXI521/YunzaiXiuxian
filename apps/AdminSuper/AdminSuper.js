@@ -515,7 +515,7 @@ export class AdminSuper extends plugin {
     }
     let player = await data.getData('player', this_qq);
     await Add_血气(this_qq, -xueqibuchang);
-    e.reply(`${player.名号}被扣除${xueqibuchang}修为`);
+    e.reply(`${player.名号}被扣除${xueqibuchang}血气`);
     return;
   }
 
