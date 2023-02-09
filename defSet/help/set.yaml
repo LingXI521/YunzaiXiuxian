@@ -86,6 +86,9 @@
       title: '#清空积分'
       desc: '清除天地榜玩家积分'
     - icon: help-icon_9
+      title: '#清空赏金榜'
+      desc: '清除赏金榜榜单'
+    - icon: help-icon_9
       title: '#炼丹师更新'
       desc: '无'
     - icon: help-icon_9
