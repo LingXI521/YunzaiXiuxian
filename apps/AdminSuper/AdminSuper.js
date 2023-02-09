@@ -397,7 +397,7 @@ export class AdminSuper extends plugin {
       return;
     }
     //获取发送修为数量
-    const xiuweibuchang = e.msg.replace('#扣修为', '');
+    let xiuweibuchang = e.msg.replace('#扣修为', '');
     const pattern = new RegExp('[0-9]+');
     if (!pattern.test(xiuweibuchang)) {
       e.reply(`错误福利`);
@@ -486,7 +486,7 @@ export class AdminSuper extends plugin {
       return;
     }
     //获取发送修为数量
-    const xueqibuchang = e.msg.replace('#扣血气', '');
+    let xueqibuchang = e.msg.replace('#扣血气', '');
     const pattern = new RegExp('[0-9]+');
     if (!pattern.test(xueqibuchang)) {
       e.reply(`错误福利`);
