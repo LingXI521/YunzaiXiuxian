@@ -91,7 +91,7 @@ export class BOSS extends plugin {
                     }
                     let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.Attack * 1.8) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.Attack * 0.6) : WorldBossStatus.Attack;
                     let BOSSCurrentDefence = WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.Defence * 0.6) : WorldBossStatus.Defence;
-                    let ReplyMsg = [`----散兵状态----\n血量:${WorldBossStatus.Health}\n基础攻击:${WorldBossStatus.Attack}\n基础防御:${WorldBossStatus.Defence}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n悬赏:${WorldBossStatus.Reward}\n当前状态:`];
+                    let ReplyMsg = [`----散兵状态----\n血量:${WorldBossStatus.Health}\n基础攻击:${WorldBossStatus.Attack}\n基础防御:${WorldBossStatus.Defence}\n当前攻击:${BOSSCurrentAttack}\n当前防御:${BOSSCurrentDefence}\n当前状态:`];
                     if (WorldBossStatus.isWeak) ReplyMsg.push(`虚弱(还剩${WorldBossStatus.isWeak}回合)\n温馨提示:给散兵最后一击的人可以随机获得一个物品`);
                     else if (WorldBossStatus.isAngry) ReplyMsg.push(`狂暴(还剩${WorldBossStatus.isAngry}回合)\n温馨提示:给散兵最后一击的人可以随机获得一个物品`);
                     else ReplyMsg.push("正常\n温馨提示:给散兵最后一击的人可以随机获得一个物品");
