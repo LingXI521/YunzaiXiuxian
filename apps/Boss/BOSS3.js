@@ -648,7 +648,7 @@ export class BOSS3 extends plugin {
                 await sleep(1000);
                 await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",1)
 
-                e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了初夏的性命,为民除害，额外获得50000灵石奖励！"]);
+                e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了初夏的性命,为民除害，额外获得50000灵石奖励！并在初夏身上翻到了清灵藏的新春木盒"]);
                 CurrentPlayerAttributes.灵石 += 50000;
                 Bot.logger.mark(`[初夏] 结算:${e.user_id}增加奖励50000`);
                 await data.setData("player", e.user_id, CurrentPlayerAttributes);
