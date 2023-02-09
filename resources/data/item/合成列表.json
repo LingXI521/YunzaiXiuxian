@@ -730,5 +730,23 @@
             {"name":"深渊石","class":"道具","amount":2},
             {"name":"煤炭","class":"材料","amount":5}
         ]
+    },
+    {
+        "name":"子午谷谋",
+        "class":"功法",
+        "amount":1,
+        "materials":[
+            {"name":"锋芒御种","class":"材料","amount":10},
+            {"name":"刀刃御种","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"子午谷谋",
+        "class":"孟德新书",
+        "amount":1,
+        "materials":[
+            {"name":"锋芒御种","class":"材料","amount":10},
+            {"name":"刀刃御种","class":"材料","amount":10}
+        ]
     }
 ]
