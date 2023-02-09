@@ -1995,6 +1995,16 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升30%`)
     att=last_att*1.3;
     }
+}else if(equipment.武器.fumo=="横扫之刃4"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是横扫之刃4,${A_player.名号}下次伤害提升40%`)
+    att=last_att*1.3;
+    }
+}else if(equipment.武器.fumo=="横扫之刃5"){
+    if(random>0.8){
+    msg.push(`由于武器的附魔书属性是横扫之刃3,${A_player.名号}下次伤害提升50%`)
+    att=last_att*1.3;
+    }
 }else if(equipment.法宝.fumo=="生命吸收1"){
     if(random>0.8){
     msg.push(`${A_player.名号}使用了生命吸收,${B_player.名号}10%血量被${A_player.名号}吸取了`)
