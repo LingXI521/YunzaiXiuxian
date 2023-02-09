@@ -264,6 +264,12 @@ export class SecretPlaceplus extends plugin {
                 return
         }
     }
+    if(didian=="诸神黄昏·旧神界"){
+         if (now_level_id < 41) {
+            e.reply("没有达到仙人之前还是不要去了")
+            return;
+        }
+    }
         if (player.灵石 < weizhi.Price * 10 * i) {
             e.reply("没有灵石寸步难行,攒到" + weizhi.Price * 10 * i + "灵石才够哦~");
             return true;
