@@ -130,7 +130,7 @@ export class shituxitong extends plugin {
     }
     //判断境界以及是否轮回
     if (now_level_id < 42 && player1.lunhui == 0) {
-      e.reply('不是仙人且没轮回过的人不能收徒!');
+      e.reply('不是仙人或没轮回过的人不能收徒!');
       return;
     }
     //判断有没有出师
