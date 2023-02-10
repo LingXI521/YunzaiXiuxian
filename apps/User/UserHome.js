@@ -1781,7 +1781,7 @@ export class UserHome extends plugin {
                          return;
                     }
                     await Add_najie_thing(usr_qq, "岩浆", "材料", -quantity);
-                    await Add_热量(usr_qq,500*quantity)
+                    await Add_热量(usr_qq,1000*quantity)
                     e.reply('添加成功,火烧的更旺了')
                     return;
                    
