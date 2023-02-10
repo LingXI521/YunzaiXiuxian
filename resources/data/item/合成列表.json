@@ -388,32 +388,6 @@
         ]
     },
     {
-        "name":"书架",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"木板","class":"材料","amount":6},
-            {"name":"书本","class":"材料","amount":3}
-        ]
-    },
-    {
-        "name":"沙石",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"沙子","class":"材料","amount":4}
-        ]
-    },
-    {
-        "name":"音符盒",
-        "class":"材料",
-        "amount":1,
-        "materials":[
-            {"name":"木板","class":"材料","amount":8},
-            {"name":"红石","class":"材料","amount":1}
-        ]
-    },
-    {
         "name":"深渊传送门",
         "class":"道具",
         "amount":1,
@@ -421,14 +395,15 @@
             {"name":"黑曜石","class":"材料","amount":12}
         ]
     },
-    {
+     {
         "name":"附魔书-夏侯兄弟",
         "class":"道具",
         "amount":1,
         "materials":[
             {"name":"角石","class":"材料","amount":200},
             {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":10}
+            {"name":"麒麟牙","class":"材料","amount":10},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -448,7 +423,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":200},
             {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":10}
+            {"name":"麒麟牙","class":"材料","amount":10},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -458,7 +434,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":500},
             {"name":"番琉璃","class":"材料","amount":500},
-            {"name":"麒麟牙","class":"材料","amount":25}
+            {"name":"麒麟牙","class":"材料","amount":25},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -468,7 +445,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":500},
             {"name":"番琉璃","class":"材料","amount":500},
-            {"name":"麒麟牙","class":"材料","amount":25}
+            {"name":"麒麟牙","class":"材料","amount":25},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -488,7 +466,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":200},
             {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":10}
+            {"name":"麒麟牙","class":"材料","amount":10},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -508,7 +487,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":100},
             {"name":"番琉璃","class":"材料","amount":100},
-            {"name":"麒麟牙","class":"材料","amount":5}
+            {"name":"麒麟牙","class":"材料","amount":5},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -518,7 +498,8 @@
         "materials":[
             {"name":"角石","class":"材料","amount":200},
             {"name":"番琉璃","class":"材料","amount":200},
-            {"name":"麒麟牙","class":"材料","amount":10}
+            {"name":"麒麟牙","class":"材料","amount":10},
+            {"name":"书本","class":"材料","amount":10}
         ]
     },
     {
@@ -741,12 +722,101 @@
         ]
     },
     {
-        "name":"子午谷谋",
-        "class":"孟德新书",
+        "name":"孟德新书",
+        "class":"功法",
         "amount":1,
         "materials":[
             {"name":"锋芒御种","class":"材料","amount":10},
             {"name":"刀刃御种","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-火元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"烈火杏娇疏","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-水元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"绮罗郁金香","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-雷元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"雷鸣阎狱藤","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-冰元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"八角玄冰草","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-岩元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"地瓜岩龙","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-风元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"万妖王","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"附魔书-草元素",
+        "class":"道具",
+        "amount":1,
+        "materials":[
+            {"name":"蓝银皇","class":"草药","amount":500},
+            {"name":"书本","class":"材料","amount":10}
+        ]
+    },
+    {
+        "name":"纸",
+        "class":"材料",
+        "amount":3,
+        "materials":[
+            {"name":"甘蔗","class":"食材","amount":3}
+        ]
+    },
+    {
+        "name":"书本",
+        "class":"材料",
+        "amount":1,
+        "materials":[
+            {"name":"纸","class":"材料","amount":3},
+            {"name":"皮革","class":"食材","amount":10}
+        ]
+    },
+    {
+        "name":"书架",
+        "class":"材料",
+        "amount":1,
+        "materials":[
+            {"name":"书本","class":"材料","amount":3},
+            {"name":"木板","class":"材料","amount":6}
         ]
     }
 ]
