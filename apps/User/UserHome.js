@@ -1432,6 +1432,15 @@ export class UserHome extends plugin {
                 await Add_najie_thing(usr_qq, "书架", "材料", -1);
                 return
             }
+             if (thing_name == "附魔台") {
+                player.附魔台=1;
+                e.reply("附魔台放置成功");
+                 await Write_player(usr_qq, player);
+                await Add_najie_thing(usr_qq, "附魔台", "道具", -1);
+                return
+            }
+            
+            
             
             //寄术原因，写了很多多余的东西，但是能跑
             if (thing_name == "打火石") {
@@ -1550,37 +1559,37 @@ export class UserHome extends plugin {
              if(math>0.85&&math<=1){
                     await Add_najie_thing(usr_qq, "万妖王", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个万妖王"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个万妖王`)
                         return
                 }else if(math>0.70&&math<=0.85){
                     await Add_najie_thing(usr_qq, "地瓜岩龙", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个地瓜岩龙"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个地瓜岩龙`)
                         return
                 }else if(math>0.55&&math<=0.70){
                     await Add_najie_thing(usr_qq, "蓝银皇", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个蓝银皇"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个蓝银皇`)
                         return
                 }else if(math>0.40&&math<=0.55){
                     await Add_najie_thing(usr_qq, "八角玄冰草", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个八角玄冰草"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个八角玄冰草`)
                         return
                 }else if(math>0.25&&math<=0.40){
                     await Add_najie_thing(usr_qq, "绮罗郁金香", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个绮罗郁金香"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个绮罗郁金香`)
                         return
                 }else if(math>0.10&&math<=0.25){
                     await Add_najie_thing(usr_qq, "烈火杏娇疏", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个烈火杏娇疏"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个烈火杏娇疏`)
                         return
                 }else if(math>0&&math<=0.1){
                     await Add_najie_thing(usr_qq, "雷鸣阎狱藤", "草药",quantity);
                         await Add_najie_thing(usr_qq, "清灵藏的新春木盒", "道具", -quantity);
-                        e.reply(["你打开了清灵藏的新春木盒，里面有一个雷鸣阎狱藤"])
+                        e.reply(`你打开了清灵藏的新春木盒，里面有${quantity}个雷鸣阎狱藤`)
                         return
                 }
             }
@@ -3127,6 +3136,10 @@ export class UserHome extends plugin {
         }
          if (func == "附魔") {
               if(thing_name=="附魔台"){
+                  if(player.附魔台!=1){
+                       e.reply('你没有附魔台')
+                       return;
+                  }
                 if(player.书架<50){
                 let x = await exist_najie_thing(usr_qq, "青金石", "材料")
             if (!x) {
