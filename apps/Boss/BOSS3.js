@@ -646,7 +646,7 @@ export class BOSS3 extends plugin {
             if (WorldBossStatus.当前血量 == 0) {
                 e.reply("初夏被击杀！玩家们可以根据贡献获得奖励！");
                 await sleep(1000);
-                await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",1)
+                await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",10)
 
                 e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了初夏的性命,为民除害，额外获得50000灵石奖励！并在初夏身上翻到了清灵藏的新春木盒"]);
                 CurrentPlayerAttributes.灵石 += 50000;
@@ -756,7 +756,8 @@ export class BOSS3 extends plugin {
                             Reward=100000;
                         }
                         Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
-                        await Add_najie_thing(CurrentPlayer.id,"清灵藏的新春木盒","道具",1)
+                        await Add_najie_thing(CurrentPlayer.id,"清灵藏的新春木盒","道具",5)
+                        e.reply("参与讨伐初夏的都可以获得5个清灵的盒子")
                         Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得清灵藏的新春木盒x1`);
                             
                         await redis.set("xiuxian:player:" + CurrentPlayer.id + ":Guanghangon", JSON.stringify(action2+1))
