@@ -2,7 +2,7 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import { segment } from "oicq"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
-import { Gaodenyuansulun,Add_najie_thing,anti_cheating, isNotNull } from '../Xiuxian/xiuxian.js'
+import { Gaodenyuansulun,Add_najie_thing, isNotNull } from '../Xiuxian/xiuxian.js'
 import config from "../../model/Config.js"
 
 //本模块由(qq:1695037643)和jio佬完成
