@@ -7,7 +7,7 @@ const versionData = Config.getdefSet("version", "version");
 logger.info(`__________________________`);
 logger.info(chalk.yellow(`修仙模拟器${versionData[0].version}「${versionData[0].name}」初始化`));
 logger.info(`体验群一：372093406`);
-logger.info(`体验群二：642919478`);
+logger.info(`体验群二：808321883`);
 logger.info(`原开发1：水脚脚`);
 logger.info(`原开发2：咸咸咸鱼鱼`);
 logger.info(`原开发3：零零零零`);
