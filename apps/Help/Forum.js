@@ -399,6 +399,10 @@ export class Forum extends plugin {
             e.reply(`轮回功法${thing_name}禁止出售。`)
             return;
         }
+        if (thing_exist.id >= 5005000&& thing_exist.id <= 5005009) {
+            e.reply(`仙心功法${thing_name}禁止出售。`)
+            return;
+        }
         if (thing_exist.class == "装备") {
             if (!isNotNull(thing_pinji)) {
                 e.reply("未输入品级")
