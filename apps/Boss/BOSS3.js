@@ -262,13 +262,7 @@ export class BOSS3 extends plugin {
                     return true;
                 }
             }
-         if (WorldBOSSBattleCD[e.user_id] != undefined) {
-                let Seconds = Math.trunc((300000 - (new Date().getTime() - WorldBOSSBattleCD[e.user_id])) / 1000);
-                if (Seconds <= 300 && Seconds >= 0) {
-                    e.reply(`刚刚一战消耗了太多气力，还是先歇息一会儿吧~(剩余${Seconds}秒)`);
-                    return true;
-                }
-            }
+        
 
             let WorldBossStatusStr = await redis.get("Xiuxian:WorldBossStatus3");
             let PlayerRecord = await redis.get("Xiuxian:PlayerRecord3");
