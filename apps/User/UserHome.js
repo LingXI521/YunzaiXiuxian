@@ -2094,6 +2094,10 @@ export class UserHome extends plugin {
                     e.reply(`你的武器攻击变强了，攻击+100000`);
                     return;
                 }
+                if (player.攻击加成 = 9000000) {
+                    e.reply(`你的攻击加成已达到最高`);
+                    return;
+                }
             } else if (thing_name == "防御强化") {
                 if (player.防御加成 < 9000000) {
                     await Add_najie_thing(usr_qq, thing_name, "道具", -1);
@@ -2101,6 +2105,10 @@ export class UserHome extends plugin {
                     player.防御 += 100000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的护具变强了，防御+100000`);
+                    return;
+                }
+                if (player.防御加成 = 9000000) {
+                    e.reply(`你的防御加成已达到最高`);
                     return;
                 }
             } else if (thing_name == "生命强化") {
@@ -2111,6 +2119,10 @@ export class UserHome extends plugin {
                     player.当前血量 += 1000000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的法宝变强了，生命+1000000`);
+                    return;
+                }
+                if (player.生命加成 = 90000000) {
+                    e.reply(`你的生命加成已达到最高`);
                     return;
                 }
             } else if (thing_name == "武魂石") {
@@ -2124,6 +2136,10 @@ export class UserHome extends plugin {
                     player.攻击 += 10000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的攻击力提高了`);
+                    return;
+                }
+                if (player.攻击加成 = 9000000) {
+                    e.reply(`你的攻击加成已达到最高`);
                     return;
                 }
             }
@@ -2141,6 +2157,10 @@ export class UserHome extends plugin {
                     e.reply(`你的生命值提高了`);
                     return;
                 }
+                if (player.生命加成 = 90000000) {
+                    e.reply(`你的生命加成已达到最高`);
+                    return;
+                }
             }
             else if (thing_name == "甲魂石") {
                 if (player.魔道值 < 1000) {
@@ -2155,6 +2175,10 @@ export class UserHome extends plugin {
                     e.reply(`你的防御力提高了`);
                     return;
                 }
+                if (player.防御加成 = 9000000) {
+                    e.reply(`你的防御加成已达到最高`);
+                    return;
+                }
             }
             else if (thing_name == "武神石") {
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
@@ -2167,6 +2191,10 @@ export class UserHome extends plugin {
                     player.攻击 += 10000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的攻击力提高了`);
+                    return;
+                }
+                if (player.攻击加成 = 9000000) {
+                    e.reply(`你的攻击加成已达到最高`);
                     return;
                 }
             }
@@ -2184,6 +2212,10 @@ export class UserHome extends plugin {
                     e.reply(`你的生命值提高了`);
                     return;
                 }
+                if (player.生命加成 = 90000000) {
+                    e.reply(`你的生命加成已达到最高`);
+                    return;
+                }
             }
             else if (thing_name == "甲神石") {
                 if (player.魔道值 > 0 || (player.灵根.type != "转生" && player.level_id < 42)) {
@@ -2196,6 +2228,10 @@ export class UserHome extends plugin {
                     player.防御 += 10000;
                     await Write_player(usr_qq, player);
                     e.reply(`你的防御力提高了`);
+                    return;
+                }
+                if (player.防御加成 = 9000000) {
+                    e.reply(`你的防御加成已达到最高`);
                     return;
                 }
             }
