@@ -254,10 +254,13 @@ export class BOSS3 extends plugin {
                 e.reply("还是先疗伤吧，别急着参战了");
                 return true;
             }
-            let jiansuo=await anti_cheating(e)
-            if(!jiansuo){
-                e.reply("您刚降临到这方世界，还与此次活动的重要NPC未曾有过面缘")
-                return
+            
+        if (WorldBOSSBattleCD[e.user_id] != undefined) {
+                let Seconds = Math.trunc((300000 - (new Date().getTime() - WorldBOSSBattleCD[e.user_id])) / 1000);
+                if (Seconds <= 300 && Seconds >= 0) {
+                    e.reply(`刚刚一战消耗了太多气力，还是先歇息一会儿吧~(剩余${Seconds}秒)`);
+                    return true;
+                }
             }
          if (WorldBOSSBattleCD[e.user_id] != undefined) {
                 let Seconds = Math.trunc((300000 - (new Date().getTime() - WorldBOSSBattleCD[e.user_id])) / 1000);
