@@ -79,10 +79,6 @@ export class BOSS3 extends plugin {
                     if (new Date().getTime() - WorldBossStatus.KilledTime < 1) {
                         e.reply(`BOSS正在刷新，晚上8点开启`);
                         return true;
-                    }else if (WorldBossStatus.KilledTime != -1) {
-                        if (await InitWorldBoss(e) == 0)
-                            await this.LookUpWorldBossStatus(e);
-                        return true;
                     }
                     let BOSSCurrentAttack = WorldBossStatus.isAngry ? Math.trunc(WorldBossStatus.攻击 * 1.2) : WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.攻击 ) : WorldBossStatus.攻击;
                     let BOSSCurrentDefence = WorldBossStatus.isWeak ? Math.trunc(WorldBossStatus.防御 * 0.8) : WorldBossStatus.防御;
@@ -672,98 +668,18 @@ export class BOSS3 extends plugin {
                 for (var i = 0; i < PlayerList.length; i++) {
                     let CurrentPlayer = await data.getData("player", PlayerRecordJSON.QQ[PlayerList[i]]);
                     if (i < Show_MAX) {
-                        let Reward;
-                        if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.025)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.06);
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.05)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.045);
-                            if (Reward<Math.trunc(TotalDamage*0.025*0.06))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.025*0.06);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.075)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.036);
-                            if (Reward<Math.trunc(TotalDamage*0.05*0.045))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.05*0.045);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.1)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.032);
-                            if (Reward<Math.trunc(TotalDamage*0.075*0.036))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.075*0.036);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.15)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.025);
-                            if (Reward<Math.trunc(TotalDamage*0.1*0.032))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.1*0.032);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.2)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.022);
-                            if (Reward<Math.trunc(TotalDamage*0.15*0.025))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.15*0.025);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.3)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.018);
-                            if (Reward<Math.trunc(TotalDamage*0.2*0.022))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.2*0.022);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.4)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.016);
-                            if (Reward<Math.trunc(TotalDamage*0.3*0.018))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.3*0.018);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.5)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.015);
-                            if (Reward<Math.trunc(TotalDamage*0.4*0.016))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.4*0.016);
-                            }
-                        }
-                        else
-                        {
-                            Reward=Math.trunc(TotalDamage*0.5*0.015);
-                        }
-                        if (TotalDamage>120000000)
-                        {
-                            Reward=Math.trunc(Reward/(TotalDamage/120000000));
-                        }
-                        if (Reward<100000)
-                        {
-                            Reward=100000;
+                        let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
+                        Reward = Reward < 1500 ? 1500 : Reward;
+                        if(Reward>1000000){
+                            e.reply("由于获利过多，被万仙盟收取了税费，剩下100w")
+                            Reward=1000000
                         }
                         Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
-                        await Add_najie_thing(CurrentPlayer.id,"清灵藏的新春木盒","道具",5)
-                         await Add_najie_thing(e.user_id,"仙子邀约","道具",1)
-                        e.reply("参与讨伐初夏的都可以获得5个清灵的盒子和一个仙子邀约")
-                        Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加灵石奖励${Reward}并且获得清灵藏的新春木盒x5,仙子邀约1个`);
-                            
-                        await redis.set("xiuxian:player:" + CurrentPlayer.id + ":Guanghangon", JSON.stringify(action2+1))
-
                         CurrentPlayer.灵石 += Reward;
+                        await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",5)
+                        await Add_najie_thing(e.user_id,"仙子邀约","道具",1)
                         await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
-    
+                        Bot.logger.mark(`[初夏周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`);
                         continue;
                     }
                     else {
