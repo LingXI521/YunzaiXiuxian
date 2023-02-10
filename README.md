@@ -9,16 +9,15 @@
 ```
 git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian-emulator-plugin/
 
-```
-> 如其他版本转1.2.4（注:1.2.4以上版本不兼容,数值完全不同）             
-> 转移存档            
+```           
+## 转移存档            
 ![转移存档](pic/photo4.jpg)     
 存档位置  
 ```
 \Yunzai-Bot\plugins\xiuxian-emulator-plugin\resources\data
 ```      
 若要转移存档，将上面画框的文件保存，将修仙插件删除，执行上面安装命令，将上面画框的文件替换到对应文件,然后执行【#一键同步】               
-## 更新完后一定要发【#一键同步】！！！还有不要偷懒直接保存data文件夹
+## 更新完后一定要发【#一键同步】，不要偷懒直接保存data文件夹
 ## 魔改内容  
 > 1.新增职业系统:采药师,采矿师,炼器师,炼丹师,猎户     
 > 2.新增元素反应:灵根为仙之心·火水岩风雷冰木(草)方可使用元素力     
@@ -41,16 +40,11 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 > 18.新增#一键同步，可以同步宗门、冒险家协会和存档    
 > 19.修复一些bug以及显示  
 > 20.新增mc与原神修仙结合玩法
-     
-
-
 ## 交流/直接游玩      
 - 一服：372093406     
 - 二服：808321883  
 - 服主交流群、bug反馈群、攻略群：560090307 
-- 新功能测试群:619744105
-    
- 
+- 新功能测试群:619744105  
 ## 鸣谢
 > DD斩首(3196383818):仓库主人,合并,修复,优化和写新功能     
 > 再氪两单嘛(3479823546):数值策划      
@@ -59,14 +53,10 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 > xh(917951214):职业功能   
 > 零(3106256704):修复bug,维护功能   
 > 画手(1589978621):维护和处理bug  
-     
-
 ## 配置与存档   
 >xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
 >xiuxian-emulator-plugin/ resources / data          
 >可根据需求自行修改     
-
 ## 免责声明       
 1. 功能仅限内部交流与小范围使用       
-2. 请勿用于任何以盈利为目的的场景  
-      
+2. 请勿用于任何以盈利为目的的场景       
