@@ -143,8 +143,6 @@ export class GuessLanternRiddles extends plugin {
         let thing = e.msg.replace("#", '');
         thing = thing.replace("十连抽", '');
         if (thing == "寻宝常驻") {
-           e.reply("功能正在维护");
-           return
             let x = await exist_najie_thing(usr_qq, "泥土", "材料")
             if (!x) {
                 e.reply("你没有【泥土】")
@@ -170,8 +168,6 @@ export class GuessLanternRiddles extends plugin {
             e.reply("恭喜获得\n" + all)
         }
         if (thing == "寻宝特殊up") {
-             e.reply("功能正在维护");
-           return
             let x = await exist_najie_thing(usr_qq, "树苗", "食材")
             if (!x) {
                 e.reply("你没有【树苗】")
