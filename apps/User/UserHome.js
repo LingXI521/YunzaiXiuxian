@@ -1661,6 +1661,49 @@ export class UserHome extends plugin {
                         return
                     }
             }
+              if (thing_name == "树苗") {
+
+            let x=await exist_najie_thing(usr_qq,"树苗","食材");
+            if(!x){
+                e.reply("你没有树苗")
+            }
+    var Time = 60;
+   let now_Time = new Date().getTime(); //获取当前时间戳
+   let shuangxiuTimeout = parseInt(60000 * Time);
+   jianshao=await redis.get("xiuxian:player:" + usr_qq + "abc");
+   shuangxiuTimeout=shuangxiuTimeout-jianshao;
+   if(shuangxiuTimeout<0){
+    shuangxiuTimeout=0;
+   }
+   let last_time = await redis.get("xiuxian:player:" + usr_qq + "CD");//获得上次的时间戳,
+   last_time = parseInt(last_time);
+   if (now_Time < last_time + shuangxiuTimeout) {
+       let Couple_m = Math.trunc((last_time + shuangxiuTimeout - now_Time) / 60 / 1000);
+       let Couple_s = Math.trunc(((last_time + shuangxiuTimeout - now_Time) % 60000) / 1000);
+       e.reply("上一个树苗还没成熟" + `剩余时间:  ${Couple_m}分 ${Couple_s}秒`);
+       return;
+   }
+   
+            await Add_najie_thing(usr_qq, "树苗", "食材", -1);
+            e.reply("你种下了一颗树苗,还有60分钟后成熟")
+            await redis.set("xiuxian:player:" + usr_qq + "CD", now_Time);
+            if(now_Time == last_time + shuangxiuTimeout){
+                await Add_najie_thing(usr_qq, "树苗", "食材", +3);
+                e.reply("树苗成熟啦,你收获了10个原木和3个树苗");
+            }
+
+            }
+            if(thing_name == "骨粉"){
+                let ranliao=await exist_najie_thing(usr_qq,"骨粉","材料");
+                    if(ranliao<quantity){
+                         e.reply('你似乎没有那么多'+thing_name)
+                         return;
+                    }
+                await Add_najie_thing(usr_qq, "骨粉", "材料", -quantity);
+                let jianshao=0;
+                jianshao-=60000*quantity
+                await redis.set("xiuxian:player:" + usr_qq + "abc", jianshao);
+                }
             if (thing_name == "煤炭") {
                 let ranliao=await exist_najie_thing(usr_qq,"煤炭","材料");
                 if (player.熔炉==1){
@@ -1686,22 +1729,6 @@ export class UserHome extends plugin {
                     }
                     await Add_najie_thing(usr_qq, "木炭", "材料", -quantity);
                     await Add_热量(usr_qq,9*quantity)
-                    e.reply('添加成功,火烧的更旺了')
-                    return;
-                   
-            }else{
-                e.reply('你没有熔炉放个屁的燃料！')
-            }
-        }
-        if (thing_name == "原木") {
-                let ranliao=await exist_najie_thing(usr_qq,"原木","材料");
-                if (player.熔炉==1){
-                    if(ranliao<quantity){
-                         e.reply('你似乎没有那么多'+thing_name)
-                         return;
-                    }
-                    await Add_najie_thing(usr_qq, "原木", "材料", -quantity);
-                    await Add_热量(usr_qq,2*quantity)
                     e.reply('添加成功,火烧的更旺了')
                     return;
                    
