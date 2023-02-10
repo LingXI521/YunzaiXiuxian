@@ -600,8 +600,8 @@ export class BOSS3 extends plugin {
                         }
                         Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
                         CurrentPlayer.灵石 += Reward;
-                        await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",5)
-                        await Add_najie_thing(e.user_id,"仙子邀约","道具",1)
+                       await Add_najie_thing(CurrentPlayer,"清灵藏的新春木盒","道具",5)
+                        await Add_najie_thing(CurrentPlayer,"仙子邀约","道具",1)
                         await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
                         Bot.logger.mark(`[初夏周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`);
                         continue;
