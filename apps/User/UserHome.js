@@ -18,6 +18,7 @@ import {
     Reduse_player_学习功法, Locked_najie_thing
 } from '../Xiuxian/xiuxian.js'
 import {
+    Add_血气,
     Add_灵石,
     Add_热量,
     Add_饱食度,
@@ -29,7 +30,6 @@ import {
     Add_player_学习功法,
     Add_najie_灵石,
     isNotNull,
-    Add_血气,
     Read_equipment,
     Write_equipment,
     foundthing,
