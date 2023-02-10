@@ -30,9 +30,9 @@
     - icon: help-icon_85
       title: '#加工xx'
       desc: '具体自己研究'
-      - icon: help-icon_86
+    - icon: help-icon_86
       title: '#附魔'
       desc: '附魔附魔台是抽卡,附魔书就是你得到附魔书后附魔到你的武器上'
-      - icon: help-icon_87
-      title: '#降临秘境广寒宫#前往禁地提瓦特'
-      desc: '里面有附魔需要的一些珍稀材料,后者只有仙心才能去'
+    - icon: help-icon_87
+      title: '#降临秘境广寒宫'
+      desc: '里面有附魔需要的一些珍稀材料'
