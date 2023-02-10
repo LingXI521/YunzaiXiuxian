@@ -2390,7 +2390,7 @@ export class UserHome extends plugin {
                   '\n七彩流光的神奇仙谷[' +
                   kouliang.name +
                   ']深埋在土壤中，是仙兽们的最爱。';
-                await Add_najie_thing(player_id, kouliang.name, '仙米', 1);
+                await Add_najie_thing(usr_qq, kouliang.name, '仙米', 1);
               }
            if(thing_name == "天衡山"){  
                 if(player.饱食度< 1000){
