@@ -620,8 +620,6 @@ export class BOSS3 extends plugin {
                 e.reply("初夏被击杀！玩家们可以根据贡献获得奖励！");
                 await sleep(1000);
                 await Add_najie_thing(e.user_id,"清灵藏的新春木盒","道具",10)
-                await Add_najie_thing(e.user_id,"仙子邀约","道具",1)
-
                 e.reply([segment.at(e.user_id),"\n恭喜你亲手结果了初夏的性命,为民除害，额外获得50000灵石奖励！并在初夏身上翻到了清灵藏的新春木盒和一个仙子邀约"]);
                 CurrentPlayerAttributes.灵石 += 50000;
                 Bot.logger.mark(`[初夏] 结算:${e.user_id}增加奖励50000`);
@@ -711,6 +709,8 @@ export class BOSS3 extends plugin {
                             }
                             Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
                             CurrentPlayer.灵石 += Reward;
+                await Add_najie_thing(CurrentPlayer,"清灵藏的新春木盒","道具",5)
+                await Add_najie_thing(CurrentPlayer,"仙子邀约","道具",1)
                         Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励300000`);
                         await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
                     }
