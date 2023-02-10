@@ -3134,6 +3134,12 @@ export class UserHome extends plugin {
                 return;
             }
             await Add_najie_thing(usr_qq, "青金石", "材料", -1)
+            let y = await exist_najie_thing(usr_qq, "书本", "材料")
+            if (!y) {
+                e.reply("你没有【书本】")
+                return;
+            }
+            await Add_najie_thing(usr_qq, "书本", "材料", -1)
             let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
             tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
             console.log(tianluoRandom);
@@ -3151,6 +3157,12 @@ export class UserHome extends plugin {
             return;
         }
         await Add_najie_thing(usr_qq, "青金石", "材料", -1)
+        let y = await exist_najie_thing(usr_qq, "书本", "材料")
+            if (!y) {
+                e.reply("你没有【书本】")
+                return;
+            }
+            await Add_najie_thing(usr_qq, "书本", "材料", -1)
         let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
         console.log(tianluoRandom);
         e.reply("附魔书亮起来了")
