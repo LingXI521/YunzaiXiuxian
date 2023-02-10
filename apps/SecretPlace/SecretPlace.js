@@ -264,7 +264,7 @@ export class SecretPlace extends plugin {
             let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·岩", "仙之心·冰", "仙之心·风", "仙之心·木"]
             let lingen = player.灵根.name
             if(lingen != yuansu[0]||lingen  != yuansu[1]||lingen  != yuansu[2]||lingen  != yuansu[3]||lingen  != yuansu[4]||lingen != yuansu[5]||lingen != yuansu[6]){
-                e.rpely("你是元素灵根吗,就来提瓦特大陆");
+                e.reply("你是元素灵根吗,就来提瓦特大陆");
                 return
         }
     }
