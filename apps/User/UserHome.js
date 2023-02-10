@@ -2381,6 +2381,7 @@ export class UserHome extends plugin {
                     player.addluckyNo = 0;
                   }
                   await data.setData('player', player_id, player);
+                  await Write_player(usr_qq, player);
                 }
                  if (random > newrandom) {
                 let length = data.xianchonkouliang.length;
