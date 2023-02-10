@@ -2,10 +2,10 @@
   list:
     - icon: help-icon_14
       title: '#单抽(寻宝常驻|寻宝特殊up)'
-      desc: '需要泥土'
+      desc: '需要泥土,非仙心的附魔材料在这里'
     - icon: help-icon_14
       title: '#十连抽(寻宝常驻|寻宝特殊up)'
-      desc: '需要树苗'
+      desc: '需要树苗,这里也有应该'
     - icon: help-icon_59
       title: '#自选存档皮肤'
       desc: '自选存档皮肤+皮肤编号+类型+(练气/装备)'
@@ -36,3 +36,9 @@
     - icon: help-icon_87
       title: '#降临秘境广寒宫'
       desc: '里面有附魔需要的一些珍稀材料'
+    - icon: help-icon_88
+      title: '#前往禁地提瓦特'
+      desc: '里面有元素附魔需要的一些珍稀材料'
+    - icon: help-icon_89
+      title: '#讨伐初夏'
+      desc: '初夏有草药盒子'
