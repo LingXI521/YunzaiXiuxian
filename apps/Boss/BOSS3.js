@@ -122,21 +122,77 @@ export class BOSS3 extends plugin {
             let msg = [
                 "****初夏副本贡献排行榜****"
             ];
-           for (var i = 0; i < PlayerList.length; i++) {
+            for (var i = 0; i < PlayerList.length; i++) {
                 if (i < 20) {
-                    let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
-                    Reward = Reward < 10000 ? 10000 : Reward;
-                    if(Reward>1000000){
-                        Reward=1000000
+                    let Reward;
+                    if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.06);
                     }
-                    msg.push("第" + `${i + 1}` + "名:\n" + `名号:${PlayerRecordJSON.Name[PlayerList[i]]}` + '\n' + `总伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + `\n${WorldBossStatus.Health == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`);
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.05) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.045);
+                        if (Reward < Math.trunc(TotalDamage * 0.025 * 0.06)) {
+                            Reward = Math.trunc(TotalDamage * 0.025 * 0.06);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.075) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.036);
+                        if (Reward < Math.trunc(TotalDamage * 0.05 * 0.045)) {
+                            Reward = Math.trunc(TotalDamage * 0.05 * 0.045);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.1) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.032);
+                        if (Reward < Math.trunc(TotalDamage * 0.075 * 0.036)) {
+                            Reward = Math.trunc(TotalDamage * 0.075 * 0.036);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.15) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.025);
+                        if (Reward < Math.trunc(TotalDamage * 0.1 * 0.032)) {
+                            Reward = Math.trunc(TotalDamage * 0.1 * 0.032);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.2) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.022);
+                        if (Reward < Math.trunc(TotalDamage * 0.15 * 0.025)) {
+                            Reward = Math.trunc(TotalDamage * 0.15 * 0.025);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.3) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.018);
+                        if (Reward < Math.trunc(TotalDamage * 0.2 * 0.022)) {
+                            Reward = Math.trunc(TotalDamage * 0.2 * 0.022);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.4) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.016);
+                        if (Reward < Math.trunc(TotalDamage * 0.3 * 0.018)) {
+                            Reward = Math.trunc(TotalDamage * 0.3 * 0.018);
+                        }
+                    }
+                    else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.5) {
+                        Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.015);
+                        if (Reward < Math.trunc(TotalDamage * 0.4 * 0.016)) {
+                            Reward = Math.trunc(TotalDamage * 0.4 * 0.016);
+                        }
+                    }
+                    else {
+                        Reward = Math.trunc(TotalDamage * 0.5 * 0.015);
+                    }
+                    if (TotalDamage > 120000000) {
+                        Reward = Math.trunc(Reward / (TotalDamage / 120000000));
+                    }
+                    if (Reward < 100000) {
+                        Reward = 100000;
+                    }
+                    msg.push("第" + `${i + 1}` + "名:\n" + `名号:${PlayerRecordJSON.Name[PlayerList[i]]}` + '\n' + `总伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + `\n${WorldBossStatus.当前血量 == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`);
                 }
                 if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id) CurrentQQ = i + 1;
             }
             await ForwardMsg(e, msg);
             await sleep(1000);
             if (CurrentQQ != undefined)
-                e.reply(`你在初夏副本贡献排行榜中排名第${CurrentQQ}，造成伤害${PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]}，再接再厉！`);
+                e.reply(`你在初夏周本贡献排行榜中排名第${CurrentQQ}，造成伤害${PlayerRecordJSON.TotalDamage[PlayerList[CurrentQQ - 1]]}，再接再厉！`);
         }
         else e.reply("初夏未开启！");
         return true;
@@ -591,23 +647,70 @@ export class BOSS3 extends plugin {
                     TotalDamage += PlayerRecordJSON.TotalDamage[PlayerList[i]];
                 for (var i = 0; i < PlayerList.length; i++) {
                     let CurrentPlayer = await data.getData("player", PlayerRecordJSON.QQ[PlayerList[i]]);
-                    if (i < Show_MAX) {
-                        let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
-                        Reward = Reward < 1500 ? 1500 : Reward;
-                        if(Reward>1000000){
-                            e.reply("由于获利过多，被万仙盟收取了税费，剩下100w")
-                            Reward=1000000
-                        }
-                        Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
-                        CurrentPlayer.灵石 += Reward;
-                       await Add_najie_thing(CurrentPlayer,"清灵藏的新春木盒","道具",5)
-                        await Add_najie_thing(CurrentPlayer,"仙子邀约","道具",1)
-                        await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
-                        Bot.logger.mark(`[初夏周本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励${Reward}`);
-                        continue;
-                    }
-                    else {
-                        CurrentPlayer.灵石 += 300000;
+                        if (i < Show_MAX) {
+                            let Reward;
+                            if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.025) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.06);
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.05) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.045);
+                                if (Reward < Math.trunc(TotalDamage * 0.025 * 0.06)) {
+                                    Reward = Math.trunc(TotalDamage * 0.025 * 0.06);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.075) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.036);
+                                if (Reward < Math.trunc(TotalDamage * 0.05 * 0.045)) {
+                                    Reward = Math.trunc(TotalDamage * 0.05 * 0.045);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.1) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.032);
+                                if (Reward < Math.trunc(TotalDamage * 0.075 * 0.036)) {
+                                    Reward = Math.trunc(TotalDamage * 0.075 * 0.036);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.15) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.025);
+                                if (Reward < Math.trunc(TotalDamage * 0.1 * 0.032)) {
+                                    Reward = Math.trunc(TotalDamage * 0.1 * 0.032);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.2) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.022);
+                                if (Reward < Math.trunc(TotalDamage * 0.15 * 0.025)) {
+                                    Reward = Math.trunc(TotalDamage * 0.15 * 0.025);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.3) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.018);
+                                if (Reward < Math.trunc(TotalDamage * 0.2 * 0.022)) {
+                                    Reward = Math.trunc(TotalDamage * 0.2 * 0.022);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.4) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.016);
+                                if (Reward < Math.trunc(TotalDamage * 0.3 * 0.018)) {
+                                    Reward = Math.trunc(TotalDamage * 0.3 * 0.018);
+                                }
+                            }
+                            else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) <= 0.5) {
+                                Reward = Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]] * 0.015);
+                                if (Reward < Math.trunc(TotalDamage * 0.4 * 0.016)) {
+                                    Reward = Math.trunc(TotalDamage * 0.4 * 0.016);
+                                }
+                            }
+                            else {
+                                Reward = Math.trunc(TotalDamage * 0.5 * 0.015);
+                            }
+                            if (TotalDamage > 120000000) {
+                                Reward = Math.trunc(Reward / (TotalDamage / 120000000));
+                            }
+                            if (Reward < 100000) {
+                                Reward = 100000;
+                            }
+                            Rewardmsg.push("第" + `${i + 1}` + "名:\n" + `名号:${CurrentPlayer.名号}` + '\n' + `伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + '\n' + `获得灵石奖励${Reward}`);
+                            CurrentPlayer.灵石 += Reward;
                         Bot.logger.mark(`[初夏副本] 结算:${PlayerRecordJSON.QQ[PlayerList[i]]}增加奖励300000`);
                         await data.setData("player", PlayerRecordJSON.QQ[PlayerList[i]], CurrentPlayer);
                     }
