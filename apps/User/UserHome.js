@@ -1643,9 +1643,9 @@ export class UserHome extends plugin {
                         return
                     }
                     if (daomu > 0.7 && daomu <= 0.8) {
-                        await Add_najie_thing(usr_qq, "定灵珠", "道具",1 );
+                        await Add_najie_thing(usr_qq, "闹钟呼唤器", "道具",1 );
                         await Add_najie_thing(usr_qq, "钓鱼掉上来的奇怪盒子", "道具", -1);
-                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个定灵珠"])
+                        e.reply(["你打开了钓鱼掉上来的奇怪盒子，里面有一个闹钟呼唤器"])
                         return
                     }
                     if (daomu > 0.8 && daomu <= 0.9) {
