@@ -180,10 +180,6 @@ export class SecretPlace extends plugin {
             return
         }
         if (didian == '广寒宫') {
-            if(true){
-            e.reply("维护中")
-            return;
-            }
             let number = await exist_najie_thing(usr_qq, '仙子邀约', '道具');
             if (isNotNull(number) && number >= 1) {
                 await Add_najie_thing(usr_qq, '仙子邀约', '道具', -1);
