@@ -8,6 +8,14 @@
             {"name":"煤炭","class":"材料","amount":1}
         ]
     },
+     {
+        "name":"骨粉",
+        "class":"材料",
+        "amount":3,
+        "materials":[
+            {"name":"骨头","class":"材料","amount":1}
+        ]
+    },
     {
         "name":"生铁剑",
         "class":"装备",
