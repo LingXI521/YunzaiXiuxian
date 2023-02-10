@@ -2,10 +2,10 @@
   list:
     - icon: help-icon_14
       title: '#单抽(寻宝常驻|寻宝特殊up)'
-      desc: '抽卡!哇是七七'
+      desc: '需要泥土'
     - icon: help-icon_14
       title: '#十连抽(寻宝常驻|寻宝特殊up)'
-      desc: '抽卡!哇是十个七七'
+      desc: '需要树苗'
     - icon: help-icon_59
       title: '#自选存档皮肤'
       desc: '自选存档皮肤+皮肤编号+类型+(练气/装备)'
@@ -30,3 +30,9 @@
     - icon: help-icon_85
       title: '#加工xx'
       desc: '具体自己研究'
+      - icon: help-icon_86
+      title: '#附魔'
+      desc: '附魔附魔台是抽卡,附魔书就是你得到附魔书后附魔到你的武器上'
+      - icon: help-icon_87
+      title: '#降临秘境广寒宫'
+      desc: '里面有附魔需要的一些珍稀材料'
