@@ -122,90 +122,14 @@ export class BOSS3 extends plugin {
             let msg = [
                 "****初夏副本贡献排行榜****"
             ];
-            for (var i = 0; i < PlayerList.length; i++) {
+           for (var i = 0; i < PlayerList.length; i++) {
                 if (i < 20) {
-                        let Reward;
-                        if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.025)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.06);
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.05)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.045);
-                            if (Reward<Math.trunc(TotalDamage*0.025*0.06))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.025*0.06);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.075)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.036);
-                            if (Reward<Math.trunc(TotalDamage*0.05*0.045))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.05*0.045);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.1)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.032);
-                            if (Reward<Math.trunc(TotalDamage*0.075*0.036))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.075*0.036);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.15)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.025);
-                            if (Reward<Math.trunc(TotalDamage*0.1*0.032))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.1*0.032);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.2)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.022);
-                            if (Reward<Math.trunc(TotalDamage*0.15*0.025))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.15*0.025);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.3)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.018);
-                            if (Reward<Math.trunc(TotalDamage*0.2*0.022))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.2*0.022);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.4)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.016);
-                            if (Reward<Math.trunc(TotalDamage*0.3*0.018))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.3*0.018);
-                            }
-                        }
-                        else if ((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage)<=0.5)
-                        {
-                            Reward=Math.trunc(PlayerRecordJSON.TotalDamage[PlayerList[i]]*0.015);
-                            if (Reward<Math.trunc(TotalDamage*0.4*0.016))
-                            {
-                                Reward=Math.trunc(TotalDamage*0.4*0.016);
-                            }
-                        }
-                        else
-                        {
-                            Reward=Math.trunc(TotalDamage*0.5*0.015);
-                        }
-                        if (TotalDamage>120000000)
-                        {
-                            Reward=Math.trunc(Reward/(TotalDamage/120000000));
-                        }
-                        if (Reward<100000)
-                        {
-                            Reward=100000;
-                        }
-                    msg.push("第" + `${i + 1}` + "名:\n" + `名号:${PlayerRecordJSON.Name[PlayerList[i]]}` + '\n' + `总伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + `\n${WorldBossStatus.当前血量 == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`);
+                    let Reward = Math.trunc((PlayerRecordJSON.TotalDamage[PlayerList[i]] / TotalDamage) * WorldBossStatus.Reward);
+                    Reward = Reward < 10000 ? 10000 : Reward;
+                    if(Reward>1000000){
+                        Reward=1000000
+                    }
+                    msg.push("第" + `${i + 1}` + "名:\n" + `名号:${PlayerRecordJSON.Name[PlayerList[i]]}` + '\n' + `总伤害:${PlayerRecordJSON.TotalDamage[PlayerList[i]]}` + `\n${WorldBossStatus.Health == 0 ? `已得到灵石` : `预计得到灵石`}:${Reward}`);
                 }
                 if (PlayerRecordJSON.QQ[PlayerList[i]] == e.user_id) CurrentQQ = i + 1;
             }
