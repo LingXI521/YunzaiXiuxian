@@ -1932,7 +1932,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
     A_player.当前血量+= A_player.血量上限*0.2
    }
 }
-if(equipment.武器.fumo=="长板之龙"){
+if(equipment.护具.fumo=="长板之龙"){
     if(random>0.8){
         msg.push(A_player.名号+"使用了长板之龙主动技能百鸟朝凤,下次伤害提升了100%")
         att=last_att*2;
