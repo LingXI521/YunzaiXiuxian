@@ -3007,14 +3007,12 @@ export class UserHome extends plugin {
                     await redis.set("xiuxian:player:" + usr_qq + "xunbaocd", now_Time);
                     if (isNotNull(muchan) && muchan> 0){
                         muchan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料",18*muchan*n);
-                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*muchan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料",9*muchan*n);
                         await Add_najie_thing(usr_qq, "铁镐", "道具", -1*muchan);
                     }else{muchan=0;}
                     if(isNotNull(shichan) && shichan > 0){
                         shichan=1
-                        await Add_najie_thing(usr_qq, "深渊石", "材料", 18*shichan*n);
-                        await Add_najie_thing(usr_qq, "下界合金矿", "材料", 3*shichan*n);
+                        await Add_najie_thing(usr_qq, "深渊石", "材料", 9*shichan*n);
                         await Add_najie_thing(usr_qq, "金镐", "道具", -1*shichan);
                     }else{shichan=0;}
                     if(isNotNull(zuanshichan) &&zuanshichan> 0){
@@ -3032,33 +3030,43 @@ export class UserHome extends plugin {
                     await Add_修为(usr_qq,xiuwei)
                   if(math>0.95&&math<=1){
                     await Add_najie_thing(usr_qq, "七星海棠丹", "丹药", 1*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,还有七星海棠丹一个,获得了修为${xiuwei}血气${xueqi}`)
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,还有七星海棠丹一个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
-                  }else if(math>0.6&&math<=0.9){
+                  }else if(math>0.5&&math<=0.6){
                     await Add_najie_thing(usr_qq, "深渊石", "材料", 100*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,额外捡到深渊石${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,额外捡到深渊石${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    return;
+                  }else if(math>0.6&&math<=0.7){
+                    await Add_najie_thing(usr_qq, "甘蔗", "食材", 99*n);
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,额外捡到甘蔗${99*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    return;
+                  }else if(math>0.7&&math<=0.8){
+                    await Add_najie_thing(usr_qq, "树苗", "食材", 50*n);
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,额外捡到深渊石${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.1&&math<=0.2){
-                     await Add_najie_thing(usr_qq, "岩浆", "材料", 10*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,岩浆${10*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                     await Add_najie_thing(usr_qq, "岩浆", "材料", 15*n);
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,岩浆${15*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else if(math>0.2&&math<=0.3){
-                    await Add_najie_thing(usr_qq, "血气瓶", "丹药", 25*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,血气瓶${25*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    await Add_najie_thing(usr_qq, "血气瓶", "丹药", 30*n);
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,血气瓶${30*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
-                  }else if(math>0.3&&math<=0.5){
+                  }else if(math>0.3&&math<=0.4){
                     await Add_najie_thing(usr_qq, "经验瓶", "丹药", 40*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验瓶${40*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,经验瓶${40*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }else{
                     await Add_najie_thing(usr_qq, "经验球", "丹药", 100*n);
-                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${18*muchan*n+18*shichan*n+36*zuanshichan*n}个,
-                    下界合金矿${3*muchan*n+3*shichan*n+9*zuanshichan*n}个,经验球${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
+                    e.reply(`${last_msg}${fyd_msg}你在深渊捡到了深渊石${9*muchan*n+9*shichan*n+18*zuanshichan*n}个,
+                    下界合金矿${9*zuanshichan*n}个,经验球${100*n}个,获得了修为${xiuwei}血气${xueqi}`)
                     return;
                   }
         }else{
