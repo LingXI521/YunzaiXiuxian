@@ -34,6 +34,9 @@
       title: "#采矿N分钟 #结束采矿"
       desc: "进行N分钟的采矿,获取矿石"
     - icon: help-icon_25
+      title: "#狩猎N分钟 #结束狩猎"
+      desc: "进行N分钟的狩猎,获取猎物"
+    - icon: help-icon_25
       title: "#悬赏目标"
       desc: "仅限侠客，每20h刷新，可私聊"
     - icon: help-icon_25
