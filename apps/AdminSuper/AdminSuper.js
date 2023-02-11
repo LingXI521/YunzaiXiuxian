@@ -1313,6 +1313,12 @@ export async function synchronization(e) {
     if (player.Physique_id == 0) {
       player.Physique_id = 1;
     }
+    if(player.镇妖塔层数>=3000){
+      player.镇妖塔层数=3000
+    }
+    if(player.神魄段数>=1500){
+      player.神魄段数=1500
+    }
     let i = 0;
     let action2 = await redis.get('xiuxian:player:' + usr_qq + ':pifu');
     action2 = JSON.parse(action2);
