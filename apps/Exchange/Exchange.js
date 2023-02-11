@@ -13,6 +13,7 @@ import {
     isNotNull,
     Read_najie,
     foundthing,
+    Check_thing
 } from '../Xiuxian/xiuxian.js';
 import {Add_najie_thing, Add_灵石} from '../Xiuxian/xiuxian.js';
 import console from 'console';

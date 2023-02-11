@@ -12,7 +12,8 @@ import {
   Read_player,
   Read_najie,
   isNotNull,
-  Locked_najie_thing
+  Locked_najie_thing,
+  Check_thing
 } from '../Xiuxian/xiuxian.js';
 import { Add_najie_thing,convert2integer} from '../Xiuxian/xiuxian.js';
 

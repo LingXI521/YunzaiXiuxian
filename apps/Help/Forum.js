@@ -2,7 +2,13 @@
 import plugin from '../../../../lib/plugins/plugin.js'
 import fs, {write} from "fs"
 import path from "path"
-import {Add_najie_thing, Add_灵石, Read_najie, __PATH, foundthing, Locked_najie_thing} from "../Xiuxian/xiuxian.js"
+import {Add_najie_thing, 
+    Add_灵石, Read_najie, 
+    __PATH, 
+    foundthing,
+     Locked_najie_thing,
+     Check_thing
+    } from "../Xiuxian/xiuxian.js"
 import {existplayer, Read_player, isNotNull, exist_najie_thing} from "../Xiuxian/xiuxian.js"
 import Show from "../../model/show.js"
 import puppeteer from "../../../../lib/puppeteer/puppeteer.js"
