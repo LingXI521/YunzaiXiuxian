@@ -725,8 +725,8 @@
         "class":"功法",
         "amount":1,
         "materials":[
-            {"name":"锋芒御种","class":"材料","amount":10},
-            {"name":"刀刃御种","class":"材料","amount":10}
+            {"name":"二十四篇-治军","class":"功法","amount":10},
+            {"name":"二十四篇-治乱","class":"功法","amount":10}
         ]
     },
     {
@@ -734,8 +734,9 @@
         "class":"功法",
         "amount":1,
         "materials":[
-            {"name":"锋芒御种","class":"材料","amount":10},
-            {"name":"刀刃御种","class":"材料","amount":10}
+         {"name":"六稻-军略","class":"功法","amount":20},
+         {"name":"六稻-文伐","class":"功法","amount":20},
+          {"name":"六稻-金鼓","class":"功法","amount":20}
         ]
     },
     {
