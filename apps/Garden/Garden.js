@@ -214,17 +214,17 @@ export class Garden extends plugin {
 
         let player = data.getData("player", usr_qq);//读取用户修仙信息
         let player1 = data.getData("player", qq);//读取用户修仙信息
-        let qingdianshu = await exist_najie_thing(usr_qq, "剑帝一剑", "道具");
+        let qingdianshu = await exist_najie_thing(usr_qq, "剑神一剑", "道具");
         if (qingdianshu !== false && qingdianshu !==0 ){//判断纳戒有没有剑帝信物
             let num1 = Math.round(Math.random() * 100 * 1.1);//能跑就行，暂时不用在意取名细节
             let num2 = Math.round(Math.random() * 100 / 1.1);
             let num3 = Math.random();
             let num4 = Math.random();
-            await Add_najie_thing(usr_qq, "剑帝一剑", "道具", -1);
+            await Add_najie_thing(usr_qq, "剑神一剑", "道具", -1);
 
             if (num1 < num2) {
                 if(num3 > num4){
-                    e.reply(`剑帝一剑【残云封天】，封！`)
+                    e.reply(`剑神一剑【残云封天】，封！`)
                     e.group.muteMember(qq, num2 * 6);
                 } else if (num3 < num4) {
                     e.reply(`虚空中出现一只大手，砍出一剑，${player1.名号}没有了动静`)
@@ -263,7 +263,7 @@ export class Garden extends plugin {
 
             return true; //返回true
         }else {
-            e.reply(`你并没有【剑帝一剑】，请通过人界秘境获取`)
+            e.reply(`你并没有【剑神一剑】，请通过人界秘境获取`)
         }
     }
 
