@@ -109,10 +109,10 @@ export class UserSellAll extends plugin {
             if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
                 continue;
             }
-            if (thing_exist.id >= 5005000&& thing_exist.id <= 5005009) {
+            if (element.id >= 5005000&& element.id <= 5005009) {
                 continue;
             }
-            if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
+            if (element.id >= 400991 && element.id <= 400999) {
                 continue;
             }   
             let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
