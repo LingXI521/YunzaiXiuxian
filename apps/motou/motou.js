@@ -65,16 +65,6 @@ export class motou extends plugin {
             await e.reply('一旦转为魔根,将会舍弃当前灵根。回复:【放弃魔根】或者【转世魔根】进行选择', false, { at: true });
             return;
         }
-        let gongfa = ["六稻-军略", "六稻-文伐", "六稻-金鼓", "孙子-兵势", "孙子-始计", "孙子-谋攻", "二十四篇-治军", "二十四篇-治乱", "子午谷谋","孟德新书"];
-        for (let i = 0; i < gongfa.length; i++) {
-           if(player.学习的功法==gongfa[i]){
-            await Reduse_player_学习功法(usr_qq, gongfa[i]);
-           }
-            let x = await exist_najie_thing(usr_qq, gongfa[i], "功法");
-            if (x) {
-                await Add_najie_thing(usr_qq, gongfa[i], "功法", -x);
-            }
-        }
         let random = Math.random();
         if (player.灵根.name == "一重魔功") {
             if (x < 20) {
