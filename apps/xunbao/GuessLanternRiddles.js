@@ -35,11 +35,11 @@ export class GuessLanternRiddles extends plugin {
             priority: 600,
             rule: [
                 {
-                    reg: '^#单抽(寻宝常驻|寻宝特殊up)$',
+                    reg: '^#单抽(寻宝常驻祈愿|寻宝活动祈愿)$',
                     fnc: 'sk'
                 },
                 {
-                    reg: '^#十连抽(寻宝常驻|寻宝特殊up)$',
+                    reg: '^#十连抽(寻宝常驻祈愿|寻宝活动祈愿)$',
                     fnc: 'skten'
                 },
                 {
@@ -142,7 +142,7 @@ export class GuessLanternRiddles extends plugin {
         }
         let thing = e.msg.replace("#", '');
         thing = thing.replace("十连抽", '');
-        if (thing == "寻宝常驻") {
+        if (thing == "寻宝常驻祈愿") {
             let x = await exist_najie_thing(usr_qq, "泥土", "材料")
             if (!x) {
                 e.reply("你没有【泥土】")
@@ -167,7 +167,7 @@ export class GuessLanternRiddles extends plugin {
             await ForwardMsg(e, msg)
             e.reply("恭喜获得\n" + all)
         }
-        if (thing == "寻宝特殊up") {
+        if (thing == "寻宝活动祈愿") {
             let x = await exist_najie_thing(usr_qq, "树苗", "食材")
             if (!x) {
                 e.reply("你没有【树苗】")
@@ -211,7 +211,7 @@ export class GuessLanternRiddles extends plugin {
         }
         let thing = e.msg.replace("#", '');
         thing = thing.replace("单抽", '');
-        if (thing == "寻宝常驻") {
+        if (thing == "寻宝常驻祈愿") {
            
             let x = await exist_najie_thing(usr_qq, "泥土", "材料")
             if (!x) {
@@ -225,7 +225,7 @@ export class GuessLanternRiddles extends plugin {
             await sleep(5000)
             e.reply("一道金光掉落在地上，走近一看是【" + data.changzhu[tianluoRandom].name + "】")
         }
-        if (thing == "寻宝特殊up") {
+        if (thing == "寻宝活动祈愿") {
             
             let x = await exist_najie_thing(usr_qq, "树苗", "食材")
             if (!x) {
