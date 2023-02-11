@@ -74,7 +74,7 @@ export async function existplayer(usr_qq) {
 }
 /**
  * 
- * @param {*} data 纳戒中物品
+ * @param {*} data 物品
  * @returns 0可赠送、拍卖等；1不可赠送、拍卖等。
  */
 export async function Check_thing(data){

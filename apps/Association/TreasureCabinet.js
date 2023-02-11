@@ -235,15 +235,14 @@ export class TreasureCabinet extends plugin {
             e.reply(`这方世界没有[${thing_name}]`);
             return;
         }
-
+        if(Check_thing(thing_exist)==1){
+            e.reply(`${thing_exist.name}特殊！`);
+            return;
+        }
         //判断戒指中是否存在
         let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
         if (!thing_quantity) {//没有
             e.reply(`你没有[${thing_name}]这样的${thing_exist.class}`);
-            return;
-        }
-        if(Check_thing(thing_exist)==1){
-            e.reply(`${thing_exist.name}特殊！`);
             return;
         }
         let pinji = ['劣', '普', '优', '精', '极', '绝', '顶']
