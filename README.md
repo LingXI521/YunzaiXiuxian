@@ -5,7 +5,7 @@
 <br><img src="https://count.getloli.com/get/@:DDZS-XIUXIAN-V1.2.4?theme=rule34" /> <br>       
 ## 安装      
 
-> 在Yunzai-Bot/目录下执行  
+> Yunzai-Bot/目录下执行  
 ```
 git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian-emulator-plugin/
 
