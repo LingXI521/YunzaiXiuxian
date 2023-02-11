@@ -99,16 +99,7 @@ export class lunhui extends plugin {
             await data.setData("player", usr_qq, player);
             return;
         }
-        let gongfa = ["六稻-军略", "六稻-文伐", "六稻-金鼓", "孙子-兵势", "孙子-始计", "孙子-谋攻", "二十四篇-治军", "二十四篇-治乱", "子午谷谋","孟德新书"];
-        for (let i = 0; i < gongfa.length; i++) {
-           if(player.学习的功法==gongfa[i]){
-            await Reduse_player_学习功法(usr_qq, gongfa[i]);
-           }
-            let x = await exist_najie_thing(usr_qq, gongfa[i], "功法");
-            if (x) {
-                await Add_najie_thing(usr_qq, gongfa[i], "功法", -x);
-            }
-        }
+       
         player.lunhui += 1;
         //如果是仙宗人员，退出宗门
         if (isNotNull(player.宗门)) {
