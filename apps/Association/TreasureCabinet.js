@@ -3,7 +3,7 @@ import config from "../../model/Config.js"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
 import { segment } from "oicq"
-import {shijianc, ForwardMsg,Read_najie,convert2integer} from '../Xiuxian/xiuxian.js'
+import {shijianc, ForwardMsg,Read_najie,convert2integer,Check_thing} from '../Xiuxian/xiuxian.js'
 import { Add_灵石, Add_HP, Add_血气, Add_修为, Add_najie_thing, isNotNull, Read_player, __PATH, foundthing } from '../Xiuxian/xiuxian.js'
 import path from "path"
 import { existplayer } from "../Xiuxian/xiuxian.js";
@@ -240,6 +240,10 @@ export class TreasureCabinet extends plugin {
         let thing_quantity = await exist_najie_thing(usr_qq, thing_name, thing_exist.class);
         if (!thing_quantity) {//没有
             e.reply(`你没有[${thing_name}]这样的${thing_exist.class}`);
+            return;
+        }
+        if(Check_thing(thing_exist)==1){
+            e.reply(`${thing_exist.name}特殊！`);
             return;
         }
         let pinji = ['劣', '普', '优', '精', '极', '绝', '顶']

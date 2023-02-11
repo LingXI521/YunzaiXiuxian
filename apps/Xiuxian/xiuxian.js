@@ -74,6 +74,22 @@ export async function existplayer(usr_qq) {
 }
 /**
  * 
+ * @param {*} data 纳戒中物品
+ * @returns 0可赠送、拍卖等；1不可赠送、拍卖等。
+ */
+export async function Check_thing(data){
+    let state=0;
+    if (data.id >= 5005000&& data.id <= 5005009) {
+        state=1;
+    }
+    else if (data.id >= 400991 && data.id <= 400999) {
+        state=1;
+    }
+    return state;
+}
+
+/**
+ * 
  * @param {*} amount 输入数量
  * @returns 返回正整数
  */
