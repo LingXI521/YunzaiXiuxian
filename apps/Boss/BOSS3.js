@@ -44,15 +44,19 @@ export class BOSS3 extends plugin {
             ]
         })
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
+        this.set = config.getdefSet('task', 'task')
+        this.task = {
+            cron: this.set.BossTask2,
+            name: 'BossTask',
+            fnc: (e) => this.CreateWorldBoss(e)
+        }
     }
-
 
     //初夏开启指令
     async CreateWorldBoss(e) {
         if (!e.isMaster) {
             return
         }
-
         await InitWorldBoss()
         e.reply("强制开启成功")
         return;
