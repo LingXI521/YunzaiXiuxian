@@ -661,6 +661,34 @@ export class UserHome extends plugin {
                 break;
             }
         }
+        for (var i = 0; i < data.changzhu.length; i++) {
+            if (thing_name == data.changzhu[i].name) {
+                weizhi.push("寻宝常驻");
+                weizhi.push(" ");
+                break;
+            }
+        }
+        for (var i = 0; i < data.xianding.length; i++) {
+            if (thing_name == data.xianding[i].name) {
+                weizhi.push("寻宝限定up");
+                weizhi.push(" ");
+                break;
+            }
+        }
+        for (var i = 0; i < data.mojie.length; i++) {
+            if (thing_name == data.mojie[i].name) {
+                weizhi.push("魔界");
+                weizhi.push(" ");
+                break;
+            }
+        }
+        for (var i = 0; i < data.shenjie.length; i++) {
+            if (thing_name == data.shenjie[i].name) {
+                weizhi.push("神界");
+                weizhi.push(" ");
+                break;
+            }
+        }
         weizhi.push('\n');
         weizhi.push("消耗了一张寻物纸,");
         if (weizhi.length == 15) {
