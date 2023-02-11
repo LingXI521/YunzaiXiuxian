@@ -387,6 +387,14 @@ export class Auction extends plugin {
       e.reply(`你的纳戒中的${thing_data.class}[${thing_name}]是锁定的`);
       return;
     }
+    if (thing_data.id >= 5005000&& thing_data.id <= 5005009) {
+      e.reply("拍卖不了");
+      return;
+    }
+    if (thing_data.id >= 400991 && thing_data.id <= 400999) {
+      e.reply("拍卖不了");
+      return;
+    } 
     // let whole = thing_value * thing_amount;
     // whole = Math.trunc(whole);
     // let time = 10;//分钟
