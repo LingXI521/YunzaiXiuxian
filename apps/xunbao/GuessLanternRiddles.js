@@ -229,7 +229,7 @@ export class GuessLanternRiddles extends plugin {
             
             let x = await exist_najie_thing(usr_qq, "树苗", "食材")
             if (!x) {
-                e.reply("你没有【泥土】")
+                e.reply("你没有【树苗】")
                 return
             }
             e.reply("一道金光从天而降")
