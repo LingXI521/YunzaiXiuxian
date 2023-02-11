@@ -382,6 +382,14 @@ export class Auction extends plugin {
       e.reply(`你只有${thing_name}×${thing_data.数量} `);
       return;
     }
+    if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
+      e.reply(`轮回功法${thing_name}禁止拍卖。`)
+      return;
+    }
+    if (thing_exist.id >= 5005000 && thing_exist.id <= 5005009) {
+      e.reply(`仙心功法${thing_name}禁止拍卖。`)
+      return;
+    }
     if ((await Locked_najie_thing(usr_qq, thing_name, thing_data.class)) == 1) {
       //锁定
       e.reply(`你的纳戒中的${thing_data.class}[${thing_name}]是锁定的`);
