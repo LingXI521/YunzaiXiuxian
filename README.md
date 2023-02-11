@@ -1,4 +1,4 @@
-# 绝云间修仙V1.2.4「银花造福盈」(原DD斩首魔改版)  
+# 绝云间修仙V1.2.5「附魔版本」(原DD斩首魔改版)  
 ## 玩家攻略：
 [修仙攻略](https://docs.qq.com/doc/DSUhqZWdpZXJuUndZ?&u=4bd0757f64094c48b02d7cfc4eaeb44b)  
 ## 访问量：        
