@@ -360,8 +360,8 @@ export class MoneyOperation extends plugin {
                 return;
             }
             if (thing_exist.id >= 5005000 && thing_exist.id <= 5005009) {
-            e.reply(`仙心功法${thing_name}禁止上架。`)
-            return;
+                e.reply(`仙心功法${thing_name}禁止出售。`)
+                return;
             }
             let pj = {
                 "劣": 0,
