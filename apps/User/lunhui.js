@@ -9,7 +9,9 @@ import {
     Read_equipment,
     Write_equipment,
     isNotNull,
-    player_efficiency, get_random_fromARR
+    Reduse_player_学习功法,
+    player_efficiency, 
+    get_random_fromARR
 } from '../Xiuxian/xiuxian.js'
 import {Add_najie_thing, Add_HP} from '../Xiuxian/xiuxian.js'
 
