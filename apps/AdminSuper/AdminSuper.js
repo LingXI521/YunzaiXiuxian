@@ -1465,6 +1465,13 @@ export async function synchronization(e) {
         break;
       }
     }
+    for (let i = 0; i < najie.道具.length; i++) {
+      const element = najie.道具[i];
+      if (element.name=="剑帝一剑") {
+        najie.道具[i].name="剑神一剑";
+        break;
+      }
+    }
     for (let i = 0; i < najie.装备.length; i++) {
       const element = najie.装备[i];
       if (!isNotNull(element.fumo)) {
