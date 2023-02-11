@@ -395,12 +395,8 @@ export class Forum extends plugin {
             e.reply(`这方世界没有这样的东西:${thing_name}`);
             return;
         }
-        if (thing_exist.id >= 400991 && thing_exist.id <= 400999) {
-            e.reply(`轮回功法${thing_name}禁止出售。`)
-            return;
-        }
-        if (thing_exist.id >= 5005000&& thing_exist.id <= 5005009) {
-            e.reply(`仙心功法${thing_name}禁止出售。`)
+        if (await Check_thing(thing_exist)==1) {
+            e.reply(`${thing_exist.name}特殊！`);
             return;
         }
         if (thing_exist.class == "装备") {

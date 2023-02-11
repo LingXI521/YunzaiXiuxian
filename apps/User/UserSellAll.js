@@ -9,7 +9,7 @@ import {
     foundthing,
     Write_najie, Read_najie, isNotNull
 } from '../Xiuxian/xiuxian.js'
-import {Add_灵石, Add_najie_thing, Add_修为, Add_player_学习功法, Add_血气,Locked_najie_thing} from '../Xiuxian/xiuxian.js'
+import {Add_灵石, Add_najie_thing, Add_修为, Add_player_学习功法, Add_血气,Locked_najie_thing,Check_thing} from '../Xiuxian/xiuxian.js'
 import {__PATH} from "../Xiuxian/xiuxian.js"
 import {get_equipment_img} from '../ShowImeg/showData.js'
 import {synchronization} from '../AdminSuper/AdminSuper.js'
@@ -109,12 +109,9 @@ export class UserSellAll extends plugin {
             if (await Locked_najie_thing(A_qq, element.name, element.class,element.pinji) == 1) {
                 continue;
             }
-            if (element.id >= 5005000&& element.id <= 5005009) {
+            if(await Check_thing(element)==1){
                 continue;
             }
-            if (element.id >= 400991 && element.id <= 400999) {
-                continue;
-            }   
             let number=await exist_najie_thing(A_qq,element.name,element.class,element.pinji);
             await Add_najie_thing(A_qq, element.name,element.class, -number, element.pinji);
             await Add_najie_thing(B_qq, element.name, element.class, number, element.pinji);
