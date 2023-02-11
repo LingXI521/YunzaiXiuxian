@@ -479,7 +479,7 @@ export class lunhui extends plugin {
             return;
         } else if (choice == "确认轮回") {
             await redis.set("xiuxian:player:" + usr_qq + ":lunhui", 1);
-            e.reply("请再次输入#轮回！");
+            e.reply("请再次输入#轮回");
             //console.log(this.getContext().recall);
             this.finish('yeslunhui');
             return;
