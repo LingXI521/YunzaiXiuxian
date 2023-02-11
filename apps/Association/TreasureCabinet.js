@@ -235,7 +235,7 @@ export class TreasureCabinet extends plugin {
             e.reply(`这方世界没有[${thing_name}]`);
             return;
         }
-        if(Check_thing(thing_exist)==1){
+        if(await Check_thing(thing_exist)==1){
             e.reply(`${thing_exist.name}特殊！`);
             return;
         }
