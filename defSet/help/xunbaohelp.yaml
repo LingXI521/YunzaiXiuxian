@@ -1,10 +1,10 @@
 - group: 寻宝
   list:
     - icon: help-icon_14
-      title: '#单抽(寻宝常驻|寻宝特殊up)'
+      title: '#单抽(寻宝常驻祈愿|寻宝活动祈愿)'
       desc: '需要泥土,非仙心的附魔材料在这里'
     - icon: help-icon_14
-      title: '#十连抽(寻宝常驻|寻宝特殊up)'
+      title: '#十连抽(寻宝常驻祈愿|寻宝活动祈愿)'
       desc: '需要树苗,这里也有应该(这里有附魔台)'
     - icon: help-icon_59
       title: '#自选存档皮肤'
