@@ -2,7 +2,7 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import { segment } from "oicq"
 import data from '../../model/XiuxianData.js'
 import fs from "fs"
-import { Gaodenyuansulun,Add_najie_thing, isNotNull } from '../Xiuxian/xiuxian.js'
+import { Gaodenyuansulun,Add_najie_thing } from '../Xiuxian/xiuxian.js'
 import config from "../../model/Config.js"
 
 //本模块由(qq:1695037643)和jio佬完成
@@ -46,32 +46,46 @@ export class BOSS3 extends plugin {
         this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
         this.set = config.getdefSet('task', 'task')
         this.task = {
-            cron: this.set.BossTask2,
+            cron: this.set.BossTask3,
             name: 'BossTask',
-            fnc: (e) => this.CreateWorldBoss(e)
+            fnc: (e) => this.CreateWorldBoss()
         }
     }
 
     //初夏开启指令
-    async CreateWorldBoss(e) {
-        if (!e.isMaster) {
-            return
-        }
+    async CreateWorldBoss() {
         await InitWorldBoss()
-        e.reply("强制开启成功")
         return;
     }
     //初夏结束指令
-    async DeleteWorldBoss(e) {
-        if (!e.isMaster) {
-            return
-        }
+    async DeleteWorldBoss() {
         if (await BossIsAlive()) {
             await redis.del("Xiuxian:WorldBossStatus3");
             await redis.del("Xiuxian:PlayerRecord3");
         }
-        e.reply("强制关闭成功")
-        return ;
+        return;
+    }
+
+
+    //初夏手动开启指令
+    async CreateWorldBoss3(e) {
+        if (e.isMaster) {
+            await InitWorldBoss();
+            e.reply("初夏挑战开启！");
+            return;
+        }
+        return;
+    }
+    //初夏手动结束指令
+    async DeleteWorldBoss3(e) {
+        if (e.isMaster) {
+            if (await BossIsAlive()) {
+                await redis.del("Xiuxian:WorldBossStatus3");
+                await redis.del("Xiuxian:PlayerRecord3");
+                e.reply("初夏挑战关闭！");
+            }
+        }
+        return;
     }
     //初夏状态指令
     async LookUpWorldBossStatus(e) {

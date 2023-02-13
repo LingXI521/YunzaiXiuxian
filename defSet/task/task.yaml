@@ -17,6 +17,8 @@ ExchangeTask: 0 0 4 * * ?
 # 开启怪物
 BossTask2: 0 0 20 * * ?
 # 开启怪物
+BossTask3: 0 0 20 * * ?
+# 开启怪物
 BossTask: 0 30 11,18 * * ?
 #关闭怪物
 BossEndTask: 0 30 12,19 * * ?
