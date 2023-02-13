@@ -1483,39 +1483,6 @@ export async function synchronization(e) {
         najie.食材[i].加成=data.shicai_list[i].加成
       }
     }
-                    let lingen = player.灵根.name
-                    let yuansu = ["仙之心·火", "仙之心·水", "仙之心·雷", "仙之心·岩", "仙之心·冰", "仙之心·风", "仙之心·木"]
-                   if(lingen == yuansu[0]||lingen  == yuansu[1]||lingen  == yuansu[2]||lingen  == yuansu[3]||lingen  == yuansu[4]||lingen == yuansu[5]||lingen == yuansu[6]){
-                    let gongfa1 = ["一转轮回", "二转轮回", "三转轮回", "四转轮回", "五转轮回", "六转轮回", "七转轮回", "八转轮回", "九转轮回"];
-                                   for (let i = 0; i < gongfa1.length; i++) {
-                                   for(let j=0;j<player.学习的功法.length;j++){
-                      if(j==i){
-                       await Reduse_player_学习功法(usr_qq,i);
-                      }
-                      }
-                       let x = await exist_najie_thing(usr_qq, i, "功法");
-                       if (x) {
-                           await Add_najie_thing(usr_qq, i, "功法", -x);
-                       }
-                   
-                   }
-                   if(!(lingen == yuansu[0]||lingen  == yuansu[1]||lingen  == yuansu[2]||lingen  == yuansu[3]||lingen  == yuansu[4]||lingen == yuansu[5]||lingen == yuansu[6])){
-                       let gongfa = ["六稻-军略", "六稻-文伐", "六稻-金鼓", "孙子-兵势", "孙子-始计", "孙子-谋攻", "二十四篇-治军", "二十四篇-治乱", "子午谷谋","孟德新书"];
-                    for (let i = 0; i < gongfa.length; i++) {
-                     for(let j=0;j<player.学习的功法.length;j++){
-                      if(j==i){
-                       await Reduse_player_学习功法(usr_qq,i);
-                      }
-                      }
-                       let x = await exist_najie_thing(usr_qq, i, "功法");
-                       if (x) {
-                           await Add_najie_thing(usr_qq, i, "功法", -x);
-                       }
-                   
-                   }
-                       
-               }
-                }
     //修
     if (!isNotNull(player.血量上限)) {
       player.血量上限 = 1;
