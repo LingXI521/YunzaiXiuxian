@@ -1820,7 +1820,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         if (random > 0.8) {
             msg.push("'可叹落叶飘零'"+ A_player.名号+"的周围吹起风墙,无数枫叶飞舞在双方周围")
             if (A_lin == yuansu[5]) {
-                if(equipment.武器.fumo=="凤"){
+                if(equipment.武器.fumo=="风"){
                 msg.push("风之眼元素力催动武器,风元素附魔与其产生共鸣,触发苍古被动[抗争的践行之歌],"+B_player.名号+"的防御力减少了40%同时自身攻击力增加了40%")
                att*=1.4
                B_player.防御*=0.6
@@ -1860,7 +1860,7 @@ export async function Gaodenyuansulun(A_player, B_player, last_att, msg, cnt, Ag
         if (random > 0.8) {
             msg.push(A_player.名号+"催动终末嗟叹之诗,释放风神之诗,恐怖的风龙卷慢慢的逼近"+B_player.名号)
             if (A_lin == yuansu[5]) {
-                if(equipment.武器.fumo=="凤"){
+                if(equipment.武器.fumo=="风"){
                 msg.push("风之眼元素力催动武器,风元素附魔与其产生共鸣,终末被动[别离的思念之歌],"+B_player.名号+"的防御力减少了60%同时自身攻击力增加了40%")
                att*=1.4
                B_player.防御*=0.4
