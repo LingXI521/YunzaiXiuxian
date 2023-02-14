@@ -146,7 +146,12 @@ export class UserStart extends plugin {
             "附魔台":0,
             "书架":0,
             "师徒任务阶段":0,
-            "师徒积分":0
+            "师徒积分":0,
+            "副职": {
+		"职业名": [],
+		"职业经验": 0,
+		"职业等级": 1
+	}
         }
         await Write_player(usr_qq, new_player);
         //初始化装备
@@ -512,10 +517,11 @@ export class UserStart extends plugin {
         //给奖励
         let gift_xiuwei = player.连续签到天数 * 3000;
         await Add_najie_thing(usr_qq, "秘境之匙", "道具", this.xiuxianConfigData.Sign.ticket);
+        await Add_najie_thing(usr_qq, "仙子邀约", "道具", 1);
         await Add_修为(usr_qq, gift_xiuwei);
         let msg = [
             segment.at(usr_qq),
-            `已经连续签到${player.连续签到天数}天了，获得了${gift_xiuwei}修为,秘境之匙x${this.xiuxianConfigData.Sign.ticket}`
+            `已经连续签到${player.连续签到天数}天了，获得了${gift_xiuwei}修为,秘境之匙x${this.xiuxianConfigData.Sign.ticket},仙子邀约*1`
         ]
         e.reply(msg);
         return;
