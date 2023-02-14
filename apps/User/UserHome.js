@@ -3,7 +3,7 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
 import fs from "fs"
-import {segment} from "oicq"
+import { segment } from "oicq"
 import {
     Read_player,
     existplayer,
@@ -36,9 +36,9 @@ import {
     foundthing,
     convert2integer
 } from '../Xiuxian/xiuxian.js'
-import {__PATH} from "../Xiuxian/xiuxian.js"
-import {Add_仙宠} from "../Pokemon/Pokemon.js"
-import {get_equipment_img} from '../ShowImeg/showData.js'
+import { __PATH } from "../Xiuxian/xiuxian.js"
+import { Add_仙宠 } from "../Pokemon/Pokemon.js"
+import { get_equipment_img } from '../ShowImeg/showData.js'
 
 /**
  * 全局变量
@@ -1092,7 +1092,7 @@ export class UserHome extends plugin {
                         player.修炼效率提升 += action[i].biguanxl;
                         e.reply(
                             `${thing_name}提高了你的忍耐力,提高了下次闭关的效率,当前提高${
-                                action[i].biguanxl * 100
+                            action[i].biguanxl * 100
                             }%`
                         );
                     }
@@ -1185,7 +1185,7 @@ export class UserHome extends plugin {
                             );
                             e.reply(
                                 `服用了${thing_name},获得了炼神之力,下次闭关获得了炼神之力,当前炼神之力为${
-                                    this_danyao.lianshen * 100
+                                this_danyao.lianshen * 100
                                 }%`
                             );
                             return;
@@ -1646,8 +1646,8 @@ export class UserHome extends plugin {
                     return
                 }
             }
-          
-        if (thing_name == "煤炭") {
+
+            if (thing_name == "煤炭") {
                 let ranliao = await exist_najie_thing(usr_qq, "煤炭", "材料");
                 if (player.熔炉 == 1) {
                     if (ranliao < quantity) {
@@ -1797,7 +1797,7 @@ export class UserHome extends plugin {
                     /** 设置上下文 */
                     this.setContext('DUIHUAN');
                     /** 回复 */
-                    await e.reply('是否消耗十个卷轴兑换一个八品功法？回复:【兑换*功法名】或者【还是算了】进行选择', false, {at: true});
+                    await e.reply('是否消耗十个卷轴兑换一个八品功法？回复:【兑换*功法名】或者【还是算了】进行选择', false, { at: true });
                     return
                 } else {
                     e.reply("你没有足够的残卷")
@@ -3180,59 +3180,6 @@ export class UserHome extends plugin {
             return;
         }
         if (func == "附魔") {
-            if (thing_name == "附魔台") {
-                if (player.附魔台 != 1) {
-                    e.reply('你没有附魔台')
-                    return;
-                }
-                if (player.书架 < 50) {
-                    let x = await exist_najie_thing(usr_qq, "青金石", "材料")
-                    if (!x) {
-                        e.reply("你没有【青金石】")
-                        return;
-                    }
-                    await Add_najie_thing(usr_qq, "青金石", "材料", -1)
-                    let y = await exist_najie_thing(usr_qq, "书本", "材料")
-                    if (!y) {
-                        e.reply("你没有【书本】")
-                        return;
-                    }
-                    await Add_najie_thing(usr_qq, "书本", "材料", -1)
-                    let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
-                    tianluoRandom = (Math.ceil((tianluoRandom + 1) / 5) - 1) * 5;
-                    console.log(tianluoRandom);
-                    e.reply("附魔书亮起来了")
-                    await sleep(5000)
-                    e.reply(`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`)
-                    await sleep(1000)
-                    await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name,"道具", 1)
-                    e.reply("恭喜获得" + data.changzhufumoshu_list[tianluoRandom].name)
-                    return;
-                } else {
-                    let x = await exist_najie_thing(usr_qq, "青金石", "材料")
-                    if (!x && x < 3) {
-                        e.reply("你没有足够的【青金石】")
-                        return;
-                    }
-                    await Add_najie_thing(usr_qq, "青金石", "材料", -1)
-                    let y = await exist_najie_thing(usr_qq, "书本", "材料")
-                    if (!y) {
-                        e.reply("你没有【书本】")
-                        return;
-                    }
-                    await Add_najie_thing(usr_qq, "书本", "材料", -1)
-                    let tianluoRandom = Math.floor(Math.random() * data.changzhufumoshu_list.length);
-                    console.log(tianluoRandom);
-                    e.reply("附魔书亮起来了")
-                    await sleep(5000)
-                    e.reply(`金光掉落在地上，走近一看是 ${data.changzhufumoshu_list[tianluoRandom].name}`)
-                    await sleep(1000)
-                    await Add_najie_thing(usr_qq, data.changzhufumoshu_list[tianluoRandom].name,"道具",  1)
-                    e.reply("恭喜获得" + data.changzhufumoshu_list[tianluoRandom].name)
-                    return;
-                }
-
-            }
             let wupin = data.fumoshu_list.find(item => item.name == thing_name);
             if (!isNotNull(wupin)) {
                 e.reply(`该附魔书暂时未添加，请持续关注`);
@@ -3389,9 +3336,9 @@ export class UserHome extends plugin {
             e.reply(`输入物品数量小于1,现在默认为1`);
             quantity = 1;
         }
-            // else if (parseInt(code[1]) > 99) {
-            //     e.reply(`客官，一次只能卖99瓶哦，货物稀缺呢~`);
-            //     quantity = 99;
+        // else if (parseInt(code[1]) > 99) {
+        //     e.reply(`客官，一次只能卖99瓶哦，货物稀缺呢~`);
+        //     quantity = 99;
         // }
         else {
             quantity = parseInt(code[1]);
