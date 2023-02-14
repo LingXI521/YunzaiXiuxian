@@ -2392,7 +2392,7 @@ export async function Get_xiuwei(usr_qq) {
         return;
     }
     now_level_id = data.Level_list.find(item => item.level_id == player.level_id).level_id;
-    if (now_level_id < 46) {
+    if (now_level_id <65) {
         for (var i = 1; i < now_level_id; i++) {
             sum_exp = sum_exp + data.Level_list.find(temp => temp.level_id == i).exp;
         }
