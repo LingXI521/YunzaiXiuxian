@@ -50,7 +50,7 @@ class XiuxianData {
         this.Level_list = JSON.parse(fs.readFileSync(`${this.Level}/练气境界.json`));
          //师徒积分
         this.shitujifen = JSON.parse(fs.readFileSync(`${this.lib_path}/积分商城.json`));
-        //练体境界
+        //炼体境界
         this.LevelMax_list = JSON.parse(fs.readFileSync(`${this.Level}/炼体境界.json`));
 
 
