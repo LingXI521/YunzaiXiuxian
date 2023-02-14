@@ -18,8 +18,7 @@ import {
   Read_updata_log,
   Add_HP,
   Add_najie_thing,
-  exist_najie_thing,
-  Reduse_player_学习功法
+  exist_najie_thing
 } from '../Xiuxian/xiuxian.js';
 import { Read_Exchange, Write_Exchange } from '../Exchange/Exchange.js';
 import { Read_player, __PATH } from '../Xiuxian/xiuxian.js';

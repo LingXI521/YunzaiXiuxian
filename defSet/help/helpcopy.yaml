@@ -89,10 +89,10 @@
   list:
     - icon: help-icon_19
       title: "#挑战镇妖塔"
-      desc: "试炼自己提高攻击力，获取灵石"
+      desc: "试炼自己获取灵石"
     - icon: help-icon_17
       title: "#炼神魄"
-      desc: "试炼自己提高防御与血量，获取血气"
+      desc: "试炼自己获取血气"
     - icon: help-icon_10
       title: "乞讨xx"
       desc: "请至少先带100灵石给某大爷、某宅女付债"
