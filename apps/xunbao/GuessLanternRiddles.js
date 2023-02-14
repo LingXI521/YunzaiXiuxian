@@ -2,26 +2,9 @@ import plugin from '../../../../lib/plugins/plugin.js'
 import data from '../../model/XiuxianData.js'
 import config from "../../model/Config.js"
 import fs from "fs"
-import { Read_player, existplayer, get_random_talent, getLastsign, Read_equipment, sleep, exist_najie_thing, Add_血气, getLastsign2 } from '../Xiuxian/xiuxian.js'
-import { Write_equipment, Write_player, Write_najie } from '../Xiuxian/xiuxian.js'
-import { shijianc, get_random_fromARR, isNotNull, ForwardMsg } from '../Xiuxian/xiuxian.js'
-import { Add_灵石, Add_HP, Add_修为, Add_najie_thing, anti_cheating } from '../Xiuxian/xiuxian.js'
-import { get_player_img, get_gongfa_img } from '../ShowImeg/showData.js'
-import { segment } from "oicq"
+import { Add_najie_thing, isNotNull, ForwardMsg, Write_player, sleep, exist_najie_thing, Read_player, existplayer } from '../Xiuxian/xiuxian.js'
 import { __PATH } from "../Xiuxian/xiuxian.js"
-import Show from '../../model/show.js';
-import puppeteer from '../../../../lib/puppeteer/puppeteer.js';
 
-/**
- * 全局
- */
-let allaction = false;//全局状态判断
-let WorldBOSSBattleCD = [];//CD
-let WorldBOSSBattleLock = 0;//BOSS战斗锁，防止打架频率过高造成奖励多发
-let WorldBOSSBattleUnLockTimer = 0;//防止战斗锁因意外锁死
-/**
- * 新年系统
- */
 
 export class GuessLanternRiddles extends plugin {
     constructor() {
