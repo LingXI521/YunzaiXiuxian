@@ -21,7 +21,7 @@ export class BOSS3 extends plugin {
             /** 优先级，数字越小等级越高 */
             priority: 600,
             rule: [
-                {
+                /*{
                     reg: '^#开启初夏$',
                     fnc: 'CreateWorldBoss'
                 },
@@ -40,20 +40,20 @@ export class BOSS3 extends plugin {
                 {
                     reg: '^#讨伐初夏$',
                     fnc: 'WorldBossBattle'
-                }
+                }*/
             ]
         })
-        this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
+        /*this.xiuxianConfigData = config.getConfig("xiuxian", "xiuxian");
         this.set = config.getdefSet('task', 'task')
         this.task = {
             cron: this.set.BossTask3,
             name: 'BossTask',
             fnc: (e) => this.CreateWorldBoss()
-        }
+        }*/
     }
 
     //初夏开启指令
-    async CreateWorldBoss() {
+    /*async CreateWorldBoss() {
         await InitWorldBoss()
         return;
     }
@@ -86,7 +86,7 @@ export class BOSS3 extends plugin {
             }
         }
         return;
-    }
+    }*/
     //初夏状态指令
     async LookUpWorldBossStatus(e) {
         if (await BossIsAlive()) {
