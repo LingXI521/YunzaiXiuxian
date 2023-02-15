@@ -230,7 +230,7 @@ export class BOSS2 extends plugin {
                 return true;
             }
             if (data.Level_list.find(item => item.level_id === CurrentPlayerAttributes.level_id).level_id > 41 || CurrentPlayerAttributes.lunhui > 0) {
-                e.reply("仙人不得下凡");
+                e.reply("仙人或轮回者太强大啦，不能参战！");
                 return true;
             }
             //if (Lilian_CD[e.user_id]) { e.reply("正在历练中"); return true; }
