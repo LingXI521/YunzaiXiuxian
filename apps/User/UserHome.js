@@ -2641,7 +2641,7 @@ export class UserHome extends plugin {
                         e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150 * muchan * n + 300 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人箱子里找到轻策庄地图${1 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else if (math > 0.7 && math <= 0.8) {
-                        await Add_najie_thing(usr_qq, "甘蔗", "材料", 5 * n);
+                        await Add_najie_thing(usr_qq, "甘蔗", "食材", 5 * n);
                         e.reply(`${last_msg}${fyd_msg}你在恒那兰那捡到了胡萝卜${150 * muchan * n + 300 * n * shichan}个和土豆${150 * muchan * n + 300 * n * shichan}个,在猪人家里找到书架${5 * n}个,获得了修为${xiuwei}血气${xueqi}`)
                         return;
                     } else {
