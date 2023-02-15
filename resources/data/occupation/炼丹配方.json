@@ -31,11 +31,11 @@
 		"name": "辟谷丹",
 		"materials": [
 			{
-				"name": "万年凝血草",
+				"name": "天灵花",
 				"amount": 1
 			},
 			{
-				"name": "万年血精草",
+				"name": "皇草",
 				"amount": 1
 			}
 		],
@@ -54,11 +54,11 @@
 				"amount": 1
 			},
 			{
-				"name": "万年甜甜花",
+				"name": "万年虫草",
 				"amount": 1
 			},
 			{
-				"name": "万年清心草",
+				"name": "仙草",
 				"amount": 1
 			}
 		],
@@ -77,11 +77,11 @@
 				"amount": 1
 			},
 			{
-				"name": "万年凝血草",
+				"name": "龙火",
 				"amount": 1
 			},
 			{
-				"name": "万年血精草",
+				"name": "创世花",
 				"amount": 1
 			}
 		],
