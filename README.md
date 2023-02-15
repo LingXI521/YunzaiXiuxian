@@ -1,4 +1,4 @@
-# 绝云间修仙V1.2.5「附魔版本」(原DD斩首魔改版)  
+# 绝云间修仙V1.2.5「附魔版本」(暂停更新，详情见服主交流群)
 ## 玩家攻略：
 [修仙攻略](https://docs.qq.com/doc/DSUhqZWdpZXJuUndZ?&u=4bd0757f64094c48b02d7cfc4eaeb44b)  
 ## 访问量：        
@@ -52,7 +52,8 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 > 墨羽(1095365435):提供了宗门     
 > 啵唧(1702701528):提供许多武器，秘境，特殊道具     
 > xh(917951214):职业功能   
-> 零(3106256704):修复bug,维护功能   
+> 零(3106256704):修复bug,维护功能  
+> RetuEase(1099177812):开发，维护功能   
 > 画手(1589978621):维护和处理bug  
 ## 配置与存档   
 >xiuxian-emulator-plugin/ config / xiuxian / xiuxian.yaml       
