@@ -53,13 +53,13 @@ export class AuctionTask extends plugin {
     } else {
       let last_offer_player = auction.last_offer_player;
       if (last_offer_player == 0) {
-        await Add_najie_thing(
-          auction.qq,
-          auction.thing.name,
-          auction.thing.class,
-          auction.amount,
-          auction.thing.pinji
-        );
+        // await Add_najie_thing(
+        //   auction.qq,
+        //   auction.thing.name,
+        //   auction.thing.class,
+        //   auction.amount,
+        //   auction.thing.pinji
+        // );
         let player = await Read_player(auction.qq);
         msg = `流拍，${auction.thing.name}已退回${player.名号}的纳戒`;
       } else {
