@@ -62,3 +62,5 @@ git clone  https://gitee.com/hutao222/DDZS-XIUXIAN-V1.2.4/.git ./plugins/xiuxian
 ## 免责声明       
 1. 功能仅限内部交流与小范围使用       
 2. 请勿用于任何以盈利为目的的场景       
+## 结尾
+ 偷个库方便我gitclone，建议支持原作者
